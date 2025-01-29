@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/01/29 11:56:31 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/01/29 15:01:11 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,11 +62,16 @@ HEADERS = ${addprefix ${INC_PATH}/, \
 	types.h}
 
 # Source files for main program
-SRCS = ${addprefix ${SRC_PATH}/, \
-	main.c}
+# SRCS = ${addprefix ${SRC_PATH}/, \
+# 	000_main.c}
+
+SRCS = ${SRC_PATH}/000_main.c \
+       ${SRC_PATH}/100_inits/init.c
 
 # Object files derived from source files
-OBJS = ${addprefix ${BUILD_PATH}/, ${notdir ${SRCS:.c=.o}}}
+# OBJS = ${addprefix ${BUILD_PATH}/, ${notdir ${SRCS:.c=.o}}}
+OBJS = ${SRCS:${SRC_PATH}/%.c=${BUILD_PATH}/%.o}
+
 
 LIBFT_PATH = 42_Libft
 LIBFT_ARC = ${LIBFT_PATH}/libft.a
@@ -111,6 +116,7 @@ ${BUILD_PATH}:
 
 ${BUILD_PATH}/%.o: ${SRC_PATH}/%.c ${HEADERS} | ${BUILD_PATH}
 	@printf "${CYAN}${DIM}Compiling: ${WHITE}%-30s${RESET}\r" ${notdir $<}
+	@${MKDIR_P} $(dir $@)  # Ensure subdirectories in .build exist
 	@${CC} ${CCFLAGS} ${INC} -c $< -o $@
 
 ${LIBFT_ARC}: deps
