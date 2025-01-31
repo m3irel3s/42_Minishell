@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 12:58:31 by meferraz          #+#    #+#             */
-/*   Updated: 2025/01/31 13:29:00 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/01/31 13:50:51 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,20 +63,32 @@ void	*ft_safe_calloc(size_t count, size_t size)
 	return (ptr);
 }
 
-char	*ft_safe_readline(char *prompt)
+/**
+ * Reads a line of input from the user using readline(3) safely.
+ *
+ * @param shell A pointer to the shell's internal state.
+ * @return A pointer to the input string if the read was successful, otherwise
+ *         the program will exit with an error message.
+ *
+ * @note This function will clean up the shell's internal state and exit the
+ *       program if the read fails. It is the caller's responsibility to ensure
+ *       the shell's prompt is valid before calling this function.
+ */
+char	*ft_safe_readline(t_shell *shell)
 {
 	char	*input;
 
-	if (!prompt)
+	if (!shell->prompt)
 	{
 		write(2, "minishell: invalid prompt\n", 26);
 		return (NULL);
 	}
-	input = readline(prompt);
+	input = readline(shell->prompt);
 	if (!input)
 	{
 		write(1, "exit\n", 5);
-		return (NULL);
+		ft_cleanup(shell);
+		exit(EXIT_FAILURE);
 	}
 	return (input);
 }
