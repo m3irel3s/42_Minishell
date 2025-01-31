@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:40:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/01/31 09:37:53 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/01/31 13:17:36 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@
 # include <term.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <signal.h>
+# include <stdio.h>
+# include <string.h>
 
 # include "macros.h"
 # include "types.h"
