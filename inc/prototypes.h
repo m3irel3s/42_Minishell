@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/01/31 08:48:17 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/01/31 13:11:08 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,9 @@
 /* 000_intro.c */
 void	ft_display_startup_banner(void);
 int		ft_authors(void);
+
+/* 800_utils/safe_funcitons.c */
+void	*ft_safe_malloc(size_t size);
+void	*ft_safe_calloc(size_t count, size_t size);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/01/31 09:02:43 by meferraz         ###   ########.fr        #
+#    Updated: 2025/01/31 12:58:27 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,8 @@ HEADERS = ${addprefix ${INC_PATH}/, \
 
 SRCS = ${SRC_PATH}/000_intro.c \
        ${SRC_PATH}/100_main.c \
-       ${SRC_PATH}/200_inits/init.c
+       ${SRC_PATH}/200_inits/init.c \
+	   ${SRC_PATH}/800_utils/safe_functions.c 
 
 # Object files derived from source files
 # OBJS = ${addprefix ${BUILD_PATH}/, ${notdir ${SRCS:.c=.o}}}
