@@ -6,11 +6,11 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:59:06 by meferraz          #+#    #+#             */
-/*   Updated: 2025/01/31 14:01:00 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:10:57 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
- #include "../inc/minishell.h"
+#include "../../inc/minishell.h"
  
 /**
  * Initializes the given shell structure.
