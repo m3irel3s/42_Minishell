@@ -6,7 +6,7 @@
 #    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/01/31 08:53:24 by meferraz         ###   ########.fr        #
+#    Updated: 2025/01/31 09:02:43 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,7 @@ INC_PATH = inc
 
 # Header files
 HEADERS = ${addprefix ${INC_PATH}/, \
+	ansi.h \
 	minishell.h \
 	macros.h \
 	prototypes.h \

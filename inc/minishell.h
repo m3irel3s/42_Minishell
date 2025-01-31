@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:40:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/01/31 08:35:53 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/01/31 09:37:53 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@
 # include "macros.h"
 # include "types.h"
 # include "prototypes.h"
+# include "ansi.h"
 
 #endif
