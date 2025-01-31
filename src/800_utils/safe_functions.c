@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 12:58:31 by meferraz          #+#    #+#             */
-/*   Updated: 2025/01/31 13:12:22 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/01/31 13:29:00 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,22 @@ void	*ft_safe_calloc(size_t count, size_t size)
 		exit(EXIT_FAILURE);
 	}
 	return (ptr);
+}
+
+char	*ft_safe_readline(char *prompt)
+{
+	char	*input;
+
+	if (!prompt)
+	{
+		write(2, "minishell: invalid prompt\n", 26);
+		return (NULL);
+	}
+	input = readline(prompt);
+	if (!input)
+	{
+		write(1, "exit\n", 5);
+		return (NULL);
+	}
+	return (input);
 }
