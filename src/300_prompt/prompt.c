@@ -6,11 +6,24 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:04:18 by meferraz          #+#    #+#             */
-/*   Updated: 2025/01/31 14:16:43 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:20:47 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+/**
+ * Constructs and returns a shell prompt string.
+ *
+ * This function retrieves the current working directory and the
+ * username from the environment. It constructs a prompt string
+ * in the format "user@cwd $ " using the retrieved information.
+ * If the working directory or username cannot be retrieved, it
+ * defaults to "unknown" and "user" respectively.
+ *
+ * @return A pointer to the dynamically allocated prompt string.
+ *         The caller is responsible for freeing the memory.
+ */
 
 char	*ft_set_prompt(void)
 {
