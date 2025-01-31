@@ -6,7 +6,7 @@
 #    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/01/31 14:18:07 by meferraz         ###   ########.fr        #
+#    Updated: 2025/01/31 14:51:25 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,7 @@ SRCS = ${SRC_PATH}/000_intro.c \
        ${SRC_PATH}/100_main.c \
        ${SRC_PATH}/200_inits/init.c \
 	   ${SRC_PATH}/300_prompt/prompt.c \
+	   ${SRC_PATH}/700_clean/clean.c \
 	   ${SRC_PATH}/800_utils/safe_functions.c 
 
 # Object files derived from source files
@@ -110,7 +111,7 @@ all: deps ${NAME}
 
 ${NAME}: ${BUILD_PATH} ${OBJS} ${LIBFT_ARC}
 	@printf "${CYAN}${DIM}Compiling source files for minishell...${RESET}\n"
-	@${CC} ${CCFLAGS} ${OBJS} -o ${NAME} ${LDFLAGS}
+	@${CC} ${CCFLAGS} ${OBJS} -o ${NAME} ${LDFLAGS} ${READL_FLAG}
 	@printf "${GREEN}${BOLD}${CHECK} minishell executable compiled successfully!${RESET}\n"
 
 ${BUILD_PATH}:

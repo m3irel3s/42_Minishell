@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/01/31 14:19:59 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:47:59 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	ft_init_shell(t_shell *shell, char **envp);
 
 /* 300_prompt/prompt.c*/
 char	*ft_set_prompt(void);
+
+/* 700_clean/clean.c*/
+void	ft_cleanup(t_shell *shell);
 
 /* 800_utils/safe_funcitons.c */
 void	*ft_safe_malloc(size_t size);

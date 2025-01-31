@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:04:18 by meferraz          #+#    #+#             */
-/*   Updated: 2025/01/31 14:20:47 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:29:19 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ char	*ft_set_prompt(void)
 	char	*user;
 	char	*prompt;
 	size_t	len;
+    int i;
 
 	cwd = getcwd(NULL, 0);
 	if (!cwd)

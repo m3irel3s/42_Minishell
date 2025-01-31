@@ -6,11 +6,11 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 12:58:31 by meferraz          #+#    #+#             */
-/*   Updated: 2025/01/31 14:09:20 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:52:14 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 /**
  * Allocates memory for an object of the given size.
@@ -61,7 +61,7 @@ char	*ft_safe_readline(t_shell *shell)
 	{
 		write(1, "exit\n", 5);
 		ft_cleanup(shell);
-		exit(EXIT_FAILURE);
+		exit(EXIT_SUCCESS);
 	}
 	return (input);
 }
