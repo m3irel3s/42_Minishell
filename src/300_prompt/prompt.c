@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:04:18 by meferraz          #+#    #+#             */
-/*   Updated: 2025/01/31 14:29:19 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/01/31 15:23:07 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ char	*ft_set_prompt(void)
 	char	*user;
 	char	*prompt;
 	size_t	len;
-    int i;
+	int		i;
 
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
 		cwd = ft_strdup("unknown");
 	user = getenv("USER");
 	if (!user)
-		user = "user";
+		user = ft_strdup("user");
 	len = ft_strlen(user) + ft_strlen(cwd) + 4 + 1; // 4 for "@ $ ", 1 for '\0'
-	prompt = ft_safe_malloc(len);
+	prompt = ft_safe_malloc(len * sizeof(char));
 	i = 0;
 	while (*user)
 		prompt[i++] = *user++;
@@ -51,6 +51,7 @@ char	*ft_set_prompt(void)
 	prompt[i++] = '$';
 	prompt[i++] = ' ';
 	prompt[i] = '\0';
-	free(cwd);
+    //free(cwd);
+    //free(user);
 	return (prompt);
 }

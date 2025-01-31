@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/01/31 13:55:26 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/01/31 15:19:41 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 //                                STRUCTURES                                  //
 //============================================================================//
 
-typedef struct	s_shell
+typedef struct s_shell
 {
 	char	**envp;
 	char	*prompt;
