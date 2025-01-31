@@ -6,7 +6,7 @@
 #    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/01/31 08:34:34 by meferraz         ###   ########.fr        #
+#    Updated: 2025/01/31 08:53:24 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,8 @@ HEADERS = ${addprefix ${INC_PATH}/, \
 # SRCS = ${addprefix ${SRC_PATH}/, \
 # 	000_main.c}
 
-SRCS = ${SRC_PATH}/100_main.c \
+SRCS = ${SRC_PATH}/000_intro.c \
+       ${SRC_PATH}/100_main.c \
        ${SRC_PATH}/200_inits/init.c
 
 # Object files derived from source files

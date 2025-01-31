@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 08:37:43 by meferraz          #+#    #+#             */
-/*   Updated: 2025/01/31 08:44:46 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/01/31 08:55:26 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,36 @@
 
 static int	ft_infos(void);
 
+/**
+ * @brief Display the startup banner in the terminal.
+ * 
+ * This function displays the startup banner in the terminal, which includes
+ * the name of the program, the version number, and the copyright information.
+ */
 void	ft_display_startup_banner(void)
 {
 	ft_putstr_fd("\n\
 /* ************************************************************************** */\n\
 /*                                                                            */\n\
-/*   ███╗   ███╗██╗███╗   ██╗██╗███████╗██╗  ██╗███████╗██╗     ██╗          */\n\
-/*   ████╗ ████║██║████╗  ██║██║██╔════╝██║  ██║██╔════╝██║     ██║          */\n\
-/*   ██╔████╔██║██║██╔██╗ ██║██║███████╗███████║█████╗  ██║     ██║          */\n\
-/*   ██║╚██╔╝██║██║██║╚██╗██║██║╚════██║██╔══██║██╔══╝  ██║     ██║          */\n\
-/*   ██║ ╚═╝ ██║██║██║ ╚████║██║███████║██║  ██║███████╗███████╗███████╗     */\n\
-/*   ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝     */\n\
+/*   ███╗   ███╗██╗███╗   ██╗██╗███████╗██╗  ██╗███████╗██╗     ██╗           */\n\
+/*   ████╗ ████║██║████╗  ██║██║██╔════╝██║  ██║██╔════╝██║     ██║           */\n\
+/*   ██╔████╔██║██║██╔██╗ ██║██║███████╗███████║█████╗  ██║     ██║           */\n\
+/*   ██║╚██╔╝██║██║██║╚██╗██║██║╚════██║██╔══██║██╔══╝  ██║     ██║           */\n\
+/*   ██║ ╚═╝ ██║██║██║ ╚████║██║███████║██║  ██║███████╗███████╗███████╗      */\n\
+/*   ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝      */\n\
 /*                                                                            */\n\
 /* ************************************************************************** */\n\
 \n", 1);
 	ft_infos();
 }
 
+/**
+ * @brief Prints the welcome message to the user.
+ * 
+ * This function prints the welcome message to the user, which includes a brief
+ * description of the program, the supported features, and some examples of how
+ * to use it.
+ */
 static int	ft_infos(void)
 {
 	ft_putstr_fd("\n\
@@ -58,6 +71,11 @@ static int	ft_infos(void)
 	return (0);
 }
 
+/**
+ * @brief Prints the authors of the program.
+ * 
+ * This function prints the authors of the program in a nice format.
+ */
 int	ft_authors(void)
 {
 	ft_putstr_fd("\n\
