@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 09:56:30 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/01 10:48:30 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/01 10:50:06 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static void	ft_handle_sigquit(int sig);
  */
 void	ft_set_up_signals(void)
 {
-	struct sigaction sa_int;
-	struct sigaction sa_quit;
+	struct sigaction	sa_int;
+	struct sigaction	sa_quit;
 
 	sa_int.sa_handler = ft_handle_sigint;
 	sigemptyset(&sa_int.sa_mask);
