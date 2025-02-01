@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 12:58:31 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/01 09:51:16 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/01 09:54:26 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,5 @@ char	*ft_safe_readline(t_shell *shell)
 		return (NULL);
 	}
 	input = readline(shell->prompt);
-	if (!input)
-		return (NULL);
 	return (input);
 }
