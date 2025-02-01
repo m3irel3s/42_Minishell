@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/01/31 15:22:19 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/01 10:08:48 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@ void	ft_cleanup(t_shell *shell)
 		free(shell->prompt);
 	if (shell->input)
 		free(shell->input);
-	clear_history();
+	rl_clear_history();
 }

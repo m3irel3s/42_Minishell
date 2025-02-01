@@ -6,11 +6,13 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 09:56:30 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/01 10:01:56 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/01 10:28:51 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+#include <readline/readline.h>
+#include <readline/history.h>
 
 static void	ft_handle_sigint(int sig);
 
@@ -24,7 +26,7 @@ static void	ft_handle_sigint(int sig);
 void	ft_set_up_signals(void)
 {
 	signal(SIGINT, ft_handle_sigint);
-    signal(SIGQUIT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 /**
@@ -42,7 +44,7 @@ void	ft_set_up_signals(void)
 static void	ft_handle_sigint(int sig)
 {
 	(void)sig;
-    write(1, "\n", 1);
+	write(1, "\n", 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();

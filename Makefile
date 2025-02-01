@@ -6,7 +6,7 @@
 #    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/01/31 14:51:25 by meferraz         ###   ########.fr        #
+#    Updated: 2025/02/01 10:38:22 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,7 @@ SRCS = ${SRC_PATH}/000_intro.c \
        ${SRC_PATH}/100_main.c \
        ${SRC_PATH}/200_inits/init.c \
 	   ${SRC_PATH}/300_prompt/prompt.c \
+	   ${SRC_PATH}/400_signals/signals.c \
 	   ${SRC_PATH}/700_clean/clean.c \
 	   ${SRC_PATH}/800_utils/safe_functions.c 
 
@@ -93,10 +94,11 @@ V_TRACKS    = --track-fds=yes --track-origins=yes --trace-children=yes
 V_EXTRAS    = --suppressions=readline.supp
 VGDB_ARGS	= --vgdb-error=0 $(V_LEAKS) $(V_TRACKS) $(V_EXTRAS)
 V_ARGS      = $(V_LEAKS) $(V_TRACKS) $(V_EXTRAS)
-READL_FLAG  = -lreadline
+READLINE_PATH = /opt/homebrew/opt/readline
+READL_FLAG  = -L$(READLINE_PATH)/lib -I$(READLINE_PATH)/include -lreadline -lncurses
 RM          = rm -fr                       # Command to remove files/directories forcefully
 MKDIR_P     = mkdir -p                # Command to create directories (with parent)
-INC         = -I ${INC_PATH}              # Include path for header files
+INC         = -I ${INC_PATH}  -I$(READLINE_PATH)/include            # Include path for header files
 LDFLAGS     = -L${LIBFT_PATH} -lft
 MAKE        = make --no-print-directory -C
 MAKE_EXTRA  = make extra --no-print-directory -C

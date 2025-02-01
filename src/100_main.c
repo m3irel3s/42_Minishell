@@ -6,26 +6,28 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/01 09:51:14 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/01 10:04:27 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
 /**
- * Main entry point for the minishell program.
+ * Main entry point of the program.
  *
- * This function displays the startup banner, sets up signal handling,
- * initializes the shell structure, and enters an infinite loop to
- * repeatedly read and execute user input. It also cleans up any
- * dynamically allocated memory when the program exits.
+ * This function contains the main loop of the minishell program. It first
+ * displays the startup banner, sets up the signal handlers and initializes
+ * the shell structure. Then, it enters an infinite loop where it displays
+ * the shell prompt, reads a line of input from the user, parses the line,
+ * executes the parsed commands and frees the allocated memory. If the user
+ * enters "exit", the loop is broken and the function returns an exit status.
  *
- * @param argc The number of command-line arguments provided.
- * @param argv An array of command-line arguments.
- * @param envp An array of environment variables.
+ * @param argc The number of command line arguments passed to the program.
+ * @param argv An array of command line arguments passed to the program.
+ * @param envp An array of environment variables passed to the program.
  *
- * @return An integer indicating the program's exit status.
- *         (Currently always returns SUCCESS (0).)
+ * @return An exit status of the program. If the user enters "exit", it
+ *         returns SUCCESS (0). Otherwise, it returns FAILURE (1).
  */
 int	main(int argc, char **argv, char **envp)
 {
