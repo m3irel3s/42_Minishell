@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/01 13:44:31 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/01 14:09:46 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_set_prompt(void);
 void	ft_set_up_signals(void);
 
 /* 500_parsing/parsing.c*/
-int	ft_parse_input(t_shell *shell);
+int		ft_parse_input(t_shell *shell);
 
 /* 700_clean/clean.c*/
 void	ft_cleanup(t_shell *shell);
