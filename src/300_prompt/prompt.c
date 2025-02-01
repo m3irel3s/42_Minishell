@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:04:18 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/01 11:09:56 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/01 13:00:46 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static char	*ft_build_prompt(const char *user, const char *cwd)
 
 	len = ft_strlen(user) + ft_strlen(cwd)
 		+ ft_strlen(GRN) + ft_strlen(CYN) + ft_strlen(RESET)
-		+ 6 + 2;
+		+ 9;
 	prompt = ft_safe_malloc(len * sizeof(char));
 	offset = 0;
 	offset += ft_strlcpy(prompt + offset, GRN, len - offset);
