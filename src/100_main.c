@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/01 13:41:39 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/01 14:06:05 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,9 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
-	(void)envp;
 	ft_display_startup_banner();
 	ft_set_up_signals();
-	ft_init_shell(&shell, envp); 
+	ft_init_shell(&shell, envp);
 	while (1)
 	{
 		shell.prompt = ft_set_prompt();
@@ -50,7 +49,7 @@ int	main(int argc, char **argv, char **envp)
 		}
 		if (*shell.input)
 			add_history(shell.input);
-		if (ft_parse_input(&shell) == SUCCESS)
+		//if (ft_parse_input(&shell) == SUCCESS)
 			//ft_execute_input(shell);
 		free(shell.prompt);
 		free(shell.input);
