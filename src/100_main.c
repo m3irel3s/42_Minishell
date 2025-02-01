@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/01/31 15:21:45 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/01 09:51:14 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,17 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	(void)envp;
 	ft_display_startup_banner();
-	//signal(SIGINT, ft_handle_sigint); // Set up signal handling for Ctrl+C
+	ft_set_up_signals();
 	ft_init_shell(&shell, envp); 
 	while (1)
 	{
 		shell.prompt = ft_set_prompt();
 		shell.input = ft_safe_readline(&shell);
+		if (shell.input == NULL)
+		{
+			write(1, "exit\n", 5);
+			break ;
+		}
 		if (*shell.input)
 			add_history(shell.input);
 		//if (ft_parse_input == SUCCESS)

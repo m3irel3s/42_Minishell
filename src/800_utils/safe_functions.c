@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 12:58:31 by meferraz          #+#    #+#             */
-/*   Updated: 2025/01/31 14:52:14 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/01 09:51:16 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ void	*ft_safe_malloc(size_t size)
 {
 	void	*ptr;
 
+	if (size <= 0)
+	{
+		write(2, "Error: Invalid allocation size <= 0.\n", 37);
+		exit(EXIT_FAILURE);
+	}
 	ptr = malloc(size);
 	if (!ptr)
 	{
@@ -58,10 +63,6 @@ char	*ft_safe_readline(t_shell *shell)
 	}
 	input = readline(shell->prompt);
 	if (!input)
-	{
-		write(1, "exit\n", 5);
-		ft_cleanup(shell);
-		exit(EXIT_SUCCESS);
-	}
+		return (NULL);
 	return (input);
 }
