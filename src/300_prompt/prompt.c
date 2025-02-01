@@ -6,52 +6,85 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:04:18 by meferraz          #+#    #+#             */
-/*   Updated: 2025/01/31 15:24:12 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/01 11:09:56 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-/**
- * Constructs and returns a shell prompt string.
- *
- * This function retrieves the current working directory and the
- * username from the environment. It constructs a prompt string
- * in the format "user@cwd $ " using the retrieved information.
- * If the working directory or username cannot be retrieved, it
- * defaults to "unknown" and "user" respectively.
- *
- * @return A pointer to the dynamically allocated prompt string.
- *         The caller is responsible for freeing the memory.
- */
+static char	*ft_get_current_directory(void);
+static char	*ft_build_prompt(const char *user, const char *cwd);
 
+/**
+ * @brief Constructs and returns a colorful shell prompt string.
+ *
+ * Retrieves the username and current working directory to build a prompt
+ * in the format "user@cwd $ " with colors. Defaults to "user" and "unknown"
+ * if retrieval fails.
+ *
+ * @return A dynamically allocated string containing the prompt.
+ */
 char	*ft_set_prompt(void)
 {
 	char	*cwd;
 	char	*user;
 	char	*prompt;
-	size_t	len;
-	int		i;
+
+	cwd = ft_get_current_directory();
+	user = getenv("USER");
+	if (!user)
+		user = "user";
+	prompt = ft_build_prompt(user, cwd);
+	free(cwd);
+	return (prompt);
+}
+
+/**
+ * @brief Retrieves the current working directory.
+ *
+ * If the current working directory cannot be retrieved, defaults to "unknown".
+ *
+ * @return A dynamically allocated string containing the current 
+ * working directory.
+ */
+static char	*ft_get_current_directory(void)
+{
+	char	*cwd;
 
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
 		cwd = ft_strdup("unknown");
-	user = getenv("USER");
-	if (!user)
-		user = ft_strdup("user");
-	len = ft_strlen(user) + ft_strlen(cwd) + 4 + 1; // 4 for "@ $ ", 1 for '\0'
+	return (cwd);
+}
+
+/**
+ * @brief Builds the colorful shell prompt string.
+ *
+ * Combines the username, current working directory, and additional symbols
+ * into a single prompt string with colors.
+ *
+ * @param user The username string.
+ * @param cwd The current working directory string.
+ * @return A dynamically allocated string containing the prompt.
+ */
+static char	*ft_build_prompt(const char *user, const char *cwd)
+{
+	char	*prompt;
+	size_t	len;
+	size_t	offset;
+
+	len = ft_strlen(user) + ft_strlen(cwd)
+		+ ft_strlen(GRN) + ft_strlen(CYN) + ft_strlen(RESET)
+		+ 6 + 2;
 	prompt = ft_safe_malloc(len * sizeof(char));
-	i = 0;
-	while (*user)
-		prompt[i++] = *user++;
-	prompt[i++] = '@';
-	while (*cwd)
-		prompt[i++] = *cwd++;
-	prompt[i++] = ' ';
-	prompt[i++] = '$';
-	prompt[i++] = ' ';
-	prompt[i] = '\0';
-    //free(cwd);
-    //free(user);
+	offset = 0;
+	offset += ft_strlcpy(prompt + offset, GRN, len - offset);
+	offset += ft_strlcat(prompt + offset, user, len - offset);
+	offset += ft_strlcat(prompt + offset, RESET, len - offset);
+	offset += ft_strlcat(prompt + offset, "@", len - offset);
+	offset += ft_strlcat(prompt + offset, CYN, len - offset);
+	offset += ft_strlcat(prompt + offset, cwd, len - offset);
+	offset += ft_strlcat(prompt + offset, RESET, len - offset);
+	offset += ft_strlcat(prompt + offset, " $ ", len - offset);
 	return (prompt);
 }

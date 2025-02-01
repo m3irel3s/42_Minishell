@@ -6,13 +6,11 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 09:56:30 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/01 10:50:06 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/01 10:51:04 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-#include <readline/readline.h>
-#include <readline/history.h>
 
 static void	ft_handle_sigint(int sig);
 static void	ft_handle_sigquit(int sig);
