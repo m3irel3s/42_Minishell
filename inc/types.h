@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/03 10:53:24 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/03 14:22:49 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,16 @@ typedef struct s_token
 {
 	char			*value;
 	t_token_type	type;
+	struct s_token	*next;
+	struct s_token	*prev;
 }	t_token;
-
-typedef struct s_token_array
-{
-	t_token	**tokens;
-	size_t	size;
-}	t_token_array;
 
 typedef struct s_shell
 {
 	char			**envp;
 	char			*prompt;
 	char			*input;
-	t_token_array	*tokens;
+	t_token			*tokens;
 }	t_shell;
 
 #endif
