@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/01 14:12:37 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/03 09:25:48 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ typedef enum e_token_type
 
 typedef struct s_shell
 {
-	char	**envp;
-	char	*prompt;
-	char	*input;
+	char			**envp;
+	char			*prompt;
+	char			*input;
+	t_token_array	*tokens;
 }	t_shell;
 
 typedef struct s_token
