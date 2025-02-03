@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/03 15:32:03 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:35:02 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,3 +65,18 @@ t_token	*ft_create_token(char *value, t_token_type type)
 	return (new_token);
 }
 
+void	ft_add_token_to_list(t_shell *shell, t_token *new_token)
+{
+	t_token *current;
+
+	current = shell->tokens;
+	if (!current)
+	{
+		shell->tokens = new_token;
+		return ;
+	}
+	while (current->next)
+		current = current->next;
+	new_token->prev = current;
+	current->next = new_token;
+}
