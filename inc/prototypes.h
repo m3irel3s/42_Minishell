@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/03 09:47:24 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/03 10:52:46 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_set_up_signals(void);
 /*parsing.c*/
 int		ft_parse_input(t_shell *shell);
 /*tokens.c*/
-int		ft_tokenize(t_shell *shell)
+int		ft_tokenize(t_shell *shell);
 
 /* 700_clean*/
 /*clean.c*/
