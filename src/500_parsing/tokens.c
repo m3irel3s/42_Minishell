@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/03 15:02:11 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/03 16:21:22 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,15 @@ int	ft_tokenize(t_shell *shell)
 static	int	ft_count_tokens(char *input)
 {
 	int	count;
-	int	in_single_quote;
-	int	in_double_quote;
-	int	i;
+	int i;
+	int word_started;
+	int was_escaped;
+	enum e_quote_state current_quote;
 
 	count = 0;
-	in_single_quote = 0;
-	in_double_quote = 0;
 	i = 0;
-	while (input[i])
-	{
-		if (!in_single_quote && !in_double_quote && ft_is_space(input[i]))
-		{
-			while (ft_is_space(input[i]))
-				i++;
-			if (input[i])
-				count++;
-		}
-		else if ()
-
-	}
-	(void)input;
+	word_started = 0;
+	was_escaped = 0;
+	current_quote = NO_QUOTE;
 	return (SUCCESS);
 }
