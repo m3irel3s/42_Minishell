@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/03 15:31:05 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:32:03 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,17 @@ t_token_type	ft_determine_token_type(char *value)
 	return (WORD);
 }
 
+/**
+ * @brief Creates a new token from a given value and type.
+ *
+ * This function allocates memory for a new token and populates it with the
+ * provided value and type. It then returns the new token.
+ *
+ * @param value The string representing the token value.
+ * @param type The type of the token, which is one of PIPE, REDIRECT_IN,
+ *              REDIRECT_OUT, REDIRECT_APPEND, HEREDOC, or WORD.
+ * @return The newly allocated token.
+ */
 t_token	*ft_create_token(char *value, t_token_type type)
 {
 	t_token *new_token;
@@ -53,3 +64,4 @@ t_token	*ft_create_token(char *value, t_token_type type)
 	new_token->prev = NULL;
 	return (new_token);
 }
+
