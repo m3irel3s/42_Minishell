@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/03 14:22:49 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/03 14:53:13 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@ typedef enum e_token_type
 	REDIRECT_APPEND,
 	HEREDOC
 }	t_token_type;
+
+typedef enum e_quote_state
+{
+	NO_QUOTE,
+	SINGLE_QUOTE,
+	DOUBLE_QUOTE
+}	t_quote_state;
 
 //============================================================================//
 //                                STRUCTURES                                  //
