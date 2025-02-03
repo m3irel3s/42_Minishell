@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/03 10:52:46 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/03 14:58:41 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ int		ft_tokenize(t_shell *shell);
 void	ft_cleanup(t_shell *shell);
 
 /* 800_utils*/
+/*char_type_functions.c*/
+int		ft_is_operator(char c);
+int		ft_is_space(char c);
 /*safe_funcitons.c */
 void	*ft_safe_malloc(size_t size);
 void	*ft_safe_calloc(size_t count, size_t size);

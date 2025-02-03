@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+         #
+#    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/03 09:48:18 by meferraz         ###   ########.fr        #
+#    Updated: 2025/02/03 14:59:52 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,8 @@ SRCS = ${SRC_PATH}/000_intro.c \
 	   ${SRC_PATH}/500_parsing/parsing.c \
 	   ${SRC_PATH}/500_parsing/tokens.c \
 	   ${SRC_PATH}/700_clean/clean.c \
-	   ${SRC_PATH}/800_utils/safe_functions.c 
+	   ${SRC_PATH}/800_utils/safe_functions.c \
+	   ${SRC_PATH}/800_utils/char_type_functions.c
 
 # Object files derived from source files
 # OBJS = ${addprefix ${BUILD_PATH}/, ${notdir ${SRCS:.c=.o}}}
@@ -146,19 +147,19 @@ get_libft:
 
 ##  Cleaning Rules  ##
 
-clean:                       # Clean up object files and temporary build files 
+clean:                       # Clean up object files and temporary build files
 	@printf "\n${YELLOW}${BOLD}${CLEAN} Cleaning object files...${RESET}\n"
 	@${RM} ${OBJS}
 	@printf "${GREEN}${BOLD}${CHECK} Object files cleaned!${RESET}\n"
 
-fclean: clean               # Fully clean up by removing executables and build directories 
+fclean: clean               # Fully clean up by removing executables and build directories
 	@printf "${YELLOW}${BOLD}${CLEAN} Removing executable and build files...${RESET}\n"
 	@${RM} ${NAME}
 	@${RM} -r ${BUILD_PATH}
 	@${RM} ${LIBFT_PATH}
 	@printf "${GREEN}${BOLD}${CHECK} All files cleaned!${RESET}\n"
 
-re: fclean all          # Rebuild everything from scratch 
+re: fclean all          # Rebuild everything from scratch
 	@printf "${YELLOW}${BOLD}${BUILD} Rebuilding everything...${RESET}\n"
 	@${MAKE} all
 
@@ -176,7 +177,7 @@ norm:                # Check norms for mandatory sources
 	@printf "${GREEN}${BOLD}${CHECK} Norminette check completed!${RESET}\n"
 
 ##   Check for external functions  ##
-check_external_functions: all               # Check norms for mandatory sources 
+check_external_functions: all               # Check norms for mandatory sources
 	@printf "\n${BLUE}${BOLD}${TEST} Checking External Functions...${RESET}\n"
 	nm ./${NAME} | grep "U" | grep -v "__"
 	@printf "${GREEN}${BOLD}${CHECK} External functions check completed!${RESET}\n"
