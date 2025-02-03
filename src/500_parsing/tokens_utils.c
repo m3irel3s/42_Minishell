@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/03 15:07:45 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:31:05 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
  * @param value The string representing the token value.
  * @return The token type corresponding to the input string.
  */
-t_token_type ft_determine_token_type(char *value)
+t_token_type	ft_determine_token_type(char *value)
 {
-	size_t value_len;
+	size_t	value_len;
 
 	value_len = ft_strlen(value);
 	if (!ft_strncmp(value, "|", value_len))
@@ -40,4 +40,16 @@ t_token_type ft_determine_token_type(char *value)
 	if (!ft_strncmp(value, "<<", value_len))
 		return (HEREDOC);
 	return (WORD);
+}
+
+t_token	*ft_create_token(char *value, t_token_type type)
+{
+	t_token *new_token;
+
+	new_token = ft_safe_malloc(sizeof(t_token));
+	new_token->value = ft_strdup(value);
+	new_token->type = type;
+	new_token->next = NULL;
+	new_token->prev = NULL;
+	return (new_token);
 }
