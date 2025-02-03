@@ -6,7 +6,7 @@
 #    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/03 14:59:52 by meferraz         ###   ########.fr        #
+#    Updated: 2025/02/03 15:09:06 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,7 @@ SRCS = ${SRC_PATH}/000_intro.c \
 	   ${SRC_PATH}/400_signals/signals.c \
 	   ${SRC_PATH}/500_parsing/parsing.c \
 	   ${SRC_PATH}/500_parsing/tokens.c \
+	   ${SRC_PATH}/500_parsing/tokens_utils.c \
 	   ${SRC_PATH}/700_clean/clean.c \
 	   ${SRC_PATH}/800_utils/safe_functions.c \
 	   ${SRC_PATH}/800_utils/char_type_functions.c
