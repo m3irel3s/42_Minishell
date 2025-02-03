@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/03 15:35:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/03 15:35:52 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,18 @@ t_token	*ft_create_token(char *value, t_token_type type)
 	return (new_token);
 }
 
+/**
+ * @brief Adds a new token to the end of the token linked list.
+ *
+ * This function traverses the linked list of tokens in the shell structure and
+ * adds the newly created token to the end of the list. If the list is empty, it
+ * sets the shell's tokens pointer to the new token.
+ *
+ * @param shell A pointer to the shell structure containing the token linked
+ *              list.
+ * @param new_token A pointer to the newly created token to be added to the
+ *                  list.
+ */
 void	ft_add_token_to_list(t_shell *shell, t_token *new_token)
 {
 	t_token *current;
