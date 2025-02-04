@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/04 08:49:00 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/04 09:13:26 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_token_type	ft_determine_token_type(char *value)
  */
 t_token	*ft_create_token(char *value, t_token_type type)
 {
-	t_token *new_token;
+	t_token	*new_token;
 
 	new_token = ft_safe_malloc(sizeof(t_token));
 	new_token->value = ft_strdup(value);
@@ -79,7 +79,7 @@ t_token	*ft_create_token(char *value, t_token_type type)
  */
 void	ft_add_token_to_list(t_shell *shell, t_token *new_token)
 {
-	t_token *current;
+	t_token	*current;
 
 	current = shell->tokens;
 	if (!current)
@@ -93,7 +93,8 @@ void	ft_add_token_to_list(t_shell *shell, t_token *new_token)
 	current->next = new_token;
 }
 
-void	ft_handle_quote_n_escape(char c, enum e_quote_state *current_quote, int *was_escaped)
+void	ft_handle_quote_n_escape(char c, enum e_quote_state *current_quote,
+		int *was_escaped)
 {
 	if (*was_escaped)
 		*was_escaped = 0;
