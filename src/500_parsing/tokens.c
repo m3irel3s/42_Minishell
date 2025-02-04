@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/04 09:01:27 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/04 09:24:56 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static	int	ft_count_tokens(char *input);
 
 int	ft_tokenize(t_shell *shell)
 {
-	int tokens;
+	int	tokens;
 
 	tokens = ft_count_tokens(shell->input);
 	ft_printf("There are %d tokens. \n", tokens);
@@ -25,11 +25,11 @@ int	ft_tokenize(t_shell *shell)
 
 static	int	ft_count_tokens(char *input)
 {
-	int	count;
-	int i;
-	int word_started;
-	int was_escaped;
-	enum e_quote_state current_quote;
+	int					count;
+	int					i;
+	int					word_started;
+	int					was_escaped;
+	enum e_quote_state	current_quote;
 
 	count = 0;
 	i = 0;
@@ -42,7 +42,7 @@ static	int	ft_count_tokens(char *input)
 		{
 			was_escaped = 1;
 			i++;
-			continue;
+			continue ;
 		}
 		if (current_quote == NO_QUOTE && (input[i] == '\'' || input[i] == '"'))
 		{
@@ -69,9 +69,10 @@ static	int	ft_count_tokens(char *input)
 			}
 			while (ft_is_space(input[i]))
 				i++;
-			continue;
+			continue ;
 		}
-		if (current_quote == NO_QUOTE && ft_is_operator(input[i]) && !was_escaped)
+		if (current_quote == NO_QUOTE && ft_is_operator(input[i])
+			&& !was_escaped)
 		{
 			if (word_started)
 			{
