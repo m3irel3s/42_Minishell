@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:29:46 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/04 16:32:45 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/04 21:20:29 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,16 @@ int	ft_parse_input(t_shell *shell)
 	shell->parser = &(t_parser){STATE_GENERAL, NO_QUOTE, 0, 0, 0};
 	if (ft_tokenize(shell) != SUCCESS)
 		return (ERROR);
-	/*if (ft_validate_syntax(shell) != SUCCESS)
+	t_token *current = shell->tokens;
+	while (current)
 	{
-		perror("Error syntax!");
-		return (ERROR);
-	}*/
-	return (SUCCESS);
+		printf("this is token: %s, type: %u \n", current->value, current->type);
+		current = current->next;
+	}
+		/*if (ft_validate_syntax(shell) != SUCCESS)
+		{
+			perror("Error syntax!");
+			return (ERROR);
+		}*/
+		return (SUCCESS);
 }
