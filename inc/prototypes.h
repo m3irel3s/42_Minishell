@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/04 16:48:51 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/04 16:50:02 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void			ft_cleanup(t_shell *shell);
 int				ft_is_operator(char c);
 int				ft_is_space(char c);
 /*safe_funcitons.c */
-void *ft_safe_malloc(size_t size);
-char *ft_safe_readline(t_shell *shell);
+void			*ft_safe_malloc(size_t size);
+char			*ft_safe_readline(t_shell *shell);
 
 #endif
