@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/04 16:34:12 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/04 21:07:29 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,12 +114,21 @@ static t_status ft_process_and_tokenize(t_shell *shell)
 		if (shell->parser->state == STATE_GENERAL && !ft_is_space(input[shell->parser->index]))
 		{
 			start = shell->parser->index;
-			shell->parser->state = ft_is_operator(input[start]) ? STATE_IN_OPERATOR : STATE_IN_WORD;
+			if (ft_is_operator(input[shell->parser->index]))
+			{
+				shell->parser->state = STATE_IN_OPERATOR;
+				if (input[shell->parser->index + 1] == input[shell->parser->index])
+					shell->parser->index++;
+			}
+			else
+				shell->parser->state = STATE_IN_WORD;
 		}
 		else if ((shell->parser->state == STATE_IN_WORD && ft_is_space(input[shell->parser->index])) ||
-				 (shell->parser->state == STATE_IN_OPERATOR && !ft_is_operator(input[shell->parser->index])))
+					(shell->parser->state == STATE_IN_OPERATOR && !ft_is_operator(input[shell->parser->index])))
 		{
 			temp = ft_substr(input, start, shell->parser->index - start);
+			if (!temp)
+				return (ERROR);
 			token = ft_create_token(temp, ft_determine_token_type(temp));
 			free(temp);
 			if (!token)
@@ -133,11 +142,14 @@ static t_status ft_process_and_tokenize(t_shell *shell)
 	if (shell->parser->state != STATE_GENERAL && shell->parser->index > start)
 	{
 		temp = ft_substr(input, start, shell->parser->index - start);
+		if (!temp)
+			return (ERROR);
 		token = ft_create_token(temp, ft_determine_token_type(temp));
 		free(temp);
 		if (!token)
 			return (ERROR);
 		ft_add_token_to_list(shell, token);
 	}
+
 	return (SUCCESS);
 }
