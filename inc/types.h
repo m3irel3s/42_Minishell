@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/03 15:07:01 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/04 16:29:04 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,14 @@ typedef enum e_quote_state
 	DOUBLE_QUOTE
 }	t_quote_state;
 
+typedef enum e_parser_state
+{
+	STATE_GENERAL,
+	STATE_IN_WORD,
+	STATE_IN_OPERATOR,
+	STATE_ERROR
+}	t_parser_state;
+
 //============================================================================//
 //                                STRUCTURES                                  //
 //============================================================================//
@@ -52,12 +60,22 @@ typedef struct s_token
 	struct s_token	*prev;
 }	t_token;
 
+typedef struct s_parser
+{
+	t_parser_state	state;
+	t_quote_state	quote_state;
+	int				token_count;
+	size_t			index;
+	int				escaped;
+}	t_parser;
+
 typedef struct s_shell
 {
 	char			**envp;
 	char			*prompt;
 	char			*input;
 	t_token			*tokens;
-}	t_shell;
+	t_parser		*parser;
+} t_shell;
 
 #endif

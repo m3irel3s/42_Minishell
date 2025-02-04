@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/04 10:54:07 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/04 16:37:16 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,15 @@ void	ft_set_up_signals(void);
 /* 500_parsing*/
 /*parsing.c*/
 int		ft_parse_input(t_shell *shell);
+/*state_handlers.c*/
+void	ft_handle_general_state(t_parser *p, const char *input);
+void	ft_handle_quote_state(t_parser *p, const char *input);
+void	ft_handle_word_state(t_parser *p, const char *input);
+void	ft_handle_operator_state(t_parser *p, const char *input);
 /*tokens.c*/
 int		ft_tokenize(t_shell *shell);
 /*tokens_utils.c*/
-t_token_type	t_determine_token_type(char *value);
+t_token_type	ft_determine_token_type(char *value);
 t_token			*ft_create_token(char *value, t_token_type type);
 void			ft_add_token_to_list(t_shell *shell, t_token *new_token);
 
