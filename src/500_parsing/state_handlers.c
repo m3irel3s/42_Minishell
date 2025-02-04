@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:13:19 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/04 20:58:36 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/04 21:26:14 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,14 @@ void	ft_handle_general_state(t_parser *p, const char *input)
 		&& !p->escaped && p->quote_state != SINGLE_QUOTE)
 	{
 		p->quote_state = SINGLE_QUOTE;
+		p->state = STATE_IN_WORD;
 		p->token_count++;
 	}
 	else if (input[p->index] == '"'
 		&& !p->escaped && p->quote_state != DOUBLE_QUOTE)
 	{
 		p->quote_state = DOUBLE_QUOTE;
+		p->state = STATE_IN_WORD;
 		p->token_count++;
 	}
 	else if (!ft_is_space(input[p->index]))
