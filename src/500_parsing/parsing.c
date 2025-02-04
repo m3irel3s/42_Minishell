@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:29:46 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/04 11:39:18 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/04 16:32:45 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 int	ft_parse_input(t_shell *shell)
 {
 	shell->parser = ft_safe_malloc(sizeof(t_parser));
-	shell->parser = (t_parser){STATE_GENERAL, NO_QUOTE, 0, 0, 0};
+	shell->parser = &(t_parser){STATE_GENERAL, NO_QUOTE, 0, 0, 0};
 	if (ft_tokenize(shell) != SUCCESS)
 		return (ERROR);
 	/*if (ft_validate_syntax(shell) != SUCCESS)
