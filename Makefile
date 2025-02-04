@@ -6,7 +6,7 @@
 #    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/03 15:09:06 by meferraz         ###   ########.fr        #
+#    Updated: 2025/02/04 09:08:00 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,7 +105,7 @@ MKDIR_P     = mkdir -p                # Command to create directories (with pare
 INC         = -I ${INC_PATH}  -I$(READLINE_PATH)/include            # Include path for header files
 LDFLAGS     = -L${LIBFT_PATH} -lft
 MAKE        = make --no-print-directory -C
-MAKE_EXTRA  = make extra --no-print-directory -C
+MAKE_RE     = make --no-print-directory all
 
 #------------------------------------------------------------------------------#
 #                                    RULES                                     #
@@ -162,7 +162,7 @@ fclean: clean               # Fully clean up by removing executables and build d
 
 re: fclean all          # Rebuild everything from scratch
 	@printf "${YELLOW}${BOLD}${BUILD} Rebuilding everything...${RESET}\n"
-	@${MAKE} all
+	@${MAKE_RE}
 
 ##  Norms Rules  ##
 

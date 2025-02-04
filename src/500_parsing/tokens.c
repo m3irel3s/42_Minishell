@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/04 08:49:31 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/04 09:01:27 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,28 @@ static	int	ft_count_tokens(char *input)
 	current_quote = NO_QUOTE;
 	while (input[i])
 	{
+		if (input[i] == '\\' && !was_escaped)
+		{
+			was_escaped = 1;
+			i++;
+			continue;
+		}
+		if (current_quote == NO_QUOTE && (input[i] == '\'' || input[i] == '"'))
+		{
+			if (input[i] == '\'')
+				current_quote = SINGLE_QUOTE;
+			else
+				current_quote = DOUBLE_QUOTE;
+			word_started = 1;
+		}
+		else if (current_quote == SINGLE_QUOTE && input[i] == '\'')
+		{
+			current_quote = NO_QUOTE;
+		}
+		else if (current_quote == DOUBLE_QUOTE && input[i] == '"')
+		{
+			current_quote = NO_QUOTE;
+		}
 		if (current_quote == NO_QUOTE && ft_is_space(input[i]) && !was_escaped)
 		{
 			if (word_started)
@@ -47,35 +69,22 @@ static	int	ft_count_tokens(char *input)
 			}
 			while (ft_is_space(input[i]))
 				i++;
-			if (input[i])
-				word_started = 1;
+			continue;
+		}
+		if (current_quote == NO_QUOTE && ft_is_operator(input[i]) && !was_escaped)
+		{
+			if (word_started)
+			{
+				count++;
+				word_started = 0;
+			}
+			count++;
+			if (input[i + 1] && ft_is_operator(input[i + 1]))
+				i++;
 		}
 		else
-		{
 			word_started = 1;
-			ft_handle_quote_n_escape(input[i], &current_quote, &was_escaped);
-			if (current_quote == NO_QUOTE && ft_is_operator(input[i]) && !was_escaped)
-			{
-				if (word_started)
-				{
-					count++;
-					word_started = 0;
-				}
-				count++;
-				if (input[i + 1] && ft_is_operator(input[i + 1]))
-					i++;
-				else if (input[i] == '\\' && !was_escaped)
-				{
-					was_escaped = 1;
-					if (input[i + 1] == '\n')
-						i += 2;
-					else
-						i++;
-					continue;
-				}
-				was_escaped = 0;
-			}
-		}
+		was_escaped = 0;
 		i++;
 	}
 	if (word_started)
