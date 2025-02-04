@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/04 09:13:26 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/04 11:39:22 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,21 +91,4 @@ void	ft_add_token_to_list(t_shell *shell, t_token *new_token)
 		current = current->next;
 	new_token->prev = current;
 	current->next = new_token;
-}
-
-void	ft_handle_quote_n_escape(char c, enum e_quote_state *current_quote,
-		int *was_escaped)
-{
-	if (*was_escaped)
-		*was_escaped = 0;
-	if (c == '\\')
-		*was_escaped = 1;
-	if (*current_quote == NO_QUOTE && c == '\'')
-		*current_quote = SINGLE_QUOTE;
-	else if (*current_quote == NO_QUOTE && c == '"')
-		*current_quote = DOUBLE_QUOTE;
-	else if (*current_quote == SINGLE_QUOTE && c == '\'')
-		*current_quote = NO_QUOTE;
-	else if (*current_quote == DOUBLE_QUOTE && c == '"')
-		*current_quote = NO_QUOTE;
 }
