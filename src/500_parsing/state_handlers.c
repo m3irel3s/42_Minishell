@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:13:19 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/04 21:26:14 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/04 21:29:21 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,16 +91,8 @@ void	ft_handle_quote_state(t_parser *p, const char *input)
 		p->quote_state = NO_QUOTE;
 		p->state = STATE_GENERAL;
 	}
-	else if (input[p->index] == '\\' && !p->escaped)
-	{
-		p->escaped = 1;
-		return ;
-	}
-	if (p->escaped)
-	{
-		p->escaped = 0;
-		return ;
-	}
+	p->escaped = (input[p->index] == '\\'
+		&& p->quote_state == DOUBLE_QUOTE && !p->escaped);
 }
 
 /**
