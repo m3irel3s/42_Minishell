@@ -6,13 +6,14 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/04 15:45:17 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/04 16:07:24 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 static void ft_allocate_tokens(t_shell *shell);
+static void ft_process_input(t_shell *shell);
 
 /**
  * @brief Tokenizes the input string and populates the shell structure's tokens list.
@@ -39,7 +40,10 @@ int	ft_tokenize(t_shell *shell)
 	shell->parser->token_count = 0;
 	shell->parser->state = STATE_GENERAL;
 	shell->parser->quote_state = NO_QUOTE;
-	ft_process_and_tokenize(shell);
+	shell->parser->escaped = 0;
+	if (ft_process_and_tokenize(shell) == ERROR)
+		return (ERROR);
+	return (SUCCESS);
 	return (SUCCESS);
 }
 
@@ -61,27 +65,29 @@ static void ft_allocate_tokens(t_shell *shell)
 	shell->tokens = ft_safe_malloc(token_count * sizeof(t_token));
 }
 
+
 /**
- * @brief Tokenizes the shell's input string and populates the tokens list.
+ * @brief Processes the input string and updates the parser's state.
  *
- * This function loops through the input string and delegates the handling of
- * each character to one of the state handler functions. The state handler
- * functions process the character and update the parser's state accordingly.
- *
- * If the parser is in a quote state and the end of the input string is reached,
- * the function stops processing and returns. Otherwise, the function continues
- * until the end of the input string is reached.
+ * This function iterates through the input string character by character,
+ * updating the parser's state based on the current character and the current
+ * state. It handles transitions between general, quote, word, and operator
+ * states by calling the respective state handling functions. The parser's
+ * index is incremented after each character is processed. If the end of the
+ * input string is reached while in a quote state, the function returns early
+ * without further processing.
  *
  * @param shell A pointer to the shell structure containing the input string
- *              to be tokenized and the tokens list to be populated.
+ *              and the parser state to be updated.
  */
-static void	ft_process_and_tokenize(t_shell *shell)
+
+static void	ft_process_input(t_shell *shell)
 {
 	const char	*input;
 	size_t		i;
 
 	input = shell->input;
-	i = shell->parser->index;
+	i = 0;
 	while (input[i])
 	{
 		if (shell->parser->state == STATE_GENERAL)
@@ -93,7 +99,7 @@ static void	ft_process_and_tokenize(t_shell *shell)
 		else if (shell->parser->state == STATE_IN_OPERATOR)
 			ft_handle_operator_state(shell->parser, input);
 		if (input[i] == '\0' && shell->parser->quote_state != NO_QUOTE)
-			return;
+			return ;
 		i++;
 	}
 }
