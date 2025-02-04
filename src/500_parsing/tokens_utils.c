@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/03 15:47:32 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/04 08:32:29 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,39 @@ void	ft_add_token_to_list(t_shell *shell, t_token *new_token)
 		current = current->next;
 	new_token->prev = current;
 	current->next = new_token;
+}
+
+/*************  ✨ Codeium Command ⭐  *************/
+/**
+ * @brief Updates the quote state based on the character and current state.
+ *
+ * This function takes a character, the current quote state, and a flag indicating
+ * whether the previous character was escaped. It updates the quote state based on
+ * the character and current state. If the character is a backslash, it sets the
+ * was_escaped flag. If the character is a single quote, it sets the quote state
+ * to SINGLE_QUOTE if the current state is NO_QUOTE, or NO_QUOTE if the current
+ * state is SINGLE_QUOTE. If the character is a double quote, it sets the quote
+ * state to DOUBLE_QUOTE if the current state is NO_QUOTE, or NO_QUOTE if the
+ * current state is DOUBLE_QUOTE.
+ *
+ * @param c The character that was read.
+ * @param current_quote A pointer to the current quote state.
+ * @param was_escaped A pointer to a flag indicating whether the previous
+ *                    character was escaped.
+ */
+/******  31aacbbd-d623-4b6b-ab9f-dacf75873428  *******/
+void	ft_update_quote_state(char c, enum e_quote_state *current_quote, int *was_escaped)
+{
+	if (*was_escaped)
+		*was_escaped = 0;
+	if (c == '\\')
+		*was_escaped = 1;
+	if (*current_quote == NO_QUOTE && c == '\'')
+		*current_quote = SINGLE_QUOTE;
+	else if (*current_quote == NO_QUOTE && c == '"')
+		*current_quote = DOUBLE_QUOTE;
+	else if (*current_quote == SINGLE_QUOTE && c == '\'')
+		*current_quote = NO_QUOTE;
+	else if (*current_quote == DOUBLE_QUOTE && c == '"')
+		*current_quote = NO_QUOTE;
 }

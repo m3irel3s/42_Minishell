@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/03 15:46:41 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/04 08:33:21 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int		ft_tokenize(t_shell *shell);
 t_token_type	t_determine_token_type(char *value);
 t_token			*ft_create_token(char *value, t_token_type type);
 void			ft_add_token_to_list(t_shell *shell, t_token *new_token);
+void			ft_update_quote_state(char c, enum e_quote_state *current_quote, int *was_escaped);
 
 /* 700_clean*/
 /*clean.c*/
