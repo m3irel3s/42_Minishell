@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/04 12:02:17 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/04 12:34:26 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,3 +41,12 @@ int	ft_tokenize(t_shell *shell)
 	return (SUCCESS);
 }
 
+static void ft_allocate_tokens(t_shell *shell)
+|{
+	int token_count;
+
+	token_count = shell->parser->token_count;
+	if (token_count <= 0)
+		return ;
+	shell->tokens = ft_safe_malloc(token_count * sizeof(t_token));
+}
