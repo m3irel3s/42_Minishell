@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:13:19 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/04 16:53:39 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/04 20:58:36 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,19 @@
  */
 void	ft_handle_general_state(t_parser *p, const char *input)
 {
-	if (ft_is_operator(input[p->index]) && !p->escaped)
+	if (input[p->index] == '<' && input[p->index + 1] == '<' && !p->escaped)
+	{
+		p->state = STATE_IN_HEREDOC;
+		p->token_count++;
+		p->index++;
+	}
+	else if (input[p->index] == '>' && input[p->index + 1] == '>' && !p->escaped)
+	{
+		p->state = STATE_IN_APPEND;
+		p->token_count++;
+		p->index++;
+	}
+	else if (ft_is_operator(input[p->index]) && !p->escaped)
 	{
 		p->state = STATE_IN_OPERATOR;
 		p->token_count++;

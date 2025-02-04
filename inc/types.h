@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/04 16:44:43 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/04 20:57:17 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef enum e_parser_state
 	STATE_GENERAL,
 	STATE_IN_WORD,
 	STATE_IN_OPERATOR,
+	STATE_IN_HEREDOC,
+	STATE_IN_APPEND,
 	STATE_ERROR
 }	t_parser_state;
 
