@@ -6,13 +6,11 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/04 11:39:20 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/04 12:02:17 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-static	int	ft_count_tokens(char *input);
 
 /**
  * @brief Tokenizes the input string and populates the shell structure's tokens list.
@@ -35,5 +33,11 @@ int	ft_tokenize(t_shell *shell)
 	if (shell->parser->quote_state != NO_QUOTE)
 		return (SUCCESS);
 	ft_allocate_tokens(shell);
+	shell->parser->index = 0;
+	shell->parser->token_count = 0;
+	shell->parser->state = STATE_GENERAL;
+	shell->parser->quote_state = NO_QUOTE;
+	ft_process_and_tokenize(shell);
 	return (SUCCESS);
 }
+
