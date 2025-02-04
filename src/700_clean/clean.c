@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/04 11:35:58 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/04 20:54:28 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,19 @@ void	ft_cleanup(t_shell *shell)
 	t_token	*current;
 	t_token	*next;
 
-	current = shell->tokens;
 	if (shell->prompt)
 		free(shell->prompt);
 	if (shell->input)
 		free(shell->input);
-	if (current)
+	current = shell->tokens;
+	while (current)
 	{
-		while (current)
-		{
-			next = current->next;
-			free(current->value);
-			free(current);
-			current = next;
-		}
-		shell->tokens = NULL;
+		next = current->next;
+		free(current->value);
+		free(current);
+		current = next;
 	}
+	shell->tokens = NULL;
 	if (shell->parser)
 		free(shell->parser);
 	rl_clear_history();
