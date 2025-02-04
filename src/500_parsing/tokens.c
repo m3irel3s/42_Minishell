@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/04 08:45:04 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/04 08:49:31 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static	int	ft_count_tokens(char *input)
 		else
 		{
 			word_started = 1;
-			ft_update_quote_state(input[i], &current_quote, &was_escaped);
+			ft_handle_quote_n_escape(input[i], &current_quote, &was_escaped);
 			if (current_quote == NO_QUOTE && ft_is_operator(input[i]) && !was_escaped)
 			{
 				if (word_started)
