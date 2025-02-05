@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/05 14:29:29 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:48:15 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	ft_add_token_to_list(t_shell *shell, t_token *new_token)
  * @param end The ending index of the token in the input string.
  * @return Returns SUCCESS if the token creation succeeds, ERROR otherwise.
  */
-static t_status ft_create_and_add_token(t_shell *shell, size_t start, size_t end)
+t_status ft_create_and_add_token(t_shell *shell, size_t start, size_t end)
 {
 	char *temp = ft_substr(shell->input, start, end - start);
 	if (!temp)

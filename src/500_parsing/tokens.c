@@ -6,13 +6,12 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/05 14:42:03 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:47:50 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static void ft_process_input(t_shell *shell);
 static t_status ft_process_and_tokenize(t_shell *shell);
 
 
