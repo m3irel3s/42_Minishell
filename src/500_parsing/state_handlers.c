@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:13:19 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/05 12:40:15 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/05 13:52:55 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,10 @@ void	ft_handle_word_state(t_parser *p, const char *input)
 		printf("Found closing double quote, resetting quote state...\n");
 		p->quote_state = NO_QUOTE;
 		p->state = STATE_GENERAL;
+	}
+	if (p->quote_state != NO_QUOTE && ft_is_space(input[p->index]))
+	{
+		p->state = STATE_IN_WORD;
 	}
 	p->escaped = (input[p->index] == '\\' && !p->escaped);
 	printf("Escaped flag set to %d\n", p->escaped);
