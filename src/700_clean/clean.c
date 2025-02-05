@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/04 20:54:28 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/05 11:34:20 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
  * @param shell A pointer to the shell structure whose resources are to be
  *              cleaned up.
  */
-
 void	ft_cleanup(t_shell *shell)
 {
 	t_token	*current;
@@ -44,6 +43,9 @@ void	ft_cleanup(t_shell *shell)
 	}
 	shell->tokens = NULL;
 	if (shell->parser)
+	{
 		free(shell->parser);
+		shell->parser = NULL;
+	}
 	rl_clear_history();
 }
