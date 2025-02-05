@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/05 12:19:11 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/05 12:41:02 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,18 +138,30 @@ static t_status ft_process_and_tokenize(t_shell *shell)
 
 	input = shell->input;
 	start = 0;
+	printf("Starting tokenization...\n");
 	while (input[shell->parser->index])
 	{
+		printf("Current state: %d, Quote state: %d, Index: %zu, Character: '%c'\n",
+				shell->parser->state, shell->parser->quote_state, shell->parser->index, input[shell->parser->index]);
+
 		if (shell->parser->state == STATE_GENERAL && !ft_is_space(input[shell->parser->index]))
 		{
+			printf("Entering general state handling...\n");
 			start = shell->parser->index;
 			if (ft_is_operator(input[start]))
+			{
+				printf("Found operator, transitioning to operator state...\n");
 				shell->parser->state = STATE_IN_OPERATOR;
+			}
 			else
+			{
+				printf("Found word character, transitioning to word state...\n");
 				shell->parser->state = STATE_IN_WORD;
+			}
 		}
 		else if ((shell->parser->state == STATE_IN_WORD && (ft_is_space(input[shell->parser->index]) || ft_is_operator(input[shell->parser->index]))) && shell->parser->quote_state == NO_QUOTE)
 		{
+			printf("Word state, found space or operator outside quotes, creating token...\n");
 			temp = ft_substr(input, start, shell->parser->index - start);
 			if (!temp)
 				return (ERROR);
@@ -163,6 +175,7 @@ static t_status ft_process_and_tokenize(t_shell *shell)
 		}
 		else if (shell->parser->state == STATE_IN_OPERATOR && !ft_is_operator(input[shell->parser->index]))
 		{
+			printf("Operator state, found non-operator character, creating token...\n");
 			temp = ft_substr(input, start, shell->parser->index - start);
 			if (!temp)
 				return (ERROR);
@@ -175,8 +188,9 @@ static t_status ft_process_and_tokenize(t_shell *shell)
 			start = shell->parser->index;
 		}
 		else if ((shell->parser->quote_state == SINGLE_QUOTE && input[shell->parser->index] == '\'') ||
-				(shell->parser->quote_state == DOUBLE_QUOTE && input[shell->parser->index] == '"'))
+					(shell->parser->quote_state == DOUBLE_QUOTE && input[shell->parser->index] == '"'))
 		{
+			printf("Found closing quote, creating token...\n");
 			temp = ft_substr(input, start, shell->parser->index - start + 1);
 			if (!temp)
 				return (ERROR);
@@ -193,6 +207,7 @@ static t_status ft_process_and_tokenize(t_shell *shell)
 	}
 	if (shell->parser->state != STATE_GENERAL && shell->parser->index > start)
 	{
+		printf("End of input, creating remaining token...\n");
 		temp = ft_substr(input, start, shell->parser->index - start);
 		if (!temp)
 			return (ERROR);
@@ -202,5 +217,6 @@ static t_status ft_process_and_tokenize(t_shell *shell)
 			return (ERROR);
 		ft_add_token_to_list(shell, token);
 	}
+	printf("Tokenization complete.\n");
 	return (SUCCESS);
 }
