@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:13:19 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/05 13:52:55 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:36:29 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	ft_handle_general_state(t_parser *p, const char *input)
 		printf("Found operator, transitioning to operator state...\n");
 		p->state = STATE_IN_OPERATOR;
 		p->token_count++;
+		if (p->token_count == 1)
+			shell->parser->start = p->index;
 	}
 	else if (input[p->index] == '\'' && !p->escaped)
 	{
@@ -43,6 +45,8 @@ void	ft_handle_general_state(t_parser *p, const char *input)
 		p->quote_state = SINGLE_QUOTE;
 		p->state = STATE_IN_WORD;
 		p->token_count++;
+		if (p->token_count == 1)
+			shell->parser->start = p->index;
 	}
 	else if (input[p->index] == '"' && !p->escaped)
 	{
@@ -50,11 +54,15 @@ void	ft_handle_general_state(t_parser *p, const char *input)
 		p->quote_state = DOUBLE_QUOTE;
 		p->state = STATE_IN_WORD;
 		p->token_count++;
+		if (p->token_count == 1)
+			shell->parser->start = p->index;
 	}
 	else if (!ft_is_space(input[p->index]))
 	{
 		printf("Found word character, transitioning to word state...\n");
 		p->token_count++;
+		if (p->token_count == 1)
+			shell->parser->start = p->index;
 		p->state = STATE_IN_WORD;
 	}
 	p->escaped = (input[p->index] == '\\' && !p->escaped);
@@ -75,17 +83,19 @@ void	ft_handle_general_state(t_parser *p, const char *input)
 void	ft_handle_quote_state(t_parser *p, const char *input)
 {
 	printf("Handling quote state...\n");
-	if (p->quote_state == SINGLE_QUOTE && input[p->index] == '\''
-		&& !p->escaped)
+	if (p->quote_state == SINGLE_QUOTE && input[p->index] == '\'' && !p->escaped)
 	{
 		printf("Found closing single quote, resetting quote state...\n");
+		if (ft_create_and_add_token(shell, shell->parser->start, p->index + 1) == ERROR)
+			return;
 		p->quote_state = NO_QUOTE;
 		p->state = STATE_GENERAL;
 	}
-	else if (p->quote_state == DOUBLE_QUOTE && input[p->index] == '"'
-		&& !p->escaped)
+	else if (p->quote_state == DOUBLE_QUOTE && input[p->index] == '"' && !p->escaped)
 	{
 		printf("Found closing double quote, resetting quote state...\n");
+		if (ft_create_and_add_token(shell, shell->parser->start, p->index + 1) == ERROR)
+			return;
 		p->quote_state = NO_QUOTE;
 		p->state = STATE_GENERAL;
 	}
@@ -120,18 +130,24 @@ void	ft_handle_word_state(t_parser *p, const char *input)
 	if (p->quote_state == NO_QUOTE && (ft_is_space(input[p->index]) || ft_is_operator(input[p->index])))
 	{
 		printf("Found space or operator outside quotes, transitioning to general state...\n");
+		if (ft_create_and_add_token(shell, shell->parser->start, p->index) == ERROR)
+			return;
 		p->state = STATE_GENERAL;
 		p->index--;
 	}
 	else if (p->quote_state == SINGLE_QUOTE && input[p->index] == '\'' && !p->escaped)
 	{
 		printf("Found closing single quote, resetting quote state...\n");
+		if (ft_create_and_add_token(shell, shell->parser->start, p->index + 1) == ERROR)
+			return;
 		p->quote_state = NO_QUOTE;
 		p->state = STATE_GENERAL;
 	}
 	else if (p->quote_state == DOUBLE_QUOTE && input[p->index] == '"' && !p->escaped)
 	{
 		printf("Found closing double quote, resetting quote state...\n");
+		if (ft_create_and_add_token(shell, shell->parser->start, p->index + 1) == ERROR)
+			return;
 		p->quote_state = NO_QUOTE;
 		p->state = STATE_GENERAL;
 	}
@@ -171,6 +187,8 @@ void	ft_handle_operator_state(t_parser *p, const char *input)
 	}
 	else if (!ft_is_operator(input[p->index]) || ft_is_space(input[p->index]))
 	{
+		if (ft_create_and_add_token(shell, shell->parser->start, p->index) == ERROR)
+			return;
 		p->state = STATE_GENERAL;
 		p->index--;
 	}
