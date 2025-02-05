@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/05 14:47:50 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:48:45 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,14 @@ static t_status ft_process_and_tokenize(t_shell *shell)
 	additional_input = NULL;
 	temp_input = NULL;
 	shell->parser->start = 0;
+	shell->parser->index = 0;
 	while (1)
 	{
 		while (input[shell->parser->index])
 		{
+			t_parser_state prev_state = shell->parser->state;
+			t_quote_state prev_quote_state = shell->parser->quote_state;
+
 			if (shell->parser->state == STATE_GENERAL)
 				ft_handle_general_state(shell);
 			else if (shell->parser->quote_state != NO_QUOTE)
@@ -74,10 +78,15 @@ static t_status ft_process_and_tokenize(t_shell *shell)
 				ft_handle_word_state(shell);
 			else if (shell->parser->state == STATE_IN_OPERATOR)
 				ft_handle_operator_state(shell);
+			if ((prev_state == STATE_IN_WORD && shell->parser->state == STATE_GENERAL) ||
+				(prev_state == STATE_IN_OPERATOR && shell->parser->state == STATE_GENERAL))
+			{
+				if (ft_create_and_add_token(shell, shell->parser->start, shell->parser->index) == ERROR)
+					return (ERROR);
+				shell->parser->start = shell->parser->index;
+			}
 			shell->parser->index++;
-			if (shell->parser->quote_state == NO_QUOTE)
-				break ;
-			if (input[shell->parser->index] == '\0')
+			if (shell->parser->quote_state != NO_QUOTE && input[shell->parser->index] == '\0')
 			{
 				additional_input = readline("> ");
 				if (!additional_input)
@@ -96,6 +105,8 @@ static t_status ft_process_and_tokenize(t_shell *shell)
 				input = shell->input;
 				shell->parser->index = 0;
 			}
+			if (shell->parser->quote_state == NO_QUOTE)
+				break ;
 		}
 		if (shell->parser->quote_state == NO_QUOTE)
 			break ;

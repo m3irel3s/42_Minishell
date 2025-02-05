@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:13:19 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/05 15:35:21 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:40:26 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,7 @@ void	ft_handle_general_state(t_shell *shell)
 	{
 		printf("Found word character, transitioning to word state...\n");
 		shell->parser->token_count++;
-		if (shell->parser->token_count == 1)
-			shell->parser->start = shell->parser->index;
+		shell->parser->start = shell->parser->index;
 		shell->parser->state = STATE_IN_WORD;
 	}
 	shell->parser->escaped = (shell->input[shell->parser->index] == '\\' && !shell->parser->escaped);
