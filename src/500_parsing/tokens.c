@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/05 11:32:44 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/05 11:36:58 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ static t_status ft_process_and_tokenize(t_shell *shell)
 				shell->parser->state = STATE_IN_WORD;
 		}
 		else if ((shell->parser->state == STATE_IN_WORD && ft_is_space(input[shell->parser->index])) ||
-				 (shell->parser->state == STATE_IN_OPERATOR && !ft_is_operator(input[shell->parser->index])))
+			(shell->parser->state == STATE_IN_OPERATOR && !ft_is_operator(input[shell->parser->index])))
 		{
 			temp = ft_substr(input, start, shell->parser->index - start);
 			if (!temp)
