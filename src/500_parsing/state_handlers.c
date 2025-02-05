@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:13:19 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/05 11:11:05 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/05 12:30:28 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
  */
 void	ft_handle_general_state(t_parser *p, const char *input)
 {
-	if (ft_is_operator(input[p->index]) && !p->escaped)
+	if (ft_is_operator(input[p->index]) && !p->escaped && p->quote_state == NO_QUOTE)
 	{
 		p->state = STATE_IN_OPERATOR;
 		p->token_count++;
@@ -105,10 +105,20 @@ void	ft_handle_quote_state(t_parser *p, const char *input)
  */
 void	ft_handle_word_state(t_parser *p, const char *input)
 {
-	if (ft_is_space(input[p->index]) || ft_is_operator(input[p->index]))
+	if (p->quote_state == NO_QUOTE && (ft_is_space(input[p->index]) || ft_is_operator(input[p->index])))
 	{
 		p->state = STATE_GENERAL;
 		p->index--;
+	}
+	else if (p->quote_state == SINGLE_QUOTE && input[p->index] == '\'' && !p->escaped)
+	{
+		p->quote_state = NO_QUOTE;
+		p->state = STATE_GENERAL;
+	}
+	else if (p->quote_state == DOUBLE_QUOTE && input[p->index] == '"' && !p->escaped)
+	{
+		p->quote_state = NO_QUOTE;
+		p->state = STATE_GENERAL;
 	}
 	p->escaped = (input[p->index] == '\\' && !p->escaped);
 }

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/05 11:36:58 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/05 12:19:11 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,6 @@ static void	ft_process_input(t_shell *shell)
  * @return Returns SUCCESS if tokenization is successful; otherwise, returns
  *         ERROR.
  */
-
 static t_status ft_process_and_tokenize(t_shell *shell)
 {
 	const char	*input;
@@ -149,8 +148,7 @@ static t_status ft_process_and_tokenize(t_shell *shell)
 			else
 				shell->parser->state = STATE_IN_WORD;
 		}
-		else if ((shell->parser->state == STATE_IN_WORD && ft_is_space(input[shell->parser->index])) ||
-			(shell->parser->state == STATE_IN_OPERATOR && !ft_is_operator(input[shell->parser->index])))
+		else if ((shell->parser->state == STATE_IN_WORD && (ft_is_space(input[shell->parser->index]) || ft_is_operator(input[shell->parser->index]))) && shell->parser->quote_state == NO_QUOTE)
 		{
 			temp = ft_substr(input, start, shell->parser->index - start);
 			if (!temp)
@@ -162,6 +160,34 @@ static t_status ft_process_and_tokenize(t_shell *shell)
 			ft_add_token_to_list(shell, token);
 			shell->parser->state = STATE_GENERAL;
 			start = shell->parser->index + 1;
+		}
+		else if (shell->parser->state == STATE_IN_OPERATOR && !ft_is_operator(input[shell->parser->index]))
+		{
+			temp = ft_substr(input, start, shell->parser->index - start);
+			if (!temp)
+				return (ERROR);
+			token = ft_create_token(temp, ft_determine_token_type(temp));
+			free(temp);
+			if (!token)
+				return (ERROR);
+			ft_add_token_to_list(shell, token);
+			shell->parser->state = STATE_GENERAL;
+			start = shell->parser->index;
+		}
+		else if ((shell->parser->quote_state == SINGLE_QUOTE && input[shell->parser->index] == '\'') ||
+				(shell->parser->quote_state == DOUBLE_QUOTE && input[shell->parser->index] == '"'))
+		{
+			temp = ft_substr(input, start, shell->parser->index - start + 1);
+			if (!temp)
+				return (ERROR);
+			token = ft_create_token(temp, ft_determine_token_type(temp));
+			free(temp);
+			if (!token)
+				return (ERROR);
+			ft_add_token_to_list(shell, token);
+			shell->parser->state = STATE_GENERAL;
+			start = shell->parser->index + 1;
+			shell->parser->quote_state = NO_QUOTE;
 		}
 		shell->parser->index++;
 	}
