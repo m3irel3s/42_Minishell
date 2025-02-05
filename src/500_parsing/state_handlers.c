@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:13:19 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/05 14:46:44 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:35:21 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,11 +125,19 @@ void	ft_handle_quote_state(t_shell *shell)
 void	ft_handle_word_state(t_shell *shell)
 {
 	printf("Handling word state...\n");
-	if (shell->parser->quote_state == NO_QUOTE && (ft_is_space(shell->input[shell->parser->index]) || ft_is_operator(shell->input[shell->parser->index])))
+	if (shell->parser->quote_state == NO_QUOTE && ft_is_space(shell->input[shell->parser->index]))
 	{
-		printf("Found space or operator outside quotes, transitioning to general state...\n");
+		printf("Found space outside quotes, transitioning to general state...\n");
 		if (ft_create_and_add_token(shell, shell->parser->start, shell->parser->index) == ERROR)
-			return;
+			return ;
+		shell->parser->state = STATE_GENERAL;
+		shell->parser->start = shell->parser->index + 1;
+	}
+	else if (shell->parser->quote_state == NO_QUOTE && ft_is_operator(shell->input[shell->parser->index]))
+	{
+		printf("Found operator outside quotes, transitioning to general state...\n");
+		if (ft_create_and_add_token(shell, shell->parser->start, shell->parser->index) == ERROR)
+			return ;
 		shell->parser->state = STATE_GENERAL;
 		shell->parser->index--;
 	}
@@ -137,7 +145,7 @@ void	ft_handle_word_state(t_shell *shell)
 	{
 		printf("Found closing single quote, resetting quote state...\n");
 		if (ft_create_and_add_token(shell, shell->parser->start, shell->parser->index + 1) == ERROR)
-			return;
+			return ;
 		shell->parser->quote_state = NO_QUOTE;
 		shell->parser->state = STATE_GENERAL;
 	}
@@ -145,7 +153,7 @@ void	ft_handle_word_state(t_shell *shell)
 	{
 		printf("Found closing double quote, resetting quote state...\n");
 		if (ft_create_and_add_token(shell, shell->parser->start, shell->parser->index + 1) == ERROR)
-			return;
+			return ;
 		shell->parser->quote_state = NO_QUOTE;
 		shell->parser->state = STATE_GENERAL;
 	}
@@ -173,16 +181,13 @@ void	ft_handle_operator_state(t_shell *shell)
 {
 	if (shell->parser->index > 0 && shell->input[shell->parser->index] == shell->input[shell->parser->index - 1] && !shell->parser->escaped)
 	{
-		if ((shell->input[shell->parser->index] == '<' || shell->input[shell->parser->index] == '>') &&
-			shell->input[shell->parser->index - 1] == shell->input[shell->parser->index - 2])
+		if (shell->input[shell->parser->index] == '<' || shell->input[shell->parser->index] == '>')
 		{
-			ft_putstr_fd("Error: Invalid operator sequence.\n", STDERR_FILENO);
-			shell->parser->state = STATE_ERROR;
-			return ;
+			shell->parser->state = STATE_IN_OPERATOR;
+			return;
 		}
-		shell->parser->state = STATE_IN_OPERATOR;
 	}
-	else if (!ft_is_operator(shell->input[shell->parser->index]) || ft_is_space(shell->input[shell->parser->index]))
+	else
 	{
 		if (ft_create_and_add_token(shell, shell->parser->start, shell->parser->index) == ERROR)
 			return;
