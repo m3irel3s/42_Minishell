@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:13:19 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/05 11:09:57 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/05 11:11:05 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,8 @@ void	ft_handle_operator_state(t_parser *p, const char *input)
 {
 	if (p->index > 0 && input[p->index] == input[p->index - 1] && !p->escaped)
 	{
-		if ((input[p->index] == '<' || input[p->index] == '>')
-			&& input[p->index - 1] == input[p->index - 2])
+		if ((input[p->index] == '<' || input[p->index] == '>') &&
+			input[p->index - 1] == input[p->index - 2])
 		{
 			ft_putstr_fd("Error: Invalid operator sequence.\n", STDERR_FILENO);
 			p->state = STATE_ERROR;
