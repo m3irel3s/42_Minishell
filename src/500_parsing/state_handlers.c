@@ -6,53 +6,42 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:13:19 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/04 21:29:21 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/05 11:00:34 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+
 /**
  * @brief Handles the general state of the parser.
  *
  * When the parser is in the general state, this function checks if the current
- * character is an operator, a single quote, a double quote, or a whitespace.
- * If it is, the parser transitions to the operator, single quote, double quote,
- * or whitespace state, respectively. If it is not, the parser transitions to
- * the word state. The escaped flag is also set or reset according to the
- * current character.
+ * character is an operator, a single quote, a double quote, or a word character.
+ * If it is an operator, the parser transitions to the operator state and the
+ * token count is incremented. If it is a single quote or a double quote, the
+ * parser transitions to the word state and the quote state is set accordingly.
+ * If it is a word character, the parser transitions to the word state and the
+ * token count is incremented. The escaped flag is set if the current character
+ * is a backslash and it is not escaped.
  *
  * @param p A pointer to the parser structure.
  * @param input The input string to be parsed.
  */
 void	ft_handle_general_state(t_parser *p, const char *input)
 {
-	if (input[p->index] == '<' && input[p->index + 1] == '<' && !p->escaped)
-	{
-		p->state = STATE_IN_HEREDOC;
-		p->token_count++;
-		p->index++;
-	}
-	else if (input[p->index] == '>' && input[p->index + 1] == '>' && !p->escaped)
-	{
-		p->state = STATE_IN_APPEND;
-		p->token_count++;
-		p->index++;
-	}
-	else if (ft_is_operator(input[p->index]) && !p->escaped)
+	if (ft_is_operator(input[p->index]) && !p->escaped)
 	{
 		p->state = STATE_IN_OPERATOR;
 		p->token_count++;
 	}
-	else if (input[p->index] == '\''
-		&& !p->escaped && p->quote_state != SINGLE_QUOTE)
+	else if (input[p->index] == '\'' && !p->escaped)
 	{
 		p->quote_state = SINGLE_QUOTE;
 		p->state = STATE_IN_WORD;
 		p->token_count++;
 	}
-	else if (input[p->index] == '"'
-		&& !p->escaped && p->quote_state != DOUBLE_QUOTE)
+	else if (input[p->index] == '"' && !p->escaped)
 	{
 		p->quote_state = DOUBLE_QUOTE;
 		p->state = STATE_IN_WORD;
@@ -79,20 +68,20 @@ void	ft_handle_general_state(t_parser *p, const char *input)
  */
 void	ft_handle_quote_state(t_parser *p, const char *input)
 {
-	if (p->quote_state == SINGLE_QUOTE
-		&& input[p->index] == '\'' && !p->escaped)
+	if (p->quote_state == SINGLE_QUOTE && input[p->index] == '\''
+		&& !p->escaped)
 	{
 		p->quote_state = NO_QUOTE;
 		p->state = STATE_GENERAL;
 	}
-	else if (p->quote_state == DOUBLE_QUOTE
-		&& input[p->index] == '"' && !p->escaped)
+	else if (p->quote_state == DOUBLE_QUOTE && input[p->index] == '"'
+		&& !p->escaped)
 	{
 		p->quote_state = NO_QUOTE;
 		p->state = STATE_GENERAL;
 	}
-	p->escaped = (input[p->index] == '\\'
-		&& p->quote_state == DOUBLE_QUOTE && !p->escaped);
+	p->escaped = (input[p->index] == '\\' && p->quote_state == DOUBLE_QUOTE
+		&& !p->escaped);
 }
 
 /**
