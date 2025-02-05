@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:13:19 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/05 12:30:28 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/05 12:40:15 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,29 +30,35 @@
  */
 void	ft_handle_general_state(t_parser *p, const char *input)
 {
+	printf("Handling general state...\n");
 	if (ft_is_operator(input[p->index]) && !p->escaped && p->quote_state == NO_QUOTE)
 	{
+		printf("Found operator, transitioning to operator state...\n");
 		p->state = STATE_IN_OPERATOR;
 		p->token_count++;
 	}
 	else if (input[p->index] == '\'' && !p->escaped)
 	{
+		printf("Found single quote, setting quote state...\n");
 		p->quote_state = SINGLE_QUOTE;
 		p->state = STATE_IN_WORD;
 		p->token_count++;
 	}
 	else if (input[p->index] == '"' && !p->escaped)
 	{
+		printf("Found double quote, setting quote state...\n");
 		p->quote_state = DOUBLE_QUOTE;
 		p->state = STATE_IN_WORD;
 		p->token_count++;
 	}
 	else if (!ft_is_space(input[p->index]))
 	{
+		printf("Found word character, transitioning to word state...\n");
 		p->token_count++;
 		p->state = STATE_IN_WORD;
 	}
 	p->escaped = (input[p->index] == '\\' && !p->escaped);
+	printf("Escaped flag set to %d\n", p->escaped);
 }
 
 /**
@@ -68,26 +74,31 @@ void	ft_handle_general_state(t_parser *p, const char *input)
  */
 void	ft_handle_quote_state(t_parser *p, const char *input)
 {
+	printf("Handling quote state...\n");
 	if (p->quote_state == SINGLE_QUOTE && input[p->index] == '\''
 		&& !p->escaped)
 	{
+		printf("Found closing single quote, resetting quote state...\n");
 		p->quote_state = NO_QUOTE;
 		p->state = STATE_GENERAL;
 	}
 	else if (p->quote_state == DOUBLE_QUOTE && input[p->index] == '"'
 		&& !p->escaped)
 	{
+		printf("Found closing double quote, resetting quote state...\n");
 		p->quote_state = NO_QUOTE;
 		p->state = STATE_GENERAL;
 	}
 	else if (p->quote_state == DOUBLE_QUOTE && input[p->index] == '\\'
 		&& !p->escaped)
 	{
+		printf("Found backslash in double quotes, setting escaped flag...\n");
 		p->escaped = 1;
 		return ;
 	}
 	if (p->escaped)
 	{
+		printf("Resetting escaped flag...\n");
 		p->escaped = 0;
 		return ;
 	}
@@ -105,22 +116,27 @@ void	ft_handle_quote_state(t_parser *p, const char *input)
  */
 void	ft_handle_word_state(t_parser *p, const char *input)
 {
+	printf("Handling word state...\n");
 	if (p->quote_state == NO_QUOTE && (ft_is_space(input[p->index]) || ft_is_operator(input[p->index])))
 	{
+		printf("Found space or operator outside quotes, transitioning to general state...\n");
 		p->state = STATE_GENERAL;
 		p->index--;
 	}
 	else if (p->quote_state == SINGLE_QUOTE && input[p->index] == '\'' && !p->escaped)
 	{
+		printf("Found closing single quote, resetting quote state...\n");
 		p->quote_state = NO_QUOTE;
 		p->state = STATE_GENERAL;
 	}
 	else if (p->quote_state == DOUBLE_QUOTE && input[p->index] == '"' && !p->escaped)
 	{
+		printf("Found closing double quote, resetting quote state...\n");
 		p->quote_state = NO_QUOTE;
 		p->state = STATE_GENERAL;
 	}
 	p->escaped = (input[p->index] == '\\' && !p->escaped);
+	printf("Escaped flag set to %d\n", p->escaped);
 }
 
 /**
