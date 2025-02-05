@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/05 15:48:45 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/05 15:52:48 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,19 +57,21 @@ static t_status ft_process_and_tokenize(t_shell *shell)
 	const char *input;
 	char *additional_input;
 	char *temp_input;
+	t_parser_state prev_state;
+	t_quote_state prev_quote_state;
 
 	input = shell->input;
 	additional_input = NULL;
 	temp_input = NULL;
 	shell->parser->start = 0;
 	shell->parser->index = 0;
+
 	while (1)
 	{
 		while (input[shell->parser->index])
 		{
-			t_parser_state prev_state = shell->parser->state;
-			t_quote_state prev_quote_state = shell->parser->quote_state;
-
+			prev_state = shell->parser->state;
+			prev_quote_state = shell->parser->quote_state;
 			if (shell->parser->state == STATE_GENERAL)
 				ft_handle_general_state(shell);
 			else if (shell->parser->quote_state != NO_QUOTE)
