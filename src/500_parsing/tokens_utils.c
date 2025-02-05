@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/04 11:39:22 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:29:29 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,24 @@ void	ft_add_token_to_list(t_shell *shell, t_token *new_token)
 		current = current->next;
 	new_token->prev = current;
 	current->next = new_token;
+}
+/**
+ * @brief Creates a token from the current input segment and adds it to the shell's token list.
+ *
+ * @param shell A pointer to the shell structure.
+ * @param start The starting index of the token in the input string.
+ * @param end The ending index of the token in the input string.
+ * @return Returns SUCCESS if the token creation succeeds, ERROR otherwise.
+ */
+static t_status ft_create_and_add_token(t_shell *shell, size_t start, size_t end)
+{
+	char *temp = ft_substr(shell->input, start, end - start);
+	if (!temp)
+		return (ERROR);
+	t_token *token = ft_create_token(temp, ft_determine_token_type(temp));
+	free(temp);
+	if (!token)
+		return (ERROR);
+	ft_add_token_to_list(shell, token);
+	return (SUCCESS);
 }
