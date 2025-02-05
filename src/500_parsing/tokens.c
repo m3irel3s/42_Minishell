@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/05 14:27:37 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:33:26 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static t_status ft_tokenize_input(t_shell *shell)
 	input = shell->input;
 	additional_input = NULL;
 	temp_input = NULL;
+	shell->parser->start = 0;
 	while (1)
 	{
 		while (input[shell->parser->index])
@@ -99,4 +100,11 @@ static t_status ft_tokenize_input(t_shell *shell)
 		if (shell->parser->quote_state == NO_QUOTE)
 			break ;
 	}
+	if (shell->parser->state != STATE_GENERAL && shell->parser->index > shell->parser->start)
+	{
+		if (ft_create_and_add_token(shell, shell->parser->start, shell->parser->index) == ERROR)
+			return (ERROR);
+	}
+
+	return (SUCCESS);
 }

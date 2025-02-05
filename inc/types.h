@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/04 20:57:17 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/05 14:31:41 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ typedef struct s_parser
 	int				token_count;
 	size_t			index;
 	int				escaped;
-}	t_parser;
+	int				start;
+} t_parser;
 
 typedef struct s_shell
 {
