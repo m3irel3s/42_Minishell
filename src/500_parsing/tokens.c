@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/05 11:12:26 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/05 11:32:44 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,50 @@ int	ft_tokenize(t_shell *shell)
 
 static void	ft_process_input(t_shell *shell)
 {
-	const char	*input;
+	const char *input;
+	char *additional_input;
+	char *temp_input;
 
 	input = shell->input;
-	while (input[shell->parser->index])
+	additional_input = NULL;
+	temp_input = NULL;
+	while (1)
 	{
-		if (shell->parser->state == STATE_GENERAL)
-			ft_handle_general_state(shell->parser, input);
-		else if (shell->parser->quote_state != NO_QUOTE)
-			ft_handle_quote_state(shell->parser, input);
-		else if (shell->parser->state == STATE_IN_WORD)
-			ft_handle_word_state(shell->parser, input);
-		else if (shell->parser->state == STATE_IN_OPERATOR)
-			ft_handle_operator_state(shell->parser, input);
-		shell->parser->index++;
+		while (input[shell->parser->index])
+		{
+			if (shell->parser->state == STATE_GENERAL)
+				ft_handle_general_state(shell->parser, input);
+			else if (shell->parser->quote_state != NO_QUOTE)
+				ft_handle_quote_state(shell->parser, input);
+			else if (shell->parser->state == STATE_IN_WORD)
+				ft_handle_word_state(shell->parser, input);
+			else if (shell->parser->state == STATE_IN_OPERATOR)
+				ft_handle_operator_state(shell->parser, input);
+			shell->parser->index++;
+			if (shell->parser->quote_state == NO_QUOTE)
+				break ;
+			if (input[shell->parser->index] == '\0')
+			{
+				additional_input = readline("> ");
+				if (!additional_input)
+				{
+					ft_putstr_fd("Error: Unmatched quotes, EOF encountered.\n", STDERR_FILENO);
+					free(shell->input);
+					shell->input = NULL;
+					return ;
+				}
+				add_history(additional_input);
+				temp_input = ft_strjoin(shell->input, "\n");
+				free(shell->input);
+				shell->input = ft_strjoin(temp_input, additional_input);
+				free(temp_input);
+				free(additional_input);
+				input = shell->input;
+				shell->parser->index = 0;
+			}
+		}
+		if (shell->parser->quote_state == NO_QUOTE)
+			break ;
 	}
 }
 
