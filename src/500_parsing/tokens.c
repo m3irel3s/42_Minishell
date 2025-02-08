@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/05 15:54:06 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/08 15:48:52 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static t_status ft_process_and_tokenize(t_shell *shell)
 				ft_handle_word_state(shell);
 			else if (shell->parser->state == STATE_IN_OPERATOR)
 				ft_handle_operator_state(shell);
+
 			if ((prev_state == STATE_IN_WORD && shell->parser->state == STATE_GENERAL) ||
 				(prev_state == STATE_IN_OPERATOR && shell->parser->state == STATE_GENERAL))
 			{
@@ -85,6 +86,7 @@ static t_status ft_process_and_tokenize(t_shell *shell)
 					return (ERROR);
 				shell->parser->start = shell->parser->index;
 			}
+
 			shell->parser->index++;
 			if (shell->parser->quote_state != NO_QUOTE && input[shell->parser->index] == '\0')
 			{
@@ -105,8 +107,6 @@ static t_status ft_process_and_tokenize(t_shell *shell)
 				input = shell->input;
 				shell->parser->index = 0;
 			}
-			if (shell->parser->quote_state == NO_QUOTE)
-				break ;
 		}
 		if (shell->parser->quote_state == NO_QUOTE)
 			break ;

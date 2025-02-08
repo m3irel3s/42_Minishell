@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:13:19 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/05 15:40:26 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/08 16:45:33 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,10 +156,6 @@ void	ft_handle_word_state(t_shell *shell)
 		shell->parser->quote_state = NO_QUOTE;
 		shell->parser->state = STATE_GENERAL;
 	}
-	if (shell->parser->quote_state != NO_QUOTE && ft_is_space(shell->input[shell->parser->index]))
-	{
-		shell->parser->state = STATE_IN_WORD;
-	}
 	shell->parser->escaped = (shell->input[shell->parser->index] == '\\' && !shell->parser->escaped);
 	printf("Escaped flag set to %d\n", shell->parser->escaped);
 }
@@ -176,21 +172,32 @@ void	ft_handle_word_state(t_shell *shell)
  * @param shell A pointer to the shell structure containing the input
  *              string and the parser state to be updated.
  */
-void	ft_handle_operator_state(t_shell *shell)
+void ft_handle_operator_state(t_shell *shell)
 {
-	if (shell->parser->index > 0 && shell->input[shell->parser->index] == shell->input[shell->parser->index - 1] && !shell->parser->escaped)
+	char current;
+	char prev;
+
+	current = shell->input[shell->parser->index];
+	if (shell->parser->index > 0)
+		prev = shell->input[shell->parser->index - 1];
+	else
+		prev = 0;
+
+	// Handle multi-character operators
+	if (prev && prev == current &&
+		(current == '>' || current == '<') &&
+		shell->parser->index - shell->parser->start == 1)
 	{
-		if (shell->input[shell->parser->index] == '<' || shell->input[shell->parser->index] == '>')
-		{
-			shell->parser->state = STATE_IN_OPERATOR;
+		if (ft_create_and_add_token(shell, shell->parser->start,
+			shell->parser->index + 1) == ERROR)
 			return;
-		}
 	}
 	else
 	{
-		if (ft_create_and_add_token(shell, shell->parser->start, shell->parser->index) == ERROR)
+		if (ft_create_and_add_token(shell, shell->parser->start,
+			shell->parser->index) == ERROR)
 			return;
-		shell->parser->state = STATE_GENERAL;
 		shell->parser->index--;
 	}
+	shell->parser->state = STATE_GENERAL;
 }
