@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 21:29:45 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 21:40:18 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,14 @@ static t_status	ft_process_and_tokenize(t_shell *shell)
 				if (ft_handle_unclosed_quote(shell, &i) == ERROR)
 					return (ERROR);
 			}
-			else
+			if (shell->input[i] == quote_char)
 			{
 				i++;
-				type = ft_determine_token_type(shell->input + start, (i - 1) - start);
+				type = ft_determine_token_type(shell->input + start, i - start - 1);
 				if (ft_create_and_add_token(shell, start, (i - 1), type) == ERROR)
 					return (ERROR);
-			}
 			quote_char = 0;
+			}
 		}
 		else if (ft_is_operator(shell->input[i]))
 		{
