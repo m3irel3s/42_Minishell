@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 10:00:58 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 10:03:29 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,8 @@
  *         PIPE, REDIRECT_IN, REDIRECT_OUT, HEREDOC, REDIRECT_APPEND, or WORD.
  */
 
-t_token_type	ft_determine_token_type(char *value)
+t_token_type	ft_determine_token_type(char *value, size_t len)
 {
-	size_t	len;
-
-	len = ft_strlen(value);
 	if (len == 1)
 	{
 		if (*value == '|')
