@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/10 13:48:58 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:32:41 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ typedef enum e_token_type
 
 typedef enum e_command_type
 {
-	ECHO,
-	CD,
-	PWD,
-	EXPORT,
-	UNSET,
-	ENV,
-	EXIT,
+	ECHO_CMD,
+	CD_CMD,
+	PWD_CMD,
+	EXPORT_CMD,
+	UNSET_CMD,
+	ENV_CMD,
+	EXIT_CMD,
 	NONE
 }	t_command_type;
 
