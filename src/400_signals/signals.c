@@ -6,14 +6,14 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 09:56:30 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/01 10:51:04 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:03:03 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static void	ft_handle_sigint(int sig);
-static void	ft_handle_sigquit(int sig);
+void	ft_handle_sigint(int sig);
+void	ft_handle_sigquit(int sig);
 
 /**
  * @brief Sets up signal handlers for SIGINT and SIGQUIT
@@ -45,14 +45,14 @@ void	ft_set_up_signals(void)
  *
  * This function is called when the SIGINT signal is received. It performs
  * the necessary actions to refresh the prompt on a new line without exiting
- * the shell. Specifically, it writes a newline character, updates the 
+ * the shell. Specifically, it writes a newline character, updates the
  * Readline library's internal state, clears the current input line, and
  * redisplays the prompt.
  *
  * @param sig The signal number (unused in this function).
  */
 
-static void	ft_handle_sigint(int sig)
+void	ft_handle_sigint(int sig)
 {
 	(void)sig;
 	write(1, "\n", 1);
@@ -70,7 +70,7 @@ static void	ft_handle_sigint(int sig)
  *
  * @param sig The signal number (unused in this function).
  */
-static void	ft_handle_sigquit(int sig)
+void	ft_handle_sigquit(int sig)
 {
 	(void)sig;
 }
