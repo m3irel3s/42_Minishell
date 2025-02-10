@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/10 10:20:43 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 11:33:29 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,15 @@ t_token			*ft_create_token(char *value, t_token_type type);
 t_token_type	ft_determine_token_type(char *value, size_t len);
 size_t			ft_get_operator_length(const char *input);
 int				ft_create_and_add_token(t_shell *shell, size_t start, size_t end, t_token_type type);
+
+/* 600_exec */
+/* exec.c */
+void	ft_execute_input(t_shell *shell);
+
+/* 610_builtins */
+/* echo.c */
+void	ft_echo(t_shell *shell);
+
 
 /* 700_clean*/
 /*clean.c*/
