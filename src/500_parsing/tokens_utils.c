@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 10:43:53 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:48:46 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_token_type	ft_determine_token_type(char *value, size_t len)
 		if (ft_strncmp(value, ">>", 2) == 0)
 		return (REDIRECT_APPEND);
 	}
-	return (WORD);
+	else if (ft_is_command())
 }
 
 /**
@@ -83,7 +83,13 @@ t_token	*ft_create_token(char *value, t_token_type type)
 
 	new_token = ft_safe_malloc(sizeof(t_token));
 	new_token->value = ft_strdup(value);
+	if (!new_token->value)
+		return (NULL);
 	new_token->type = type;
+	if (type == COMMAND)
+		ft_set_command_type(new_token);
+	else
+		new_token->command_type = NONE;
 	new_token->next = NULL;
 	new_token->prev = NULL;
 	return (new_token);
@@ -150,6 +156,10 @@ int	ft_create_and_add_token(t_shell *shell, size_t start, size_t end, t_token_ty
 		return (ERROR);
 	}
 	new_token->type = type;
+	if (type == COMMAND)
+		ft_set_command_type(new_token);
+	else
+		new_token->command_type = NONE;
 	new_token->next = NULL;
 	new_token->prev = NULL;
 	if (!shell->tokens)

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/10 13:35:18 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:48:58 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ typedef enum e_command_type
 	EXPORT,
 	UNSET,
 	ENV,
-	EXIT
+	EXIT,
+	NONE
 }	t_command_type;
 
 //============================================================================//
@@ -53,6 +54,7 @@ typedef struct s_token
 {
 	char			*value;
 	t_token_type	type;
+	t_command_type	command_type;
 	struct s_token	*next;
 	struct s_token	*prev;
 }	t_token;
