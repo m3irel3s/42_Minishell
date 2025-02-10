@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 09:46:18 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 09:52:13 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,70 +57,58 @@ int	ft_tokenize(t_shell *shell)
 
 static t_status	ft_process_and_tokenize(t_shell *shell)
 {
-	const char *input;
-	char *additional_input;
-	char *temp_input;
+	size_t			i;
+	size_t			start;
+	size_t			op_len;
+	t_token_type	type;
+	char			quote_char;
 
-	input = shell->input;
-	additional_input = NULL;
-	temp_input = NULL;
-	shell->parser->start = 0;
-	shell->parser->index = 0;
-	while (1)
+	i = 0;
+	quote_char = 0;
+	while (shell->input[i])
 	{
-		while (input[shell->parser->index])
+		if (ft_is_space(shell->input[i]))
 		{
-			ft_handle_current_state(shell);
-			shell->parser->index++;
-			if (shell->parser->quote_state != NO_QUOTE && input[shell->parser->index] == '\0')
+			i++;
+			continue ;
+		}
+		else if (ft_is_quote(shell->input[i]) && !quote_char)
+		{
+			quote_char = shell->input[i];
+			start = i;
+			i++;
+			while (shell->input[i] && shell->input[i] != quote_char)
+				i++;
+			if (!shell->input[i])
 			{
-				if (ft_handle_unclosed_quote(shell, &input, &additional_input, &temp_input) == ERROR)
+				if (ft_handle_unclosed_quote(shell, &i) == ERROR)
 					return (ERROR);
 			}
+			else
+			{
+				i++;
+				if (ft_create_and_add_token(shell, start, i, WORD) == ERROR)
+					return ERROR;
+			}
+			quote_char = 0;
 		}
-		if (shell->parser->quote_state == NO_QUOTE)
-			break ;
+		else if (ft_is_operator(shell->input[i]))
+		{
+			op_len = ft_get_operator_length(shell->input + i);
+			type = ft_get_operator_type(shell->input + i, op_len);
+			if (ft_create_and_add_token(shell, i, i + op_len, type) == ERROR)
+				return (ERROR);
+			i += op_len;
+		}
+		else
+		{
+			start = i;
+			while (shell->input[i] && !ft_is_space(shell->input[i]) &&
+				!ft_is_operator(shell->input[i]) && !ft_is_quote(shell->input[i]))
+				i++;
+			if (ft_create_and_add_token(shell, start, i, WORD) == ERROR)
+				return (ERROR);
+		}
 	}
-	if (shell->parser->state != STATE_GENERAL && shell->parser->index > shell->parser->start)
-	{
-		if (ft_create_and_add_token(shell, shell->parser->start, shell->parser->index) == ERROR)
-			return (ERROR);
-	}
-	return (SUCCESS);
-}
-
-/**
- * @brief Handles an unclosed quote in the input string by prompting the user
- *        for additional input and appending it to the original input string.
- *
- * @param shell A pointer to the shell structure containing the input string
- *              and the parser state to be updated.
- * @param input A pointer to the input string to be updated.
- * @param additional_input A pointer to the additional input string to be read
- *                         from the user.
- * @param temp_input A pointer to a temporary string used to store the
- *                   concatenated strings.
- *
- * @return Returns SUCCESS if the additional input is successfully read and
- *         appended to the original input string; otherwise, returns ERROR.
- */
-static t_status	ft_handle_unclosed_quote(t_shell *shell, const char **input, char **additional_input, char **temp_input)
-{
-	*additional_input = readline("> ");
-	if (!*additional_input)
-	{
-		ft_putstr_fd("Error: Unmatched quotes, EOF encountered.\n", STDERR_FILENO);
-		free(shell->input);
-		shell->input = NULL;
-		return (ERROR);
-	}
-	add_history(*additional_input);
-	*temp_input = ft_strjoin(shell->input, "\n");
-	free(shell->input);
-	shell->input = ft_strjoin(*temp_input, *additional_input);
-	free(*temp_input);
-	free(*additional_input);
-	*input = shell->input;
-	shell->parser->index = 0;
 	return (SUCCESS);
 }
