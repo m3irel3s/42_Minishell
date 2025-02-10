@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 17:03:01 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 21:29:45 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,59 +131,41 @@ static t_status	ft_process_and_tokenize(t_shell *shell)
  */
 static t_status	ft_handle_unclosed_quote(t_shell *shell, size_t *index)
 {
-	char *additional_input;
-	char *temp;
-	char quote_char;
-	struct sigaction old_sa_int;
+	struct sigaction	old_sa;
+	struct sigaction	sa;
+	char				quote_char;
+	char				*new_input_line;
+	char				*input_buffer;
 
+	sigaction(SIGINT, NULL, &old_sa);
+	sa.sa_handler = ft_handle_sigint;
+	sa.sa_flags = SA_RESTART;
+	sigaction(SIGINT, &sa, NULL);
 	quote_char = shell->input[*index];
-	sigaction(SIGINT, NULL, &old_sa_int);
-	struct sigaction sa_int;
-	sa_int.sa_handler = ft_handle_sigint;
-	sigemptyset(&sa_int.sa_mask);
-	sa_int.sa_flags = 0;
-	sigaction(SIGINT, &sa_int, NULL);
 	while (1)
 	{
-		additional_input = readline("> ");
-		if (!additional_input)
+		new_input_line = readline("> ");
+		if (!new_input_line)
 		{
 			ft_putstr_fd("minishell: unexpected EOF while looking for matching quote\n", STDERR_FILENO);
-			sigaction(SIGINT, &old_sa_int, NULL);
+			sigaction(SIGINT, &old_sa, NULL);
 			return (ERROR);
 		}
-		temp = ft_strjoin(shell->input, "\n");
-		if (!temp)
-		{
-			free(additional_input);
-			sigaction(SIGINT, &old_sa_int, NULL);
-			return (ERROR);
-		}
+		input_buffer = ft_strjoin(shell->input, "\n");
 		free(shell->input);
-		shell->input = ft_strjoin(temp, additional_input);
-		free(temp);
-		free(additional_input);
-		if (!shell->input)
-		{
-			sigaction(SIGINT, &old_sa_int, NULL);
-			return (ERROR);
-		}
-		if (*shell->input)
-			add_history(shell->input);
+		shell->input = ft_strjoin(input_buffer, new_input_line);
+		free(input_buffer);
+		free(new_input_line);
+		*index = strlen(shell->input) - strlen(new_input_line) - 1;
 		while (shell->input[*index])
 		{
 			if (shell->input[*index] == quote_char)
 			{
 				(*index)++;
-				sigaction(SIGINT, &old_sa_int, NULL);
+				sigaction(SIGINT, &old_sa, NULL);
 				return (SUCCESS);
 			}
 			(*index)++;
 		}
 	}
-	sigaction(SIGINT, &old_sa_int, NULL);
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
-	return (ERROR);
 }
