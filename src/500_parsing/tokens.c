@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 09:24:08 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 09:46:18 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ int	ft_tokenize(t_shell *shell)
 {
 	if (!shell || !shell->input)
 		return (ERROR);
-	if (ft_process_and_tokenize(shell) == ERROR)
-		return (ERROR);
-	return (SUCCESS);
+	return (ft_process_and_tokenize(shell));
 }
 
 /**
