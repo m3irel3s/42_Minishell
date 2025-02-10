@@ -2,3 +2,4 @@
 42_Libft
 minishell
 .build
+src/500_parsing/syntax_validation.c
