@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 14:15:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:34:28 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,23 +116,22 @@ void	ft_set_command_type(t_token *token)
 		return;
 	len = ft_strlen(token->value);
 	if (len == 4 && strncmp(token->value, "echo", 4) == 0)
-		token->command_type = ECHO;
+		token->command_type = ECHO_CMD;
 	else if (len == 2 && strncmp(token->value, "cd", 2) == 0)
-		token->command_type = CD;
+		token->command_type = CD_CMD;
 	else if (len == 3 && strncmp(token->value, "pwd", 3) == 0)
-		token->command_type = PWD;
+		token->command_type = PWD_CMD;
 	else if (len == 6 && strncmp(token->value, "export", 6) == 0)
-		token->command_type = EXPORT;
+		token->command_type = EXPORT_CMD;
 	else if (len == 5 && strncmp(token->value, "unset", 5) == 0)
-		token->command_type = UNSET;
+		token->command_type = UNSET_CMD;
 	else if (len == 3 && strncmp(token->value, "env", 3) == 0)
-		token->command_type = ENV;
+		token->command_type = ENV_CMD;
 	else if (len == 4 && strncmp(token->value, "exit", 4) == 0)
-		token->command_type = EXIT;
+		token->command_type = EXIT_CMD;
 	else
 		token->command_type = NONE;
 }
-
 
 /**
  * @brief Adds a new token to the end of the token linked list.
