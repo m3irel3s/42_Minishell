@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/10 11:33:29 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:58:40 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,20 @@ void	ft_execute_input(t_shell *shell);
 /* 610_builtins */
 /* echo.c */
 void	ft_echo(t_shell *shell);
-
+/* cd.c */
+void	ft_cd(t_shell *shell);
+/* env.c */
+void	ft_env(t_shell *shell);
 
 /* 700_clean*/
 /*clean.c*/
 void			ft_cleanup(t_shell *shell);
 
 /* 800_utils*/
+/* env_utils.c */
+char	**ft_duplicate_env(char **envp);
+char	*ft_get_env_value(char *var, char **env);
+
 /*char_type_functions.c*/
 int				ft_is_operator(char c);
 int				ft_is_space(char c);

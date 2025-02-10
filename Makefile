@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/10 11:25:38 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/10 14:22:04 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,8 +76,11 @@ SRCS = ${SRC_PATH}/000_intro.c \
 	   ${SRC_PATH}/500_parsing/tokens_utils.c \
 	   ${SRC_PATH}/600_exec/exec.c \
 	   ${SRC_PATH}/610_builtins/echo.c \
+	   ${SRC_PATH}/610_builtins/cd.c \
+	   ${SRC_PATH}/610_builtins/env.c \
 	   ${SRC_PATH}/700_clean/clean.c \
 	   ${SRC_PATH}/800_utils/safe_functions.c \
+	   ${SRC_PATH}/800_utils/env_utils.c \
 	   ${SRC_PATH}/800_utils/char_type_functions.c
 
 # Object files derived from source files
