@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 15:42:25 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:44:01 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_token_type	ft_determine_token_type(char *value, size_t len)
 		else if (*value == '>')
 			return (REDIRECT_OUT);
 	}
-	else if (len == 2)
+	if (len == 2)
 	{
 		if (ft_strncmp(value, "<<", 2) == 0)
 			return (HEREDOC);
@@ -45,8 +45,7 @@ t_token_type	ft_determine_token_type(char *value, size_t len)
 	}
 	if (ft_is_command(value, len))
 		return (COMMAND);
-	else
-		return (ARGUMENT);
+	return (ARGUMENT);
 }
 
 /**
