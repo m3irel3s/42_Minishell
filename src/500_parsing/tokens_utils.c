@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/05 14:48:15 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 09:44:59 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,17 @@ t_token_type	ft_determine_token_type(char *value)
 	value_len = ft_strlen(value);
 	if (!ft_strncmp(value, "|", value_len))
 		return (PIPE);
-	if (!ft_strncmp(value, "<", value_len))
+	else if (!ft_strncmp(value, "<", value_len))
 		return (REDIRECT_IN);
-	if (!ft_strncmp(value, ">", value_len))
+	else if (!ft_strncmp(value, ">", value_len))
 		return (REDIRECT_OUT);
-	if (!ft_strncmp(value, ">>", value_len))
-		return (REDIRECT_APPEND);
-	if (!ft_strncmp(value, "<<", value_len))
-		return (HEREDOC);
+	else if (ft_strlen(value) == 2)
+	{
+		if (!ft_strncmp(value, ">>", 2))
+			return (REDIRECT_APPEND);
+		if (!ft_strncmp(value, "<<", 2))
+			return (HEREDOC);
+	}
 	return (WORD);
 }
 
