@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 12:47:17 by passunca          #+#    #+#             */
-/*   Updated: 2025/01/31 09:02:17 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 21:20:13 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,12 @@
 # define CYN "\e[0;36m"	// RGB(0, 255, 255)
 # define WHT "\e[0;37m"	// RGB(255, 255, 255)
 
+#define GRN2 "\001\033[0;32m\002"
+#define CYN2 "\001\033[0;36m\002"
+#define RESET2 "\001\033[0m\002"
+
 //Regular bold text
-# define BBLK "\e[1;30m"	
+# define BBLK "\e[1;30m"
 # define BRED "\e[1;31m"
 # define BGRN "\e[1;32m"
 # define BYEL "\e[1;33m"
@@ -61,7 +65,7 @@
 # define CYNB "\e[46m"
 # define WHTB "\e[47m"
 
-//High intensty background 
+//High intensty background
 # define BLKHB "\e[0;100m"
 # define REDHB "\e[0;101m"
 # define GRNHB "\e[0;102m"

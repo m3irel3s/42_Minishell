@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:04:18 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/01 13:00:46 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 21:22:55 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_set_prompt(void)
  *
  * If the current working directory cannot be retrieved, defaults to "unknown".
  *
- * @return A dynamically allocated string containing the current 
+ * @return A dynamically allocated string containing the current
  * working directory.
  */
 static char	*ft_get_current_directory(void)
@@ -74,17 +74,17 @@ static char	*ft_build_prompt(const char *user, const char *cwd)
 	size_t	offset;
 
 	len = ft_strlen(user) + ft_strlen(cwd)
-		+ ft_strlen(GRN) + ft_strlen(CYN) + ft_strlen(RESET)
+		+ ft_strlen(GRN2) + ft_strlen(CYN2) + ft_strlen(RESET2)
 		+ 9;
 	prompt = ft_safe_malloc(len * sizeof(char));
 	offset = 0;
-	offset += ft_strlcpy(prompt + offset, GRN, len - offset);
+	offset += ft_strlcpy(prompt + offset, GRN2, len - offset);
 	offset += ft_strlcat(prompt + offset, user, len - offset);
-	offset += ft_strlcat(prompt + offset, RESET, len - offset);
+	offset += ft_strlcat(prompt + offset, RESET2, len - offset);
 	offset += ft_strlcat(prompt + offset, "@", len - offset);
-	offset += ft_strlcat(prompt + offset, CYN, len - offset);
+	offset += ft_strlcat(prompt + offset, CYN2, len - offset);
 	offset += ft_strlcat(prompt + offset, cwd, len - offset);
-	offset += ft_strlcat(prompt + offset, RESET, len - offset);
+	offset += ft_strlcat(prompt + offset, RESET2, len - offset);
 	offset += ft_strlcat(prompt + offset, " $ ", len - offset);
 	return (prompt);
 }
