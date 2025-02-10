@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 15:01:53 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:05:47 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ t_token_type	ft_determine_token_type(char *value, size_t len)
  */
 size_t	ft_get_operator_length(const char *input)
 {
-	if (input[0] == '>' && input[1] == '>')
+	if (input[0] == '>' && input[1] == '>' && (ft_is_space(input[2]) || input[2] == '\0'))
 		return (2);
-	if (input[0] == '<' && input[1] == '<')
+	if (input[0] == '<' && input[1] == '<' && (ft_is_space(input[2]) || input[2] == '\0'))
 		return (2);
-	if (input[0] == '>' || input[0] == '<' || input[0] == '|')
+	if (input[0] == '>' || input[0] == '<' || input[0] == '|' && (ft_is_space(input[1]) || input[1] == '\0'))
 		return (1);
 	return (0);
 }
