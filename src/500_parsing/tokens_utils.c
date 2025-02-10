@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 14:04:45 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:10:28 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,50 +89,58 @@ t_token	*ft_create_token(char *value, t_token_type type)
 	if (!new_token->value)
 		return (NULL);
 	new_token->type = type;
-	if (type == COMMAND)
-		ft_set_command_type(new_token);
-	else
-		new_token->command_type = NONE;
+	new_token->command_type = NONE;
 	new_token->next = NULL;
 	new_token->prev = NULL;
 	return (new_token);
 }
 
-/**
- * @brief Sets the command type for a given token.
- *
- * This function takes a token with a command type of COMMAND and sets its
- * command_type field to the appropriate command type, based on the value of
- * the token. If the value is not a known command, the command type is set to
- * NONE.
- *
- * @param token The token to set the command type for.
- */
-void	ft_set_command_type(t_token *token)
+int	ft_determine_and_set_command_type(t_token *token)
 {
-	size_t len;
+	size_t	len;
 
 	if (!token || !token->value)
-		return;
+		return 0;
 	len = ft_strlen(token->value);
 	if (len == 4 && strncmp(token->value, "echo", 4) == 0)
+	{
 		token->command_type = ECHO;
+		return (SUCCESS)
+	}
 	else if (len == 2 && strncmp(token->value, "cd", 2) == 0)
+	{
 		token->command_type = CD;
+		return (SUCCESS);
+	}
 	else if (len == 3 && strncmp(token->value, "pwd", 3) == 0)
+	{
 		token->command_type = PWD;
+		return (SUCCESS);
+	}
 	else if (len == 6 && strncmp(token->value, "export", 6) == 0)
+	{
 		token->command_type = EXPORT;
+		return (SUCCESS);
+	}
 	else if (len == 5 && strncmp(token->value, "unset", 5) == 0)
+	{
 		token->command_type = UNSET;
+		return (SUCCESS);
+	}
 	else if (len == 3 && strncmp(token->value, "env", 3) == 0)
+	{
 		token->command_type = ENV;
+		return (SUCCESS);
+	}
 	else if (len == 4 && strncmp(token->value, "exit", 4) == 0)
+	{
 		token->command_type = EXIT;
+		return (SUCCESS);
+	}
 	else
 		token->command_type = NONE;
+	return (ERROR);
 }
-
 
 /**
  * @brief Adds a new token to the end of the token linked list.
@@ -195,10 +203,6 @@ int	ft_create_and_add_token(t_shell *shell, size_t start, size_t end, t_token_ty
 		return (ERROR);
 	}
 	new_token->type = type;
-	if (type == COMMAND)
-		ft_set_command_type(new_token);
-	else
-		new_token->command_type = NONE;
 	new_token->next = NULL;
 	new_token->prev = NULL;
 	if (!shell->tokens)

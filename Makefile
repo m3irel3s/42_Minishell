@@ -6,7 +6,7 @@
 #    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/10 10:22:49 by meferraz         ###   ########.fr        #
+#    Updated: 2025/02/10 14:14:39 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,7 @@ SRCS = ${SRC_PATH}/000_intro.c \
 	   ${SRC_PATH}/500_parsing/tokens_utils.c \
 	   ${SRC_PATH}/700_clean/clean.c \
 	   ${SRC_PATH}/800_utils/safe_functions.c \
-	   ${SRC_PATH}/800_utils/char_type_functions.c
+	   ${SRC_PATH}/800_utils/check_type_functions.c
 
 # Object files derived from source files
 # OBJS = ${addprefix ${BUILD_PATH}/, ${notdir ${SRCS:.c=.o}}}

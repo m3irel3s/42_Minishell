@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/10 10:20:43 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:14:02 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,11 @@ int				ft_create_and_add_token(t_shell *shell, size_t start, size_t end, t_token
 void			ft_cleanup(t_shell *shell);
 
 /* 800_utils*/
-/*char_type_functions.c*/
+/*check_type_functions.c*/
 int				ft_is_operator(char c);
 int				ft_is_space(char c);
 int				ft_is_quote(char c);
+int				ft_is_command(char *value, size_t len)
 /*safe_funcitons.c */
 void			*ft_safe_malloc(size_t size);
 char			*ft_safe_readline(t_shell *shell);
