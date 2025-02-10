@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:13:19 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 09:08:30 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 09:10:23 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ void	ft_handle_word_state(t_shell *shell)
 	char	current_char;
 
 	current_char = shell->input[shell->parser->index];
-
 	if (shell->parser->quote_state == NO_QUOTE && (ft_is_space(current_char) || ft_is_operator(current_char)))
 	{
 		ft_create_and_add_token(shell, shell->parser->start, shell->parser->index);
