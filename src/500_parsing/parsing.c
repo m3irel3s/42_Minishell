@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:29:46 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 10:25:08 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:45:48 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
  * @return Returns SUCCESS if the input is successfully tokenized;
  *         otherwise, returns ERROR.
  */
-
 int	ft_parse_input(t_shell *shell)
 {
 	if (ft_tokenize(shell) != SUCCESS)
@@ -36,7 +35,35 @@ int	ft_parse_input(t_shell *shell)
 	t_token *current = shell->tokens;
 	while (current)
 	{
-		printf("this is token: %s, type: %u \n", current->value, current->type);
+		printf("this is token: %s, type: ", current->value);
+		switch (current->type)
+		{
+			case COMMAND:
+				printf("COMMAND");
+				break;
+			case ARGUMENT:
+				printf("ARGUMENT");
+				break;
+			case PIPE:
+				printf("PIPE");
+				break;
+			case REDIRECT_IN:
+				printf("REDIRECT_IN");
+				break;
+			case REDIRECT_OUT:
+				printf("REDIRECT_OUT");
+				break;
+			case REDIRECT_APPEND:
+				printf("REDIRECT_APPEND");
+				break;
+			case HEREDOC:
+				printf("HEREDOC");
+				break;
+			default:
+				printf("UNKNOWN");
+				break;
+		}
+		printf("\n");
 		current = current->next;
 	}
 		/*if (ft_validate_syntax(shell) != SUCCESS)
