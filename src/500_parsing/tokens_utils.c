@@ -6,13 +6,11 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 10:13:05 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 10:43:53 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-
 
 /**
  * @brief Determines the type of token based on its value.

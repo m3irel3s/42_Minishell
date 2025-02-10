@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/10 10:25:01 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:35:18 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,25 @@ typedef enum e_status
 
 typedef enum e_token_type
 {
-	WORD,
+	COMMAND,
+	ARGUMENT,
 	PIPE,
 	REDIRECT_IN,
 	REDIRECT_OUT,
 	REDIRECT_APPEND,
 	HEREDOC
 }	t_token_type;
+
+typedef enum e_command_type
+{
+	ECHO,
+	CD,
+	PWD,
+	EXPORT,
+	UNSET,
+	ENV,
+	EXIT
+}	t_command_type;
 
 //============================================================================//
 //                                STRUCTURES                                  //
