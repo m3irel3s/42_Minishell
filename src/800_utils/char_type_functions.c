@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 14:55:14 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/08 16:13:35 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 10:22:52 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,19 @@ int	ft_is_operator(char c)
 int	ft_is_space(char c)
 {
 	return (c == ' ' || (c >= 9 && c <= 13));
+}
+
+/**
+ * @brief Checks if a character is a quote.
+ *
+ * Determines if the given character is a single or double quote.
+ *
+ * @param c Character to be checked.
+ *
+ * @return 1 if the character is a quote, 0 otherwise.
+ */
+
+int	ft_is_quote(char c)
+{
+	return (c == '\'' || c == '\"');
 }
