@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 14:38:23 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 15:00:01 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,9 @@ static t_status	ft_handle_unclosed_quote(t_shell *shell, size_t *index)
 {
 	char *additional_input;
 	char *temp;
+	char quote_char;
 
+	quote_char = shell->input[*index];
 	while (1)
 	{
 		additional_input = readline("> ");
@@ -169,7 +171,7 @@ static t_status	ft_handle_unclosed_quote(t_shell *shell, size_t *index)
 			return (ERROR);
 		while (shell->input[*index])
 		{
-			if (shell->input[*index] == shell->input[0]) // Matching quote found
+			if (shell->input[*index] == quote_char)
 			{
 				(*index)++;
 				return (SUCCESS);
