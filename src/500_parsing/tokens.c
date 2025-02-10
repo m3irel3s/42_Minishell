@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 16:17:39 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:38:11 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static t_status	ft_process_and_tokenize(t_shell *shell)
 			i++;
 			continue ;
 		}
-		else if (ft_is_quote(shell->input[i]) && !quote_char && (i == 0 || ft_is_space(shell->input[i - 1])))
+		else if (ft_is_quote(shell->input[i]) && !quote_char)
 		{
 			quote_char = shell->input[i];
 			start = i + 1;
