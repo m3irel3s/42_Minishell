@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 16:41:14 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:54:40 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,8 @@ static t_status	ft_handle_unclosed_quote(t_shell *shell, size_t *index)
 		free(additional_input);
 		if (!shell->input)
 			return (ERROR);
+		if (*shell->input)
+			add_history(shell->input);
 		while (shell->input[*index])
 		{
 			if (shell->input[*index] == quote_char)
@@ -165,4 +167,7 @@ static t_status	ft_handle_unclosed_quote(t_shell *shell, size_t *index)
 			(*index)++;
 		}
 	}
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
 }

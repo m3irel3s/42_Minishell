@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/10 14:38:28 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:01:43 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ char			*ft_set_prompt(void);
 /* 400_signals*/
 /*signals.c*/
 void			ft_set_up_signals(void);
+void			ft_handle_sigint(int sig);
+void			ft_handle_sigquit(int sig);
 
 /* 500_parsing*/
 /*parsing.c*/

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 16:42:41 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:46:54 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,4 @@ void	ft_cleanup(t_shell *shell)
 		current = next;
 	}
 	shell->tokens = NULL;
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
 }
