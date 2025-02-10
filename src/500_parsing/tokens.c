@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 09:55:11 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 10:21:24 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ static t_status	ft_process_and_tokenize(t_shell *shell)
 		else if (ft_is_operator(shell->input[i]))
 		{
 			op_len = ft_get_operator_length(shell->input + i);
-			type = ft_get_operator_type(shell->input + i, op_len);
+			type = ft_determine_token_type(shell->input + i, op_len);
 			if (ft_create_and_add_token(shell, i, i + op_len, type) == ERROR)
 				return (ERROR);
 			i += op_len;
