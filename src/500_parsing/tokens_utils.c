@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 13:48:46 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:50:48 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ t_token_type	ft_determine_token_type(char *value, size_t len)
 		if (ft_strncmp(value, ">>", 2) == 0)
 		return (REDIRECT_APPEND);
 	}
-	else if (ft_is_command())
+	else if (ft_is_command(value, len))
+		return (COMMAND);
+	else
+		return (ARGUMENT);
 }
 
 /**

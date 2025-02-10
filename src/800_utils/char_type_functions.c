@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 14:55:14 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 10:22:52 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:00:08 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,26 @@ int	ft_is_space(char c)
 int	ft_is_quote(char c)
 {
 	return (c == '\'' || c == '\"');
+}
+
+int	ft_is_command(char *value, size_t len)
+{
+	if (!value)
+		return (ERROR);
+	if (len == 4 && strncmp(value, "echo", 4) == 0)
+		return (SUCCESS);
+	else if (len == 2 && strncmp(value, "cd", 2) == 0)
+		return (SUCCESS);
+	else if (len == 3 && strncmp(value, "pwd", 3) == 0)
+		return (SUCCESS);
+	else if (len == 6 && strncmp(value, "export", 6) == 0)
+		return (SUCCESS);
+	else if (len == 5 && strncmp(value, "unset", 5) == 0)
+		return (SUCCESS);
+	else if (len == 3 && strncmp(value, "env", 3) == 0)
+		return	(SUCCESS);
+	else if (len == 4 && strncmp(value, "exit", 4) == 0)
+		return (SUCCESS);
+	else
+		return (ERROR);
 }
