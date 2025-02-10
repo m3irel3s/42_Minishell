@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 14:55:14 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 14:00:08 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:01:34 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,25 @@ int	ft_is_quote(char c)
 	return (c == '\'' || c == '\"');
 }
 
+/**
+ * @brief Checks if a given value is a valid command.
+ *
+ * Checks if the given string, up to the given length, is a valid command.
+ *
+ * @param value String to be checked.
+ * @param len Length of the string to be checked.
+ *
+ * @return 1 if the string is a valid command, 0 otherwise.
+ *
+ * The following commands are considered valid:
+ * - echo
+ * - cd
+ * - pwd
+ * - export
+ * - unset
+ * - env
+ * - exit
+ */
 int	ft_is_command(char *value, size_t len)
 {
 	if (!value)
