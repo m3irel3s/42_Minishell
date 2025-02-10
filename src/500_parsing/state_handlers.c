@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 12:13:19 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/08 16:45:33 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 09:08:30 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,42 +27,27 @@
  */
 void	ft_handle_general_state(t_shell *shell)
 {
-	printf("Handling general state...\n");
-	if (ft_is_operator(shell->input[shell->parser->index]) && !shell->parser->escaped && shell->parser->quote_state == NO_QUOTE)
+	char	current_char;
+
+	current_char = shell->input[shell->parser->index];
+
+	if (ft_is_operator(current_char) && !shell->parser->escaped && shell->parser->quote_state == NO_QUOTE)
 	{
-		printf("Found operator, transitioning to operator state...\n");
 		shell->parser->state = STATE_IN_OPERATOR;
-		shell->parser->token_count++;
-		if (shell->parser->token_count == 1)
-			shell->parser->start = shell->parser->index;
-	}
-	else if (shell->input[shell->parser->index] == '\'' && !shell->parser->escaped)
-	{
-		printf("Found single quote, setting quote state...\n");
-		shell->parser->quote_state = SINGLE_QUOTE;
-		shell->parser->state = STATE_IN_WORD;
-		shell->parser->token_count++;
-		if (shell->parser->token_count == 1)
-			shell->parser->start = shell->parser->index;
-	}
-	else if (shell->input[shell->parser->index] == '"' && !shell->parser->escaped)
-	{
-		printf("Found double quote, setting quote state...\n");
-		shell->parser->quote_state = DOUBLE_QUOTE;
-		shell->parser->state = STATE_IN_WORD;
-		shell->parser->token_count++;
-		if (shell->parser->token_count == 1)
-			shell->parser->start = shell->parser->index;
-	}
-	else if (!ft_is_space(shell->input[shell->parser->index]))
-	{
-		printf("Found word character, transitioning to word state...\n");
-		shell->parser->token_count++;
 		shell->parser->start = shell->parser->index;
-		shell->parser->state = STATE_IN_WORD;
 	}
-	shell->parser->escaped = (shell->input[shell->parser->index] == '\\' && !shell->parser->escaped);
-	printf("Escaped flag set to %d\n", shell->parser->escaped);
+	else if ((current_char == '\'' || current_char == '"') && !shell->parser->escaped)
+	{
+		shell->parser->quote_state = (current_char == '\'') ? SINGLE_QUOTE : DOUBLE_QUOTE;
+		shell->parser->state = STATE_IN_WORD;
+		shell->parser->start = shell->parser->index;
+	}
+	else if (!ft_is_space(current_char))
+	{
+		shell->parser->state = STATE_IN_WORD;
+		shell->parser->start = shell->parser->index;
+	}
+	shell->parser->escaped = (current_char == '\\' && !shell->parser->escaped);
 }
 
 /**
@@ -123,41 +108,29 @@ void	ft_handle_quote_state(t_shell *shell)
  */
 void	ft_handle_word_state(t_shell *shell)
 {
-	printf("Handling word state...\n");
-	if (shell->parser->quote_state == NO_QUOTE && ft_is_space(shell->input[shell->parser->index]))
+	char	current_char;
+
+	current_char = shell->input[shell->parser->index];
+
+	if (shell->parser->quote_state == NO_QUOTE && (ft_is_space(current_char) || ft_is_operator(current_char)))
 	{
-		printf("Found space outside quotes, transitioning to general state...\n");
-		if (ft_create_and_add_token(shell, shell->parser->start, shell->parser->index) == ERROR)
-			return ;
+		ft_create_and_add_token(shell, shell->parser->start, shell->parser->index);
 		shell->parser->state = STATE_GENERAL;
 		shell->parser->start = shell->parser->index + 1;
 	}
-	else if (shell->parser->quote_state == NO_QUOTE && ft_is_operator(shell->input[shell->parser->index]))
+	else if (shell->parser->quote_state == SINGLE_QUOTE && current_char == '\'' && !shell->parser->escaped)
 	{
-		printf("Found operator outside quotes, transitioning to general state...\n");
-		if (ft_create_and_add_token(shell, shell->parser->start, shell->parser->index) == ERROR)
-			return ;
-		shell->parser->state = STATE_GENERAL;
-		shell->parser->index--;
-	}
-	else if (shell->parser->quote_state == SINGLE_QUOTE && shell->input[shell->parser->index] == '\'' && !shell->parser->escaped)
-	{
-		printf("Found closing single quote, resetting quote state...\n");
-		if (ft_create_and_add_token(shell, shell->parser->start, shell->parser->index + 1) == ERROR)
-			return ;
+		ft_create_and_add_token(shell, shell->parser->start, shell->parser->index + 1);
 		shell->parser->quote_state = NO_QUOTE;
 		shell->parser->state = STATE_GENERAL;
 	}
-	else if (shell->parser->quote_state == DOUBLE_QUOTE && shell->input[shell->parser->index] == '"' && !shell->parser->escaped)
+	else if (shell->parser->quote_state == DOUBLE_QUOTE && current_char == '"' && !shell->parser->escaped)
 	{
-		printf("Found closing double quote, resetting quote state...\n");
-		if (ft_create_and_add_token(shell, shell->parser->start, shell->parser->index + 1) == ERROR)
-			return ;
+		ft_create_and_add_token(shell, shell->parser->start, shell->parser->index + 1);
 		shell->parser->quote_state = NO_QUOTE;
 		shell->parser->state = STATE_GENERAL;
 	}
-	shell->parser->escaped = (shell->input[shell->parser->index] == '\\' && !shell->parser->escaped);
-	printf("Escaped flag set to %d\n", shell->parser->escaped);
+	shell->parser->escaped = (current_char == '\\' && !shell->parser->escaped);
 }
 
 /**
@@ -172,32 +145,33 @@ void	ft_handle_word_state(t_shell *shell)
  * @param shell A pointer to the shell structure containing the input
  *              string and the parser state to be updated.
  */
-void ft_handle_operator_state(t_shell *shell)
+void	ft_handle_operator_state(t_shell *shell)
 {
-	char current;
-	char prev;
+	char	current_char;
+	char	next_char;
 
-	current = shell->input[shell->parser->index];
-	if (shell->parser->index > 0)
-		prev = shell->input[shell->parser->index - 1];
-	else
-		prev = 0;
+	current_char = shell->input[shell->parser->index];
+	next_char = shell->input[shell->parser->index + 1];
 
-	// Handle multi-character operators
-	if (prev && prev == current &&
-		(current == '>' || current == '<') &&
-		shell->parser->index - shell->parser->start == 1)
+	if (current_char == '>' && next_char == '>')
 	{
-		if (ft_create_and_add_token(shell, shell->parser->start,
-			shell->parser->index + 1) == ERROR)
-			return;
+		shell->parser->index++;
+		ft_create_and_add_token(shell, shell->parser->start, shell->parser->index + 1);
+		shell->parser->state = STATE_GENERAL;
+	}
+	else if (current_char == '<' && next_char == '<')
+	{
+		shell->parser->index++;
+		ft_create_and_add_token(shell, shell->parser->start, shell->parser->index + 1);
+		shell->parser->state = STATE_GENERAL;
+	}
+	else if (current_char == '|' || current_char == '>' || current_char == '<')
+	{
+		ft_create_and_add_token(shell, shell->parser->start, shell->parser->index + 1);
+		shell->parser->state = STATE_GENERAL;
 	}
 	else
 	{
-		if (ft_create_and_add_token(shell, shell->parser->start,
-			shell->parser->index) == ERROR)
-			return;
-		shell->parser->index--;
+		shell->parser->state = STATE_IN_WORD;
 	}
-	shell->parser->state = STATE_GENERAL;
 }
