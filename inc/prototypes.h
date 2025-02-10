@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/10 14:58:40 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:03:57 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ void			ft_cleanup(t_shell *shell);
 /* env_utils.c */
 char	**ft_duplicate_env(char **envp);
 char	*ft_get_env_value(char *var, char **env);
+int		ft_get_var_index(char *var, char **env);
+void	ft_set_env_value(char *var, char *value, char **env);
+
 
 /*char_type_functions.c*/
 int				ft_is_operator(char c);

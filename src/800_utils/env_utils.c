@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 13:50:07 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/10 16:14:58 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:28:34 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,38 @@ char	*ft_get_env_value(char *var, char **env)
 		i++;
 	}
 	return (NULL);
+}
+
+int	ft_get_var_index(char *var, char **env)
+{
+	int i = 0;
+	while (env[i])
+	{
+		if (strncmp(env[i], var, ft_strlen(var)) == SUCCESS)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+void	ft_set_env_value(char *var, char *value, char **env)
+{
+	int		i;
+	char	*res;
+
+	i = ft_get_var_index(var, env);
+	// if (i == -1)
+	// {
+	// 	ft_add_var_to_env();
+	// 	return ;
+	// }
+	res = "";
+	res = ft_strjoin(res, var);
+	res = ft_strjoin(res, "=");
+	res = ft_strjoin(res, value);
+	printf("%s\n", res);
+	// free(env[i]);
+	env[i] = res;
 }
 
 
