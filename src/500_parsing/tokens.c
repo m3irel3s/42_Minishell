@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 10:21:24 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 14:28:11 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,16 @@ static t_status	ft_process_and_tokenize(t_shell *shell)
 			else
 			{
 				i++;
-				if (ft_create_and_add_token(shell, start, i, WORD) == ERROR)
-					return ERROR;
+				if (ft_is_command(shell->input + start, i - start))
+				{
+					if (ft_create_and_add_token(shell, start, i, COMMAND) == ERROR)
+						return (ERROR);
+				}
+				else
+				{
+					if (ft_create_and_add_token(shell, start, i, ARGUMENT) == ERROR)
+						return (ERROR);
+				}
 			}
 			quote_char = 0;
 		}
@@ -103,8 +111,16 @@ static t_status	ft_process_and_tokenize(t_shell *shell)
 			while (shell->input[i] && !ft_is_space(shell->input[i]) &&
 				!ft_is_operator(shell->input[i]) && !ft_is_quote(shell->input[i]))
 				i++;
-			if (ft_create_and_add_token(shell, start, i, WORD) == ERROR)
-				return (ERROR);
+			if (ft_is_command(shell->input + start, i - start))
+			{
+				if (ft_create_and_add_token(shell, start, i, COMMAND) == ERROR)
+					return (ERROR);
+			}
+			else
+			{
+				if (ft_create_and_add_token(shell, start, i, ARGUMENT) == ERROR)
+					return (ERROR);
+			}
 		}
 	}
 	return (SUCCESS);
