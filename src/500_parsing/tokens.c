@@ -6,23 +6,21 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 09:52:13 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 09:55:11 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 static t_status	ft_process_and_tokenize(t_shell *shell);
-static t_status ft_handle_unclosed_quote(t_shell *shell, const char **input,
-		char **additional_input, char **temp_input);
+static t_status ft_handle_unclosed_quote(t_shell *shell, size_t *index);
+
 /**
- * @brief Tokenizes the input entered by the user in the shell.
+ * @brief Tokenizes the input string of the shell.
  *
- * This function first checks if the shell and its input are valid.
- * If not, it returns ERROR. Then, it calls the function
- * ft_process_and_tokenize, which processes and tokenizes the input.
- * If this function returns ERROR, ft_tokenize also returns ERROR.
- * If all operations succeed, it returns SUCCESS.
+ * Checks for valid input and passes control to ft_process_and_tokenize.
+ * If an error occurs, the function returns ERROR. If all operations succeed,
+ * the function returns SUCCESS.
  *
  * @param shell A pointer to the shell structure containing the input
  *              to be tokenized.
@@ -38,23 +36,22 @@ int	ft_tokenize(t_shell *shell)
 }
 
 /**
- * @brief Processes and tokenizes the shell's input.
+ * @brief Processes and tokenizes the input entered by the user in the shell.
  *
- * This function iterates over the input string in the shell structure,
- * handling different parser states and managing quotes. It processes
- * each character according to the current state and transitions states
- * as necessary. If an unclosed quote is detected at the end of the input,
- * it prompts for additional input until the quote is closed or an error
- * occurs. If successful, it ensures that any remaining input segment is
- * tokenized before returning.
+ * This function processes and tokenizes the input string of the shell.
+ * It iterates through the input string and checks for quotes, operators,
+ * and words. If a quote is found, it processes the quoted string and
+ * creates a token. If an operator is found, it creates a token. If a
+ * word is found, it creates a token. If an error occurs during token
+ * creation, the function returns ERROR. If all operations succeed,
+ * the function returns SUCCESS.
  *
  * @param shell A pointer to the shell structure containing the input
- *              and parser state to be processed and tokenized.
+ *              to be tokenized.
  *
- * @return Returns SUCCESS if the input is successfully processed and
- *         tokenized; otherwise, returns ERROR.
+ * @return Returns SUCCESS if the input is successfully tokenized;
+ *         otherwise, returns ERROR.
  */
-
 static t_status	ft_process_and_tokenize(t_shell *shell)
 {
 	size_t			i;
@@ -111,4 +108,57 @@ static t_status	ft_process_and_tokenize(t_shell *shell)
 		}
 	}
 	return (SUCCESS);
+}
+
+/**
+ * @brief Handles unclosed quotes in the input string.
+ *
+ * If an unclosed quote is found in the input string, this function
+ * reads additional input from the user until a matching quote is
+ * found. It then appends the additional input to the shell's input
+ * string and continues parsing from where it left off.
+ *
+ * @param shell A pointer to the shell structure containing the
+ *              input string.
+ * @param index A pointer to the index in the input string where
+ *              the unclosed quote was found.
+ *
+ * @return Returns SUCCESS if the matching quote is found;
+ *         otherwise, returns ERROR.
+ */
+static t_status	ft_handle_unclosed_quote(t_shell *shell, size_t *index)
+{
+	char *additional_input;
+	char *temp;
+
+	while (1)
+	{
+		additional_input = readline("> ");
+		if (!additional_input)
+		{
+			ft_putstr_fd("minishell: unexpected EOF while looking for matching quote\n", STDERR_FILENO);
+			return (ERROR);
+		}
+		temp = ft_strjoin(shell->input, "\n");
+		if (!temp)
+		{
+			free(additional_input);
+			return (ERROR);
+		}
+		free(shell->input);
+		shell->input = ft_strjoin(temp, additional_input);
+		free(temp);
+		free(additional_input);
+		if (!shell->input)
+			return (ERROR);
+		while (shell->input[*index])
+		{
+			if (shell->input[*index] == shell->input[0]) // Matching quote found
+			{
+				(*index)++;
+				return (SUCCESS);
+			}
+			(*index)++;
+		}
+	}
 }
