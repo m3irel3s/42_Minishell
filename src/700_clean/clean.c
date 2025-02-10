@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 10:24:53 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:12:30 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_cleanup(t_shell *shell)
 		free(shell->prompt);
 	if (shell->input)
 		free(shell->input);
+	shell->input = NULL;
 	current = shell->tokens;
 	while (current)
 	{
