@@ -6,41 +6,48 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 09:44:59 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/10 10:00:58 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+
 /**
- * @brief Determines the token type based on the provided string.
+ * @brief Determines the token type based on the given string value.
  *
- * This function takes a string representing a token value and returns its
- * corresponding token type. The token types include PIPE, REDIRECT_IN,
- * REDIRECT_OUT, REDIRECT_APPEND, HEREDOC, and WORD. It uses string comparison
- * to match the input value to known shell operators and returns the appropriate
- * token type. If no specific type is matched, it defaults to WORD.
+ * This function analyzes the input string and returns the corresponding
+ * token type. It checks for operators like pipe '|', input redirection '<',
+ * output redirection '>', heredoc '<<', and append redirection '>>'. If the
+ * input string does not match any predefined operators, it defaults to
+ * returning WORD as the token type.
  *
- * @param value The string representing the token value.
- * @return The token type corresponding to the input string.
+ * @param value The string value to be analyzed for its token type.
+ *
+ * @return The token type corresponding to the input string, which can be
+ *         PIPE, REDIRECT_IN, REDIRECT_OUT, HEREDOC, REDIRECT_APPEND, or WORD.
  */
+
 t_token_type	ft_determine_token_type(char *value)
 {
-	size_t	value_len;
+	size_t	len;
 
-	value_len = ft_strlen(value);
-	if (!ft_strncmp(value, "|", value_len))
-		return (PIPE);
-	else if (!ft_strncmp(value, "<", value_len))
-		return (REDIRECT_IN);
-	else if (!ft_strncmp(value, ">", value_len))
-		return (REDIRECT_OUT);
-	else if (ft_strlen(value) == 2)
+	len = ft_strlen(value);
+	if (len == 1)
 	{
-		if (!ft_strncmp(value, ">>", 2))
-			return (REDIRECT_APPEND);
-		if (!ft_strncmp(value, "<<", 2))
+		if (*value == '|')
+			return (PIPE);
+		else if (*value == '<')
+			return (REDIRECT_IN);
+		else if (*value == '>')
+			return (REDIRECT_OUT);
+	}
+	else if (len == 2)
+	{
+		if (ft_strncmp(value, "<<", 2) == 0)
 			return (HEREDOC);
+		if (ft_strncmp(value, ">>", 2) == 0)
+		return (REDIRECT_APPEND);
 	}
 	return (WORD);
 }
