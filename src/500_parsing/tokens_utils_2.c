@@ -6,18 +6,19 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:26:26 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/11 12:16:46 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:28:12 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 static t_token	*ft_init_new_token(t_shell *shell, size_t start,
-				size_t end, int quoted);
-static void	ft_add_token_to_shell(t_shell *shell, t_token *new_token);
+					size_t end, int quoted);
+static void		ft_add_token_to_shell(t_shell *shell, t_token *new_token);
 
 /**
- * @brief Creates a new token from a substring of the input and adds it to the shell's token list.
+ * @brief Creates a new token from a substring of the input and adds it
+ * to the shell's token list.
  *
  * This function initializes a new token using a portion of the shell's input
  * string, determined by the start and end indices, and marks it as quoted if
