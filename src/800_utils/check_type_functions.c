@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 14:55:14 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 14:56:56 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:26:18 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,13 @@ int	ft_is_command(char *value, size_t len)
 {
 	if (!value)
 		return (ERROR);
-	if ((len == 4 && strncmp(value, "echo", 4) == 0) ||
-		(len == 2 && strncmp(value, "cd", 2) == 0) ||
-		(len == 3 && strncmp(value, "pwd", 3) == 0) ||
-		(len == 6 && strncmp(value, "export", 6) == 0) ||
-		(len == 5 && strncmp(value, "unset", 5) == 0) ||
-		(len == 3 && strncmp(value, "env", 3) == 0) ||
-		(len == 4 && strncmp(value, "exit", 4) == 0))
+	if ((len == 4 && strncmp(value, "echo", 4) == 0)
+		|| (len == 2 && strncmp(value, "cd", 2) == 0)
+		|| (len == 3 && strncmp(value, "pwd", 3) == 0)
+		|| (len == 6 && strncmp(value, "export", 6) == 0)
+		|| (len == 5 && strncmp(value, "unset", 5) == 0)
+		|| (len == 3 && strncmp(value, "env", 3) == 0)
+		|| (len == 4 && strncmp(value, "exit", 4) == 0))
 		return (SUCCESS);
 	else
 		return (ERROR);
