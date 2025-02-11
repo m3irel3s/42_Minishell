@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ansi.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 12:47:17 by passunca          #+#    #+#             */
-/*   Updated: 2025/02/11 09:06:09 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:24:59 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@
 # define CYN "\e[0;36m"	// RGB(0, 255, 255)
 # define WHT "\e[0;37m"	// RGB(255, 255, 255)
 
-#define GRN2 "\001\033[0;32m\002"
-#define CYN2 "\001\033[0;36m\002"
-#define RESET2 "\001\033[0m\002"
+//Especial case for prompt
+# define GRN2 "\001\033[0;32m\002"
+# define CYN2 "\001\033[0;36m\002"
+# define RESET2 "\001\033[0m\002"
 
 //Regular bold text
 # define BBLK "\e[1;30m"
