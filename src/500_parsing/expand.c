@@ -6,9 +6,13 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:55:08 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/11 15:05:42 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:32:19 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../inc/minishell.h"
+
+static char	*ft_expand_variables(char *input, char **envp);
 
 /**
  * @brief Expands variables in the shell's token list.
@@ -41,7 +45,7 @@ void	ft_expand_tokens(t_shell *shell)
 	}
 }
 
-char	*ft_expand_variables(char *input, char **envp)
+static char	*ft_expand_variables(char *input, char **envp)
 {
 	char	*result;
 	char	*var_name;
