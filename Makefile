@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/11 13:29:06 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/11 14:26:53 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,6 +79,7 @@ SRCS = ${SRC_PATH}/000_intro.c \
 	   ${SRC_PATH}/610_builtins/echo.c \
 	   ${SRC_PATH}/610_builtins/cd.c \
 	   ${SRC_PATH}/610_builtins/env.c \
+	   ${SRC_PATH}/610_builtins/pwd.c \
 	   ${SRC_PATH}/500_parsing/tokens_utils_2.c \
 	   ${SRC_PATH}/700_clean/clean.c \
 	   ${SRC_PATH}/800_utils/safe_functions.c \

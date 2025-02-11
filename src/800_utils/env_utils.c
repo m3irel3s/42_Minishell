@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 13:50:07 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/11 11:51:44 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:10:35 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,22 @@ void	ft_set_env_value(char *var, char *value, char **env)
 	res[i] = '\0';
 	free(env[index]);
 	env[index] = res;
+}
+
+char	*ft_get_var_name(char *str)
+{
+	int		i = 0;
+	char	*res;
+
+	while (str[i] != '=' && str[i])
+		i++;
+	res = ft_safe_malloc(sizeof(char) * i + 1);
+	i = 0;
+	while (str[i] != '=' && str[i])
+	{
+		res[i] = str[i];
+		i++;
+	}
+	res[i] = '\0';
+	return (res);
 }
