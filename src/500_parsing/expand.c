@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:55:08 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/11 15:37:26 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:10:39 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ static char	*ft_expand_variables(char *input, char **envp)
 	i = 0;
 	while (input[i])
 	{
-		if (input[i] == '$' && (ft_isalpha(input[i + 1]) || input[i + 1] == '_'))
+		if (input[i] == '$' && (ft_isalpha(input[i + 1])
+				|| input[i + 1] == '_'))
 			temp = ft_expand_variable(input, &i, envp);
 		else
 			temp = ft_append_char(result, input[i++]);
