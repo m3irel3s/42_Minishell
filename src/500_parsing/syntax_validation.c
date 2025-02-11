@@ -6,62 +6,171 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:43:44 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/11 09:43:52 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:07:57 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "minishell.h"
+
+static t_status	ft_handle_pipe_error(t_token_type prev, t_token *current);
+static t_status	ft_handle_redirection_error(t_token *current);
+static t_status	ft_handle_consecutive_redirections(t_token_type prev,
+	t_token_type type, char *value);
+static t_status	ft_check_end_of_input(t_token_type prev);
 
 /**
- * @brief Validates the syntax of a tokenized input string.
+ * @brief Validates the syntax of a linked list of tokens.
  *
- * Iterates through a linked list of tokens and checks for valid syntax.
- * If an error is found, an appropriate error message is printed to
- * STDERR_FILENO and the function returns ERROR. If all operations succeed,
- * the function returns SUCCESS.
+ * This function takes a linked list of tokens and checks for syntax errors.
+ * It checks for valid use of pipes and redirection operators, and for
+ * consecutive redirection operators. If any syntax errors are found, the
+ * function returns ERROR. If all syntax checks succeed, the function returns
+ * SUCCESS.
  *
- * Note: The checks for valid syntax are as follows:
- * - A pipe cannot be the first or last token in the input string.
- * - A pipe cannot be followed by another pipe, input redirection,
- *   output redirection, heredoc, or append redirection.
- * - Input redirection, output redirection, heredoc, and append redirection
- *   must be followed by a word.
- * - The last token in the input string must be a word.
+ * @param tokens A pointer to the linked list of tokens.
  *
- * @param tokens A pointer to the first token in the linked list of tokens.
- *
- * @return Returns SUCCESS if the input is successfully validated;
- *         otherwise, returns ERROR.
+ * @return Returns SUCCESS if the syntax is valid; otherwise, returns ERROR.
  */
-t_status	ft_validate_syntax(t_token *tokens) {
-	t_token *current;
-	t_token_type prev;
-	t_token_type type;
+t_status	ft_validate_syntax(t_token *tokens)
+{
+	t_token			*current;
+	t_token_type	prev;
+	t_token_type	type;
 
 	current = tokens;
 	prev = -1;
 	while (current)
 	{
 		type = current->type;
-		if (type == PIPE && (prev == -1 || prev == PIPE || prev == REDIRECT_IN
-			|| prev == REDIRECT_OUT || prev == HEREDOC || prev == REDIRECT_APPEND))
-		{
-			ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", STDERR_FILENO);
+		if (type == PIPE && ft_handle_pipe_error(prev, current) == ERROR)
 			return (ERROR);
-		}
-		if ((type == REDIRECT_IN || type == REDIRECT_OUT || type == HEREDOC
-			|| type == REDIRECT_APPEND) && (!current->next || current->next->type != WORD))
-		{
-			ft_putstr_fd("minishell: syntax error near redirect\n", STDERR_FILENO);
+		if ((type == REDIRECT_IN || type == REDIRECT_OUT
+				|| type == HEREDOC || type == REDIRECT_APPEND)
+			&& ft_handle_redirection_error(current) == ERROR)
 			return (ERROR);
-		}
+		if (ft_handle_consecutive_redirections(prev, type, current->value) == ERROR)
+			return (ERROR);
 		prev = type;
 		current = current->next;
 	}
+	return (ft_check_end_of_input(prev));
+}
+
+/**
+ * @brief Handles pipe errors in a linked list of tokens.
+ *
+ * This function checks if the | operator is used correctly in a linked
+ * list of tokens. If the | operator is used as the first token, or if it
+ * is used after or before a redirection operator, or if it is the last
+ * token in the linked list, the function returns ERROR. If the | operator
+ * is used correctly, the function returns SUCCESS.
+ *
+ * @param prev The type of the previous token.
+ * @param current A pointer to the current token.
+ *
+ * @return Returns SUCCESS if the | operator is used correctly;
+ *         otherwise, returns ERROR.
+ */
+static t_status	ft_handle_pipe_error(t_token_type prev, t_token *current)
+{
+	if (prev == -1 || prev == PIPE || prev == REDIRECT_IN || prev == REDIRECT_OUT
+		|| prev == HEREDOC || prev == REDIRECT_APPEND || !current->next)
+	{
+		ft_putstr_fd("minishell: syntax error near unexpected token `|'\n",
+			STDERR_FILENO);
+		return (ERROR);
+	}
+	return (SUCCESS);
+}
+
+/**
+ * @brief Handles redirection errors in a linked list of tokens.
+ *
+ * This function checks if the redirection operators are used correctly in a
+ * linked list of tokens. If a redirection operator is used as the last token,
+ * or if it is used before a redirection operator, or if it is used after a
+ * pipe, the function returns ERROR. If a redirection operator is used correctly,
+ * the function returns SUCCESS.
+ *
+ * @param current A pointer to the current token.
+ *
+ * @return Returns SUCCESS if the redirection operator is used correctly;
+ *         otherwise, returns ERROR.
+ */
+static t_status	ft_handle_redirection_error(t_token *current)
+{
+	if (!current->next || current->next->type == PIPE
+		|| current->next->type == REDIRECT_IN
+		|| current->next->type == REDIRECT_OUT
+		|| current->next->type == HEREDOC
+		|| current->next->type == REDIRECT_APPEND)
+	{
+		ft_putstr_fd("minishell: syntax error near unexpected token `",
+			STDERR_FILENO);
+		if (current->next)
+			ft_putstr_fd(current->next->value, STDERR_FILENO);
+		else
+			ft_putstr_fd("newline", STDERR_FILENO);
+		ft_putstr_fd("'\n", STDERR_FILENO);
+		return (ERROR);
+	}
+	return (SUCCESS);
+}
+
+/**
+ * @brief Checks for consecutive redirection operators in a linked list of tokens.
+ *
+ * This function takes the type of the previous token and the current token,
+ * as well as the value of the current token. If the current token is a
+ * redirection operator and the previous token is also a redirection operator,
+ * the function returns ERROR. If the current token is a redirection operator
+ * and the previous token is not a redirection operator, the function returns
+ * SUCCESS.
+ *
+ * @param prev The type of the previous token.
+ * @param type The type of the current token.
+ * @param value The value of the current token.
+ *
+ * @return Returns SUCCESS if the redirection operators are used correctly;
+ *         otherwise, returns ERROR.
+ */
+static t_status	ft_handle_consecutive_redirections(t_token_type prev,
+	t_token_type type, char *value)
+{
+	if ((type == REDIRECT_IN || type == REDIRECT_OUT
+			|| type == HEREDOC || type == REDIRECT_APPEND)
+		&& (prev == REDIRECT_IN || prev == REDIRECT_OUT
+			|| prev == HEREDOC || prev == REDIRECT_APPEND))
+	{
+		ft_putstr_fd("minishell: syntax error near unexpected token `",
+			STDERR_FILENO);
+		ft_putstr_fd(value, STDERR_FILENO);
+		ft_putstr_fd("'\n", STDERR_FILENO);
+		return (ERROR);
+	}
+	return (SUCCESS);
+}
+
+/**
+ * @brief Checks for syntax errors at the end of the input.
+ *
+ * This function verifies if the last token in the input is a pipe
+ * or a redirection operator. If so, it indicates a syntax error
+ * due to an unexpected end of file. The function returns ERROR
+ * in such cases, otherwise, it returns SUCCESS.
+ *
+ * @param prev The type of the last token processed.
+ *
+ * @return Returns SUCCESS if the input ends correctly; otherwise,
+ *         returns ERROR.
+ */
+static t_status	ft_check_end_of_input(t_token_type prev)
+{
 	if (prev == PIPE || prev == REDIRECT_IN || prev == REDIRECT_OUT
 		|| prev == HEREDOC || prev == REDIRECT_APPEND)
 	{
-		ft_putstr_fd("minishell: syntax error: unexpected end of file\n", STDERR_FILENO);
+		ft_putstr_fd("minishell: syntax error: unexpected end of file\n",
+			STDERR_FILENO);
 		return (ERROR);
 	}
 	return (SUCCESS);
