@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/11 12:23:53 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:35:03 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ void			ft_handle_sigquit(int sig);
 /* 500_parsing*/
 /*parsing.c*/
 int				ft_parse_input(t_shell *shell);
+
+/*syntax_validationc*/
+t_status		ft_validate_syntax(t_token *token);
 
 /*tokens.c*/
 int				ft_tokenize(t_shell *shell);
