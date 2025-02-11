@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:43:44 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/11 13:04:40 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:19:11 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static t_status	ft_handle_pipe_error(t_token_type prev, t_token *current);
 static t_status	ft_handle_redirection_error(t_token *current);
 static t_status	ft_handle_consecutive_redirections(t_token_type prev,
-	t_token_type type, char *value);
+					t_token_type type, char *value);
 static t_status	ft_check_end_of_input(t_token_type prev);
 
 /**
@@ -48,7 +48,8 @@ t_status	ft_validate_syntax(t_token *tokens)
 				|| type == HEREDOC || type == REDIRECT_APPEND)
 			&& ft_handle_redirection_error(current) == ERROR)
 			return (ERROR);
-		if (ft_handle_consecutive_redirections(prev, type, current->value) == ERROR)
+		if (ft_handle_consecutive_redirections(prev, type,
+				current->value) == ERROR)
 			return (ERROR);
 		prev = type;
 		current = current->next;
@@ -73,8 +74,9 @@ t_status	ft_validate_syntax(t_token *tokens)
  */
 static t_status	ft_handle_pipe_error(t_token_type prev, t_token *current)
 {
-	if (prev == 666 || prev == PIPE || prev == REDIRECT_IN || prev == REDIRECT_OUT
-		|| prev == HEREDOC || prev == REDIRECT_APPEND || !current->next)
+	if (prev == 666 || prev == PIPE || prev == REDIRECT_IN
+		|| prev == REDIRECT_OUT || prev == HEREDOC
+		|| prev == REDIRECT_APPEND || !current->next)
 	{
 		ft_putstr_fd("minishell: syntax error near unexpected token `|'\n",
 			STDERR_FILENO);
@@ -118,7 +120,8 @@ static t_status	ft_handle_redirection_error(t_token *current)
 }
 
 /**
- * @brief Checks for consecutive redirection operators in a linked list of tokens.
+ * @brief Checks for consecutive redirection operators in a linked
+ * list of tokens.
  *
  * This function takes the type of the previous token and the current token,
  * as well as the value of the current token. If the current token is a
