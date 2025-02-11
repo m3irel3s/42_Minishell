@@ -6,14 +6,15 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/11 13:08:09 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:22:05 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 static t_status	ft_process_and_tokenize(t_shell *shell);
-static t_status ft_handle_unclosed_quote(t_shell *shell, size_t *index, char quote_char);
+static t_status	ft_handle_unclosed_quote(t_shell *shell,
+					size_t *index, char quote_char);
 
 /**
  * @brief Tokenizes the input string of the shell.
@@ -88,9 +89,10 @@ static t_status	ft_process_and_tokenize(t_shell *shell)
 			if (shell->input[i] == quote_char)
 			{
 				i++;
-				if (ft_create_and_add_token(shell, start, (i - 1), quoted_status) == ERROR)
+				if (ft_create_and_add_token(shell, start, (i - 1),
+						quoted_status) == ERROR)
 					return (ERROR);
-			quote_char = 0;
+				quote_char = 0;
 			}
 		}
 		else if (ft_is_operator(shell->input[i]))
@@ -98,7 +100,8 @@ static t_status	ft_process_and_tokenize(t_shell *shell)
 			start = i;
 			while (ft_is_operator(shell->input[i]))
 				i++;
-			if (ft_create_and_add_token(shell, start, i, quoted_status) == ERROR)
+			if (ft_create_and_add_token(shell, start, i,
+				quoted_status) == ERROR)
 				return (ERROR);
 		}
 		else
