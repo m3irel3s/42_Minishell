@@ -6,56 +6,90 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/11 11:26:26 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:14:22 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+static t_token_type	ft_check_single_char(char *value);
+static t_token_type	ft_check_double_char(char *value);
+
 /**
- * @brief Determines the type of token based on its value.
+ * @brief Checks the given string and returns its corresponding token type.
  *
- * This function takes a pointer to a string and its length as input and
- * returns the type of token that the string represents. It checks for
- * single character operators and multiple character operators, and
- * returns the appropriate type. If the string does not match any of
- * the known operators, it returns WORD.
+ * Checks the given string and returns its corresponding token type.
+ * If the string is a single character, checks for single character tokens.
+ * If the string is two characters long, checks for double character tokens.
+ * If the string does not match any special tokens, returns WORD.
  *
- * @param value A pointer to the string to be checked.
- * @param len The length of the string.
- * @return The type of token represented by the string.
+ * @param value The string to be checked.
+ * @param len The length of the string to be checked.
+ *
+ * @return Returns the corresponding token type.
  */
 t_token_type	ft_determine_token_type(char *value, size_t len)
 {
 	if (len == 1)
-	{
-		if (*value == '|')
-			return (PIPE);
-		else if (*value == '<')
-			return (REDIRECT_IN);
-		else if (*value == '>')
-			return (REDIRECT_OUT);
-	}
+		return (ft_check_single_char(value));
 	if (len == 2)
-	{
-		if (ft_strncmp(value, "<<", 2) == 0)
-			return (HEREDOC);
-		if (ft_strncmp(value, ">>", 2) == 0)
-			return (REDIRECT_APPEND);
-	}
+		return (ft_check_double_char(value));
 	return (WORD);
 }
 
 /**
- * @brief Creates a new token from a given value and type.
+ * @brief Checks a single character and returns its corresponding token type.
  *
- * This function allocates memory for a new token and populates it with the
- * provided value and type. It then returns the new token.
+ * Checks if the given string is a single character and if it is a special
+ * character, returns its corresponding token type. If not, returns WORD.
  *
- * @param value The string representing the token value.
- * @param type The type of the token, which is one of PIPE, REDIRECT_IN,
- *              REDIRECT_OUT, REDIRECT_APPEND, HEREDOC, or WORD.
- * @return The newly allocated token.
+ * @param value String to be checked.
+ *
+ * @return Returns the corresponding token type.
+ */
+static t_token_type	ft_check_single_char(char *value)
+{
+	if (*value == '|')
+		return (PIPE);
+	else if (*value == '<')
+		return (REDIRECT_IN);
+	else if (*value == '>')
+		return (REDIRECT_OUT);
+	return (WORD);
+}
+
+/**
+ * @brief Checks the given string and returns its corresponding token type.
+ *
+ * Checks the given string and returns its corresponding token type.
+ * If the string is two characters long, checks for double character tokens.
+ * If the string does not match any special tokens, returns WORD.
+ *
+ * @param value The string to be checked.
+ *
+ * @return Returns the corresponding token type.
+ */
+static t_token_type	ft_check_double_char(char *value)
+{
+	if (ft_strncmp(value, "<<", 2) == 0)
+		return (HEREDOC);
+	if (ft_strncmp(value, ">>", 2) == 0)
+		return (REDIRECT_APPEND);
+	return (WORD);
+}
+
+/**
+ * @brief Creates a new token with the given value and type.
+ *
+ * This function allocates memory for a new token, copies the given value
+ * into the new token, and sets the new token's type and next/prev pointers.
+ * If memory allocation fails, the function returns NULL.
+ *
+ * @param value The value of the token to be created.
+ * @param type The type of the token to be created.
+ *
+ * @return Returns a pointer to the newly created token if successful;
+ *         otherwise, returns NULL.
  */
 t_token	*ft_create_token(char *value, t_token_type type)
 {
@@ -72,17 +106,18 @@ t_token	*ft_create_token(char *value, t_token_type type)
 }
 
 /**
- * @brief Adds a new token to the end of the token linked list.
+ * @brief Adds a new token to the end of the shell's token list.
  *
- * This function traverses the linked list of tokens in the shell structure and
- * adds the newly created token to the end of the list. If the list is empty, it
- * sets the shell's tokens pointer to the new token.
+ * This function appends a new token to the end of the linked list of tokens
+ * within the shell structure. If the token list is initially empty, the new
+ * token becomes the first token in the list. The function ensures that the
+ * previous pointer of the new token is correctly set to the last token in
+ * the list before the new token is added.
  *
- * @param shell A pointer to the shell structure containing the token linked
- *              list.
- * @param new_token A pointer to the newly created token to be added to the
- *                  list.
+ * @param shell A pointer to the shell structure containing the token list.
+ * @param new_token A pointer to the new token to be added to the list.
  */
+
 void	ft_add_token_to_list(t_shell *shell, t_token *new_token)
 {
 	t_token	*current;
@@ -97,52 +132,4 @@ void	ft_add_token_to_list(t_shell *shell, t_token *new_token)
 		current = current->next;
 	new_token->prev = current;
 	current->next = new_token;
-}
-
-/**
- * @brief Creates a new token with the given value and type and adds it to the
- *        end of the token linked list.
- *
- * This function allocates memory for a new token and populates it with the
- * given value and type. It then adds the new token to the end of the token
- * linked list in the shell structure.
- *
- * @param shell A pointer to the shell structure containing the token linked
- *              list.
- * @param start The start index of the value in the shell's input string.
- * @param end The end index of the value in the shell's input string.
- * @param type The type of the token, which is one of PIPE, REDIRECT_IN,
- *              REDIRECT_OUT, REDIRECT_APPEND, HEREDOC, or WORD.
- * @return Returns SUCCESS if the token is successfully created and added to
- *         the list; otherwise, returns ERROR.
- */
-int	ft_create_and_add_token(t_shell *shell, size_t start, size_t end,
-	t_token_type type, int quoted)
-{
-	t_token	*new_token;
-	t_token	*last_token;
-
-	if (!shell || !shell->input)
-		return (ERROR);
-	new_token = ft_safe_malloc(sizeof(t_token));
-	if (!new_token)
-		return (ERROR);
-	new_token->value = ft_substr(shell->input, start, end - start);
-	if (!new_token->value)
-		return (free(new_token), ERROR);
-	new_token->type = type;
-	new_token->next = NULL;
-	new_token->prev = NULL;
-	new_token->quoted = quoted;
-	if (!shell->tokens)
-		shell->tokens = new_token;
-	else
-	{
-		last_token = shell->tokens;
-		while (last_token->next)
-			last_token = last_token->next;
-		last_token->next = new_token;
-		new_token->prev = last_token;
-	}
-	return (SUCCESS);
 }
