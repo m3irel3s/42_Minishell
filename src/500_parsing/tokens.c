@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/11 16:04:21 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:09:09 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static t_status	ft_process_and_tokenize(t_shell *shell);
 static t_status	ft_handle_quote(t_shell *shell, size_t *i, int *quoted_status);
-static t_status	ft_handle_operator(t_shell *shell, size_t *i, int quoted_status);
+static t_status	ft_handle_operator(t_shell *shell, size_t *i,
+					int quoted_status);
 static t_status	ft_handle_word(t_shell *shell, size_t *i, int quoted_status);
 
 /**
@@ -38,7 +39,8 @@ int	ft_tokenize(t_shell *shell)
 }
 
 /**
- * @brief Tokenizes the shell input by processing quoted strings, operators, and words.
+ * @brief Tokenizes the shell input by processing quoted strings, operators,
+ * and words.
  *
  * This function iterates through the shell's input string and processes each
  * character. It handles quoted strings by calling ft_handle_quote,
@@ -80,13 +82,15 @@ static t_status	ft_process_and_tokenize(t_shell *shell)
 }
 
 /**
- * @brief Processes a quoted string in the shell input and adds it as a token to the token list.
+ * @brief Processes a quoted string in the shell input and adds it as a token to
+ * the token list.
  *
- * This function identifies a quoted string in the shell's input starting from the
- * current index. It continues until the matching quote character is encountered or
- * an unmatched quote error is detected. The function then creates and adds a new
- * token representing the quoted string to the shell's token list. It updates the
- * quoted status based on the type of quote encountered (single or double).
+ * This function identifies a quoted string in the shell's input starting from
+ * the current index. It continues until the matching quote character is
+ * encountered or an unmatched quote error is detected. The function then creates
+ * and adds a new token representing the quoted string to the shell's token list.
+ * It updates the quoted status based on the type of quote encountered (single
+ * or double).
  *
  * @param shell A pointer to the shell structure containing the input string.
  * @param i A pointer to the current index in the input string, which will be
@@ -122,19 +126,21 @@ static t_status	ft_handle_quote(t_shell *shell, size_t *i, int *quoted_status)
 }
 
 /**
- * @brief Processes an operator token in the shell input and adds it to the token list.
+ * @brief Processes an operator token in the shell input and adds it to the token
+ * list.
  *
- * This function identifies an operator in the shell's input starting from the current
- * index and continues until a non-operator character is encountered. It then creates
- * and adds a new token representing the operator to the shell's token list. The
- * function takes into account whether the operator is quoted.
+ * This function identifies an operator in the shell's input starting from the
+ * current index and continues until a non-operator character is encountered. It
+ * then creates and adds a new token representing the operator to the shell's
+ * token list. The function takes into account whether the operator is quoted.
  *
  * @param shell A pointer to the shell structure containing the input string.
  * @param i A pointer to the current index in the input string, which will be
  *          updated to the index after the processed operator.
  * @param quoted_status An integer indicating the quoted status of the operator.
  *
- * @return Returns SUCCESS if the operator token is successfully created and added;
+ * @return Returns SUCCESS if the operator token is successfully created and
+ *         added;
  *         otherwise, returns ERROR.
  */
 static t_status	ft_handle_operator(t_shell *shell, size_t *i, int quoted_status)
@@ -150,12 +156,13 @@ static t_status	ft_handle_operator(t_shell *shell, size_t *i, int quoted_status)
 }
 
 /**
- * @brief Processes a word token in the shell input and adds it to the token list.
+ * @brief Processes a word token in the shell input and adds it to the token
+ * list.
  *
- * This function identifies a word in the shell's input starting from the current
- * index and continues until a space, operator, or quote character is encountered.
- * It then creates and adds a new token representing the word to the shell's token
- * list. The function takes into account whether the word is quoted.
+ * This function identifies a word in the shell's input starting from the
+ * current index and continues until a non-word character is encountered. It then
+ * creates and adds a new token representing the word to the shell's token list.
+ * The function takes into account whether the word is quoted.
  *
  * @param shell A pointer to the shell structure containing the input string.
  * @param i A pointer to the current index in the input string, which will be
@@ -165,7 +172,6 @@ static t_status	ft_handle_operator(t_shell *shell, size_t *i, int quoted_status)
  * @return Returns SUCCESS if the word token is successfully created and added;
  *         otherwise, returns ERROR.
  */
-
 static t_status	ft_handle_word(t_shell *shell, size_t *i, int quoted_status)
 {
 	size_t	start;
