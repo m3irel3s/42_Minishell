@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/11 16:18:37 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:30:15 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_execute_input(t_shell *shell)
 		ft_env(shell);
 	else if (ft_strncmp(shell->tokens->value, "pwd", 4) == SUCCESS)
 		ft_pwd(shell);
-	// else if (ft_strncmp(shell->tokens->value, "export", 7) == SUCCESS)
-	// 	ft_export(shell);
+	else if (ft_strncmp(shell->tokens->value, "export", 7) == SUCCESS)
+		ft_export(shell);
 	return ;
 }

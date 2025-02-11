@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/11 16:20:12 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/11 16:40:54 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,15 +76,17 @@ SRCS = ${SRC_PATH}/000_intro.c \
 	   ${SRC_PATH}/500_parsing/syntax_validation.c \
 	   ${SRC_PATH}/500_parsing/tokens.c \
 	   ${SRC_PATH}/500_parsing/tokens_utils.c \
+	   ${SRC_PATH}/500_parsing/tokens_utils_2.c \
 	   ${SRC_PATH}/600_exec/exec.c \
 	   ${SRC_PATH}/610_builtins/echo.c \
 	   ${SRC_PATH}/610_builtins/cd.c \
 	   ${SRC_PATH}/610_builtins/env.c \
 	   ${SRC_PATH}/610_builtins/pwd.c \
-	   ${SRC_PATH}/500_parsing/tokens_utils_2.c \
+	   ${SRC_PATH}/610_builtins/export.c \
 	   ${SRC_PATH}/700_clean/clean.c \
 	   ${SRC_PATH}/800_utils/safe_functions.c \
 	   ${SRC_PATH}/800_utils/env_utils.c \
+	   ${SRC_PATH}/800_utils/env_utils_2.c \
 	   ${SRC_PATH}/800_utils/check_type_functions.c
 
 # Object files derived from source files
