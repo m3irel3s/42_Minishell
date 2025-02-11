@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/10 14:32:41 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 09:16:38 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ typedef enum e_status
 
 typedef enum e_token_type
 {
-	COMMAND,
-	ARGUMENT,
+	WORD,
 	PIPE,
 	REDIRECT_IN,
 	REDIRECT_OUT,
