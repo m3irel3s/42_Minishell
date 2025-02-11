@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/11 13:51:18 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:01:32 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,7 @@ int	main(int argc, char **argv, char **envp)
 		if (*shell.input)
 			add_history(shell.input);
 		if (ft_parse_input(&shell) == SUCCESS)
-		{
-			printf("Testing\n");
-			//ft_execute_input(&shell);
-		}
+			ft_execute_input(&shell);
 		ft_cleanup(&shell);
 	}
 	ft_cleanup(&shell);
