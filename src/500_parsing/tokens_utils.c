@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/11 09:07:18 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 11:21:48 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,10 +116,11 @@ void	ft_add_token_to_list(t_shell *shell, t_token *new_token)
  * @return Returns SUCCESS if the token is successfully created and added to
  *         the list; otherwise, returns ERROR.
  */
-int	ft_create_and_add_token(t_shell *shell, size_t start, size_t end, t_token_type type)
+int	ft_create_and_add_token(t_shell *shell, size_t start, size_t end,
+	t_token_type type)
 {
-	t_token *new_token;
-	t_token *last_token;
+	t_token	*new_token;
+	t_token	*last_token;
 
 	if (!shell || !shell->input)
 		return (ERROR);
@@ -128,10 +129,7 @@ int	ft_create_and_add_token(t_shell *shell, size_t start, size_t end, t_token_ty
 		return (ERROR);
 	new_token->value = ft_substr(shell->input, start, end - start);
 	if (!new_token->value)
-	{
-		free(new_token);
-		return (ERROR);
-	}
+		return (free(new_token), ERROR);
 	new_token->type = type;
 	new_token->next = NULL;
 	new_token->prev = NULL;
