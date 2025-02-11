@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:15:19 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/10 16:16:32 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/11 11:42:47 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	ft_env(t_shell *shell)
 	{
 		if (env[i] == NULL)
 			break ;
-		printf("%s\n", env[i]);
+		if ((ft_strncmp(env[i], "OLDPWD", 6) == SUCCESS) || ft_strncmp(env[i], "PWD", 3) == SUCCESS)
+			printf("%s\n", env[i]);
 		i++;
 	}
 	return ;

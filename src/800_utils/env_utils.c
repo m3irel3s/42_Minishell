@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 13:50:07 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/11 10:38:39 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/11 11:50:30 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 char	**ft_duplicate_env(char **envp)
 {
-	char **dup_env;
-	int i;
+	char	**dup_env;
+	int		i;
 
+	if (!envp)
+		return (NULL);
 	i = 0;
 	dup_env = NULL;
-	if (!envp[i] || !envp)
-		return (NULL);
 	while (envp[i])
 		i++;
-	dup_env = ft_safe_malloc(sizeof(char *) * i + 1);
+	dup_env = ft_safe_malloc(sizeof(char *) * (i + 1));
 	i = 0;
 	while (envp[i])
 	{
@@ -61,19 +61,31 @@ int	ft_get_var_index(char *var, char **env)
 
 void	ft_set_env_value(char *var, char *value, char **env)
 {
+	int		index;
 	int		i;
-	char	*res;
+	int		j;
+	char	*res = NULL;
 
-	i = ft_get_var_index(var, env);
+	index = ft_get_var_index(var, env);
 	// if (i == -1)
 	// {
 	// 	ft_add_var_to_env();
 	// 	return ;
 	// }
 	res = ft_safe_malloc(ft_strlen(var) + ft_strlen(value) + 2);
-	res = ft_strjoin_gnl(res, var);
-	res = ft_strjoin_gnl(res, "=");
-	res = ft_strjoin_gnl(res, value);
-	free(env[i]);
-	env[i] = res;
+	i = 0;
+	while (var[i])
+	{
+		res[i] = var[i];
+		i++;
+	}
+	j = 0;
+	res[i++] = '=';
+	while (value[j])
+	{
+		res[i++] = value[j++];
+	}
+	res[i] = '\0';
+	free(env[index]);
+	env[index] = res;
 }
