@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/11 15:27:34 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 16:16:01 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,15 @@ int				ft_create_and_add_token(t_shell *shell, size_t start,
 
 /* 600_exec */
 /* exec.c */
-void	ft_execute_input(t_shell *shell);
+void			ft_execute_input(t_shell *shell);
 
 /* 610_builtins */
 /* echo.c */
-void	ft_echo(t_shell *shell);
+void			ft_echo(t_shell *shell);
 /* cd.c */
-void	ft_cd(t_shell *shell);
+void			ft_cd(t_shell *shell);
 /* env.c */
-void	ft_env(t_shell *shell);
+void			ft_env(t_shell *shell);
 
 /* 700_clean*/
 /*clean.c*/
@@ -73,11 +73,10 @@ void			ft_cleanup(t_shell *shell);
 
 /* 800_utils*/
 /* env_utils.c */
-char	**ft_duplicate_env(char **envp);
-char	*ft_get_env_value(char *var, char **env);
-int		ft_get_var_index(char *var, char **env);
-void	ft_set_env_value(char *var, char *value, char **env);
-
+char			**ft_duplicate_env(char **envp);
+char			*ft_get_env_value(char *var, char **env);
+int				ft_get_var_index(char *var, char **env);
+void			ft_set_env_value(char *var, char *value, char **env);
 
 /*check_type_functions.c*/
 int				ft_is_operator(char c);
