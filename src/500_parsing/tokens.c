@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   tokens.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/11 08:57:54 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 09:39:16 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 static t_status	ft_process_and_tokenize(t_shell *shell);
-static t_status ft_handle_unclosed_quote(t_shell *shell, size_t *index);
+static t_status ft_handle_unclosed_quote(t_shell *shell, size_t *index, char quote_char);
 
 /**
  * @brief Tokenizes the input string of the shell.
@@ -77,7 +77,7 @@ static t_status	ft_process_and_tokenize(t_shell *shell)
 				i++;
 			if (!shell->input[i])
 			{
-				if (ft_handle_unclosed_quote(shell, &i) == ERROR)
+				if (ft_handle_unclosed_quote(shell, &i, quote_char) == ERROR)
 					return (ERROR);
 			}
 			if (shell->input[i] == quote_char)
@@ -129,11 +129,10 @@ static t_status	ft_process_and_tokenize(t_shell *shell)
  * @return Returns SUCCESS if the matching quote is found;
  *         otherwise, returns ERROR.
  */
-static t_status	ft_handle_unclosed_quote(t_shell *shell, size_t *index)
+static t_status	ft_handle_unclosed_quote(t_shell *shell, size_t *index, char quote_char)
 {
 	struct sigaction	old_sa;
 	struct sigaction	sa;
-	char				quote_char;
 	char				*new_input_line;
 	char				*input_buffer;
 
@@ -141,7 +140,6 @@ static t_status	ft_handle_unclosed_quote(t_shell *shell, size_t *index)
 	sa.sa_handler = ft_handle_sigint;
 	sa.sa_flags = SA_RESTART;
 	sigaction(SIGINT, &sa, NULL);
-	quote_char = shell->input[*index];
 	while (1)
 	{
 		new_input_line = readline("> ");
@@ -156,7 +154,7 @@ static t_status	ft_handle_unclosed_quote(t_shell *shell, size_t *index)
 		shell->input = ft_strjoin(input_buffer, new_input_line);
 		free(input_buffer);
 		free(new_input_line);
-		*index = strlen(shell->input) - strlen(new_input_line) - 1;
+		*index = ft_strlen(shell->input) - ft_strlen(new_input_line) - 1;
 		while (shell->input[*index])
 		{
 			if (shell->input[*index] == quote_char)
