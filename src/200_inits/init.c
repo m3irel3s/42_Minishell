@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:59:06 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/11 11:24:53 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:31:46 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  */
 void	ft_init_shell(t_shell *shell, char **envp)
 {
-	shell->envp = envp;
+	shell->dup_env = ft_duplicate_env(envp);
 	shell->prompt = NULL;
 	shell->input = NULL;
 	shell->tokens = NULL;

@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:04:18 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 21:22:55 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:35:06 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static char	*ft_get_current_directory(void);
 static char	*ft_build_prompt(const char *user, const char *cwd);
 
 /**
@@ -47,7 +46,7 @@ char	*ft_set_prompt(void)
  * @return A dynamically allocated string containing the current
  * working directory.
  */
-static char	*ft_get_current_directory(void)
+char	*ft_get_current_directory(void)
 {
 	char	*cwd;
 

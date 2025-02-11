@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   100_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/11 13:16:07 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:33:35 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ int	main(int argc, char **argv, char **envp)
 		if (*shell.input)
 			add_history(shell.input);
 		if (ft_parse_input(&shell) == SUCCESS)
+		{
 			printf("Testing\n");
-		//ft_execute_input(shell);
+			ft_execute_input(&shell);
+		}
 		ft_cleanup(&shell);
 	}
 	ft_cleanup(&shell);
