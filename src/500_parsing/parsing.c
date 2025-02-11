@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:29:46 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 14:45:48 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 09:15:34 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,8 @@ int	ft_parse_input(t_shell *shell)
 		printf("this is token: %s, type: ", current->value);
 		switch (current->type)
 		{
-			case COMMAND:
-				printf("COMMAND");
-				break;
-			case ARGUMENT:
-				printf("ARGUMENT");
+			case WORD:
+				printf("WORD");
 				break;
 			case PIPE:
 				printf("PIPE");
