@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/11 13:34:58 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:27:34 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ void			ft_handle_sigint(int sig);
 void			ft_handle_sigquit(int sig);
 
 /* 500_parsing*/
+
+/*expand.c*/
+void			ft_expand_tokens(t_shell *shell);
+
 /*parsing.c*/
 int				ft_parse_input(t_shell *shell);
 
