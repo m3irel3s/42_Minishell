@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 16:44:01 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 09:07:18 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,7 @@ t_token_type	ft_determine_token_type(char *value, size_t len)
 		if (ft_strncmp(value, ">>", 2) == 0)
 			return (REDIRECT_APPEND);
 	}
-	if (ft_is_command(value, len))
-		return (COMMAND);
-	return (ARGUMENT);
+	return (WORD);
 }
 
 /**
@@ -68,48 +66,9 @@ t_token	*ft_create_token(char *value, t_token_type type)
 	if (!new_token->value)
 		return (NULL);
 	new_token->type = type;
-	if (type == COMMAND)
-		ft_set_command_type(new_token);
-	else
-		new_token->command_type = NONE;
 	new_token->next = NULL;
 	new_token->prev = NULL;
 	return (new_token);
-}
-
-/**
- * @brief Sets the command type for a given token.
- *
- * This function takes a token with a command type of COMMAND and sets its
- * command_type field to the appropriate command type, based on the value of
- * the token. If the value is not a known command, the command type is set to
- * NONE.
- *
- * @param token The token to set the command type for.
- */
-void	ft_set_command_type(t_token *token)
-{
-	size_t len;
-
-	if (!token || !token->value)
-		return;
-	len = ft_strlen(token->value);
-	if (len == 4 && strncmp(token->value, "echo", 4) == 0)
-		token->command_type = ECHO_CMD;
-	else if (len == 2 && strncmp(token->value, "cd", 2) == 0)
-		token->command_type = CD_CMD;
-	else if (len == 3 && strncmp(token->value, "pwd", 3) == 0)
-		token->command_type = PWD_CMD;
-	else if (len == 6 && strncmp(token->value, "export", 6) == 0)
-		token->command_type = EXPORT_CMD;
-	else if (len == 5 && strncmp(token->value, "unset", 5) == 0)
-		token->command_type = UNSET_CMD;
-	else if (len == 3 && strncmp(token->value, "env", 3) == 0)
-		token->command_type = ENV_CMD;
-	else if (len == 4 && strncmp(token->value, "exit", 4) == 0)
-		token->command_type = EXIT_CMD;
-	else
-		token->command_type = NONE;
 }
 
 /**
@@ -139,6 +98,7 @@ void	ft_add_token_to_list(t_shell *shell, t_token *new_token)
 	new_token->prev = current;
 	current->next = new_token;
 }
+
 /**
  * @brief Creates a new token with the given value and type and adds it to the
  *        end of the token linked list.
@@ -173,10 +133,6 @@ int	ft_create_and_add_token(t_shell *shell, size_t start, size_t end, t_token_ty
 		return (ERROR);
 	}
 	new_token->type = type;
-	if (type == COMMAND)
-		ft_set_command_type(new_token);
-	else
-		new_token->command_type = NONE;
 	new_token->next = NULL;
 	new_token->prev = NULL;
 	if (!shell->tokens)
