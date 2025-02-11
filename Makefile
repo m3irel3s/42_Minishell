@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
+#    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/11 15:31:26 by meferraz         ###   ########.fr        #
+#    Updated: 2025/02/11 16:20:12 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ SRCS = ${SRC_PATH}/000_intro.c \
 	   ${SRC_PATH}/610_builtins/echo.c \
 	   ${SRC_PATH}/610_builtins/cd.c \
 	   ${SRC_PATH}/610_builtins/env.c \
+	   ${SRC_PATH}/610_builtins/pwd.c \
 	   ${SRC_PATH}/500_parsing/tokens_utils_2.c \
 	   ${SRC_PATH}/700_clean/clean.c \
 	   ${SRC_PATH}/800_utils/safe_functions.c \
