@@ -6,13 +6,15 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:55:08 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/11 15:32:19 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 15:34:11 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 static char	*ft_expand_variables(char *input, char **envp);
+static char	*ft_expand_variable(char *input, size_t *i, char **envp);
+static char	*ft_append_char(char *result, char c);
 
 /**
  * @brief Expands variables in the shell's token list.
@@ -37,7 +39,7 @@ void	ft_expand_tokens(t_shell *shell)
 	{
 		if (current->type == WORD && current->quoted != 1)
 		{
-			expanded = expand_variables(current->value, shell->envp);
+			expanded = ft_expand_variables(current->value, shell->envp);
 			free(current->value);
 			current->value = expanded;
 		}
@@ -45,44 +47,88 @@ void	ft_expand_tokens(t_shell *shell)
 	}
 }
 
+/**
+ * @brief Expands variables in the input string.
+ *
+ * This function iterates through the input string and checks for variable
+ * expansions. If a variable is found, it is replaced with its value from
+ * the environment variables provided in envp. The function returns a new
+ * string with the expanded variables.
+ *
+ * @param input The input string to be expanded.
+ * @param envp A pointer to an array of environment variables to be used
+ *             for expansion.
+ * @return Returns a new string with the expanded variables; otherwise,
+ *         returns NULL if an error occurs.
+ */
 static char	*ft_expand_variables(char *input, char **envp)
 {
 	char	*result;
-	char	*var_name;
-	char	*var_value;
 	char	*temp;
-	char	c[2];
 	size_t	i;
-	size_t	start;
 
 	result = ft_strdup("");
 	i = 0;
 	while (input[i])
 	{
 		if (input[i] == '$' && (ft_isalpha(input[i + 1]) || input[i + 1] == '_'))
-		{
-			i++;
-			start = i;
-			while (input[i] && (ft_isalnum(input[i]) || input[i] == '_'))
-				i++;
-			var_name = ft_substr(input, start, i - start);
-			var_value = ft_get_env_value(var_name, envp);
-			free(var_name);
-			if (var_value)
-			{
-				temp = ft_strjoin(result, var_value);
-				free(result);
-				result = temp;
-			}
-		}
+			temp = ft_expand_variable(input, &i, envp);
 		else
-		{
-			c[0] = input[i++];
-			c[1] = '\0';
-			temp = ft_strjoin(result, c);
-			free(result);
-			result = temp;
-		}
+			temp = ft_append_char(result, input[i++]);
+		free(result);
+		result = temp;
 	}
 	return (result);
+}
+
+/**
+ * @brief Expands a single variable from the input string.
+ *
+ * This function extracts a variable name starting with `$` from the input
+ * string and replaces it with its value from `envp`.
+ *
+ * @param input The input string containing the variable.
+ * @param i A pointer to the current index in the input string.
+ * @param envp The environment variables array.
+ * @return A new string with the expanded variable appended to `result`.
+ */
+static char	*ft_expand_variable(char *input, size_t *i, char **envp)
+{
+	char	*var_name;
+	char	*var_value;
+	char	*temp;
+	size_t	start;
+
+	(*i)++;
+	start = (*i);
+	while (input[*i] && (ft_isalnum(input[*i]) || input[*i] == '_'))
+		(*i)++;
+	var_name = ft_substr(input, start, (*i) - start);
+	var_value = ft_get_env_value(var_name, envp);
+	free(var_name);
+	if (!var_value)
+		return (ft_strdup(""));
+	temp = ft_strjoin("", var_value);
+	return (temp);
+}
+
+/**
+ * @brief Appends a single character to a result string.
+ *
+ * This function appends a single character to an existing result string,
+ * reallocating memory as necessary.
+ *
+ * @param result The current result string.
+ * @param c The character to append.
+ * @return A new string with the appended character.
+ */
+static char	*ft_append_char(char *result, char c)
+{
+	char	str[2];
+	char	*temp;
+
+	str[0] = c;
+	str[1] = '\0';
+	temp = ft_strjoin(result, str);
+	return (temp);
 }
