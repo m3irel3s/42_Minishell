@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/11 11:21:48 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 11:26:26 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	ft_add_token_to_list(t_shell *shell, t_token *new_token)
  *         the list; otherwise, returns ERROR.
  */
 int	ft_create_and_add_token(t_shell *shell, size_t start, size_t end,
-	t_token_type type)
+	t_token_type type, int quoted)
 {
 	t_token	*new_token;
 	t_token	*last_token;
@@ -133,6 +133,7 @@ int	ft_create_and_add_token(t_shell *shell, size_t start, size_t end,
 	new_token->type = type;
 	new_token->next = NULL;
 	new_token->prev = NULL;
+	new_token->quoted = quoted;
 	if (!shell->tokens)
 		shell->tokens = new_token;
 	else

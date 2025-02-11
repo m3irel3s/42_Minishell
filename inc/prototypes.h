@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/10 17:01:43 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 11:26:13 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_token			*ft_create_token(char *value, t_token_type type);
 t_token_type	ft_determine_token_type(char *value, size_t len);
 void			ft_set_command_type(t_token *token);
 size_t			ft_get_operator_length(const char *input);
-int				ft_create_and_add_token(t_shell *shell, size_t start, size_t end, t_token_type type);
+int				ft_create_and_add_token(t_shell *shell, size_t start, size_t end, t_token_type type, int quoted);
 
 /* 700_clean*/
 /*clean.c*/

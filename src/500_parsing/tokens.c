@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/11 11:12:18 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 11:29:43 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,11 @@ static t_status	ft_process_and_tokenize(t_shell *shell)
 	size_t			start;
 	t_token_type	type;
 	char			quote_char;
+	int				quoted_status;
 
 	i = 0;
 	quote_char = 0;
+	quote_status = 0;
 	while (shell->input[i])
 	{
 		if (ft_is_space(shell->input[i]))
@@ -71,6 +73,10 @@ static t_status	ft_process_and_tokenize(t_shell *shell)
 		else if (ft_is_quote(shell->input[i]) && !quote_char)
 		{
 			quote_char = shell->input[i];
+			if (quote_char == '\'')
+				quoted_status = 1;
+			else
+				quoted_status = 2;
 			start = i + 1;
 			i++;
 			while (shell->input[i] && shell->input[i] != quote_char)
@@ -84,7 +90,7 @@ static t_status	ft_process_and_tokenize(t_shell *shell)
 			{
 				i++;
 				type = ft_determine_token_type(shell->input + start, i - start - 1);
-				if (ft_create_and_add_token(shell, start, (i - 1), type) == ERROR)
+				if (ft_create_and_add_token(shell, start, (i - 1), type, quoted_status) == ERROR)
 					return (ERROR);
 			quote_char = 0;
 			}
@@ -95,7 +101,7 @@ static t_status	ft_process_and_tokenize(t_shell *shell)
 			while (ft_is_operator(shell->input[i]))
 				i++;
 			type = ft_determine_token_type(shell->input + start, i - start);
-			if (ft_create_and_add_token(shell, start, i, type) == ERROR)
+			if (ft_create_and_add_token(shell, start, i, type, quoted_status) == ERROR)
 				return (ERROR);
 		}
 		else
@@ -105,7 +111,7 @@ static t_status	ft_process_and_tokenize(t_shell *shell)
 				!ft_is_operator(shell->input[i]) && !ft_is_quote(shell->input[i]))
 				i++;
 			type = ft_determine_token_type(shell->input + start, i - start);
-			if (ft_create_and_add_token(shell, start, i, type) == ERROR)
+			if (ft_create_and_add_token(shell, start, i, type, quoted_status) == ERROR)
 				return (ERROR);
 		}
 	}
