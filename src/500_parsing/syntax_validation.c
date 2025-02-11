@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:43:44 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/11 12:07:57 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:04:40 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_status	ft_validate_syntax(t_token *tokens)
 	t_token_type	type;
 
 	current = tokens;
-	prev = -1;
+	prev = 666;
 	while (current)
 	{
 		type = current->type;
@@ -73,7 +73,7 @@ t_status	ft_validate_syntax(t_token *tokens)
  */
 static t_status	ft_handle_pipe_error(t_token_type prev, t_token *current)
 {
-	if (prev == -1 || prev == PIPE || prev == REDIRECT_IN || prev == REDIRECT_OUT
+	if (prev == 666 || prev == PIPE || prev == REDIRECT_IN || prev == REDIRECT_OUT
 		|| prev == HEREDOC || prev == REDIRECT_APPEND || !current->next)
 	{
 		ft_putstr_fd("minishell: syntax error near unexpected token `|'\n",

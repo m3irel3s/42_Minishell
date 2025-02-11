@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 08:37:43 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/11 12:33:28 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 13:14:05 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ static void	ft_display_infos(void)
 	ft_printf(1, "%s|        MINISHELL INFO       |%s\n", BMAG, RESET);
 	ft_printf(1, "%s+-----------------------------+%s\n\n", BYEL, RESET);
 	ft_printf(1, "%sFeatures:%s\n", BBLU, RESET);
-	ft_printf(1, " %s- Basic commands:%s ls, cd, echo, pwd, etc.\n", HGRN, RESET);
+	ft_printf(1, " %s- Basic commands:%s ls, cd, echo, pwd, etc.\n",
+		HGRN, RESET);
 	ft_printf(1, " - %sEnvironment variables:%s export, unset, env.\n",
 		HGRN, RESET);
 	ft_printf(1, " - %sRedirections:%s <, >, >>.\n", HGRN, RESET);
