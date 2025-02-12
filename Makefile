@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/12 11:33:52 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/12 11:37:10 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,22 +102,28 @@ LIBFT_ARC = ${LIBFT_PATH}/libft.a
 #                            	   FLAGS & COMMANDS                            #
 #------------------------------------------------------------------------------#
 
-
+## Core ##
 CC				= cc
 CCFLAGS			= -Wall -Wextra -Werror -g
+RM				= rm -fr
+MKDIR_P			= mkdir -p
+INC				= -I ${INC_PATH}  -I$(READLINE_PATH)/include
+MAKE			= make --no-print-directory -C
+MAKE_RE			= make --no-print-directory all
+
+## Libft ##
+LDFLAGS			= -L${LIBFT_PATH} -lft
+
+## Valgrind ##
 V_LEAKS			= --leak-check=full --show-leak-kinds=all
 V_TRACKS		= --track-fds=yes --track-origins=yes --trace-children=yes
 V_EXTRAS		= --suppressions=readline.supp
 VGDB_ARGS		= --vgdb-error=0 $(V_LEAKS) $(V_TRACKS) $(V_EXTRAS)
 V_ARGS			= $(V_LEAKS) $(V_TRACKS) $(V_EXTRAS)
-READLINE_PATH	= /opt/homebrew/opt/readline
+
+## Readline ##
 READL_FLAG		= -L$(READLINE_PATH)/lib -I$(READLINE_PATH)/include -lreadline -lncurses
-RM				= rm -fr
-MKDIR_P			= mkdir -p
-INC				= -I ${INC_PATH}  -I$(READLINE_PATH)/include
-LDFLAGS			= -L${LIBFT_PATH} -lft
-MAKE			= make --no-print-directory -C
-MAKE_RE			= make --no-print-directory all
+READLINE_PATH	= /opt/homebrew/opt/readline
 
 #------------------------------------------------------------------------------#
 #                                    RULES                                     #
