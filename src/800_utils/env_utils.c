@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 13:50:07 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/12 15:34:32 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/12 15:39:08 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,13 @@ char	**ft_duplicate_env(char **envp)
 
 char	*ft_get_var_value(char *var, char **env)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	while (env[i])
 	{
 		if (ft_strncmp(env[i], var, ft_strlen(var)) == SUCCESS)
-			return env[i] + ft_strlen(var) + 1;
+			return (env[i] + ft_strlen(var) + 1);
 		i++;
 	}
 	return (NULL);
@@ -49,7 +50,9 @@ char	*ft_get_var_value(char *var, char **env)
 
 int	ft_get_var_index(char *var, char **env)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (env[i])
 	{
 		if (ft_strncmp(env[i], var, ft_strlen(var)) == SUCCESS)
@@ -91,9 +94,10 @@ void	ft_set_var_value(char *var, char *value, t_shell *shell)
 
 char	*ft_get_var_name(char *str)
 {
-	int		i = 0;
+	int		i;
 	char	*res;
 
+	i = 0;
 	while (str[i] != '=' && str[i])
 		i++;
 	res = ft_safe_malloc(sizeof(char) * i + 1);

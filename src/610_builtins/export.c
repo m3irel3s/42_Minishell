@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/12 15:34:31 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/12 15:46:05 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@
 	// 0 no quote
 	// 1 single quote
 	// 2 double quote
-
 void	ft_export(t_shell *shell)
 {
-	t_token *curr;
+	t_token	*curr;
+	char	**export;
 
 	curr = shell->tokens;
 	if (!curr->next)
 	{
-		char	**export = ft_duplicate_env(shell->dup_env);
+		export = ft_duplicate_env(shell->dup_env);
 		export = ft_sort_export(export);
 		ft_print_export(export);
 		return ;

@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:56:02 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/12 14:41:38 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/12 15:44:44 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,23 @@ char	**ft_sort_export(char **export)
 		}
 		j++;
 	}
-	return export;
+	return (export);
 }
 
 void	ft_print_export(char **export)
 {
-	int i = 0;
+	char	*res;
+	char	*var;
+	char	*value;
+	int		i;
+
+	i = 0;
 	while (export[i])
 	{
-		char	*res = export[i];
-		char	*var_name = ft_get_var_name(res);
-		char	*value = ft_get_var_value(var_name, export);
-		ft_printf(1, "declare - x %s=\"%s\"\n", var_name, value);
+		res = export[i];
+		var = ft_get_var_name(res);
+		value = ft_get_var_value(var, export);
+		ft_printf(1, "declare - x %s=\"%s\"\n", var, value);
 		i++;
 	}
 	free(export);
