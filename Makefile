@@ -6,7 +6,7 @@
 #    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/11 15:31:26 by meferraz         ###   ########.fr        #
+#    Updated: 2025/02/12 08:27:19 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,25 +66,26 @@ HEADERS = ${addprefix ${INC_PATH}/, \
 # SRCS = ${addprefix ${SRC_PATH}/, \
 # 	000_main.c}
 
-SRCS = ${SRC_PATH}/000_intro.c \
+SRCS = \
+       ${SRC_PATH}/000_intro.c \
        ${SRC_PATH}/100_main.c \
        ${SRC_PATH}/200_inits/init.c \
-	   ${SRC_PATH}/300_prompt/prompt.c \
-	   ${SRC_PATH}/400_signals/signals.c \
-	   ${SRC_PATH}/500_parsing/parsing.c \
-	   ${SRC_PATH}/500_parsing/expand.c \
-	   ${SRC_PATH}/500_parsing/syntax_validation.c \
-	   ${SRC_PATH}/500_parsing/tokens.c \
-	   ${SRC_PATH}/500_parsing/tokens_utils.c \
-	   ${SRC_PATH}/600_exec/exec.c \
-	   ${SRC_PATH}/610_builtins/echo.c \
-	   ${SRC_PATH}/610_builtins/cd.c \
-	   ${SRC_PATH}/610_builtins/env.c \
-	   ${SRC_PATH}/500_parsing/tokens_utils_2.c \
-	   ${SRC_PATH}/700_clean/clean.c \
-	   ${SRC_PATH}/800_utils/safe_functions.c \
-	   ${SRC_PATH}/800_utils/env_utils.c \
-	   ${SRC_PATH}/800_utils/check_type_functions.c
+       ${SRC_PATH}/300_prompt/prompt.c \
+       ${SRC_PATH}/400_signals/signals.c \
+       ${SRC_PATH}/500_parsing/parsing.c \
+       ${SRC_PATH}/510_tokenization/tokens.c \
+       ${SRC_PATH}/510_tokenization/tokens_utils.c \
+       ${SRC_PATH}/510_tokenization/tokens_utils_2.c \
+       ${SRC_PATH}/520_syntax_validation/syntax_validation.c \
+       ${SRC_PATH}/530_expansion/expand.c \
+       ${SRC_PATH}/600_exec/exec.c \
+       ${SRC_PATH}/610_builtins/cd.c \
+       ${SRC_PATH}/610_builtins/echo.c \
+       ${SRC_PATH}/610_builtins/env.c \
+       ${SRC_PATH}/700_clean/clean.c \
+       ${SRC_PATH}/800_utils/check_type_functions.c \
+       ${SRC_PATH}/800_utils/env_utils.c \
+       ${SRC_PATH}/800_utils/safe_functions.c
 
 # Object files derived from source files
 # OBJS = ${addprefix ${BUILD_PATH}/, ${notdir ${SRCS:.c=.o}}}
