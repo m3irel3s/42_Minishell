@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/12 11:37:10 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/12 11:40:08 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,14 +14,14 @@
 #                              MINISHELL PROJECT                               #
 #==============================================================================#
 
-# Main target name
+## Main target name ##
 NAME        = minishell
 
 #------------------------------------------------------------------------------#
 #                                COLORS & STYLES                               #
 #------------------------------------------------------------------------------#
 
-# ANSI color codes for prettier output
+## ANSI color codes for prettier output ##
 RED = \033[0;31m
 GREEN = \033[0;32m
 YELLOW = \033[0;33m
@@ -31,13 +31,13 @@ CYAN = \033[0;36m
 WHITE = \033[0;37m
 RESET = \033[0m
 
-# Text style codes
+## Text style codes ##
 BOLD = \033[1m
 DIM = \033[2m
 ITALIC = \033[3m
 UNDERLINE = \033[4m
 
-# Emojis for visual feedback
+## Emojis for visual feedback ##
 CHECK = ✓
 CLEAN = 🧹
 BUILD = 🔨
@@ -49,12 +49,12 @@ SPARKLES = ✨
 #                            	  NAMES AND PATHS                              #
 #------------------------------------------------------------------------------#
 
-# Directory structure
+## Directory structure ##
 BUILD_PATH = .build
 SRC_PATH = src
 INC_PATH = inc
 
-# Header files
+## Header files ##
 HEADERS = ${addprefix ${INC_PATH}/, \
 	ansi.h \
 	minishell.h \
@@ -62,9 +62,7 @@ HEADERS = ${addprefix ${INC_PATH}/, \
 	prototypes.h \
 	types.h}
 
-# Source files for main program
-# SRCS = ${addprefix ${SRC_PATH}/, \
-# 	000_main.c}
+## Source files for main program ##
 
 SRCS = ${SRC_PATH}/000_intro.c \
        ${SRC_PATH}/100_main.c \
@@ -94,7 +92,7 @@ SRCS = ${SRC_PATH}/000_intro.c \
 # OBJS = ${addprefix ${BUILD_PATH}/, ${notdir ${SRCS:.c=.o}}}
 OBJS = ${SRCS:${SRC_PATH}/%.c=${BUILD_PATH}/%.o}
 
-
+## Libft ##
 LIBFT_PATH = 42_Libft
 LIBFT_ARC = ${LIBFT_PATH}/libft.a
 
