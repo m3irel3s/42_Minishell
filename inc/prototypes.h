@@ -79,8 +79,11 @@ void		ft_expand_tokens(t_shell *shell);
 //============================================================================//
 //                               REDIRECTIONS                                 //
 //============================================================================//
-/* 540_redirects/redirects.c */
+/* 540_redirects/redirects_setting.c */
 void		ft_create_redirection_list(t_shell *shell);
+
+/* 540_redirects/redirects_handling.c */
+void		ft_handle_redirections(t_shell *shell);
 
 //============================================================================//
 //                                EXECUTION                                   //

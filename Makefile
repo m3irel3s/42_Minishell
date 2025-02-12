@@ -6,7 +6,7 @@
 #    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/12 10:13:47 by meferraz         ###   ########.fr        #
+#    Updated: 2025/02/12 10:48:35 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,8 @@ SRCS = \
        ${SRC_PATH}/510_tokenization/tokens_utils_2.c \
        ${SRC_PATH}/520_syntax_validation/syntax_validation.c \
        ${SRC_PATH}/530_expansion/expand.c \
-       ${SRC_PATH}/540_redirects/redirects.c \
+       ${SRC_PATH}/540_redirects/redirects_setting.c \
+	   ${SRC_PATH}/540_redirects/redirects_handling.c \
        ${SRC_PATH}/600_exec/exec.c \
        ${SRC_PATH}/610_builtins/cd.c \
        ${SRC_PATH}/610_builtins/echo.c \
