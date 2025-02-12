@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/10 16:46:54 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/12 09:08:26 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,14 @@ void	ft_cleanup(t_shell *shell)
 		current = next;
 	}
 	shell->tokens = NULL;
+	current = shell->redirects;
+	while (current)
+	{
+		next = current->next;
+		if (current->filename)
+			free(current->filename);
+		free(current);
+		current = next;
+	}
+	shell->redirects = NULL;
 }
