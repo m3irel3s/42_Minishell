@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_type_functions.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 14:55:14 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/11 13:36:54 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/12 08:28:13 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,13 @@ int	ft_is_command(char *value, size_t len)
 {
 	if (!value)
 		return (ERROR);
-	if ((len == 4 && strncmp(value, "echo", 4) == 0)
-		|| (len == 2 && strncmp(value, "cd", 2) == 0)
-		|| (len == 3 && strncmp(value, "pwd", 3) == 0)
-		|| (len == 6 && strncmp(value, "export", 6) == 0)
-		|| (len == 5 && strncmp(value, "unset", 5) == 0)
-		|| (len == 3 && strncmp(value, "env", 3) == 0)
-		|| (len == 4 && strncmp(value, "exit", 4) == 0))
+	if ((len == 4 && ft_strncmp(value, "echo", 4) == 0)
+		|| (len == 2 && ft_strncmp(value, "cd", 2) == 0)
+		|| (len == 3 && ft_strncmp(value, "pwd", 3) == 0)
+		|| (len == 6 && ft_strncmp(value, "export", 6) == 0)
+		|| (len == 5 && ft_strncmp(value, "unset", 5) == 0)
+		|| (len == 3 && ft_strncmp(value, "env", 3) == 0)
+		|| (len == 4 && ft_strncmp(value, "exit", 4) == 0))
 		return (SUCCESS);
 	else
 		return (ERROR);
