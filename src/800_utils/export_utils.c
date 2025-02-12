@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/10 11:22:57 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/12 11:52:25 by jmeirele         ###   ########.fr       */
+/*   Created: 2025/02/12 12:15:52 by jmeirele          #+#    #+#             */
+/*   Updated: 2025/02/12 13:40:35 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ft_echo(t_shell *shell)
+int	ft_check_var_chars(char *var)
 {
-	t_token	*curr;
-	bool	add_new_line;
-
-	add_new_line = true;
-	curr = shell->tokens;
-	if (!curr->next)
-		return ;
-	if (ft_strncmp(curr->next->value, "-n", 3) == SUCCESS)
+	int i = 0;
+	if (!var)
+		return (-1);
+	if (!(ft_isalpha(var[i]) || var[i] == '_'))
+		return (-1);
+	while (var[i] && var[i] != '=')
 	{
-		add_new_line = false;
-		curr = curr->next;
+		if (!(ft_isalnum(var[i]) || var[i] == '_'))
+			return (-1);
+		i++;
 	}
-	while (curr->next)
-	{
-		printf("%s", curr->next->value);
-		curr = curr->next;
-		if (!curr->next)
-			break ;
-		printf(" ");
-	}
-	if (add_new_line == true)
-		printf("\n");
+	return SUCCESS;
 }
+
