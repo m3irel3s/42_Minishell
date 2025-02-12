@@ -6,63 +6,58 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/11 17:38:03 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:00:44 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-// static char	**ft_store_export(t_shell *shell);
+static void	ft_print_export(char **export);
+static char	**ft_sort_export(char **export);
+
 void	ft_export(t_shell *shell)
 {
-	char	**env = shell->dup_env;
+	char	**export = ft_duplicate_env(shell->dup_env);
+	export = ft_sort_export(export);
+	ft_print_export(export);
+	return;
+}
+
+static char	**ft_sort_export(char **export)
+{
 	int		i;
 	int		j;
 	char	*temp;
 
 	j = 0;
-	while (env[j])
+	while (export[j])
 	{
 		i = 0;
-		while (env[i + 1])
+		while (export[i + 1])
 		{
-			if (ft_strcmp(ft_get_var_name(env[i]), ft_get_var_name(env[i + 1])) > 0)
+			if (ft_strcmp(ft_get_var_name(export[i]), ft_get_var_name(export[i + 1])) > 0)
 			{
-				temp = env[i];
-				env[i] = env[i + 1];
-				env[i + 1] = temp;
+				temp = export[i];
+				export[i] = export[i + 1];
+				export[i + 1] = temp;
 			}
 			i++;
 		}
 		j++;
 	}
-	i = 0;
-	while (env[i])
-	{
-		printf("%s\n", ft_get_var_name(env[i]));
-		i++;
-	}
-	return;
+	return export;
 }
 
-
-// static char	**ft_store_export(t_shell *shell)
-// {
-// 	int i = 0;
-// 	char	**env;
-// 	char	*res;
-
-// 	env = shell->dup_env;
-// 	while (env[i])
-// 	{
-// 		res = ft_strdup("declare -x ");
-// 		res = ft_strjoin_gnl(res, ft_get_var_name(env[i]));
-// 		res = ft_strjoin_gnl(res, "=\"");
-// 		res = ft_strjoin_gnl(res, ft_get_env_value(ft_get_var_name(env[i]), env));
-// 		res = ft_strjoin_gnl(res, "\"");
-// 		printf("%s\n", res);
-// 		i++;
-// 		free(res);
-// 	}
-// 	return ;
-// }
+static void	ft_print_export(char **export)
+{
+	int i = 0;
+	while (export[i])
+	{
+		char	*res = export[i];
+		char	*var_name = ft_get_var_name(res);
+		char	*value = ft_get_env_value(var_name, export);
+		ft_printf(1, "declare - x %s=\"%s\"\n", var_name, value);
+		i++;
+	}
+	free(export);
+}

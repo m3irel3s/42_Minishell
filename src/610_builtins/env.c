@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:15:19 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/11 16:18:38 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/12 10:31:34 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	ft_env(t_shell *shell)
 	// }
 	while (env[i])
 	{
-		char *res = ft_get_var_name(env[i]);
+		char *res = env[i];
 		printf("%s\n", res);
-		free(res);
+		// free(res);
 		i++;
 	}
 	return ;
