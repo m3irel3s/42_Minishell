@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/12 09:00:01 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/12 09:45:11 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,7 @@ typedef struct s_redirect
 	t_token_type		type;
 	char				*filename;
 	struct s_redirect	*next;
-	struct s_redirect	*prev;
-} t_redirect;
+}	t_redirect;
 
 typedef struct s_shell
 {

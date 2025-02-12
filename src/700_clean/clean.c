@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/12 09:08:26 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/12 09:53:58 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	ft_cleanup(t_shell *shell)
 {
 	t_token	*current;
 	t_token	*next;
+	t_redirect	*redirect;
+	t_redirect	*next_redirect;
 
 	if (shell->prompt)
 		free(shell->prompt);
@@ -44,14 +46,14 @@ void	ft_cleanup(t_shell *shell)
 		current = next;
 	}
 	shell->tokens = NULL;
-	current = shell->redirects;
-	while (current)
+	redirect = shell->redirects;
+	while (redirect)
 	{
-		next = current->next;
-		if (current->filename)
-			free(current->filename);
-		free(current);
-		current = next;
+		next_redirect = redirect->next;
+		if (redirect->filename)
+			free(redirect->filename);
+		free(redirect);
+		redirect = next_redirect;
 	}
 	shell->redirects = NULL;
 }
