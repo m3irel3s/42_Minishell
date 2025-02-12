@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:29:46 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/12 13:24:01 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/12 22:15:17 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,9 @@ int	ft_parse_input(t_shell *shell)
 				printf("REDIRECT_APPEND");
 				break;
 			case HEREDOC:
+				printf("HEREDOC");
+				break;
+			case EQUAL:
 				printf("HEREDOC");
 				break;
 			default:

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/12 21:46:20 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/12 21:59:08 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ typedef enum e_token_type
 	REDIRECT_IN,
 	REDIRECT_OUT,
 	REDIRECT_APPEND,
-	HEREDOC
+	HEREDOC,
+	EQUAL
 }	t_token_type;
 
 typedef enum e_command_type
