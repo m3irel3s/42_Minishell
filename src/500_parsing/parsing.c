@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:29:46 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/11 16:01:56 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/12 09:09:22 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	ft_parse_input(t_shell *shell)
 		current = current->next;
 	}
 	ft_expand_tokens(shell);
+	ft_create_redirection_list(shell);
 	return (SUCCESS);
 }
 	/*while (current)
