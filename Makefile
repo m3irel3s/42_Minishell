@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/11 16:40:54 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/12 11:33:52 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,6 +83,7 @@ SRCS = ${SRC_PATH}/000_intro.c \
 	   ${SRC_PATH}/610_builtins/env.c \
 	   ${SRC_PATH}/610_builtins/pwd.c \
 	   ${SRC_PATH}/610_builtins/export.c \
+	   ${SRC_PATH}/610_builtins/exit.c \
 	   ${SRC_PATH}/700_clean/clean.c \
 	   ${SRC_PATH}/800_utils/safe_functions.c \
 	   ${SRC_PATH}/800_utils/env_utils.c \
@@ -102,21 +103,21 @@ LIBFT_ARC = ${LIBFT_PATH}/libft.a
 #------------------------------------------------------------------------------#
 
 
-CC          = cc
-CCFLAGS     = -Wall -Wextra -Werror -g
-V_LEAKS     = --leak-check=full --show-leak-kinds=all
-V_TRACKS    = --track-fds=yes --track-origins=yes --trace-children=yes
-V_EXTRAS    = --suppressions=readline.supp
-VGDB_ARGS	= --vgdb-error=0 $(V_LEAKS) $(V_TRACKS) $(V_EXTRAS)
-V_ARGS      = $(V_LEAKS) $(V_TRACKS) $(V_EXTRAS)
-READLINE_PATH = /opt/homebrew/opt/readline
-READL_FLAG  = -L$(READLINE_PATH)/lib -I$(READLINE_PATH)/include -lreadline -lncurses
-RM          = rm -fr                       # Command to remove files/directories forcefully
-MKDIR_P     = mkdir -p                # Command to create directories (with parent)
-INC         = -I ${INC_PATH}  -I$(READLINE_PATH)/include            # Include path for header files
-LDFLAGS     = -L${LIBFT_PATH} -lft
-MAKE        = make --no-print-directory -C
-MAKE_RE     = make --no-print-directory all
+CC				= cc
+CCFLAGS			= -Wall -Wextra -Werror -g
+V_LEAKS			= --leak-check=full --show-leak-kinds=all
+V_TRACKS		= --track-fds=yes --track-origins=yes --trace-children=yes
+V_EXTRAS		= --suppressions=readline.supp
+VGDB_ARGS		= --vgdb-error=0 $(V_LEAKS) $(V_TRACKS) $(V_EXTRAS)
+V_ARGS			= $(V_LEAKS) $(V_TRACKS) $(V_EXTRAS)
+READLINE_PATH	= /opt/homebrew/opt/readline
+READL_FLAG		= -L$(READLINE_PATH)/lib -I$(READLINE_PATH)/include -lreadline -lncurses
+RM				= rm -fr
+MKDIR_P			= mkdir -p
+INC				= -I ${INC_PATH}  -I$(READLINE_PATH)/include
+LDFLAGS			= -L${LIBFT_PATH} -lft
+MAKE			= make --no-print-directory -C
+MAKE_RE			= make --no-print-directory all
 
 #------------------------------------------------------------------------------#
 #                                    RULES                                     #
@@ -156,6 +157,11 @@ get_libft:
 	@git clone https://github.com/m3irel3s/42_Libft ${LIBFT_PATH}
 	@git pull
 	@printf "${GREEN}${BOLD}${ROCKET} ${WHITE}${LIBFT_ARC}${GREEN} successfully downloaded!${RESET}\n"
+
+##  Testing Rules  ##
+
+val:
+	valgrind ./$(NAME) $(V_ARGS)
 
 ##  Cleaning Rules  ##
 

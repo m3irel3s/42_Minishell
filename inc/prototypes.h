@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/11 16:20:45 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:25:14 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void			ft_env(t_shell *shell);
 void	ft_pwd(t_shell *shell);
 /* export.c */
 void	ft_export(t_shell *shell);
-
+/* exit.c */
+void	ft_exit(t_shell *shell);
 
 /* 700_clean*/
 /*clean.c*/
