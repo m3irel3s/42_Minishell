@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 13:50:07 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/12 10:53:03 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/12 15:01:37 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	**ft_duplicate_env(char **envp)
 	return (dup_env);
 }
 
-char	*ft_get_env_value(char *var, char **env)
+char	*ft_get_var_value(char *var, char **env)
 {
 	int i = 0;
 
@@ -59,19 +59,20 @@ int	ft_get_var_index(char *var, char **env)
 	return (-1);
 }
 
-void	ft_set_env_value(char *var, char *value, char **env)
+void	ft_set_var_value(char *var, char *value, t_shell *shell)
 {
 	int		index;
 	int		i;
 	int		j;
 	char	*res = NULL;
+	char	**env = shell->dup_env;
 
 	index = ft_get_var_index(var, env);
-	// if (i == -1)
-	// {
-	// 	ft_add_var_to_env();
-	// 	return ;
-	// }
+	if (index == -1)
+	{
+		ft_add_var_to_env(var, value, shell);
+		return ;
+	}
 	res = ft_safe_malloc(ft_strlen(var) + ft_strlen(value) + 2);
 	i = 0;
 	while (var[i])

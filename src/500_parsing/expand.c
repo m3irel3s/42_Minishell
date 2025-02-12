@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:55:08 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/11 16:10:39 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:41:38 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static char	*ft_expand_variable(char *input, size_t *i, char **envp)
 	while (input[*i] && (ft_isalnum(input[*i]) || input[*i] == '_'))
 		(*i)++;
 	var_name = ft_substr(input, start, (*i) - start);
-	var_value = ft_get_env_value(var_name, envp);
+	var_value = ft_get_var_value(var_name, envp);
 	free(var_name);
 	if (!var_value)
 		return (ft_strdup(""));

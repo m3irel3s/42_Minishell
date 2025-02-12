@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:56:02 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/12 11:57:21 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:41:38 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_print_export(char **export)
 	{
 		char	*res = export[i];
 		char	*var_name = ft_get_var_name(res);
-		char	*value = ft_get_env_value(var_name, export);
+		char	*value = ft_get_var_value(var_name, export);
 		ft_printf(1, "declare - x %s=\"%s\"\n", var_name, value);
 		i++;
 	}

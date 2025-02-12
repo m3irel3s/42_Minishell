@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 13:13:59 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/12 11:57:20 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/12 14:56:14 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@ void	ft_cd(t_shell *shell)
 	char *curr_path = ft_get_current_directory();
 	if (!current->next || ft_strncmp(current->next->value, "~", 2) == SUCCESS)
 	{
-		ft_set_env_value("OLDPWD", ft_get_current_directory(), shell->dup_env);
-		chdir(ft_get_env_value("HOME", shell->dup_env));
-		ft_set_env_value("PWD", ft_get_current_directory(), shell->dup_env);
+		ft_set_var_value("OLDPWD", ft_get_current_directory(), shell);
+		chdir(ft_get_var_value("HOME", shell->dup_env));
+		ft_set_var_value("PWD", ft_get_current_directory(), shell);
 	}
 	else if (ft_strncmp(current->next->value, "-", 2) == SUCCESS)
 	{
-		chdir(ft_get_env_value("OLDPWD", shell->dup_env));
-		printf("%s\n", ft_get_env_value("OLDPWD", shell->dup_env));
-		ft_set_env_value("OLDPWD", curr_path, shell->dup_env);
-		ft_set_env_value("PWD", ft_get_current_directory(), shell->dup_env);
+		chdir(ft_get_var_value("OLDPWD", shell->dup_env));
+		printf("%s\n", ft_get_var_value("OLDPWD", shell->dup_env));
+		ft_set_var_value("OLDPWD", curr_path, shell);
+		ft_set_var_value("PWD", ft_get_current_directory(), shell);
 	}
 	else
 	{
@@ -37,8 +37,8 @@ void	ft_cd(t_shell *shell)
 		path = current->next->value;
 		if (chdir(path) == SUCCESS)
 		{
-			ft_set_env_value("PWD", ft_get_current_directory(), shell->dup_env);
-			ft_set_env_value("OLDPWD", curr_path, shell->dup_env);
+			ft_set_var_value("PWD", ft_get_current_directory(), shell);
+			ft_set_var_value("OLDPWD", curr_path, shell);
 		}
 		else
 			ft_printf(2, "Path not found %s\n", path);
