@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/12 15:02:54 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/12 15:27:44 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,16 @@ void	ft_export(t_shell *shell)
 	}
 	while (curr->next)
 	{
-		char	*var_name;
-		char	*var_value;
+		char	*var;
+		char	*value;
 		curr = curr->next;
 		if(ft_check_var_chars(curr->value) == SUCCESS)
 			ft_printf(1, "Chars ok\n");
-		var_name = ft_get_var_name(curr->value);
-		var_value = curr->value + (ft_strlen(var_name) + 1);
-		ft_set_var_value(var_name, var_value, shell);
+		var = ft_get_var_name(curr->value);
+		printf("var=> %s\n", var);
+		value = curr->value + (ft_strlen(var) + 1);
+		printf("value=> %s\n", value);
+		ft_set_var_value(var, value, shell);
 	}
 	return;
 }

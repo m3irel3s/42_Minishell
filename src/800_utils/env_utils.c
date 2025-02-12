@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 13:50:07 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/12 15:01:37 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/12 15:32:41 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_set_var_value(char *var, char *value, t_shell *shell)
 		ft_add_var_to_env(var, value, shell);
 		return ;
 	}
-	res = ft_safe_malloc(ft_strlen(var) + ft_strlen(value) + 2);
+	res = ft_safe_malloc(ft_get_str_length(var, value) + 2);
 	i = 0;
 	while (var[i])
 	{
@@ -83,9 +83,7 @@ void	ft_set_var_value(char *var, char *value, t_shell *shell)
 	j = 0;
 	res[i++] = '=';
 	while (value[j])
-	{
 		res[i++] = value[j++];
-	}
 	res[i] = '\0';
 	free(env[index]);
 	env[index] = res;

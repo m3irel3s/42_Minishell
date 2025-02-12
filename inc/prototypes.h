@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/12 15:02:55 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/12 15:16:50 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,9 @@ void			ft_set_var_value(char *var, char *value, t_shell *shell);
 char			*ft_get_var_name(char *str);
 /* env_utils_2.c */
 int				ft_get_env_size(t_shell *shell);
-void			ft_add_var_to_env(char *var_name, char *var_value, t_shell *shell);
+void			ft_add_var_to_env(char *var, char *value, t_shell *shell);
+int				ft_get_str_length(char *str1, char *str2);
+
 
 
 /* export_utils.c */
