@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:11:23 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/12 10:45:47 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/12 13:39:33 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	ft_create_and_add_redirect(t_token *token, t_shell *shell,
 	redirect->type = token->type;
 	redirect->filename = ft_strdup(token->next->value);
 	if (!redirect->filename)
-		return ;
+		return (free(redirect));
 	redirect->next = NULL;
 	if (!(*last_redirect))
 		shell->redirects = redirect;

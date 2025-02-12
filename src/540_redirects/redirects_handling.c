@@ -6,14 +6,14 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:45:07 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/12 10:47:07 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/12 13:39:31 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static void	ft_apply_redirection(t_shell *shell, t_redirect *redirect);
-
+static void	ft_apply_redirection(t_redirect *redirect);
+static void ft_redirect_heredoc(char *delimiter);
 /**
  * @brief Handles all redirections in the shell's redirection linked list.
  *
@@ -31,7 +31,7 @@ void	ft_handle_redirections(t_shell *shell)
 	redirect = shell->redirects;
 	while (redirect)
 	{
-		ft_apply_redirection(shell, redirect);
+		ft_apply_redirection(redirect);
 		redirect = redirect->next;
 	}
 }
@@ -53,7 +53,7 @@ void	ft_handle_redirections(t_shell *shell)
  * @param redirect A pointer to the redirection structure containing the
  *                 redirection type and filename.
  */
-static void	ft_apply_redirection(t_shell *shell, t_redirect *redirect)
+static void	ft_apply_redirection(t_redirect *redirect)
 {
 	int	fd;
 	int	target_fd;
@@ -80,4 +80,10 @@ static void	ft_apply_redirection(t_shell *shell, t_redirect *redirect)
 	if (dup2(fd, target_fd) == -1)
 		ft_putstr_fd("minishell: error: dup2 failed\n", STDERR_FILENO);
 	close(fd);
+}
+
+static void	ft_redirect_heredoc(char *delimiter)
+{
+	(void)delimiter;
+	return ;
 }
