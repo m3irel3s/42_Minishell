@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/12 15:46:05 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/13 10:59:03 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,12 @@
 	// 0 no quote
 	// 1 single quote
 	// 2 double quote
+static void	ft_free_export(char **export);
+
 void	ft_export(t_shell *shell)
 {
 	t_token	*curr;
-	char	**export;
+	char	**export = NULL;
 
 	curr = shell->tokens;
 	if (!curr->next)
@@ -32,6 +34,7 @@ void	ft_export(t_shell *shell)
 		export = ft_duplicate_env(shell->dup_env);
 		export = ft_sort_export(export);
 		ft_print_export(export);
+		ft_free_export(export);
 		return ;
 	}
 	while (curr->next)
@@ -48,6 +51,20 @@ void	ft_export(t_shell *shell)
 		ft_set_var_value(var, value, shell);
 	}
 	return;
+}
+
+static void	ft_free_export(char **export)
+{
+	int		i = 0;
+	char	*to_free;
+
+	while (export[i])
+	{
+		to_free = export[i];
+		i++;
+		free(to_free);
+	}
+	free(export);
 }
 
 

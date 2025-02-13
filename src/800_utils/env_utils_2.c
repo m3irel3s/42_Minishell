@@ -6,13 +6,13 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:40:57 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/12 15:40:29 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/13 10:56:28 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ft_add_var_to_env(char *var, char *value, t_shell *shell)
+char	**ft_add_var_to_env(char *var, char *value, t_shell *shell)
 {
 	int		last_index;
 	char	*new_entry;
@@ -34,6 +34,8 @@ void	ft_add_var_to_env(char *var, char *value, t_shell *shell)
 		new_entry[i++] = value[j++];
 	new_entry[i] = '\0';
 	env[last_index] = new_entry;
+	env[++last_index] = NULL;
+	return env;
 }
 
 int	ft_get_env_size(t_shell *shell)
