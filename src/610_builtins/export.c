@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/13 15:30:07 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:08:15 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 	// valid names - Must start with a letter or '_', and contain only letters or numbers ######
 	// print export ####
-	// add new variable 
+	// add new variable
 	// if it exists, overwrite, if it is "+=" append
-	// if doenst exist, give empty value if nothing has been assigned 
+	// if doenst exist, give empty value if nothing has been assigned
 
 	// 0 no quote
 	// 1 single quote
@@ -27,6 +27,37 @@ void	ft_export(t_shell *shell)
 	t_token	*curr;
 	char	**export = NULL;
 
+	curr = shell->tokens;
+	while (curr)
+	{
+		printf("this is token: %s, type: ", curr->value);
+		switch (curr->type)
+		{
+			case WORD:
+				printf("WORD");
+				break;
+			case PIPE:
+				printf("PIPE");
+				break;
+			case REDIRECT_IN:
+				printf("REDIRECT_IN");
+				break;
+			case REDIRECT_OUT:
+				printf("REDIRECT_OUT");
+				break;
+			case REDIRECT_APPEND:
+				printf("REDIRECT_APPEND");
+				break;
+			case HEREDOC:
+				printf("HEREDOC");
+				break;
+			default:
+				printf("UNKNOWN");
+				break;
+		}
+		printf("\n");
+		curr = curr->next;
+	}
 	curr = shell->tokens;
 	if (!curr->next->next)
 	{

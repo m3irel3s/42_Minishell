@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/12 22:29:00 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:21:08 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,22 +104,25 @@ static t_status ft_handle_quote(t_shell *shell, size_t *i, int *quoted_status)
 	}
 	if (ft_create_and_add_token(shell, start, *i, *quoted_status) == ERROR)
 		return (ERROR);
-	(*i)++;
-	*quoted_status = 0;
+	if (ft_create_and_add_token(shell, start, *i, *quoted_status) == ERROR)
+		return (ERROR);
+	// Remove the token if it's meant to be processed as an export assignment
 	if (shell->in_export)
 	{
-		last_token = shell->tokens;
+		// Remove the token from the list if it's being handled as an export
+		t_token *last_token = shell->tokens;
 		while (last_token && last_token->next)
 			last_token = last_token->next;
 		if (last_token && last_token->quoted)
 		{
-			word = ft_strdup_safe(last_token->value);
+			char *word = ft_strdup_safe(last_token->value);
 			if (!word)
 				return (ERROR);
-			status = ft_process_export_assignment(shell, word);
+			t_status status = ft_process_export_assignment(shell, word);
 			free(word);
 			if (status != SUCCESS)
 				return (status);
+			// Cleanup the token
 			if (last_token->prev)
 				last_token->prev->next = NULL;
 			else

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:29:46 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/13 14:35:21 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:17:49 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,41 @@ int	ft_parse_input(t_shell *shell)
 		current = current->next;
 	}
 	ft_expand_tokens(shell);
+	current = shell->tokens;
+	while (current)
+	{
+		printf("this is token: %s, type: ", current->value);
+		switch (current->type)
+		{
+			case WORD:
+				printf("WORD");
+				break;
+			case PIPE:
+				printf("PIPE");
+				break;
+			case REDIRECT_IN:
+				printf("REDIRECT_IN");
+				break;
+			case REDIRECT_OUT:
+				printf("REDIRECT_OUT");
+				break;
+			case REDIRECT_APPEND:
+				printf("REDIRECT_APPEND");
+				break;
+			case HEREDOC:
+				printf("HEREDOC");
+				break;
+			case EQUAL:
+				printf("EQUAL");
+				break;
+			default:
+				printf("UNKNOWN");
+				break;
+		}
+		printf("\n");
+		current = current->next;
+	}
+	current = shell->tokens;
 	ft_create_redirection_list(shell);
 	return (SUCCESS);
 }

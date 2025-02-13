@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/11 12:14:22 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:12:00 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ static t_token_type	ft_check_single_char(char *value)
 		return (REDIRECT_IN);
 	else if (*value == '>')
 		return (REDIRECT_OUT);
+	else if(*value == '=')
+		return (EQUAL);
 	return (WORD);
 }
 

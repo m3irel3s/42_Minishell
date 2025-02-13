@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/13 15:30:09 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:14:47 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	ft_execute_input(t_shell *shell)
 		ft_env(shell);
 	else if (ft_strncmp(shell->tokens->value, "pwd", 4) == SUCCESS)
 		ft_pwd(shell);
-	else if (ft_strncmp(shell->tokens->value, "export", 7) == SUCCESS)
-		ft_export(shell);
+	//else if (ft_strncmp(shell->tokens->value, "export", 7) == SUCCESS)
+		//ft_export(shell);
 	else if (ft_strncmp(shell->tokens->value, "exit", 5) == SUCCESS)
 		ft_exit(shell);
 	if (dup2(saved_stdin, STDIN_FILENO) == -1 ||
