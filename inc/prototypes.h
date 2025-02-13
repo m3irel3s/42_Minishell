@@ -63,7 +63,7 @@ t_status	ft_handle_export_value(t_shell *shell, char *var_value);
 int		ft_is_valid_variable_name(char *name);
 
 /* 510_tokenization/tokens_word_handling.c */
-t_status	ft_handle_word(t_shell *shell, size_t *i, int quoted_status);
+t_status	ft_handle_word(t_shell *shell, size_t *i);
 
 //============================================================================//
 //                              TOKEN UTILITIES                               //

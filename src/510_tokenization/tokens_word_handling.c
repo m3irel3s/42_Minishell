@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-static t_status	ft_process_export_assignment(t_shell *shell, char *word);
 static t_command_type	ft_determine_command_type(char *command);
 static t_status	ft_handle_word_process(t_shell *shell, size_t *i,
 					size_t start, char **word);
@@ -27,7 +26,7 @@ static t_status	ft_handle_word_process(t_shell *shell, size_t *i,
  *
  * @return Returns SUCCESS if successful, ERROR otherwise.
  */
-t_status	ft_handle_word(t_shell *shell, size_t *i, int quoted_status)
+t_status	ft_handle_word(t_shell *shell, size_t *i)
 {
 	size_t			start;
 	char			*word;
