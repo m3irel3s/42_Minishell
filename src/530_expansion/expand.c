@@ -31,17 +31,49 @@ static char	*ft_append_char(char *result, char c);
  */
 void	ft_expand_tokens(t_shell *shell)
 {
-	t_token	*current;
-	char	*expanded;
+	t_token *current;
+	t_token *next_token;
+	char *expanded;
 
 	current = shell->tokens;
 	while (current)
 	{
 		if (current->type == WORD && current->quoted != 1)
 		{
-			expanded = ft_expand_variables(current->value, shell->dup_env);
-			free(current->value);
-			current->value = expanded;
+			next_token = current->next;
+			if (!next_token || next_token->type != EQUAL)
+			{
+				expanded = ft_expand_variables(current->value, shell->dup_env);
+				if (current->quoted == 2)
+				{
+					char **split_words = ft_split(expanded, ' ');
+					if (split_words && split_words[1])
+					{
+						free(current->value);
+						current->value = ft_strdup_safe(split_words[0]);
+						for (int j = 1; split_words[j]; j++)
+						{
+							t_token *new_token = ft_create_token(split_words[j], WORD);
+							if (new_token)
+							{
+								new_token->quoted = 2;
+								ft_add_token_to_list(shell, new_token);
+							}
+						}
+						ft_free_split(split_words);
+					}
+					else
+					{
+						free(current->value);
+						current->value = expanded;
+					}
+				}
+				else
+				{
+					free(current->value);
+					current->value = expanded;
+				}
+			}
 		}
 		current = current->next;
 	}
@@ -67,7 +99,7 @@ static char	*ft_expand_variables(char *input, char **envp)
 	char	*temp;
 	size_t	i;
 
-	result = ft_strdup("");
+	result = ft_strdup_safe("");
 	i = 0;
 	while (input[i])
 	{
@@ -108,7 +140,7 @@ static char	*ft_expand_variable(char *input, size_t *i, char **envp)
 	var_value = ft_get_env_value(var_name, envp);
 	free(var_name);
 	if (!var_value)
-		return (ft_strdup(""));
+		return (ft_strdup_safe(""));
 	temp = ft_strjoin("", var_value);
 	return (temp);
 }

@@ -96,9 +96,14 @@ t_token	*ft_create_token(char *value, t_token_type type)
 	t_token	*new_token;
 
 	new_token = ft_safe_malloc(sizeof(t_token));
-	new_token->value = ft_strdup(value);
-	if (!new_token->value)
+	if (!new_token)
 		return (NULL);
+	new_token->value = ft_strdup_safe(value);
+	if (!new_token->value)
+	{
+		free(new_token);
+		return (NULL);
+	}
 	new_token->type = type;
 	new_token->next = NULL;
 	new_token->prev = NULL;

@@ -6,28 +6,29 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:29:46 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/11 16:01:56 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/13 14:35:21 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+
 /**
- * @brief Parses the input entered by the user in the shell.
+ * @brief Parses the input string of the shell, tokenizing it, validating its syntax,
+ *        expanding variables, and setting up redirections.
  *
- * This function initializes the shell's parser structure and attempts
- * to tokenize the input stored in the shell structure. It uses safe
- * memory allocation for the parser and sets its initial state. If
- * tokenization is successful, the function returns SUCCESS; otherwise,
- * it returns ERROR. The function is prepared to validate syntax, but
- * the validation logic is currently commented out.
+ * This function first tokenizes the input string stored in the shell structure.
+ * If tokenization fails, it returns ERROR. It then iterates through the tokens
+ * to validate their syntax, returning ERROR if any invalid syntax is found.
+ * Upon successful validation, it expands any variables present in the tokens
+ * and creates a list of redirections. The function returns SUCCESS if all
+ * operations complete without errors.
  *
- * @param shell A pointer to the shell structure containing the input
- *              to be parsed and the parser state to be initialized.
+ * @param shell A pointer to the shell structure containing the input string.
  *
- * @return Returns SUCCESS if the input is successfully tokenized;
- *         otherwise, returns ERROR.
+ * @return Returns SUCCESS if the input is successfully parsed; otherwise, returns ERROR.
  */
+
 int	ft_parse_input(t_shell *shell)
 {
 	t_token	*current;
@@ -42,6 +43,7 @@ int	ft_parse_input(t_shell *shell)
 		current = current->next;
 	}
 	ft_expand_tokens(shell);
+	ft_create_redirection_list(shell);
 	return (SUCCESS);
 }
 	/*while (current)
@@ -75,3 +77,4 @@ int	ft_parse_input(t_shell *shell)
 		current = current->next;
 	}
 	current = shell->tokens;*/
+

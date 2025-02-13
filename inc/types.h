@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/11 13:57:25 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:10:58 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ typedef enum e_token_type
 	REDIRECT_IN,
 	REDIRECT_OUT,
 	REDIRECT_APPEND,
-	HEREDOC
+	HEREDOC,
+	EQUAL
 }	t_token_type;
 
 typedef enum e_command_type
@@ -58,12 +59,21 @@ typedef struct s_token
 	struct s_token	*prev;
 }	t_token;
 
+typedef struct s_redirect
+{
+	t_token_type		type;
+	char				*filename;
+	struct s_redirect	*next;
+}	t_redirect;
+
 typedef struct s_shell
 {
 	char			**dup_env;
 	char			*prompt;
 	char			*input;
 	t_token			*tokens;
-}	t_shell;
+	t_redirect		*redirects;
+	int				in_export;
+} t_shell;
 
 #endif
