@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 13:50:07 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/11 16:18:40 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:06:05 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,15 @@ char	**ft_duplicate_env(char **envp)
 	return (dup_env);
 }
 
-char	*ft_get_env_value(char *var, char **env)
+char	*ft_get_var_value(char *var, char **env)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	while (env[i])
 	{
 		if (ft_strncmp(env[i], var, ft_strlen(var)) == SUCCESS)
-			return env[i] + ft_strlen(var) + 1;
+			return (env[i] + ft_strlen(var) + 1);
 		i++;
 	}
 	return (NULL);
@@ -49,7 +50,9 @@ char	*ft_get_env_value(char *var, char **env)
 
 int	ft_get_var_index(char *var, char **env)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	while (env[i])
 	{
 		if (ft_strncmp(env[i], var, ft_strlen(var)) == SUCCESS)
@@ -59,20 +62,21 @@ int	ft_get_var_index(char *var, char **env)
 	return (-1);
 }
 
-void	ft_set_env_value(char *var, char *value, char **env)
+void	ft_set_var_value(char *var, char *value, t_shell *shell)
 {
 	int		index;
 	int		i;
 	int		j;
 	char	*res = NULL;
+	char	**env = shell->dup_env;
 
 	index = ft_get_var_index(var, env);
-	// if (i == -1)
-	// {
-	// 	ft_add_var_to_env();
-	// 	return ;
-	// }
-	res = ft_safe_malloc(ft_strlen(var) + ft_strlen(value) + 2);
+	if (index == -1)
+	{
+		ft_add_var_to_env(var, value, shell);
+		return ;
+	}
+	res = ft_safe_malloc(ft_get_str_length(var, value) + 2);
 	i = 0;
 	while (var[i])
 	{
@@ -82,9 +86,7 @@ void	ft_set_env_value(char *var, char *value, char **env)
 	j = 0;
 	res[i++] = '=';
 	while (value[j])
-	{
 		res[i++] = value[j++];
-	}
 	res[i] = '\0';
 	free(env[index]);
 	env[index] = res;
@@ -92,9 +94,10 @@ void	ft_set_env_value(char *var, char *value, char **env)
 
 char	*ft_get_var_name(char *str)
 {
-	int		i = 0;
+	int		i;
 	char	*res;
 
+	i = 0;
 	while (str[i] != '=' && str[i])
 		i++;
 	res = ft_safe_malloc(sizeof(char) * i + 1);

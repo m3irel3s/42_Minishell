@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/13 15:09:37 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/13 15:23:00 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,14 +14,14 @@
 #                              MINISHELL PROJECT                               #
 #==============================================================================#
 
-# Main target name
+## Main target name ##
 NAME        = minishell
 
 #------------------------------------------------------------------------------#
 #                                COLORS & STYLES                               #
 #------------------------------------------------------------------------------#
 
-# ANSI color codes for prettier output
+## ANSI color codes for prettier output ##
 RED = \033[0;31m
 GREEN = \033[0;32m
 YELLOW = \033[0;33m
@@ -31,13 +31,13 @@ CYAN = \033[0;36m
 WHITE = \033[0;37m
 RESET = \033[0m
 
-# Text style codes
+## Text style codes ##
 BOLD = \033[1m
 DIM = \033[2m
 ITALIC = \033[3m
 UNDERLINE = \033[4m
 
-# Emojis for visual feedback
+## Emojis for visual feedback ##
 CHECK = ✓
 CLEAN = 🧹
 BUILD = 🔨
@@ -49,12 +49,12 @@ SPARKLES = ✨
 #                            	  NAMES AND PATHS                              #
 #------------------------------------------------------------------------------#
 
-# Directory structure
+## Directory structure ##
 BUILD_PATH = .build
 SRC_PATH = src
 INC_PATH = inc
 
-# Header files
+## Header files ##
 HEADERS = ${addprefix ${INC_PATH}/, \
 	ansi.h \
 	minishell.h \
@@ -62,9 +62,7 @@ HEADERS = ${addprefix ${INC_PATH}/, \
 	prototypes.h \
 	types.h}
 
-# Source files for main program
-# SRCS = ${addprefix ${SRC_PATH}/, \
-# 	000_main.c}
+## Source files for main program ##
 
 SRCS = \
        ${SRC_PATH}/000_intro.c \
@@ -88,16 +86,21 @@ SRCS = \
        ${SRC_PATH}/610_builtins/echo.c \
        ${SRC_PATH}/610_builtins/env.c \
 	   ${SRC_PATH}/610_builtins/pwd.c \
-       ${SRC_PATH}/700_clean/clean.c \
+	   ${SRC_PATH}/610_builtins/export.c \
+	   ${SRC_PATH}/610_builtins/export_print.c \
+	   ${SRC_PATH}/610_builtins/exit.c \
+	   ${SRC_PATH}/700_clean/clean.c \
+	   ${SRC_PATH}/800_utils/env_utils.c \
+	   ${SRC_PATH}/800_utils/env_utils_2.c \
+	   ${SRC_PATH}/800_utils/export_utils.c \
        ${SRC_PATH}/800_utils/check_type_functions.c \
-       ${SRC_PATH}/800_utils/env_utils.c \
        ${SRC_PATH}/800_utils/safe_functions.c
 
 # Object files derived from source files
 # OBJS = ${addprefix ${BUILD_PATH}/, ${notdir ${SRCS:.c=.o}}}
 OBJS = ${SRCS:${SRC_PATH}/%.c=${BUILD_PATH}/%.o}
 
-
+## Libft ##
 LIBFT_PATH = 42_Libft
 LIBFT_ARC = ${LIBFT_PATH}/libft.a
 
@@ -105,22 +108,28 @@ LIBFT_ARC = ${LIBFT_PATH}/libft.a
 #                            	   FLAGS & COMMANDS                            #
 #------------------------------------------------------------------------------#
 
+## Core ##
+CC				= cc
+CCFLAGS			= -Wall -Wextra -Werror -g
+RM				= rm -fr
+MKDIR_P			= mkdir -p
+INC				= -I ${INC_PATH}  -I$(READLINE_PATH)/include
+MAKE			= make --no-print-directory -C
+MAKE_RE			= make --no-print-directory all
 
-CC          = cc
-CCFLAGS     = -Wall -Wextra -Werror -g
-V_LEAKS     = --leak-check=full --show-leak-kinds=all
-V_TRACKS    = --track-fds=yes --track-origins=yes --trace-children=yes
-V_EXTRAS    = --suppressions=readline.supp
-VGDB_ARGS	= --vgdb-error=0 $(V_LEAKS) $(V_TRACKS) $(V_EXTRAS)
-V_ARGS      = $(V_LEAKS) $(V_TRACKS) $(V_EXTRAS)
-READLINE_PATH = /opt/homebrew/opt/readline
-READL_FLAG  = -L$(READLINE_PATH)/lib -I$(READLINE_PATH)/include -lreadline -lncurses
-RM          = rm -fr                       # Command to remove files/directories forcefully
-MKDIR_P     = mkdir -p                # Command to create directories (with parent)
-INC         = -I ${INC_PATH}  -I$(READLINE_PATH)/include            # Include path for header files
-LDFLAGS     = -L${LIBFT_PATH} -lft
-MAKE        = make --no-print-directory -C
-MAKE_RE     = make --no-print-directory all
+## Libft ##
+LDFLAGS			= -L${LIBFT_PATH} -lft
+
+## Valgrind ##
+V_LEAKS			= --leak-check=full --show-leak-kinds=all
+V_TRACKS		= --track-fds=yes --track-origins=yes --trace-children=yes
+V_EXTRAS		= --suppressions=readline.supp
+VGDB_ARGS		= --vgdb-error=0 $(V_LEAKS) $(V_TRACKS) $(V_EXTRAS)
+V_ARGS			= $(V_LEAKS) $(V_TRACKS) $(V_EXTRAS)
+
+## Readline ##
+READL_FLAG		= -L$(READLINE_PATH)/lib -I$(READLINE_PATH)/include -lreadline -lncurses
+READLINE_PATH	= /opt/homebrew/opt/readline
 
 #------------------------------------------------------------------------------#
 #                                    RULES                                     #
@@ -160,6 +169,27 @@ get_libft:
 	@git clone https://github.com/m3irel3s/42_Libft ${LIBFT_PATH}
 	@git pull
 	@printf "${GREEN}${BOLD}${ROCKET} ${WHITE}${LIBFT_ARC}${GREEN} successfully downloaded!${RESET}\n"
+
+##  Testing Rules  ##
+
+val:
+	valgrind $(V_ARGS) ./$(NAME)
+
+##  Debugging Rules ##
+
+gdb: all $(NAME)
+	tmux split-window -h "gdb --tui --args --log-file=gdb.txt ./$(NAME)"
+	tmux resize-pane -L 5
+	make get_log
+
+get_log:
+	rm -f gdb.txt
+	touch gdb.txt
+	@if command -v lnav; then \
+		lnav gdb.txt; \
+	else \
+		tail -f gdb.txt; \
+	fi
 
 ##  Cleaning Rules  ##
 

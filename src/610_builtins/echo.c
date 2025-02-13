@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:22:57 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/11 13:19:15 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/12 11:52:25 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 void	ft_echo(t_shell *shell)
 {
-	t_token	*current;
+	t_token	*curr;
 	bool	add_new_line;
 
 	add_new_line = true;
-	current = shell->tokens;
-	if (!current->next)
+	curr = shell->tokens;
+	if (!curr->next)
 		return ;
-	if (ft_strncmp(current->next->value, "-n", 3) == SUCCESS)
+	if (ft_strncmp(curr->next->value, "-n", 3) == SUCCESS)
 	{
 		add_new_line = false;
-		current = current->next;
+		curr = curr->next;
 	}
-	while (current->next)
+	while (curr->next)
 	{
-		printf("%s", current->next->value);
-		current = current->next;
-		if (!current->next)
+		printf("%s", curr->next->value);
+		curr = curr->next;
+		if (!curr->next)
 			break ;
 		printf(" ");
 	}

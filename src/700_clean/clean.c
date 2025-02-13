@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/13 14:46:30 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/13 15:30:05 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../inc/minishell.h"
 
@@ -74,7 +75,7 @@ void ft_free_token(t_token *token)
 	}
 }
 
-void ft_free_split(char **arr)
+void ft_free_arr(char **arr)
 {
 	int i = 0;
 	while (arr[i])

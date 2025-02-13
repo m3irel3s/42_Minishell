@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/10 14:15:19 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/12 15:43:08 by jmeirele         ###   ########.fr       */
+/*   Created: 2025/02/12 12:15:52 by jmeirele          #+#    #+#             */
+/*   Updated: 2025/02/12 15:41:20 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ft_env(t_shell *shell)
+int	ft_check_var_chars(char *var)
 {
-	char	**env;
-	char	*res;
-	int		i;
+	int	i;
 
 	i = 0;
-	env = shell->dup_env;
-	while (env[i])
+	if (!var)
+		return (-1);
+	if (!(ft_isalpha(var[i]) || var[i] == '_'))
+		return (-1);
+	while (var[i] && var[i] != '=')
 	{
-		res = env[i];
-		printf("%s\n", res);
+		if (!(ft_isalnum(var[i]) || var[i] == '_'))
+			return (-1);
 		i++;
 	}
-	return ;
+	return (SUCCESS);
 }
