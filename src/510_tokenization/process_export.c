@@ -99,9 +99,7 @@ static t_status	ft_process_export_assign(t_shell *shell, char *word,
 {
 	char *var_name;
 	char *var_value;
-	t_status status;
 
-	status = SUCCESS;
 	var_name = ft_substr(word, 0, equal_sign - word);
 	if (!var_name)
 		return (ERROR);
