@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../inc/minishell.h"
+
 static t_status	ft_handle_quote_export(t_shell *shell, size_t *i,
 					int *quoted_status, char *var_value);
 static t_status ft_create_value_token(t_shell *shell, char *var_value,
