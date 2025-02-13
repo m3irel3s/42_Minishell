@@ -76,10 +76,14 @@ SRCS = \
        ${SRC_PATH}/510_tokenization/tokens.c \
        ${SRC_PATH}/510_tokenization/tokens_utils.c \
        ${SRC_PATH}/510_tokenization/tokens_utils_2.c \
+       ${SRC_PATH}/510_tokenization/process_export.c \
+       ${SRC_PATH}/510_tokenization/process_export_2.c \
+       ${SRC_PATH}/510_tokenization/process_export_utils.c \
+       ${SRC_PATH}/510_tokenization/tokens_word_handling.c \
        ${SRC_PATH}/520_syntax_validation/syntax_validation.c \
        ${SRC_PATH}/530_expansion/expand.c \
        ${SRC_PATH}/540_redirects/redirects_setting.c \
-	   ${SRC_PATH}/540_redirects/redirects_handling.c \
+       ${SRC_PATH}/540_redirects/redirects_handling.c \
        ${SRC_PATH}/600_exec/exec.c \
        ${SRC_PATH}/610_builtins/cd.c \
        ${SRC_PATH}/610_builtins/echo.c \
