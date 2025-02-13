@@ -46,13 +46,12 @@ void	ft_expand_tokens(t_shell *shell)
 				expanded = ft_expand_variables(current->value, shell->dup_env);
 				if (current->quoted == 2)
 				{
-					split_words = ft_split(expanded, ' ');
+					char **split_words = ft_split(expanded, ' ');
 					if (split_words && split_words[1])
 					{
 						free(current->value);
 						current->value = ft_strdup_safe(split_words[0]);
-						j = 1;
-						while (split_words[j])
+						for (int j = 1; split_words[j]; j++)
 						{
 							t_token *new_token = ft_create_token(split_words[j], WORD);
 							if (new_token)
@@ -60,7 +59,6 @@ void	ft_expand_tokens(t_shell *shell)
 								new_token->quoted = 2;
 								ft_add_token_to_list(shell, new_token);
 							}
-							j++;
 						}
 						ft_free_split(split_words);
 					}
