@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/13 15:10:58 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/13 21:48:54 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ typedef enum e_token_type
 	REDIRECT_IN,
 	REDIRECT_OUT,
 	REDIRECT_APPEND,
-	HEREDOC,
-	EQUAL
+	HEREDOC
 }	t_token_type;
 
 typedef enum e_command_type

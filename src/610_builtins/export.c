@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/13 17:25:03 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:27:38 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	ft_export(t_shell *shell)
 	{
 		char	*var;
 		char	*value;
-		curr = curr->next;
 		if(ft_check_var_chars(curr->value) == SUCCESS)
 			ft_printf(1, "Chars ok\n");
 		var = ft_get_var_name(curr->value);
@@ -82,6 +81,7 @@ void	ft_export(t_shell *shell)
 		value = curr->value + (ft_strlen(var) + 1);
 		printf("value=> %s\n", value);
 		ft_set_var_value(var, value, shell);
+		curr = curr->next;
 	}
 	return;
 }
