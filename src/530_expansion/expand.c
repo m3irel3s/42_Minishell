@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:55:08 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/13 17:04:25 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:07:10 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	ft_expand_tokens(t_shell *shell)
 								ft_add_token_to_list(shell, new_token);
 							}
 						}
-						ft_free_split(split_words);
+						ft_free_arr(split_words);
 					}
 					else
 					{
@@ -137,7 +137,7 @@ static char	*ft_expand_variable(char *input, size_t *i, char **envp)
 	while (input[*i] && (ft_isalnum(input[*i]) || input[*i] == '_'))
 		(*i)++;
 	var_name = ft_substr(input, start, (*i) - start);
-	var_value = ft_get_env_value(var_name, envp);
+	var_value = ft_get_var_value(var_name, envp);
 	free(var_name);
 	if (!var_value)
 		return (ft_strdup_safe(""));
