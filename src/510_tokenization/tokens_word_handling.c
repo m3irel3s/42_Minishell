@@ -11,66 +11,83 @@
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
 static t_command_type	ft_determine_command_type(char *command);
-static t_status	ft_extract_word(t_shell *s, size_t *i, char **w);
+static t_status	ft_handle_word_process(t_shell *shell, size_t *i,
+					size_t start, char **word);
 
 /**
- * @brief Processes a word token in the shell input.
+ * @brief Processes a word and adds it as a token.
  *
- * Extracts the word, checks if it is an export command, creates a token for
- * the word, and adds it to the shell's token list.
+ * Handles regular words and the special case of 'export' command arguments.
  *
  * @param shell A pointer to the shell structure.
- * @param i A pointer to the current index in the shell's input string.
+ * @param i A pointer to the current index in the input string.
+ * @param quoted_status The quoted status.
  *
- * @return Returns SUCCESS if the word is processed and tokenized correctly,
- *         ERROR otherwise.
+ * @return Returns SUCCESS if successful, ERROR otherwise.
  */
 t_status	ft_handle_word(t_shell *shell, size_t *i)
 {
-	char		*word;
-	t_token		*new_token;
-	t_status	status;
+	size_t			start;
+	char			*word;
+	t_status		status;
 
-	status = ft_extract_word(shell, i, &word);
+	start = *i;
+	status = ft_handle_word_process(shell, i, start, &word);
 	if (status != SUCCESS)
 		return (status);
-	if (ft_determine_command_type(word) == EXPORT_CMD)
-		shell->in_export = 1;
-	new_token = ft_create_token(word, WORD);
+	if (shell->in_export)
+	{
+		status = ft_process_export_assignment(shell, word);
+		shell->in_export = 0;
+	}
+	else
+	{
+		t_token	*new_token = ft_create_token(word, WORD);
+
+		if (!new_token)
+			status = ERROR;
+		else
+			ft_add_token_to_list(shell, new_token);
+	}
 	free(word);
-	if (!new_token)
-		return (ERROR);
-	ft_add_token_to_list(shell, new_token);
-	return (SUCCESS);
+	return (status);
 }
 
 /**
- * @brief Extracts a word from the shell's input string.
+ * @brief Processes a word and returns its value.
  *
- * This function extracts the word starting from the current index in the
- * shell's input string, and updates the index to the end of the extracted word.
- * The function skips any spaces, operators, and quotes in the input string.
+ * @param shell A pointer to the shell structure.
+ * @param i A pointer to the current index in the input string.
+ * @param start The start index of the word
+ * @param word A pointer to the word
  *
- * @param s A pointer to the shell structure.
- * @param i A pointer to the current index in the shell's input string.
- * @param w A pointer to a character pointer where the extracted word will be
- *          stored.
- *
- * @return Returns SUCCESS if the word is successfully extracted and stored,
- *         ERROR otherwise.
+ * @return Returns SUCCESS if successful, ERROR otherwise.
  */
-static t_status	ft_extract_word(t_shell *s, size_t *i, char **w)
+static t_status	ft_handle_word_process(t_shell *shell, size_t *i,
+					size_t start, char **word)
 {
-	size_t	start;
+	size_t			temp_i;
+	t_command_type	command_type;
 
-	start = *i;
-	while (s->input[*i] && !ft_is_space(s->input[*i])
-		&& !ft_is_operator(s->input[*i]) && !ft_is_quote(s->input[*i]))
+	temp_i = *i;
+	while (shell->input[temp_i] && !ft_is_space(shell->input[temp_i])
+		&& !ft_is_operator(shell->input[temp_i])
+		&& !ft_is_quote(shell->input[temp_i]))
+		temp_i++;
+	*word = ft_substr(shell->input, start, temp_i - start);
+	if (!*word)
+		return (ERROR);
+	command_type = ft_determine_command_type(*word);
+	if (command_type == EXPORT_CMD)
+		shell->in_export = 1;
+	free(*word);
+	while (shell->input[*i] && !ft_is_space(shell->input[*i])
+		&& !ft_is_operator(shell->input[*i])
+		&& !ft_is_quote(shell->input[*i]))
 		(*i)++;
-	*w = ft_substr(s->input, start, *i - start);
-	if (!*w)
+	*word = ft_substr(shell->input, start, *i - start);
+	if (!*word)
 		return (ERROR);
 	return (SUCCESS);
 }

@@ -74,7 +74,7 @@ static t_status	ft_process_and_tokenize(t_shell *shell)
 			if (ft_handle_operator(shell, &i, quoted_status) == ERROR)
 				return (ERROR);
 		}
-		else if (ft_handle_word(shell, &i, quoted_status) == ERROR)
+		else if (ft_handle_word(shell, &i) == ERROR)
 			return (ERROR);
 	}
 	return (SUCCESS);
