@@ -46,7 +46,10 @@ t_status	ft_handle_word(t_shell *shell, size_t *i, int *quoted_status)
 	start = *i;
 	status = ft_handle_word_process(shell, i, start, &word, quoted_status);
 	if (status != SUCCESS)
+	{
+		free(word);
 		return (status);
+	}
 	new_token = ft_create_token(word, WORD);
 	if (*quoted_status)
 	{
