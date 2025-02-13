@@ -12,6 +12,8 @@
 
 #include "../../inc/minishell.h"
 
+int	ft_parse_export_args(t_shell *shell, t_token *current);
+
 /**
  * @brief Parses the input entered by the user in the shell.
  *
@@ -37,15 +39,11 @@ int	ft_parse_input(t_shell *shell)
 	current = shell->tokens;
 	while (current)
 	{
-		if (current->type == WORD && ft_strncmp(current->value, "export", 7) == 0)
-		{
-			if (ft_parse_export_args(shell, current) == ERROR)
-				return ERROR;
-		}
-		else if (ft_validate_syntax(current) != SUCCESS)
+		if (ft_validate_syntax(current) != SUCCESS)
 			return (ERROR);
 		current = current->next;
 	}
+	ft_expand_tokens(shell);
 	current = shell->tokens;
 	while (current)
 	{
@@ -80,7 +78,6 @@ int	ft_parse_input(t_shell *shell)
 		printf("\n");
 		current = current->next;
 	}
-	ft_expand_tokens(shell);
 	ft_create_redirection_list(shell);
 	return (SUCCESS);
 }
@@ -116,17 +113,3 @@ int	ft_parse_input(t_shell *shell)
 	}
 	current = shell->tokens;*/
 
-int ft_parse_export_args(t_shell *shell, t_token *current) { // Pass current token
-    char *var_name = NULL;
-    char *var_value = NULL;
-    //t_token *temp = current->next;
-    if (!current || !current->next) {
-        return ERROR; // Handle no arguments
-    }
-    char *full_arg = current->next->value; // Access the next token after export
-    char *equal_sign = ft_strchr(full_arg, '=');
-
-    if (!equal_sign) {
-        // Handle "export VAR" (no assignment)
-        return ft_process_export_no_assign(shell, full_arg);
-    }

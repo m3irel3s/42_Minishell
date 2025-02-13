@@ -56,14 +56,8 @@ int		ft_tokenize(t_shell *shell);
 /* 510_tokenization/process_export.c */
 t_status	ft_process_export_assignment(t_shell *shell, char *word);
 
-/* 510_tokenization/process_export_2.c */
-t_status	ft_handle_export_value(t_shell *shell, char *var_value);
-
-/* 510_tokenization/process_export_utils.c */
-int		ft_is_valid_variable_name(char *name);
-
 /* 510_tokenization/tokens_word_handling.c */
-t_status	ft_handle_word(t_shell *shell, size_t *i);
+t_status	ft_handle_word(t_shell *shell, size_t *i, int *quoted_status);
 
 //============================================================================//
 //                              TOKEN UTILITIES                               //

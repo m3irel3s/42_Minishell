@@ -31,17 +31,22 @@ static char	*ft_append_char(char *result, char c);
  */
 void	ft_expand_tokens(t_shell *shell)
 {
-	t_token	*current;
-	char	*expanded;
+	t_token *current;
+	t_token *next_token;
+	char *expanded;
 
 	current = shell->tokens;
 	while (current)
 	{
 		if (current->type == WORD && current->quoted != 1)
 		{
-			expanded = ft_expand_variables(current->value, shell->dup_env);
-			free(current->value);
-			current->value = expanded;
+			next_token = current->next;
+			if (!next_token || next_token->type != EQUAL)
+			{
+				expanded = ft_expand_variables(current->value, shell->dup_env);
+				free(current->value);
+				current->value = expanded;
+			}
 		}
 		current = current->next;
 	}
