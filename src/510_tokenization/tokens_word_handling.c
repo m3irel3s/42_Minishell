@@ -68,6 +68,7 @@ t_status	ft_handle_word(t_shell *shell, size_t *i, int *quoted_status)
 	return (status);
 }
 
+
 /**
  * @brief Processes a word in the shell input and handles quotes.
  *
@@ -92,14 +93,22 @@ static t_status	ft_handle_word_process(t_shell *shell,
 	size_t			temp_i;
 	t_command_type	command_type;
 	char			quote_char;
+	int				quote_stack[10];
+	int				quote_depth;
 
 	temp_i = *i;
 	quote_char = 0;
+	quote_depth = 0;
+	ft_memset(quote_stack, 0, sizeof(quote_stack));
 	while (shell->input[temp_i])
 	{
-		if (!*quoted_status && ft_is_space(shell->input[temp_i]))
-			break;
-		if (ft_is_quote(shell->input[temp_i]))
+		if (shell->input[temp_i] == '\\' && shell->input[temp_i + 1])
+		{
+			temp_i += 2;
+			continue;
+		}
+		if (ft_is_quote(shell->input[temp_i])
+			&& (temp_i == start || shell->input[temp_i - 1] != '\\'))
 		{
 			if (!*quoted_status)
 			{
@@ -108,18 +117,33 @@ static t_status	ft_handle_word_process(t_shell *shell,
 					*quoted_status = 1;
 				else
 					*quoted_status = 2;
+				quote_stack[quote_depth++] = quote_char;
 			}
-			else if (shell->input[temp_i] == quote_char)
+			else if (shell->input[temp_i] == quote_stack[quote_depth - 1])
 			{
-				*quoted_status = 0;
-				quote_char = 0;
+				quote_depth--;
+				if (quote_depth == 0)
+				{
+					*quoted_status = 0;
+					quote_char = 0;
+				}
+			}
+			else
+			{
+				quote_stack[quote_depth++] = shell->input[temp_i];
+				if (quote_stack[quote_depth - 1] == '\'')
+					*quoted_status = 1;
+				else
+					*quoted_status = 2;
 			}
 			temp_i++;
 			continue;
 		}
+		if (!*quoted_status && ft_is_space(shell->input[temp_i]))
+			break;
 		temp_i++;
 	}
-	if (*quoted_status)
+	if (quote_depth > 0)
 	{
 		ft_putstr_fd("minishell: error: unmatched quote\n", STDERR_FILENO);
 		return (ERROR);

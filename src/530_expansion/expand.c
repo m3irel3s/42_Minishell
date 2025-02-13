@@ -44,8 +44,37 @@ void	ft_expand_tokens(t_shell *shell)
 			if (!next_token || next_token->type != EQUAL)
 			{
 				expanded = ft_expand_variables(current->value, shell->dup_env);
-				free(current->value);
-				current->value = expanded;
+				if (current->quoted == 2)
+				{
+					split_words = ft_split(expanded, ' ');
+					if (split_words && split_words[1])
+					{
+						free(current->value);
+						current->value = ft_strdup(split_words[0]);
+						j = 1;
+						while (split_words[j])
+						{
+							t_token *new_token = ft_create_token(split_words[j], WORD);
+							if (new_token)
+							{
+								new_token->quoted = 2;
+								ft_add_token_to_list(shell, new_token);
+							}
+							j++;
+						}
+						ft_free_split(split_words);
+					}
+					else
+					{
+						free(current->value);
+						current->value = expanded;
+					}
+				}
+				else
+				{
+					free(current->value);
+					current->value = expanded;
+				}
 			}
 		}
 		current = current->next;
