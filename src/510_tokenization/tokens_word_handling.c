@@ -27,7 +27,7 @@ static t_status	ft_handle_word_process(t_shell *shell, size_t *i,
  *
  * @return Returns SUCCESS if successful, ERROR otherwise.
  */
-static t_status	ft_handle_word(t_shell *shell, size_t *i, int quoted_status)
+t_status	ft_handle_word(t_shell *shell, size_t *i, int quoted_status)
 {
 	size_t			start;
 	char			*word;
