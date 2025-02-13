@@ -116,6 +116,9 @@ void		ft_env(t_shell *shell);
 //============================================================================//
 /* 700_clean/clean.c */
 void		ft_cleanup(t_shell *shell);
+void ft_free(void *ptr);
+void ft_free_token(t_token *token);
+void ft_free_split(char **arr);
 
 //============================================================================//
 //                       ENVIRONMENT VARIABLE UTILITIES                       //
