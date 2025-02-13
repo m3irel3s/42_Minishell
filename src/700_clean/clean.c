@@ -57,3 +57,30 @@ void	ft_cleanup(t_shell *shell)
 	}
 	shell->redirects = NULL;
 }
+
+// In a new file or at the end of an existing utility file
+void ft_free(void *ptr)
+{
+	if (ptr)
+		free(ptr);
+}
+
+void ft_free_token(t_token *token)
+{
+	if (token)
+	{
+		ft_free(token->value);
+		ft_free(token);
+	}
+}
+
+void ft_free_split(char **arr)
+{
+	int i = 0;
+	while (arr[i])
+	{
+		ft_free(arr[i]);
+		i++;
+	}
+	ft_free(arr);
+}
