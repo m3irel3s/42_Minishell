@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/13 15:30:07 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/13 16:26:04 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_export(t_shell *shell)
 	char	**export = NULL;
 
 	curr = shell->tokens;
-	if (!curr->next->next)
+	if (!curr->next)
 	{
 		export = ft_duplicate_env(shell->dup_env);
 		export = ft_sort_export(export);

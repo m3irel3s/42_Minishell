@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/13 15:10:58 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:24:26 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,18 @@ typedef enum e_token_type
 	EQUAL
 }	t_token_type;
 
-typedef enum e_command_type
+typedef enum e_cmd_type
 {
-	ECHO_CMD,
-	CD_CMD,
-	PWD_CMD,
-	EXPORT_CMD,
-	UNSET_CMD,
-	ENV_CMD,
-	EXIT_CMD,
-	NONE
-}	t_command_type;
+	CMD_ECHO,
+	CMD_CD,
+	CMD_PWD,
+	CMD_EXPORT,
+	CMD_UNSET,
+	CMD_ENV,
+	CMD_EXIT,
+	CMD_EXEC,
+	CMD_UNKNOWN
+}	t_cmd_type;
 
 //============================================================================//
 //                                STRUCTURES                                  //

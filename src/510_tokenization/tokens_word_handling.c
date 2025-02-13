@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_word_handling.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:51:19 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/12 21:55:20 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:32:33 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static t_command_type	ft_determine_command_type(char *command);
+static t_cmd_type	ft_determine_command_type(char *command);
 static t_status	ft_handle_word_process(t_shell *shell,
 	size_t *i, size_t start, char **word, int *quoted_status);
 
@@ -94,7 +94,7 @@ static t_status	ft_handle_word_process(t_shell *shell,
 	size_t *i, size_t start, char **word, int *quoted_status)
 {
 	size_t			temp_i;
-	t_command_type	command_type;
+	t_cmd_type	command_type;
 	char			quote_char;
 	int				quote_stack[10];
 	int				quote_depth;
@@ -155,7 +155,7 @@ static t_status	ft_handle_word_process(t_shell *shell,
 	if (!*word)
 		return (ERROR);
 	command_type = ft_determine_command_type(*word);
-	if (command_type == EXPORT_CMD)
+	if (command_type == CMD_EXPORT)
 		shell->in_export = 1;
 	*i = temp_i;
 	return (SUCCESS);
@@ -170,22 +170,22 @@ static t_status	ft_handle_word_process(t_shell *shell,
  *
  * @return Returns the corresponding command type.
  */
-static t_command_type	ft_determine_command_type(char *command)
+static t_cmd_type	ft_determine_command_type(char *command)
 {
 	if (ft_strncmp(command, "echo", 5) == 0)
-		return (ECHO_CMD);
+		return (CMD_ECHO);
 	else if (ft_strncmp(command, "cd", 3) == 0)
-		return (CD_CMD);
+		return (CMD_CD);
 	else if (ft_strncmp(command, "pwd", 4) == 0)
-		return (PWD_CMD);
+		return (CMD_PWD);
 	else if (ft_strncmp(command, "export", 7) == 0)
-		return (EXPORT_CMD);
+		return (CMD_EXPORT);
 	else if (ft_strncmp(command, "unset", 6) == 0)
-		return (UNSET_CMD);
+		return (CMD_UNSET);
 	else if (ft_strncmp(command, "env", 4) == 0)
-		return (ENV_CMD);
+		return (CMD_ENV);
 	else if (ft_strncmp(command, "exit", 5) == 0)
-		return (EXIT_CMD);
+		return (CMD_EXIT);
 	else
-		return (NONE);
+		return (CMD_UNKNOWN);
 }
