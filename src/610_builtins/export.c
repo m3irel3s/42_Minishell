@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/13 16:08:15 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:25:03 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ void	ft_export(t_shell *shell)
 			case HEREDOC:
 				printf("HEREDOC");
 				break;
+			case EQUAL:
+				printf("EQUAL");
+				break;
 			default:
 				printf("UNKNOWN");
 				break;
@@ -59,7 +62,7 @@ void	ft_export(t_shell *shell)
 		curr = curr->next;
 	}
 	curr = shell->tokens;
-	if (!curr->next->next)
+	if (!curr->next)
 	{
 		export = ft_duplicate_env(shell->dup_env);
 		export = ft_sort_export(export);

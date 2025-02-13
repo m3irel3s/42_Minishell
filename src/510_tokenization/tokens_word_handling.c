@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:51:19 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/12 21:55:20 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/13 17:15:56 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,6 @@ static t_status	ft_handle_word_process(t_shell *shell,
 				*quoted_status = 0;
 				quote_char = 0;
 			}
-			temp_i++;
-			continue;
 		}
 		temp_i++;
 	}
@@ -128,8 +126,17 @@ static t_status	ft_handle_word_process(t_shell *shell,
 	if (!*word)
 		return (ERROR);
 	command_type = ft_determine_command_type(*word);
-	if (command_type == EXPORT_CMD)
+	if (command_type == EXPORT_CMD && ft_is_space(shell->input[temp_i]))
+	{
 		shell->in_export = 1;
+		while (ft_is_space(shell->input[temp_i]))
+			temp_i++;
+		start = temp_i;
+		while (shell->input[temp_i] && !ft_is_space(shell->input[temp_i]))
+			temp_i++;
+		free(*word);
+		*word = ft_substr(shell->input, start, temp_i - start);
+	}
 	*i = temp_i;
 	return (SUCCESS);
 }
