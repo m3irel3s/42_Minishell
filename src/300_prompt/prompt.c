@@ -52,7 +52,7 @@ char	*ft_get_current_directory(void)
 
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
-		cwd = ft_strdup("unknown");
+		cwd = ft_strdup_safe("unknown");
 	return (cwd);
 }
 

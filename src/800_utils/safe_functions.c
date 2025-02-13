@@ -64,3 +64,31 @@ char	*ft_safe_readline(t_shell *shell)
 	input = readline(shell->prompt);
 	return (input);
 }
+
+/**
+ * @brief Safely duplicates a string.
+ *
+ * Allocates memory for a duplicate of the input string and copies its
+ * contents into the newly allocated memory. If memory allocation fails,
+ * the program exits with an error message.
+ *
+ * @param s The string to be duplicated.
+ *
+ * @return A pointer to the newly duplicated string or NULL if the input
+ *         string is NULL.
+ */
+
+char	*ft_strdup_safe_safe(const char *s)
+{
+	char	*dup;
+	size_t	len;
+
+	if (!s)
+		return (NULL);
+	len = ft_strlen(s) + 1;
+	dup = ft_safe_malloc(len);
+	if (!dup)
+		return (NULL);
+	ft_memcpy(dup, s, len);
+	return (dup);
+}

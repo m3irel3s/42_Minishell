@@ -141,5 +141,6 @@ int		ft_is_command(char *value, size_t len);
 /* 800_utils/safe_functions.c */
 void		*ft_safe_malloc(size_t size);
 char		*ft_safe_readline(t_shell *shell);
+char		*ft_strdup_safe(const char *s);
 
 #endif

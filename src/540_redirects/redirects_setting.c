@@ -75,7 +75,7 @@ static void	ft_create_and_add_redirect(t_token *token, t_shell *shell,
 	if (!redirect)
 		return ;
 	redirect->type = token->type;
-	redirect->filename = ft_strdup(token->next->value);
+	redirect->filename = ft_strdup_safe(token->next->value);
 	if (!redirect->filename)
 		return (free(redirect));
 	redirect->next = NULL;

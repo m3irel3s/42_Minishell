@@ -113,7 +113,7 @@ static t_status ft_handle_quote(t_shell *shell, size_t *i, int *quoted_status)
 			last_token = last_token->next;
 		if (last_token && last_token->quoted)
 		{
-			word = ft_strdup(last_token->value);
+			word = ft_strdup_safe(last_token->value);
 			if (!word)
 				return (ERROR);
 			status = ft_process_export_assignment(shell, word);

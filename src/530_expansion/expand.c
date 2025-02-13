@@ -50,7 +50,7 @@ void	ft_expand_tokens(t_shell *shell)
 					if (split_words && split_words[1])
 					{
 						free(current->value);
-						current->value = ft_strdup(split_words[0]);
+						current->value = ft_strdup_safe(split_words[0]);
 						j = 1;
 						while (split_words[j])
 						{
@@ -101,7 +101,7 @@ static char	*ft_expand_variables(char *input, char **envp)
 	char	*temp;
 	size_t	i;
 
-	result = ft_strdup("");
+	result = ft_strdup_safe("");
 	i = 0;
 	while (input[i])
 	{
@@ -142,7 +142,7 @@ static char	*ft_expand_variable(char *input, size_t *i, char **envp)
 	var_value = ft_get_env_value(var_name, envp);
 	free(var_name);
 	if (!var_value)
-		return (ft_strdup(""));
+		return (ft_strdup_safe(""));
 	temp = ft_strjoin("", var_value);
 	return (temp);
 }
