@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/13 16:12:00 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/11 12:14:22 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ static t_token_type	ft_check_single_char(char *value)
 		return (REDIRECT_IN);
 	else if (*value == '>')
 		return (REDIRECT_OUT);
-	else if(*value == '=')
-		return (EQUAL);
 	return (WORD);
 }
 
@@ -98,14 +96,9 @@ t_token	*ft_create_token(char *value, t_token_type type)
 	t_token	*new_token;
 
 	new_token = ft_safe_malloc(sizeof(t_token));
-	if (!new_token)
-		return (NULL);
-	new_token->value = ft_strdup_safe(value);
+	new_token->value = ft_strdup(value);
 	if (!new_token->value)
-	{
-		free(new_token);
 		return (NULL);
-	}
 	new_token->type = type;
 	new_token->next = NULL;
 	new_token->prev = NULL;
