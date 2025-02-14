@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/14 16:18:13 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/14 17:04:30 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,37 @@ static t_status ft_process_and_tokenize(t_shell *shell)
 			{
 				if (is_export)
 				{
+					int quote_count = 0;
+					char quote_char = 0;
+					size_t start = i;
+
 					while (shell->input[i] && !ft_is_space(shell->input[i]) && !ft_is_operator(shell->input[i]))
+					{
+						if (shell->input[i] == '\'' || shell->input[i] == '"')
+						{
+							if (!quote_char)
+							{
+								quote_char = shell->input[i];
+								quote_count++;
+							}
+							else if (shell->input[i] == quote_char)
+							{
+								quote_char = 0;
+								quote_count--;
+							}
+							else
+							{
+								quote_char = shell->input[i];
+								quote_count++;
+							}
+						}
 						i++;
+					}
+					if (quote_count != 0)
+					{
+						ft_putstr_fd("minishell: syntax error: unmatched quote\n", 2);
+						return ERROR;
+					}
 					if (ft_create_and_add_token(shell, start, i, 0) != SUCCESS)
 						return ERROR;
 				}
