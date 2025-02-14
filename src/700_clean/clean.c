@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/13 15:30:05 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/14 17:36:49 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	ft_cleanup(t_shell *shell)
 		free(shell->prompt);
 	if (shell->input)
 		free(shell->input);
+	if (shell->env_cpy)
+		ft_free_arr(shell->env_cpy);
 	shell->input = NULL;
 	current = shell->tokens;
 	while (current)

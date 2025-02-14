@@ -6,15 +6,15 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:15:01 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/14 16:50:37 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/14 17:32:04 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
 // check if the var exists
-// 
 
+static void	ft_remove_var_update_env(t_shell *shell, char *var);
 void	ft_unset(t_shell *shell)
 {
 	t_token	*curr;
@@ -24,7 +24,37 @@ void	ft_unset(t_shell *shell)
 		return ;
 	while (curr->next)
 	{
-		
+		curr = curr->next;
+		if (!(ft_get_var_index(curr->value, shell->env_cpy) == -1))
+			ft_remove_var_update_env(shell, curr->value);
+		else
+			continue;
 	}
-	
+}
+
+static void	ft_remove_var_update_env(t_shell *shell, char *var)
+{
+	char	**new_env;
+	int		var_index;
+	int		i;
+	int		j;
+
+	i = 0;
+	var_index = ft_get_var_index(var, shell->env_cpy);
+	new_env = ft_safe_malloc(sizeof(char *) * (ft_get_env_size(shell) - 1));
+	while (i != var_index)
+	{
+		new_env[i] = shell->env_cpy[i];
+		i++;
+	}
+	j = i;
+	i++;
+	if (shell->env_cpy[i])
+	{
+		while (shell->env_cpy[i])
+			new_env[j++] = shell->env_cpy[i++];
+		new_env[j] = NULL;
+	}
+	ft_free_arr(shell->env_cpy);
+	shell->env_cpy = new_env;
 }
