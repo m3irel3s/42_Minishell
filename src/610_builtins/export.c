@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/13 17:27:38 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/13 22:06:37 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@
 
 void	ft_export(t_shell *shell)
 {
-	t_token	*curr;
-	char	**export = NULL;
+		t_token *curr = shell->tokens;
+		char    **export = NULL;
+		char    *var_name;
+		char    *var_value;
+		char    *equal_sign;
 
-	curr = shell->tokens;
 	while (curr)
 	{
 		printf("this is token: %s, type: ", curr->value);
@@ -51,9 +53,6 @@ void	ft_export(t_shell *shell)
 			case HEREDOC:
 				printf("HEREDOC");
 				break;
-			case EQUAL:
-				printf("EQUAL");
-				break;
 			default:
 				printf("UNKNOWN");
 				break;
@@ -62,29 +61,58 @@ void	ft_export(t_shell *shell)
 		curr = curr->next;
 	}
 	curr = shell->tokens;
+	// Handle 'export' without arguments
 	if (!curr->next)
 	{
 		export = ft_duplicate_env(shell->dup_env);
 		export = ft_sort_export(export);
 		ft_print_export(export);
 		ft_free_arr(export);
-		return ;
+		return;
 	}
-	while (curr->next)
+
+	// Skip 'export' command token
+	if (curr && ft_strcmp(curr->value, "export") == 0)
+		curr = curr->next;
+
+	while (curr && curr->type == WORD)
 	{
-		char	*var;
-		char	*value;
-		if(ft_check_var_chars(curr->value) == SUCCESS)
-			ft_printf(1, "Chars ok\n");
-		var = ft_get_var_name(curr->value);
-		printf("var=> %s\n", var);
-		value = curr->value + (ft_strlen(var) + 1);
-		printf("value=> %s\n", value);
-		ft_set_var_value(var, value, shell);
+		char *assignment = curr->value;
+
+		// Validate variable name syntax
+		if (ft_check_var_chars(assignment) != SUCCESS)
+		{
+			ft_printf(STDERR_FILENO, "minishell: export: `%s': not a valid identifier\n", assignment);
+			curr = curr->next;
+			continue;
+		}
+
+		equal_sign = ft_strchr(assignment, '=');
+
+		if (equal_sign) {
+			// Split into variable and value
+			*equal_sign = '\0';
+			var_name = assignment;
+			var_value = equal_sign + 1;
+
+			// Remove surrounding quotes if present
+			if (*var_value == '"' || *var_value == '\'') {
+				char quote = *var_value;
+				var_value++;
+				size_t len = ft_strlen(var_value);
+				if (len > 0 && var_value[len-1] == quote)
+					var_value[len-1] = '\0';
+			}
+
+			ft_set_var_value(var_name, var_value, shell);
+			*equal_sign = '='; // Restore original string
+		}
+		else {
+			// Handle export without value
+			ft_set_var_value(assignment, "", shell);
+		}
+
 		curr = curr->next;
 	}
-	return;
 }
-
-
 
