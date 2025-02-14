@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/14 16:16:12 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/14 17:09:24 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -174,7 +174,7 @@ get_libft:
 
 ##  Testing Rules  ##
 
-val:
+val: deps $(NAME)
 	valgrind $(V_ARGS) ./$(NAME)
 
 ##  Debugging Rules ##
