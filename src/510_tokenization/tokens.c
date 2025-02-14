@@ -6,15 +6,13 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/14 11:22:23 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/14 15:26:32 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 static t_status	ft_process_and_tokenize(t_shell *shell);
-static t_status	ft_handle_operator(t_shell *shell, size_t *i,
-					int quoted_status);
 
 /**
  * @brief Tokenizes the shell's input string into a linked list of tokens.
@@ -35,71 +33,102 @@ int	ft_tokenize(t_shell *shell)
 		return (ERROR);
 	return (ft_process_and_tokenize(shell));
 }
-
-/**
- * @brief Tokenizes the shell input by processing quoted strings, operators,
- * and words.
- *
- * This function iterates through the shell's input string and processes each
- * character. It handles quoted strings by calling ft_handle_quote,
- * operators by calling ft_handle_operator, and words by calling ft_handle_word.
- * Quoted status is tracked so that quoted strings can be processed correctly.
- * If any of the helper functions return ERROR, this function also returns ERROR.
- * Otherwise, it returns SUCCESS after processing the entire input string.
- *
- * @param shell A pointer to the shell structure containing the input string.
- *
- * @return Returns SUCCESS if the input is successfully tokenized;
- *         otherwise, returns ERROR.
- */
-static t_status	ft_process_and_tokenize(t_shell *shell)
+static t_status ft_process_word_token(t_shell *shell, size_t *i)
 {
-	size_t	i;
-	int		quoted_status;
+	size_t start = *i;
+	int in_quotes = 0;
+	char quote_char = 0;
 
-	i = 0;
-	quoted_status = 0;
+	while (shell->input[*i] && !ft_is_space(shell->input[*i]) && !ft_is_operator(shell->input[*i]))
+	{
+		if (shell->input[*i] == '\'' || shell->input[*i] == '"')
+		{
+			if (!in_quotes)
+			{
+				if (*i > start)
+				{
+					if (ft_create_and_add_token(shell, start, *i, 0) != SUCCESS)
+						return ERROR;
+				}
+				in_quotes = 1;
+				quote_char = shell->input[*i];
+				start = *i + 1;
+			}
+			else if (shell->input[*i] == quote_char)
+			{
+				if (ft_create_and_add_token(shell, start, *i, 0) != SUCCESS)
+					return ERROR;
+				in_quotes = 0;
+				quote_char = 0;
+				start = *i + 1;
+			}
+		}
+		(*i)++;
+	}
+
+	if (*i > start)
+	{
+		if (ft_create_and_add_token(shell, start, *i, 0) != SUCCESS)
+			return ERROR;
+	}
+
+	return SUCCESS;
+}
+static t_status ft_process_and_tokenize(t_shell *shell)
+{
+	size_t i = 0;
+	size_t start = 0;
+	int is_export = 0;
+
+	if (!shell || !shell->input)
+		return ERROR;
+
 	while (shell->input[i])
 	{
 		if (ft_is_space(shell->input[i]))
+		{
 			i++;
+		}
 		else if (ft_is_operator(shell->input[i]))
 		{
-			if (ft_handle_operator(shell, &i, quoted_status) == ERROR)
-				return (ERROR);
+			if (is_export)
+				is_export = 0;
+			start = i;
+			if (ft_is_double_operator(shell->input + i))
+				i += 2;
+			else
+				i++;
+			if (ft_create_and_add_token(shell, start, i, 0) != SUCCESS)
+				return ERROR;
 		}
-		else if (ft_handle_word(shell, &i, &quoted_status) == ERROR)
-			return (ERROR);
+		else
+		{
+			start = i;
+			if (ft_strncmp(shell->input + i, "export", 6) == 0 &&
+				(ft_is_space(shell->input[i + 6]) || shell->input[i + 6] == '\0'))
+			{
+				is_export = 1;
+				i += 6;
+				if (ft_create_and_add_token(shell, start, i, 0) != SUCCESS)
+					return ERROR;
+			}
+			else
+			{
+				if (is_export)
+				{
+					while (shell->input[i] && !ft_is_space(shell->input[i]) && !ft_is_operator(shell->input[i]))
+						i++;
+					if (ft_create_and_add_token(shell, start, i, 0) != SUCCESS)
+						return ERROR;
+				}
+				else
+				{
+					if (ft_process_word_token(shell, &i) != SUCCESS)
+						return ERROR;
+				}
+			}
+		}
 	}
-	return (SUCCESS);
-}
 
-/**
- * @brief Processes an operator token in the shell input and adds it to the token
- * list.
- *
- * This function identifies an operator in the shell's input starting from the
- * current index and continues until a non-operator character is encountered. It
- * then creates and adds a new token representing the operator to the shell's
- * token list. The function takes into account whether the operator is quoted.
- *
- * @param shell A pointer to the shell structure containing the input string.
- * @param i A pointer to the current index in the input string, which will be
- *          updated to the index after the processed operator.
- * @param quoted_status An integer indicating the quoted status of the operator.
- *
- * @return Returns SUCCESS if the operator token is successfully created and
- *         added;
- *         otherwise, returns ERROR.
- */
-static t_status	ft_handle_operator(t_shell *shell, size_t *i, int quoted_status)
-{
-	size_t	start;
-
-	start = *i;
-	while (ft_is_operator(shell->input[*i]))
-		(*i)++;
-	if (ft_create_and_add_token(shell, start, *i, quoted_status) == ERROR)
-		return (ERROR);
-	return (SUCCESS);
+	return SUCCESS;
 }

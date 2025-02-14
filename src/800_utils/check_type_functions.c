@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 14:55:14 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/12 08:28:13 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/14 15:25:41 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,20 @@
 int	ft_is_operator(char c)
 {
 	return (c == '|' || c == '<' || c == '>');
+}
+
+/**
+ * @brief Checks if a string is a double shell operator.
+ *
+ * Checks if a given string is either "<<" or ">>".
+ *
+ * @param str String to be checked.
+ *
+ * @return 1 if the string is a double operator, 0 otherwise.
+ */
+int	ft_is_double_operator(const char *str)
+{
+	return (ft_strncmp(str, "<<", 2) == 0 || ft_strncmp(str, ">>", 2) == 0);
 }
 
 /**

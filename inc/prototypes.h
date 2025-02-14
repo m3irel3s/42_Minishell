@@ -63,8 +63,6 @@ t_status		ft_handle_word(t_shell *shell, size_t *i, int *quoted_status);
 //                              TOKEN UTILITIES                               //
 //============================================================================//
 /* 510_tokenization/tokens_utils.c */
-void			ft_add_token_to_list(t_shell *shell, t_token *new_token);
-t_token			*ft_create_token(char *value, t_token_type type);
 t_token_type	ft_determine_token_type(char *value, size_t len);
 
 /* 510_tokenization/tokens_utils_2.c */
@@ -82,7 +80,7 @@ t_status		ft_validate_syntax(t_token *token);
 //                             VARIABLE EXPANSION                             //
 //============================================================================//
 /* 530_expansion/expand.c */
-void			ft_expand_tokens(t_shell *shell);
+
 
 //============================================================================//
 //                               REDIRECTIONS                                 //
@@ -157,6 +155,7 @@ int				ft_check_var_chars(char *var);
 //============================================================================//
 /* 800_utils/check_type_functions.c */
 int				ft_is_operator(char c);
+int				ft_is_double_operator(const char *str);
 int				ft_is_space(char c);
 int				ft_is_quote(char c);
 int				ft_is_command(char *value, size_t len);
