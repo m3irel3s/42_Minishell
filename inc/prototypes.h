@@ -110,15 +110,24 @@ void			ft_echo(t_shell *shell);
 /* 610_builtins/cd.c */
 void			ft_cd(t_shell *shell);
 
+
 /* 610_builtins/env.c */
 void			ft_env(t_shell *shell);
+
 /* pwd.c */
 void			ft_pwd(t_shell *shell);
+
 /* export.c */
 void			ft_export(t_shell *shell);
+void			ft_add_var_to_env(t_shell *shell, char *var, char *value);
+
 /* export_print.c */
 void			ft_print_export(char **export);
 char			**ft_sort_export(char **export);
+
+/* unset.c */
+void			ft_unset(t_shell *shell);
+
 /* exit.c */
 void			ft_exit(t_shell *shell);
 
@@ -138,15 +147,17 @@ void			ft_free_arr(char **arr);
 /* 800_utils*/
 /* env_utils.c */
 char			**ft_duplicate_env(char **envp);
+int				ft_get_env_size(t_shell *shell);
+
+/* variable_utils.c */
+int				ft_get_str_length(char *str1, char *str2);
 char			*ft_get_var_value(char *var, char **env);
 int				ft_get_var_index(char *var, char **env);
-void			ft_set_var_value(char *var, char *value, t_shell *shell);
 char			*ft_get_var_name(char *str);
-/* env_utils_2.c */
-int				ft_get_env_size(t_shell *shell);
-void			ft_add_var_to_env(char *var, char *value, t_shell *shell);
-int				ft_get_str_length(char *str1, char *str2);
 
+/* variable_utils_2.c */
+char			*ft_update_var(char *var, char *value);
+void			ft_update_or_add_var(char *var, char *value, t_shell *shell);
 
 
 
