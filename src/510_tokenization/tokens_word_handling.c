@@ -6,122 +6,75 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:51:19 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/14 10:07:36 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/14 13:39:39 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 t_command_type	ft_determine_command_type(char *command);
-static t_status	ft_handle_word_process(t_shell *shell,
-	size_t *i, size_t start, char **word, int *quoted_status);
+static int ft_is_export_terminator(const char *word);
 
-
-/**
- * @brief Handles a word in the shell input and adds it to the token list.
- *
- * This function processes a word in the shell's input string and creates a new
- * token representing the word. It determines if the word was inside quotes and
- * sets the quoted status of the token accordingly. If the shell is in export
- * mode, the function processes the word as an export assignment and sets the
- * shell's in_export flag to 0. Otherwise, the function adds the new token to the
- * shell's token list. The function returns SUCCESS if successful, otherwise it
- * returns ERROR.
- *
- * @param shell A pointer to the shell structure containing the input string.
- * @param i A pointer to the current index in the input string, which will be
- *          updated to the index after the processed word.
- *
- * @return Returns SUCCESS if the word token is successfully created and added;
- *         otherwise, returns ERROR.
- */
-t_status	ft_handle_word(t_shell *shell, size_t *i, int *quoted_status)
+t_status ft_handle_word(t_shell *shell, size_t *i, int *q_stat)
 {
-	size_t		start;
-	char		*word;
-	t_status	status;
-	t_token		*new_token;
-	char		*trimmed;
+	t_token *new_token;
+	char    *word;
+	size_t  start = *i;
+	char    quote_char = 0;
 
-	start = *i;
-	status = ft_handle_word_process(shell, i, start, &word, quoted_status);
-	if (status != SUCCESS)
-		return (status);
-	new_token = ft_create_token(word, WORD);
-	if (*quoted_status)
+	while (shell->input[*i])
 	{
-		new_token->quoted = *quoted_status;
-		trimmed = ft_strtrim(word, "'\"");
-		free(new_token->value);
-		new_token->value = trimmed;
-	}
-	else
-		new_token->quoted = 0;
-	ft_add_token_to_list(shell, new_token);
-	free(word);
-	return (status);
-}
-
-
-/**
- * @brief Processes a word in the shell input and handles quotes.
- *
- * This function takes a pointer to the current index in the shell's input
- * string and advances it until a space or a special character is encountered.
- * It also handles quoted strings by tracking whether the word is inside single
- * or double quotes. Finally, it determines if the word is an export command and
- * sets the shell's in_export flag accordingly.
- *
- * @param shell A pointer to the shell structure containing the input string.
- * @param i A pointer to the current index in the input string, which will be
- *          updated to the index after the processed word.
- * @param start The starting index for the word in the input string.
- * @param word A pointer to a pointer that will hold the processed word.
- *
- * @return Returns SUCCESS if the word is successfully processed;
- *         otherwise, returns ERROR.
- */
-static t_status	ft_handle_word_process(t_shell *shell,
-	size_t *i, size_t start, char **word, int *quoted_status)
-{
-	size_t			temp_i;
-	char			quote_char;
-
-	temp_i = *i;
-	quote_char = 0;
-	while (shell->input[temp_i])
-	{
-		if (!*quoted_status && ft_is_space(shell->input[temp_i]))
-			break;
-		if (ft_is_quote(shell->input[temp_i]))
+		if (ft_is_quote(shell->input[*i]))
 		{
-			if (!*quoted_status)
+			if (!*q_stat)
 			{
-				quote_char = shell->input[temp_i];
-				if (quote_char == '\'')
-					*quoted_status = 1;
-				else
-					*quoted_status = 2;
+				quote_char = shell->input[*i];
+				*q_stat = 1;
 			}
-			else if (shell->input[temp_i] == quote_char)
+			else if (shell->input[*i] == quote_char)
 			{
-				*quoted_status = 0;
-				quote_char = 0;
+				*q_stat = 0;
+				if (!shell->in_export && *i > start)
+				{
+					// End of a quoted string, create a token
+					word = ft_substr(shell->input, start, *i - start + 1);
+					new_token = ft_create_token(word, WORD);
+					new_token->quoted = (quote_char == '\'') ? 1 : 2; // 1 for single quotes, 2 for double quotes
+					free(word);
+					if (!new_token)
+						return (ERROR);
+					ft_add_token_to_list(shell, new_token);
+					(*i)++;
+					start = *i;
+					continue;
+				}
 			}
 		}
-		temp_i++;
+		else if (!*q_stat && (ft_is_space(shell->input[*i]) || ft_is_operator(shell->input[*i])))
+		{
+			break;
+		}
+		(*i)++;
 	}
-	if (*quoted_status)
+
+	if (*i > start)
 	{
-		ft_putstr_fd("minishell: error: unmatched quote\n", STDERR_FILENO);
-		return (ERROR);
+		word = ft_substr(shell->input, start, *i - start);
+		new_token = ft_create_token(word, WORD);
+		new_token->quoted = *q_stat ? ((quote_char == '\'') ? 1 : 2) : 0;
+		free(word);
+		if (!new_token)
+			return (ERROR);
+		if (ft_determine_command_type(new_token->value) == EXPORT_CMD)
+			shell->in_export = 1;
+		if (shell->in_export && ft_is_export_terminator(new_token->value))
+			shell->in_export = 0;
+		ft_add_token_to_list(shell, new_token);
 	}
-	*word = ft_substr(shell->input, start, temp_i - start);
-	if (!*word)
-		return (ERROR);
-	*i = temp_i;
+
 	return (SUCCESS);
 }
+
 
 /**
  * @brief Determines the command type of the given command.
@@ -150,4 +103,26 @@ t_command_type	ft_determine_command_type(char *command)
 		return (EXIT_CMD);
 	else
 		return (NONE);
+}
+
+static int	ft_is_export_terminator(const char *word)
+{
+	const char	*terminators[] = {
+		"|", "'|'", "\"|\"",
+		">", "'>'", "\">\"",
+		">>", "'>>'", "\">>\"",
+		"<", "'<'", "\"<\"",
+		"<<", "'<<'", "\"<<\"",
+		NULL
+	};
+	int			i;
+
+	i = 0;
+	while (terminators[i])
+	{
+		if (ft_strcmp(word, terminators[i]) == 0)
+			return (1);
+		i++;
+	}
+	return (0);
 }

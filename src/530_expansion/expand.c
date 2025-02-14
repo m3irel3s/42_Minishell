@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:55:08 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/14 10:05:57 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/14 12:18:20 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static char	*ft_expand_variables(char *input, char **envp);
 static char	*ft_expand_variable(char *input, size_t *i, char **envp);
-static char	*ft_append_char(char *result, char c);
 static void ft_handle_word_splitting(t_token *current, char *expanded);
 
 /**
@@ -128,24 +127,42 @@ static void	ft_handle_word_splitting(t_token *current, char *expanded)
  * @return A new string with all variables expanded. The caller is responsible
  * for freeing the returned string.
  */
-static char	*ft_expand_variables(char *input, char **envp)
+static char *ft_expand_variables(char *input, char **envp)
 {
-	char	*result;
-	char	*temp;
-	size_t	i;
+	char *result;
+	char *temp;
+	size_t i;
+	size_t last_pos;
 
 	result = ft_strdup_safe("");
 	i = 0;
+	last_pos = 0;
 	while (input[i])
 	{
 		if (input[i] == '$' && (ft_isalpha(input[i + 1]) ||
 			input[i + 1] == '_' || input[i + 1] == '{'))
-			temp = ft_expand_variable(input, &i, envp);
-		else
-			temp = ft_append_char(result, input[i++]);
-		if (result)
+		{
+			temp = ft_strjoin(result, ft_substr(input, last_pos, i - last_pos));
 			free(result);
-		result = ft_strdup_safe(temp);
+			result = temp;
+			temp = ft_expand_variable(input, &i, envp);
+			char *new_result = ft_strjoin(result, temp);
+			free(result);
+			free(temp);
+			result = new_result;
+
+			last_pos = i;
+		}
+		else
+		{
+			i++;
+		}
+	}
+	if (last_pos < i)
+	{
+		temp = ft_strjoin(result, ft_substr(input, last_pos, i - last_pos));
+		free(result);
+		result = temp;
 	}
 	return (result);
 }
@@ -193,24 +210,4 @@ static char	*ft_expand_variable(char *input, size_t *i, char **envp)
 	if (!var_value)
 		return (ft_strdup_safe(""));
 	return (ft_strjoin("", var_value));
-}
-
-/**
- * Appends a single character to the end of a string, freeing the original string
- * in the process.
- *
- * @param result The string to append to.
- * @param c The character to append.
- *
- * @return The new string with the character appended.
- */
-static char	*ft_append_char(char *result, char c)
-{
-	char	str[2];
-	char	*temp;
-
-	str[0] = c;
-	str[1] = '\0';
-	temp = ft_strjoin(result, str);
-	return (temp);
 }

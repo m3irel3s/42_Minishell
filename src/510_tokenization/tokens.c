@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/14 10:06:24 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/14 11:22:23 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,15 +95,10 @@ static t_status	ft_process_and_tokenize(t_shell *shell)
 static t_status	ft_handle_operator(t_shell *shell, size_t *i, int quoted_status)
 {
 	size_t	start;
-	char	*op_str;
 
 	start = *i;
 	while (ft_is_operator(shell->input[*i]))
 		(*i)++;
-	op_str = ft_substr(shell->input, start, *i - start);
-	if (ft_strcmp(op_str, "|") == 0)
-		shell->in_export = 0;
-	free(op_str);
 	if (ft_create_and_add_token(shell, start, *i, quoted_status) == ERROR)
 		return (ERROR);
 	return (SUCCESS);
