@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:55:08 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/14 09:02:04 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/14 10:05:57 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,11 @@ void	ft_expand_tokens(t_shell *shell)
 		{
 			expanded = ft_expand_variables(current->value, shell->dup_env);
 			if (current->quoted == 0)
-			{
 				ft_handle_word_splitting(current, expanded);
-			}
 			else
 			{
 				free(current->value);
-				current->value = expanded;
+				current->value = ft_strdup_safe(expanded);
 			}
 		}
 		current = current->next;
@@ -109,8 +107,8 @@ static void	ft_handle_word_splitting(t_token *current, char *expanded)
 	else
 	{
 		free(current->value);
-		current->value = expanded;
-		if (split_words)  // Add this to prevent leak
+		current->value = ft_strdup_safe(expanded);
+		if (split_words)
 			ft_free_arr(split_words);
 	}
 }
@@ -145,8 +143,9 @@ static char	*ft_expand_variables(char *input, char **envp)
 			temp = ft_expand_variable(input, &i, envp);
 		else
 			temp = ft_append_char(result, input[i++]);
-		free(result);
-		result = temp;
+		if (result)
+			free(result);
+		result = ft_strdup_safe(temp);
 	}
 	return (result);
 }
@@ -213,6 +212,5 @@ static char	*ft_append_char(char *result, char c)
 	str[0] = c;
 	str[1] = '\0';
 	temp = ft_strjoin(result, str);
-	free(result);
 	return (temp);
 }

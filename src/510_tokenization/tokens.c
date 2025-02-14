@@ -6,14 +6,13 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/12 22:29:00 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/14 10:06:24 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 static t_status	ft_process_and_tokenize(t_shell *shell);
-static t_status	ft_handle_quote(t_shell *shell, size_t *i, int *quoted_status);
 static t_status	ft_handle_operator(t_shell *shell, size_t *i,
 					int quoted_status);
 
@@ -64,11 +63,6 @@ static t_status	ft_process_and_tokenize(t_shell *shell)
 	{
 		if (ft_is_space(shell->input[i]))
 			i++;
-		else if (ft_is_quote(shell->input[i]))
-		{
-			if (ft_handle_quote(shell, &i, &quoted_status) == ERROR)
-				return (ERROR);
-		}
 		else if (ft_is_operator(shell->input[i]))
 		{
 			if (ft_handle_operator(shell, &i, quoted_status) == ERROR)
@@ -76,57 +70,6 @@ static t_status	ft_process_and_tokenize(t_shell *shell)
 		}
 		else if (ft_handle_word(shell, &i, &quoted_status) == ERROR)
 			return (ERROR);
-	}
-	return (SUCCESS);
-}
-
-static t_status ft_handle_quote(t_shell *shell, size_t *i, int *quoted_status)
-{
-	size_t start;
-	char quote_char;
-	t_status status;
-	t_token *last_token;
-	char *word;
-
-	quote_char = shell->input[*i];
-	if (quote_char == '\'')
-		*quoted_status = 1;
-	else
-		*quoted_status = 2;
-	start = *i + 1;
-	(*i)++;
-	while (shell->input[*i] && shell->input[*i] != quote_char)
-		(*i)++;
-	if (!shell->input[*i])
-	{
-		ft_putstr_fd("minishell: error: unmatched quote\n", STDERR_FILENO);
-		return (ERROR);
-	}
-	if (ft_create_and_add_token(shell, start, *i, *quoted_status) == ERROR)
-		return (ERROR);
-	(*i)++;
-	*quoted_status = 0;
-	if (shell->in_export)
-	{
-		last_token = shell->tokens;
-		while (last_token && last_token->next)
-			last_token = last_token->next;
-		if (last_token && last_token->quoted)
-		{
-			word = ft_strdup(last_token->value);
-			if (!word)
-				return (ERROR);
-			status = ft_process_export_assignment(shell, word);
-			free(word);
-			if (status != SUCCESS)
-				return (status);
-			if (last_token->prev)
-				last_token->prev->next = NULL;
-			else
-				shell->tokens = NULL;
-			free(last_token->value);
-			free(last_token);
-		}
 	}
 	return (SUCCESS);
 }

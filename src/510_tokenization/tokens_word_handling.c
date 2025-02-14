@@ -6,13 +6,13 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:51:19 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/13 21:55:05 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/14 10:07:36 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static t_command_type	ft_determine_command_type(char *command);
+t_command_type	ft_determine_command_type(char *command);
 static t_status	ft_handle_word_process(t_shell *shell,
 	size_t *i, size_t start, char **word, int *quoted_status);
 
@@ -57,16 +57,11 @@ t_status	ft_handle_word(t_shell *shell, size_t *i, int *quoted_status)
 	}
 	else
 		new_token->quoted = 0;
-	if (shell->in_export)
-	{
-		status = ft_process_export_assignment(shell, word);
-		shell->in_export = 0;
-	}
-	else
-		ft_add_token_to_list(shell, new_token);
+	ft_add_token_to_list(shell, new_token);
 	free(word);
 	return (status);
 }
+
 
 /**
  * @brief Processes a word in the shell input and handles quotes.
@@ -90,7 +85,6 @@ static t_status	ft_handle_word_process(t_shell *shell,
 	size_t *i, size_t start, char **word, int *quoted_status)
 {
 	size_t			temp_i;
-	t_command_type	command_type;
 	char			quote_char;
 
 	temp_i = *i;
@@ -125,25 +119,6 @@ static t_status	ft_handle_word_process(t_shell *shell,
 	*word = ft_substr(shell->input, start, temp_i - start);
 	if (!*word)
 		return (ERROR);
-	command_type = ft_determine_command_type(*word);
-	if (command_type == EXPORT_CMD)
-	{
-		while (shell->input[temp_i] && !ft_is_space(shell->input[temp_i]))
-		{
-			if (ft_is_quote(shell->input[temp_i]))
-			{
-				char quote = shell->input[temp_i++];
-				while (shell->input[temp_i] && shell->input[temp_i] != quote)
-					temp_i++;
-				if (shell->input[temp_i] == quote)
-					temp_i++;
-			}
-			else
-				temp_i++;
-		}
-		free(*word);
-		*word = ft_substr(shell->input, start, temp_i - start);
-	}
 	*i = temp_i;
 	return (SUCCESS);
 }
@@ -157,7 +132,7 @@ static t_status	ft_handle_word_process(t_shell *shell,
  *
  * @return Returns the corresponding command type.
  */
-static t_command_type	ft_determine_command_type(char *command)
+t_command_type	ft_determine_command_type(char *command)
 {
 	if (ft_strncmp(command, "echo", 5) == 0)
 		return (ECHO_CMD);

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 22:10:51 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/13 21:53:20 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/14 10:06:39 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,4 @@
  * @return Returns SUCCESS if the word is successfully processed, ERROR
  *         otherwise.
  */
-t_status ft_process_export_assignment(t_shell *shell, char *word)
-{
-	t_token *new_token;
 
-	new_token = ft_create_token(word, WORD);
-	if (!new_token)
-		return (ERROR);
-	ft_add_token_to_list(shell, new_token);
-	return (SUCCESS);
-}
