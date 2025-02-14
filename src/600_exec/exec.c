@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/13 17:33:41 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/14 10:26:09 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	ft_handle_exec(t_shell *shell)
 	if (!curr || !curr->value)
 		return ;
 	cmd = ft_get_cmd_type(curr->value);
-	if (cmd == CMD_EXEC)
-		ft_execute_external(shell);
-	else if (cmd == CMD_ECHO)
+	// if (cmd == CMD_EXEC)
+	// 	ft_execute_external(shell);
+	if (cmd == CMD_ECHO)
 		ft_echo(shell);
 	else if (cmd == CMD_CD)
 		ft_cd(shell);
@@ -42,25 +42,25 @@ void	ft_handle_exec(t_shell *shell)
 }
 void	ft_execute_input(t_shell *shell)
 {
-	int	saved_stdin;
-	int	saved_stdout;
-
-	saved_stdin = dup(STDIN_FILENO);
-	saved_stdout = dup(STDOUT_FILENO);
-	if (saved_stdin == -1 || saved_stdout == -1)
-	{
-		ft_putstr_fd("minishell: error duplicating file descriptors\n", STDERR_FILENO);
-		return ;
-	}
-
-	ft_handle_redirections(shell);
 	ft_handle_exec(shell);
+	// int	saved_stdin;
+	// int	saved_stdout;
 
-	if (dup2(saved_stdin, STDIN_FILENO) == -1 || dup2(saved_stdout, STDOUT_FILENO) == -1)
-		ft_putstr_fd("minishell: error restoring file descriptors\n", STDERR_FILENO);
+	// saved_stdin = dup(STDIN_FILENO);
+	// saved_stdout = dup(STDOUT_FILENO);
+	// if (saved_stdin == -1 || saved_stdout == -1)
+	// {
+	// 	ft_putstr_fd("minishell: error duplicating file descriptors\n", STDERR_FILENO);
+	// 	return ;
+	// }
 
-	close(saved_stdin);
-	close(saved_stdout);
+	// ft_handle_redirections(shell);
+
+	// if (dup2(saved_stdin, STDIN_FILENO) == -1 || dup2(saved_stdout, STDOUT_FILENO) == -1)
+		// ft_putstr_fd("minishell: error restoring file descriptors\n", STDERR_FILENO);
+	//
+	// close(saved_stdin);
+	// close(saved_stdout);
 }
 
 t_cmd_type	ft_get_cmd_type(char *cmd)

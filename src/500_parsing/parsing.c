@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:29:46 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/13 14:35:21 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/14 10:23:42 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ int	ft_parse_input(t_shell *shell)
 	ft_create_redirection_list(shell);
 	return (SUCCESS);
 }
-	/*while (current)
+
+/* current = shell->tokens;
+	while (current)
 	{
 		printf("this is token: %s, type: ", current->value);
 		switch (current->type)
@@ -76,5 +78,4 @@ int	ft_parse_input(t_shell *shell)
 		printf("\n");
 		current = current->next;
 	}
-	current = shell->tokens;*/
-
+	current = shell->tokens; */
