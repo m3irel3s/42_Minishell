@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/14 12:25:44 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/14 12:30:02 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@
 	// 0 no quote
 	// 1 single quote
 	// 2 double quote
-
-// Handles for simple export cmd
-// Handles the creation 
-
 
 void	ft_export(t_shell *shell)
 {
