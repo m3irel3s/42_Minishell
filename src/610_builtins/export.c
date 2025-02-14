@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/14 13:52:30 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/14 16:19:07 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void	ft_add_var_to_env(t_shell *shell, char *var, char *value)
 	new_env[++i] = NULL;
 	shell->env_cpy = new_env;
 }
+
 // ### Function to handle the append += 
 // ### ex: a=ola a+=ola res: a=olaola
 // ### Still an error variable needs to be received without the + , ft_substr might help

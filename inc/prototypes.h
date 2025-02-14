@@ -127,6 +127,9 @@ void			ft_add_var_to_env(t_shell *shell, char *var, char *value);
 void			ft_print_export(char **export);
 char			**ft_sort_export(char **export);
 
+/* unset.c */
+void			ft_unset(t_shell *shell);
+
 /* exit.c */
 void			ft_exit(t_shell *shell);
 

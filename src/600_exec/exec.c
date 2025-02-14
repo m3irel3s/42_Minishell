@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/14 10:32:53 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/14 16:19:33 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	ft_handle_exec(t_shell *shell)
 		ft_env(shell);
 	else if (cmd == CMD_EXIT)
 		ft_exit(shell);
-	// else if (cmd == CMD_UNSET)
-		// ft_unset(shell);
+	else if (cmd == CMD_UNSET)
+		ft_unset(shell);
 	else
 		ft_putstr_fd("minishell: command not found\n", STDERR_FILENO);
 }

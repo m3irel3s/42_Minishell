@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/14 11:56:04 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/14 16:16:12 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,6 +88,7 @@ SRCS = \
 	   ${SRC_PATH}/610_builtins/pwd.c \
 	   ${SRC_PATH}/610_builtins/export.c \
 	   ${SRC_PATH}/610_builtins/export_print.c \
+	   ${SRC_PATH}/610_builtins/unset.c \
 	   ${SRC_PATH}/610_builtins/exit.c \
 	   ${SRC_PATH}/700_clean/clean.c \
 	   ${SRC_PATH}/800_utils/env_utils.c \
