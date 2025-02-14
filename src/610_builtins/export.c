@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/14 10:22:54 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/14 10:34:38 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	ft_export(t_shell *shell)
 		curr = curr->next;
 	}
 	curr = shell->tokens;
-	// Handle 'export' without arguments
 	if (!curr->next)
 	{
 		export = ft_duplicate_env(shell->dup_env);
@@ -67,6 +66,18 @@ void	ft_export(t_shell *shell)
 		ft_free_arr(export);
 		return;
 	}
-
+	while (curr->next)
+	{
+		char	*var;
+		char	*value;
+		curr = curr->next;
+		if(ft_check_var_chars(curr->value) == SUCCESS)
+			ft_printf(1, "Chars ok\n");
+		var = ft_get_var_name(curr->value);
+		printf("var=> %s\n", var);
+		value = curr->value + (ft_strlen(var) + 1);
+		printf("value=> %s\n", value);
+		ft_set_var_value(var, value, shell);
+	}
 }
 

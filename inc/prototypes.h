@@ -98,6 +98,10 @@ void			ft_handle_redirections(t_shell *shell);
 //============================================================================//
 /* 600_exec/exec.c */
 void			ft_execute_input(t_shell *shell);
+void			ft_handle_exec(t_shell *shell);
+t_cmd_type		ft_get_cmd_type(char *cmd);
+
+
 
 //============================================================================//
 //                               BUILT-IN COMMANDS                            //
