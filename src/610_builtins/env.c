@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:15:19 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/12 15:43:08 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/14 11:51:17 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_env(t_shell *shell)
 	int		i;
 
 	i = 0;
-	env = shell->dup_env;
+	env = shell->env_cpy;
 	while (env[i])
 	{
 		res = env[i];

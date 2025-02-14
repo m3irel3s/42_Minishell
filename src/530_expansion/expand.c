@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:55:08 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/14 10:05:57 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/14 11:51:17 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_expand_tokens(t_shell *shell)
 	{
 		if (current->type == WORD && current->quoted != 1)
 		{
-			expanded = ft_expand_variables(current->value, shell->dup_env);
+			expanded = ft_expand_variables(current->value, shell->env_cpy);
 			if (current->quoted == 0)
 				ft_handle_word_splitting(current, expanded);
 			else

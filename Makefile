@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/13 15:23:00 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/14 11:56:04 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,7 +91,8 @@ SRCS = \
 	   ${SRC_PATH}/610_builtins/exit.c \
 	   ${SRC_PATH}/700_clean/clean.c \
 	   ${SRC_PATH}/800_utils/env_utils.c \
-	   ${SRC_PATH}/800_utils/env_utils_2.c \
+	   ${SRC_PATH}/800_utils/variable_utils.c \
+	   ${SRC_PATH}/800_utils/variable_utils_2.c \
 	   ${SRC_PATH}/800_utils/export_utils.c \
        ${SRC_PATH}/800_utils/check_type_functions.c \
        ${SRC_PATH}/800_utils/safe_functions.c

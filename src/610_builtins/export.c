@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/14 10:34:38 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/14 12:25:44 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,45 +22,20 @@
 	// 1 single quote
 	// 2 double quote
 
+// Handles for simple export cmd
+// Handles the creation 
+
+
 void	ft_export(t_shell *shell)
 {
-		t_token *curr = shell->tokens;
-		char    **export = NULL;
+	t_token *curr;
+	char	**export;
 
-	while (curr)
-	{
-		printf("this is token: %s, type: ", curr->value);
-		switch (curr->type)
-		{
-			case WORD:
-				printf("WORD");
-				break;
-			case PIPE:
-				printf("PIPE");
-				break;
-			case REDIRECT_IN:
-				printf("REDIRECT_IN");
-				break;
-			case REDIRECT_OUT:
-				printf("REDIRECT_OUT");
-				break;
-			case REDIRECT_APPEND:
-				printf("REDIRECT_APPEND");
-				break;
-			case HEREDOC:
-				printf("HEREDOC");
-				break;
-			default:
-				printf("UNKNOWN");
-				break;
-		}
-		printf("\n");
-		curr = curr->next;
-	}
+	export = NULL;
 	curr = shell->tokens;
 	if (!curr->next)
 	{
-		export = ft_duplicate_env(shell->dup_env);
+		export = ft_duplicate_env(shell->env_cpy);
 		export = ft_sort_export(export);
 		ft_print_export(export);
 		ft_free_arr(export);
@@ -77,7 +52,31 @@ void	ft_export(t_shell *shell)
 		printf("var=> %s\n", var);
 		value = curr->value + (ft_strlen(var) + 1);
 		printf("value=> %s\n", value);
-		ft_set_var_value(var, value, shell);
+		ft_update_or_add_var(var, value, shell);
+		printf("env_size => %d\n", ft_get_env_size(shell));
+		printf("value of the last index => %s\n", shell->env_cpy[ft_get_env_size(shell) - 1]);
 	}
 }
 
+void	ft_add_var_to_env(t_shell *shell, char *var, char *value)
+{
+	char	**new_env;
+	char	**old_env;
+	int		new_size;
+	int		i;
+	
+	old_env = shell->env_cpy;
+	i = 0;
+	new_size = ft_get_env_size(shell) + 1;
+	new_env = ft_safe_malloc(sizeof(char *) * new_size);
+	while (old_env[i])
+	{
+		new_env[i] = ft_strdup(old_env[i]);
+		i++;
+	}
+	new_env[i] = ft_update_var(var, value);
+	printf("i => %d\n",i);
+	printf("new_size => %d\n",new_size);
+	new_env[++i] = NULL;
+	shell->env_cpy = new_env;
+}
