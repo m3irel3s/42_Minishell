@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/14 15:26:32 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/14 16:18:13 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,11 @@ static t_status ft_process_word_token(t_shell *shell, size_t *i)
 		}
 		(*i)++;
 	}
-
+	if (in_quotes)
+	{
+		ft_putstr_fd("minishell: syntax error: unmatched quote\n", 2);
+		return ERROR;
+	}
 	if (*i > start)
 	{
 		if (ft_create_and_add_token(shell, start, *i, 0) != SUCCESS)

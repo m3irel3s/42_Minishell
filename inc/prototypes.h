@@ -80,7 +80,7 @@ t_status		ft_validate_syntax(t_token *token);
 //                             VARIABLE EXPANSION                             //
 //============================================================================//
 /* 530_expansion/expand.c */
-
+t_status		ft_expand(t_shell *shell);
 
 //============================================================================//
 //                               REDIRECTIONS                                 //

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:29:46 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/14 15:28:49 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/14 15:51:17 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,9 @@ int	ft_parse_input(t_shell *shell)
 	// 		return (ERROR);
 	// 	current = current->next;
 	// }
-	while (current)
+	if (ft_expand(shell) == ERROR)
+		return (ERROR);
+			while (current)
 	{
 		printf("this is token: %s, type: ", current->value);
 		switch (current->type)
@@ -73,7 +75,6 @@ int	ft_parse_input(t_shell *shell)
 		current = current->next;
 	}
 	current = shell->tokens;
-	//ft_expand_tokens(shell);
 	current = shell->tokens;
 	//ft_create_redirection_list(shell);
 	return (SUCCESS);
