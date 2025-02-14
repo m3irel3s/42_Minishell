@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/14 10:34:38 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/14 16:22:21 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,37 +27,7 @@ void	ft_export(t_shell *shell)
 		t_token *curr = shell->tokens;
 		char    **export = NULL;
 
-	while (curr)
-	{
-		printf("this is token: %s, type: ", curr->value);
-		switch (curr->type)
-		{
-			case WORD:
-				printf("WORD");
-				break;
-			case PIPE:
-				printf("PIPE");
-				break;
-			case REDIRECT_IN:
-				printf("REDIRECT_IN");
-				break;
-			case REDIRECT_OUT:
-				printf("REDIRECT_OUT");
-				break;
-			case REDIRECT_APPEND:
-				printf("REDIRECT_APPEND");
-				break;
-			case HEREDOC:
-				printf("HEREDOC");
-				break;
-			default:
-				printf("UNKNOWN");
-				break;
-		}
-		printf("\n");
-		curr = curr->next;
-	}
-	curr = shell->tokens;
+	// Handle 'export' without arguments
 	if (!curr->next)
 	{
 		export = ft_duplicate_env(shell->dup_env);
