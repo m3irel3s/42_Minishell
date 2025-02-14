@@ -6,11 +6,14 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:15:01 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/14 16:19:33 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/14 16:50:37 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+// check if the var exists
+// 
 
 void	ft_unset(t_shell *shell)
 {
@@ -19,4 +22,9 @@ void	ft_unset(t_shell *shell)
 	curr = shell->tokens;
 	if (!curr->next)
 		return ;
+	while (curr->next)
+	{
+		
+	}
+	
 }

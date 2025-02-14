@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/14 16:19:07 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/14 17:06:25 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	ft_export(t_shell *shell)
 		var = ft_get_var_name(curr->value);
 		value = curr->value + (ft_strlen(var) + 1);
 		ft_update_or_add_var(var, value, shell);
+		free(var);
 	}
 }
 
@@ -73,6 +74,7 @@ void	ft_add_var_to_env(t_shell *shell, char *var, char *value)
 	}
 	new_env[i] = ft_update_var(var, value);
 	new_env[++i] = NULL;
+	free(shell->env_cpy);
 	shell->env_cpy = new_env;
 }
 
