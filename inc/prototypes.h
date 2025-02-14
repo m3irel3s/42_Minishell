@@ -53,11 +53,8 @@ int				ft_parse_input(t_shell *shell);
 /* 510_tokenization/tokens.c */
 int				ft_tokenize(t_shell *shell);
 
-/* 510_tokenization/process_export.c */
-t_status		ft_process_export_assignment(t_shell *shell, char *word);
-
-/* 510_tokenization/tokens_word_handling.c */
-t_status		ft_handle_word(t_shell *shell, size_t *i, int *quoted_status);
+/* 510_tokenization/tokens_export.c */
+t_status		ft_handle_export_token(t_shell *shell, size_t *i);
 
 //============================================================================//
 //                              TOKEN UTILITIES                               //
