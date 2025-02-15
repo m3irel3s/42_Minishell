@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:56:02 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/14 17:06:14 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/15 17:33:23 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	**ft_sort_export(char **export)
 	int		i;
 	int		j;
 	char	*temp;
+	char	*var_name1;
+	char	*var_name2;
 
 	j = 0;
 	while (export[j])
@@ -24,12 +26,16 @@ char	**ft_sort_export(char **export)
 		i = 0;
 		while (export[i + 1])
 		{
-			if (ft_strcmp(ft_get_var_name(export[i]), ft_get_var_name(export[i + 1])) > 0)
+			var_name1 = ft_get_var_name(export[i]);
+			var_name2 = ft_get_var_name(export[i + 1]);
+			if (ft_strcmp(var_name1, var_name2) > 0)
 			{
 				temp = export[i];
 				export[i] = export[i + 1];
 				export[i + 1] = temp;
 			}
+			free(var_name1);
+			free(var_name2);
 			i++;
 		}
 		j++;

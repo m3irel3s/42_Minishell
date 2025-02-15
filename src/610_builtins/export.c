@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/15 17:08:08 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/15 17:33:24 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_add_var_to_env(t_shell *shell, char *var, char *value)
 	new_env[i] = ft_update_var(var, value);
 	new_env[++i] = NULL;
 	ft_free_arr(old_env);
-	shell->env_cpy = new_env;
+	shell->env_cpy = ft_duplicate_env(new_env);
 }
 
 // ### Function to handle the append += 

@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:40:57 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/14 17:06:13 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/15 17:31:12 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,3 +63,5 @@ char	*ft_get_var_name(char *str)
 	res[i] = '\0';
 	return (res);
 }
+
+
