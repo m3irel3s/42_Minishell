@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:26:26 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/14 14:25:47 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/15 13:58:26 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	ft_create_and_add_token(t_shell *shell, size_t start,
 {
 	t_token	*new_token;
 
+	if (end - start == 0)
+		return (SUCCESS);
 	if (!shell || !shell->input)
 		return (ERROR);
 	new_token = ft_init_new_token(shell, start, end, quoted);
