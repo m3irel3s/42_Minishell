@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:29:46 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/14 10:35:16 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/15 16:41:50 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ int	ft_parse_input(t_shell *shell)
 	if (ft_tokenize(shell) != SUCCESS)
 		return (ERROR);
 	current = shell->tokens;
-	// while (current)
-	// {
-		// if (ft_validate_syntax(current) != SUCCESS)
-			// return (ERROR);
-		// current = current->next;
-	// }
+	while (current)
+	{
+		if (ft_validate_syntax(current) != SUCCESS)
+			return (ERROR);
+		current = current->next;
+	}
 	ft_expand_tokens(shell);
 	current = shell->tokens;
 	// ft_create_redirection_list(shell);

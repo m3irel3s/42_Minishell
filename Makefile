@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/15 16:23:47 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/15 16:56:10 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -181,6 +181,9 @@ val: deps $(NAME)
 
 gdb: all $(NAME)
 	gdb -tui -x .gdbinit ./$(NAME)
+
+test: all $(NAME)
+	./$(NAME)
 
 # gdb: all $(NAME)
 # 	tmux split-window -h "gdb --tui -x .gdbinit -ex 'set logging file gdb.txt' -ex 'set logging on' --args ./$(NAME)"

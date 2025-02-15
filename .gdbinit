@@ -22,9 +22,10 @@ file minishell
 
 # Set breakpoints
 break main
-break ft_export
-break ft_set_var_value
-break ft_add_var_to_env
+fs cmd
+# break ft_export
+# break ft_set_var_value
+# break ft_add_var_to_env
 
 # Show active breakpoints and watchpoints
 info break
