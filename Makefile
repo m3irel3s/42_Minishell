@@ -6,7 +6,7 @@
 #    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/14 17:28:58 by meferraz         ###   ########.fr        #
+#    Updated: 2025/02/15 09:20:16 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,7 @@ SRCS = \
        ${SRC_PATH}/500_parsing/parsing.c \
        ${SRC_PATH}/510_tokenization/tokens.c \
 	   ${SRC_PATH}/510_tokenization/tokens_export.c \
+	   ${SRC_PATH}/510_tokenization/tokens_word.c \
        ${SRC_PATH}/510_tokenization/tokens_utils.c \
        ${SRC_PATH}/510_tokenization/tokens_utils_2.c \
        ${SRC_PATH}/520_syntax_validation/syntax_validation.c \

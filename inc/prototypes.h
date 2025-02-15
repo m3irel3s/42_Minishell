@@ -56,6 +56,9 @@ int				ft_tokenize(t_shell *shell);
 /* 510_tokenization/tokens_export.c */
 t_status		ft_handle_export_token(t_shell *shell, size_t *i);
 
+/* 510_tokenization/tokens_word.c */
+t_status		ft_handle_word(t_shell *shell, size_t *index, int *is_export);
+
 //============================================================================//
 //                              TOKEN UTILITIES                               //
 //============================================================================//
