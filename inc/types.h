@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/14 12:19:38 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:44:23 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,13 @@ typedef struct s_token
 	struct s_token	*prev;
 }	t_token;
 
+typedef struct s_quote_info
+{
+	int		in_quotes;
+	char	quote_char;
+	int		quoted;
+}	t_quote_info;
+
 typedef struct s_redirect
 {
 	t_token_type		type;
@@ -74,6 +81,7 @@ typedef struct s_shell
 	t_token			*tokens;
 	t_redirect		*redirects;
 	int				in_export;
+	int				exit_status;
 } t_shell;
 
 #endif

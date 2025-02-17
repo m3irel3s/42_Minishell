@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/14 16:23:24 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/17 14:43:24 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,11 +72,15 @@ SRCS = \
        ${SRC_PATH}/400_signals/signals.c \
        ${SRC_PATH}/500_parsing/parsing.c \
        ${SRC_PATH}/510_tokenization/tokens.c \
+	   ${SRC_PATH}/510_tokenization/tokens_handlers.c \
+	   ${SRC_PATH}/510_tokenization/tokens_handlers_2.c \
+	   ${SRC_PATH}/510_tokenization/tokens_helpers.c \
        ${SRC_PATH}/510_tokenization/tokens_utils.c \
        ${SRC_PATH}/510_tokenization/tokens_utils_2.c \
        ${SRC_PATH}/520_syntax_validation/syntax_validation.c \
        ${SRC_PATH}/520_syntax_validation/syntax_validation_2.c \
        ${SRC_PATH}/530_expansion/expand.c \
+	   ${SRC_PATH}/530_expansion/expand_handle_dollar.c \
        ${SRC_PATH}/540_redirects/redirects_setting.c \
        ${SRC_PATH}/540_redirects/redirects_handling.c \
        ${SRC_PATH}/600_exec/exec.c \

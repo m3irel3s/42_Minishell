@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:59:06 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/14 11:51:17 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:44:33 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ void	ft_init_shell(t_shell *shell, char **envp)
 	shell->tokens = NULL;
 	shell->redirects = NULL;
 	shell->in_export = 0;
+	shell->exit_status = 0;
 }

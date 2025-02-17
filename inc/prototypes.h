@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz      +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/13 15:05:31 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:44:17 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,7 @@ int				ft_parse_input(t_shell *shell);
 //                              TOKENIZATION                                  //
 //============================================================================//
 /* 510_tokenization/tokens.c */
-int				ft_tokenize(t_shell *shell);
-
-/* 510_tokenization/process_export.c */
-t_status		ft_process_export_assignment(t_shell *shell, char *word);
-
-/* 510_tokenization/tokens_word_handling.c */
-t_status		ft_handle_word(t_shell *shell, size_t *i, int *quoted_status);
+t_status		ft_tokenize(t_shell *shell);
 
 //============================================================================//
 //                              TOKEN UTILITIES                               //
@@ -68,7 +62,30 @@ t_token_type	ft_determine_token_type(char *value, size_t len);
 /* 510_tokenization/tokens_utils_2.c */
 int				ft_create_and_add_token(t_shell *shell, size_t start, size_t end,
 								int quoted);
+t_token			*ft_init_new_token(t_shell *shell, size_t start, size_t end,
+								int quoted);
+void			ft_add_token_to_shell(t_shell *shell, t_token *new_token);
 
+//============================================================================//
+//                       TOKENIZATION - HELPERS FUNCTIONS                     //
+//============================================================================//
+/* 510_tokenization/tokens_helpers.c */
+int				ft_is_export_command(t_shell *shell, size_t i);
+t_status		ft_create_export_token(t_shell *shell, size_t *i, int *is_export);
+t_status		ft_print_unmatched_quote_error(void);
+
+//============================================================================//
+//                  TOKENIZATION - OPERATORS AND EXPORT ARGUMENTS             //
+//============================================================================//
+/* 510_tokenization/tokens_handlers.c */
+t_status		ft_handle_operator(t_shell *shell, size_t *i, int *is_export);
+t_status		ft_handle_export_arg(t_shell *shell, size_t *i);
+
+//============================================================================//
+//                       TOKENIZATION - WORD PROCESSING                       //
+//============================================================================//
+/* 510_tokenization/tokens_word_handlers.c */
+t_status		ft_handle_word(t_shell *shell, size_t *i);
 
 //============================================================================//
 //                             SYNTAX VALIDATION                              //
@@ -81,6 +98,9 @@ t_status		ft_validate_syntax(t_token *token);
 //============================================================================//
 /* 530_expansion/expand.c */
 t_status		ft_expand(t_shell *shell);
+
+/* 530_expansion/expand_handle_dollar.c */
+char			*ft_handle_dollar(t_shell *shell, char *token, size_t *i);
 
 //============================================================================//
 //                               REDIRECTIONS                                 //
@@ -114,21 +134,17 @@ void			ft_cd(t_shell *shell);
 /* 610_builtins/env.c */
 void			ft_env(t_shell *shell);
 
-/* pwd.c */
+/* 610_builtins/pwd.c */
 void			ft_pwd(t_shell *shell);
 
-/* export.c */
+/* 610_builtins/export.c */
 void			ft_export(t_shell *shell);
-void			ft_add_var_to_env(t_shell *shell, char *var, char *value);
 
-/* export_print.c */
+/* 610_builtins/export_print.c */
 void			ft_print_export(char **export);
 char			**ft_sort_export(char **export);
 
-/* unset.c */
-void			ft_unset(t_shell *shell);
-
-/* exit.c */
+/* 610_builtins/exit.c */
 void			ft_exit(t_shell *shell);
 
 //============================================================================//
@@ -143,9 +159,7 @@ void			ft_free_arr(char **arr);
 //============================================================================//
 //                       ENVIRONMENT VARIABLE UTILITIES                       //
 //============================================================================//
-
-/* 800_utils*/
-/* env_utils.c */
+/* 800_utils/env_utils.c */
 char			**ft_duplicate_env(char **envp);
 int				ft_get_env_size(t_shell *shell);
 
@@ -155,15 +169,13 @@ char			*ft_get_var_value(char *var, char **env);
 int				ft_get_var_index(char *var, char **env);
 char			*ft_get_var_name(char *str);
 
-/* variable_utils_2.c */
-char			*ft_update_var(char *var, char *value);
-void			ft_update_or_add_var(char *var, char *value, t_shell *shell);
+/* 800_utils/env_utils_2.c */
+int				ft_get_env_size(t_shell *shell);
+void			ft_add_var_to_env(char *var, char *value, t_shell *shell);
+int				ft_get_str_length(char *str1, char *str2);
 
-
-
-/* export_utils.c */
+/* 800_utils/export_utils.c */
 int				ft_check_var_chars(char *var);
-
 
 //============================================================================//
 //                      CHARACTER AND COMMAND TYPE CHECKS                     //
