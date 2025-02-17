@@ -6,13 +6,12 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:15:01 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/17 16:19:08 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/17 16:39:01 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-// check if the var exists
 
 static void	ft_remove_var_update_env(t_shell *shell, char *var);
 void	ft_unset(t_shell *shell)
