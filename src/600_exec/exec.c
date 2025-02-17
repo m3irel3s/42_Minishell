@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/17 14:56:16 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/17 19:16:47 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_handle_exec(t_shell *shell)
 	else if (cmd == CMD_CD)
 		ft_cd(shell);
 	else if (cmd == CMD_PWD)
-		ft_pwd(shell);
+		ft_pwd();
 	else if (cmd == CMD_EXPORT)
 		ft_export(shell);
 	else if (cmd == CMD_ENV)
