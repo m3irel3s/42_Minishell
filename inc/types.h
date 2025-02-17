@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/17 10:22:33 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/17 11:14:41 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct s_shell
 	t_token			*tokens;
 	t_redirect		*redirects;
 	int				in_export;
+	int				exit_status;
 } t_shell;
 
 #endif
