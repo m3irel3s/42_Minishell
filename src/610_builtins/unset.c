@@ -6,13 +6,12 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:15:01 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/14 17:32:04 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/17 16:39:01 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-// check if the var exists
 
 static void	ft_remove_var_update_env(t_shell *shell, char *var);
 void	ft_unset(t_shell *shell)
@@ -40,21 +39,16 @@ static void	ft_remove_var_update_env(t_shell *shell, char *var)
 	int		j;
 
 	i = 0;
+	j = 0;
 	var_index = ft_get_var_index(var, shell->env_cpy);
 	new_env = ft_safe_malloc(sizeof(char *) * (ft_get_env_size(shell) - 1));
-	while (i != var_index)
+	while (shell->env_cpy[i])
 	{
-		new_env[i] = shell->env_cpy[i];
+		if (i != var_index)
+			new_env[j++] = ft_strdup(shell->env_cpy[i]);
 		i++;
 	}
-	j = i;
-	i++;
-	if (shell->env_cpy[i])
-	{
-		while (shell->env_cpy[i])
-			new_env[j++] = shell->env_cpy[i++];
-		new_env[j] = NULL;
-	}
+	new_env[j] = NULL;
 	ft_free_arr(shell->env_cpy);
-	shell->env_cpy = new_env;
+	shell->env_cpy = ft_duplicate_env(new_env);
 }
