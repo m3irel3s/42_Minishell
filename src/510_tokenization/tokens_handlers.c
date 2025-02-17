@@ -6,15 +6,16 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 14:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/17 09:55:33 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/17 10:00:30 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static void ft_set_export_arg_index(t_shell *shell, size_t *i, int *quote_count, char *quote_char);
+static void	ft_set_export_arg_index(t_shell *shell, size_t *i,
+				int *quote_count, char *quote_char);
 
-t_status ft_handle_operator(t_shell *shell, size_t *i, int *is_export)
+t_status	ft_handle_operator(t_shell *shell, size_t *i, int *is_export)
 {
 	size_t	start;
 
@@ -45,7 +46,8 @@ t_status	ft_handle_export_arg(t_shell *shell, size_t *i)
 	return (ft_create_and_add_token(shell, start, *i, 0));
 }
 
-static void	ft_set_export_arg_index(t_shell *shell, size_t *i, int *quote_count, char *quote_char)
+static void	ft_set_export_arg_index(t_shell *shell, size_t *i,
+		int *quote_count, char *quote_char)
 {
 	while (shell->input[*i])
 	{
@@ -63,8 +65,9 @@ static void	ft_set_export_arg_index(t_shell *shell, size_t *i, int *quote_count,
 					*quote_char = 0;
 			}
 		}
-		else if (!*quote_count && (ft_is_space(shell->input[*i]) || ft_is_operator(shell->input[*i])))
-			break;
+		else if (!*quote_count && (ft_is_space(shell->input[*i])
+				|| ft_is_operator(shell->input[*i])))
+			break ;
 		(*i)++;
 	}
 }

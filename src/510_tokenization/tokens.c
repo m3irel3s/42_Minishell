@@ -6,13 +6,14 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/17 09:54:39 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/17 10:02:13 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static t_status ft_process_input_element(t_shell *shell, size_t *i, int *is_export);
+static t_status	ft_process_input_element(t_shell *shell, size_t *i,
+					int *is_export);
 
 t_status	ft_tokenize(t_shell *shell)
 {
@@ -36,8 +37,8 @@ t_status	ft_tokenize(t_shell *shell)
 	return (SUCCESS);
 }
 
-
-static t_status ft_process_input_element(t_shell *shell, size_t *i, int *is_export)
+static t_status	ft_process_input_element(t_shell *shell, size_t *i,
+		int *is_export)
 {
 	if (ft_is_operator(shell->input[*i]))
 	{
