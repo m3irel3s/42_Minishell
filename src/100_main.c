@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/13 14:40:32 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:32:32 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int	main(int argc, char **argv, char **envp)
 		if (shell.input == NULL)
 		{
 			write(1, "exit\n", 5);
+			if (shell.env_cpy)
+				ft_free_arr(shell.env_cpy);
 			break ;
 		}
 		if (*shell.input)

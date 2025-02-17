@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/17 14:43:24 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/17 14:45:27 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -176,24 +176,26 @@ get_libft:
 
 ##  Testing Rules  ##
 
-val:
+val: deps $(NAME)
 	valgrind $(V_ARGS) ./$(NAME)
 
 ##  Debugging Rules ##
 
 gdb: all $(NAME)
-	tmux split-window -h "gdb --tui --args --log-file=gdb.txt ./$(NAME)"
-	tmux resize-pane -L 5
-	make get_log
+	gdb -tui -x .gdbinit ./$(NAME)
 
-get_log:
-	rm -f gdb.txt
-	touch gdb.txt
-	@if command -v lnav; then \
-		lnav gdb.txt; \
-	else \
-		tail -f gdb.txt; \
-	fi
+test: all $(NAME)
+	./$(NAME)
+
+# gdb: all $(NAME)
+# 	tmux split-window -h "gdb --tui -x .gdbinit -ex 'set logging file gdb.txt' -ex 'set logging on' --args ./$(NAME)"
+# 	tmux resize-pane -L 5
+# 	make get_log
+
+# get_log:
+# 	rm -f gdb.txt
+# 	touch gdb.txt
+# 	lnav gdb.txt
 
 ##  Cleaning Rules  ##
 

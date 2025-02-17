@@ -1,38 +1,35 @@
-# #GDB Settings
-# set print pretty on
-# set print array on
+# Disable debuginfod prompts
+set debuginfod enabled off
 
-# set style enabled on
-# # set style highlight foreground red
-# # set style string foreground yellow
-# # set style comment foreground green
-# # set style function foreground magenta
+# Enable pending breakpoints
+set breakpoint pending on
 
+# Improve print readability
+set print pretty on
+set print array on
 
-# ### Info Stats
-# set logging on
-# # set trace-commands on
+# Enable syntax highlighting
+set style enabled on
 
-# # 100_main.c
-# define main
-	
-# end
+### Logging
+set logging on
+set logging overwrite on
+set logging redirect on
+set logging file gdb.txt
 
-# #610_builtins
-# define ft_export
+# Load the program
+file minishell
 
-# end
-
-# define ft_duplicate_env
-
-# end
-
-# fs cmd
-# file minishell
-# break main
+# Set breakpoints
+break main
+fs cmd
 # break ft_export
 # break ft_set_var_value
 # break ft_add_var_to_env
 
-# info break
-# info watch
+# Show active breakpoints and watchpoints
+info break
+info watch
+
+# Automatically start the program (optional)
+run

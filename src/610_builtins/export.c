@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/14 16:26:35 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:47:10 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,11 @@ void	ft_export(t_shell *shell)
 		if(ft_check_var_chars(curr->value) == SUCCESS)
 			ft_printf(1, "Chars ok\n");
 		else
-		{
-			ft_printf(1, "Invalid chars\n");
-			return ;
-		}
+			continue ;
 		var = ft_get_var_name(curr->value);
 		value = curr->value + (ft_strlen(var) + 1);
 		ft_update_or_add_var(var, value, shell);
+		free(var);
 	}
 }
 
@@ -74,7 +72,8 @@ void	ft_add_var_to_env(t_shell *shell, char *var, char *value)
 	}
 	new_env[i] = ft_update_var(var, value);
 	new_env[++i] = NULL;
-	shell->env_cpy = new_env;
+	ft_free_arr(old_env);
+	shell->env_cpy = ft_duplicate_env(new_env);
 }
 
 // ### Function to handle the append += 
