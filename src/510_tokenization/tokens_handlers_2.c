@@ -6,16 +6,16 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 14:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/17 10:22:29 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/17 10:31:15 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 static t_status	ft_process_quoted_word(t_shell *shell, size_t *i,
-				size_t *start);
+					size_t *start);
 static t_status	ft_handle_quote(t_shell *shell, size_t *i, size_t *start,
-				t_quote_info *quote_info);
+					t_quote_info *quote_info);
 
 t_status	ft_handle_word(t_shell *shell, size_t *i)
 {
@@ -31,6 +31,7 @@ t_status	ft_handle_word(t_shell *shell, size_t *i)
 	}
 	return (SUCCESS);
 }
+
 static t_status	ft_process_quoted_word(t_shell *shell, size_t *i,
 		size_t *start)
 {
@@ -38,8 +39,8 @@ static t_status	ft_process_quoted_word(t_shell *shell, size_t *i,
 
 	quote_info.in_quotes = 0;
 	quote_info.quote_char = 0;
-	while (shell->input[*i] && ( (!ft_is_space(shell->input[*i])
-		&& !ft_is_operator(shell->input[*i])) || quote_info.in_quotes))
+	while (shell->input[*i] && ((!ft_is_space(shell->input[*i])
+				&& !ft_is_operator(shell->input[*i])) || quote_info.in_quotes))
 	{
 		if (ft_handle_quote(shell, i, start, &quote_info) != SUCCESS)
 			return (ERROR);
@@ -50,7 +51,7 @@ static t_status	ft_process_quoted_word(t_shell *shell, size_t *i,
 	return (SUCCESS);
 }
 
-static t_status ft_handle_quote(t_shell *shell, size_t *i,
+static t_status	ft_handle_quote(t_shell *shell, size_t *i,
 		size_t *start, t_quote_info *quote_info)
 {
 	if (shell->input[*i] == '\'' || shell->input[*i] == '"')
