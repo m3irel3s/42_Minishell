@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:04:18 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/17 18:43:35 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/17 19:31:13 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_set_prompt(void)
 	if (!user)
 		user = "user";
 	prompt = ft_build_prompt(user, cwd);
-	free(cwd);
+	ft_free(cwd);
 	return (prompt);
 }
 
@@ -58,7 +58,7 @@ char	*ft_get_current_directory(void)
 		return (NULL);
 	}
 	res = ft_strdup_safe(cwd);
-	free(cwd);
+	ft_free(cwd);
 	return (res);
 }
 

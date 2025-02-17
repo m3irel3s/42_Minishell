@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:56:02 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/17 18:14:27 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/17 19:31:13 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ char	**ft_sort_export(char **export)
 				export[i] = export[i + 1];
 				export[i + 1] = temp;
 			}
-			free(var_name1);
-			free(var_name2);
+			ft_free(var_name1);
+			ft_free(var_name2);
 			i++;
 		}
 		j++;
@@ -69,7 +69,7 @@ void	ft_output_export(char **export)
 		var = ft_get_var_name(res);
 		value = ft_get_var_value(var, export);
 		ft_printf(1, "declare - x %s=\"%s\"\n", var, value);
-		free(var);
+		ft_free(var);
 		i++;
 	}
 }
