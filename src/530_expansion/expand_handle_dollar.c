@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_handle_dollar.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 14:14:30 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/17 14:25:22 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:50:27 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static char	*ft_expand_variable(t_shell *shell, char *token, size_t *i,
 	var_name = ft_substr(token, start, *i - start);
 	if (!var_name)
 		return (ft_strdup("$"));
-	var_value = ft_get_var_value(var_name, shell->dup_env);
+	var_value = ft_get_var_value(var_name, shell->env_cpy);
 	free(var_name);
 	if (var_value)
 		res = ft_strdup_safe(var_value);
