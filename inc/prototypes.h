@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/17 09:08:22 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/17 09:53:56 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,20 +66,26 @@ t_token			*ft_init_new_token(t_shell *shell, size_t start, size_t end,
 								int quoted);
 void			ft_add_token_to_shell(t_shell *shell, t_token *new_token);
 
+//============================================================================//
+//                       TOKENIZATION - HELPERS FUNCTIONS                     //
+//============================================================================//
 /* 510_tokenization/tokens_helpers.c */
-void			ft_skip_spaces(const char *input, size_t *i);
 int				ft_is_export_command(t_shell *shell, size_t i);
 t_status		ft_create_export_token(t_shell *shell, size_t *i, int *is_export);
 t_status		ft_print_unmatched_quote_error(void);
 
-/* 510_tokenization/tokens_ops_handlers.c */
+//============================================================================//
+//                  TOKENIZATION - OPERATORS AND EXPORT ARGUMENTS             //
+//============================================================================//
+/* 510_tokenization/tokens_handlers.c */
 t_status		ft_handle_operator(t_shell *shell, size_t *i, int *is_export);
 t_status		ft_handle_export_arg(t_shell *shell, size_t *i);
 
+//============================================================================//
+//                       TOKENIZATION - WORD PROCESSING                       //
+//============================================================================//
 /* 510_tokenization/tokens_word_handlers.c */
-t_status		ft_handle_non_operator(t_shell *shell, size_t *i, int *is_export);
-t_status		ft_process_word(t_shell *shell, size_t *i);
-void			ft_update_quote_state(char c, int *in_quotes, char *quote_char);
+t_status		ft_handle_word(t_shell *shell, size_t *i);
 
 //============================================================================//
 //                             SYNTAX VALIDATION                              //

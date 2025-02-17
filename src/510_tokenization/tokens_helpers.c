@@ -6,17 +6,11 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 14:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/17 08:56:20 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/17 09:53:05 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-void	ft_skip_spaces(const char *input, size_t *i)
-{
-	while (input[*i] && ft_is_space(input[*i]))
-		(*i)++;
-}
 
 int	ft_is_export_command(t_shell *shell, size_t i)
 {
