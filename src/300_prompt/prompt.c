@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:04:18 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/11 13:42:46 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/17 18:43:35 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,17 @@ char	*ft_set_prompt(void)
 char	*ft_get_current_directory(void)
 {
 	char	*cwd;
+	char	*res;
 
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
+	{
 		cwd = ft_strdup_safe("unknown");
-	return (cwd);
+		return (NULL);
+	}
+	res = ft_strdup_safe(cwd);
+	free(cwd);
+	return (res);
 }
 
 /**
