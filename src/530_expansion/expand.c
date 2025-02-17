@@ -6,14 +6,14 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/17 12:34:41 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:22:22 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 static char	*ft_expand_token(t_shell *shell, char *token, int quoted);
-static char	*ft_handle_dollar(t_shell *shell, char *token, size_t *i,char **envp);
+static char	*ft_process_char(char *expanded_value, char c);
 
 t_status	ft_expand(t_shell *shell)
 {
@@ -36,9 +36,7 @@ t_status	ft_expand(t_shell *shell)
 static char	*ft_expand_token(t_shell *shell, char *token, int quoted)
 {
 	char	*expanded_value;
-	char	*new_expanded;
 	char	*temp;
-	char	c[2];
 	size_t	i;
 
 	expanded_value = ft_strdup("");
@@ -47,56 +45,30 @@ static char	*ft_expand_token(t_shell *shell, char *token, int quoted)
 	{
 		if (token[i] == '$' && quoted != 1)
 		{
-			temp = ft_handle_dollar(shell, token, &i, shell->dup_env);
+			temp = ft_handle_dollar(shell, token, &i);
 			if (temp)
 			{
-				new_expanded = ft_strjoin(expanded_value, temp);
-				free(expanded_value);
-				expanded_value = new_expanded;
+				expanded_value = ft_strjoin_gnl(expanded_value, temp);
 				free(temp);
 			}
 		}
 		else
 		{
-			c[0] = token[i];
-			c[1] = '\0';
-			new_expanded = ft_strjoin(expanded_value, c);
-			free(expanded_value);
-			expanded_value = new_expanded;
+			expanded_value = ft_process_char(expanded_value, token[i]);
 			i++;
 		}
 	}
 	return (expanded_value);
 }
 
-static char *ft_handle_dollar(t_shell *shell, char *token, size_t *i, char **envp)
+static char	*ft_process_char(char *expanded_value, char c)
 {
-	char *var_name;
-	char *var_value;
-	size_t start;
-	char *res;
+	char	c_str[2];
+	char	*new_expanded;
 
-	res = NULL;
-	(*i)++;
-	if (token[*i] == '?')
-	{
-		(*i)++;
-		res = ft_itoa(shell->exit_status);
-	}
-	else
-	{
-		start = *i;
-		while (ft_isalnum(token[*i]) || token[*i] == '_')
-			(*i)++;
-		var_name = ft_substr(token, start, *i - start);
-		if (!var_name)
-			return (ft_strdup("$"));
-		var_value = ft_get_var_value(var_name, envp);
-		free(var_name);
-		if (var_value)
-			res = ft_strdup_safe(var_value);
-		else
-			res = ft_strdup("");
-	}
-	return (res);
+	c_str[0] = c;
+	c_str[1] = '\0';
+	new_expanded = ft_strjoin(expanded_value, c_str);
+	free(expanded_value);
+	return (new_expanded);
 }

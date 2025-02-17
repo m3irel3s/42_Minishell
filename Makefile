@@ -6,7 +6,7 @@
 #    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/17 09:55:14 by meferraz         ###   ########.fr        #
+#    Updated: 2025/02/17 14:21:58 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ SRCS = \
        ${SRC_PATH}/520_syntax_validation/syntax_validation.c \
        ${SRC_PATH}/520_syntax_validation/syntax_validation_2.c \
        ${SRC_PATH}/530_expansion/expand.c \
+	   ${SRC_PATH}/530_expansion/expand_handle_dollar.c \
        ${SRC_PATH}/540_redirects/redirects_setting.c \
        ${SRC_PATH}/540_redirects/redirects_handling.c \
        ${SRC_PATH}/600_exec/exec.c \

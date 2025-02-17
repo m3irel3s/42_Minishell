@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/17 10:22:31 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:22:03 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,9 @@ t_status		ft_validate_syntax(t_token *token);
 //============================================================================//
 /* 530_expansion/expand.c */
 t_status		ft_expand(t_shell *shell);
+
+/* 530_expansion/expand_handle_dollar.c */
+char			*ft_handle_dollar(t_shell *shell, char *token, size_t *i);
 
 //============================================================================//
 //                               REDIRECTIONS                                 //
