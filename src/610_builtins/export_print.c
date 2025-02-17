@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:56:02 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/15 17:33:23 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/17 16:52:18 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	ft_print_export(char **export)
 		var = ft_get_var_name(res);
 		value = ft_get_var_value(var, export);
 		ft_printf(1, "declare - x %s=\"%s\"\n", var, value);
+		free(var);
 		i++;
 	}
 }

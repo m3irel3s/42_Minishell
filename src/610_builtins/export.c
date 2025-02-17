@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/17 16:39:00 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/17 16:46:32 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 	// 0 no quote
 	// 1 single quote
 	// 2 double quote
+
+// static void	ft_append_to_var(t_shell *shell, char *var, char *new_value);
 
 void	ft_export(t_shell *shell)
 {
@@ -85,8 +87,7 @@ void	ft_add_var_to_env(t_shell *shell, char *var, char *value)
 // ### ex: a=ola a+=ola res: a=olaola
 // ### Still an error variable needs to be received without the + , ft_substr might help
 
-/* static void	ft_append_to_var(t_shell *shell, char *var, char *new_value);
-static void	ft_append_to_var(t_shell *shell, char *var, char *new_value)
+/* static void	ft_append_to_var(t_shell *shell, char *var, char *new_value)
 {
 	char	*full_value;
 	char	*old_value;
