@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/17 11:14:41 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:01:30 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_quote_info
 {
 	int		in_quotes;
 	char	quote_char;
+	int		quoted;
 }	t_quote_info;
 
 typedef struct s_redirect

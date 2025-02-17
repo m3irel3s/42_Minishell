@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 14:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/17 13:59:04 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:01:15 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@ static t_status	ft_process_quoted_word(t_shell *shell, size_t *i,
 					size_t *start, t_quote_info *quote_info);
 static t_status	ft_handle_quote(t_shell *shell, size_t *i, size_t *start,
 					t_quote_info *quote_info);
+static void		ft_reset_quote_info(t_quote_info *quote_info);
 
 t_status	ft_handle_word(t_shell *shell, size_t *i)
 {
-	size_t	start;
+	size_t			start;
 	t_quote_info	quote_info;
 
 	start = *i;
@@ -30,7 +31,8 @@ t_status	ft_handle_word(t_shell *shell, size_t *i)
 		return (ERROR);
 	if (*i > start)
 	{
-		if (ft_create_and_add_token(shell, start, *i, quote_info.quoted) != SUCCESS)
+		if (ft_create_and_add_token(shell, start, *i,
+				quote_info.quoted) != SUCCESS)
 			return (ERROR);
 	}
 	return (SUCCESS);
@@ -52,7 +54,7 @@ static t_status	ft_process_quoted_word(t_shell *shell, size_t *i,
 }
 
 static t_status	ft_handle_quote(t_shell *shell, size_t *i,
-		size_t *start, t_quote_info *quote_info)
+			size_t *start, t_quote_info *quote_info)
 {
 	if (shell->input[*i] == '\'' || shell->input[*i] == '"')
 	{
@@ -60,7 +62,8 @@ static t_status	ft_handle_quote(t_shell *shell, size_t *i,
 		{
 			if (*i > *start)
 			{
-				if (ft_create_and_add_token(shell, *start, *i, quote_info->quoted) != SUCCESS)
+				if (ft_create_and_add_token(shell, *start, *i,
+						quote_info->quoted) != SUCCESS)
 					return (ERROR);
 			}
 			quote_info->in_quotes = 1;
@@ -70,13 +73,19 @@ static t_status	ft_handle_quote(t_shell *shell, size_t *i,
 		}
 		else if (shell->input[*i] == quote_info->quote_char)
 		{
-			if (ft_create_and_add_token(shell, *start, *i, quote_info->quoted) != SUCCESS)
+			if (ft_create_and_add_token(shell, *start, *i,
+					quote_info->quoted) != SUCCESS)
 				return (ERROR);
-			quote_info->in_quotes = 0;
-			quote_info->quote_char = 0;
-			quote_info->quoted = 0;
+			ft_reset_quote_info(quote_info);
 			*start = *i + 1;
 		}
 	}
 	return (SUCCESS);
+}
+
+static void	ft_reset_quote_info(t_quote_info *quote_info)
+{
+	quote_info->in_quotes = 0;
+	quote_info->quote_char = 0;
+	quote_info->quoted = 0;
 }
