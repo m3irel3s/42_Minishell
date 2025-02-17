@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/17 14:55:41 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/17 18:08:38 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,6 @@ void			ft_echo(t_shell *shell);
 /* 610_builtins/cd.c */
 void			ft_cd(t_shell *shell);
 
-
 /* 610_builtins/env.c */
 void			ft_env(t_shell *shell);
 
@@ -142,7 +141,8 @@ void			ft_export(t_shell *shell);
 void			ft_add_var_to_env(t_shell *shell, char *var, char *value);
 
 /* 610_builtins/export_print.c */
-void			ft_print_export(char **export);
+void			ft_print_export(t_shell *shell);
+void			ft_output_export(char **export);
 char			**ft_sort_export(char **export);
 
 /* 610_builtins/exit.c */
