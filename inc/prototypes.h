@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/17 14:44:17 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:55:41 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ void			ft_pwd(t_shell *shell);
 
 /* 610_builtins/export.c */
 void			ft_export(t_shell *shell);
+void			ft_add_var_to_env(t_shell *shell, char *var, char *value);
 
 /* 610_builtins/export_print.c */
 void			ft_print_export(char **export);
@@ -146,6 +147,10 @@ char			**ft_sort_export(char **export);
 
 /* 610_builtins/exit.c */
 void			ft_exit(t_shell *shell);
+
+/* 610_builtins/unset.c */
+void			ft_unset(t_shell *shell);
+
 
 //============================================================================//
 //                                  CLEANUP                                   //
@@ -159,7 +164,9 @@ void			ft_free_arr(char **arr);
 //============================================================================//
 //                       ENVIRONMENT VARIABLE UTILITIES                       //
 //============================================================================//
-/* 800_utils/env_utils.c */
+
+/* 800_utils*/
+/* env_utils.c */
 char			**ft_duplicate_env(char **envp);
 int				ft_get_env_size(t_shell *shell);
 
@@ -169,13 +176,13 @@ char			*ft_get_var_value(char *var, char **env);
 int				ft_get_var_index(char *var, char **env);
 char			*ft_get_var_name(char *str);
 
-/* 800_utils/env_utils_2.c */
-int				ft_get_env_size(t_shell *shell);
-void			ft_add_var_to_env(char *var, char *value, t_shell *shell);
-int				ft_get_str_length(char *str1, char *str2);
+/* variable_utils_2.c */
+char			*ft_update_var(char *var, char *value);
+void			ft_update_or_add_var(char *var, char *value, t_shell *shell);
 
-/* 800_utils/export_utils.c */
+/* export_utils.c */
 int				ft_check_var_chars(char *var);
+
 
 //============================================================================//
 //                      CHARACTER AND COMMAND TYPE CHECKS                     //

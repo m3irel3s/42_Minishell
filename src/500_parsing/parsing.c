@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:29:46 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/17 14:50:03 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/17 14:51:57 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@
 
 int	ft_parse_input(t_shell *shell)
 {
-	t_token	*current;
+	// t_token	*current;
 
 	if (ft_tokenize(shell) != SUCCESS)
 		return (ERROR);
-	current = shell->tokens;
+	// current = shell->tokens;
 	/* while (current)
 	{
 		if (ft_validate_syntax(current) != SUCCESS)
