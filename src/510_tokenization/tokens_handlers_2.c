@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 14:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/17 13:58:00 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/17 13:59:04 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_status	ft_handle_word(t_shell *shell, size_t *i)
 		return (ERROR);
 	if (*i > start)
 	{
-		if (ft_create_and_add_token(shell, start, *i, ) != SUCCESS)
+		if (ft_create_and_add_token(shell, start, *i, quote_info.quoted) != SUCCESS)
 			return (ERROR);
 	}
 	return (SUCCESS);
