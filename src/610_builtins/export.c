@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/17 15:06:25 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/17 15:20:19 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	ft_export(t_shell *shell)
 	{
 		char	*var;
 		char	*value;
+		char	*eq_sign;
 	
 		curr = curr->next;
 		if(ft_check_var_chars(curr->value) == SUCCESS)
@@ -48,7 +49,11 @@ void	ft_export(t_shell *shell)
 		else
 			continue ;
 		var = ft_get_var_name(curr->value);
-		value = curr->value + (ft_strlen(var) + 1);
+		eq_sign = ft_strchr(curr->value, '=');
+		if (eq_sign)
+			value = eq_sign + 1;
+		else
+			value = "";
 		ft_update_or_add_var(var, value, shell);
 		free(var);
 	}
