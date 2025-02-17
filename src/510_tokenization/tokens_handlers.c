@@ -6,14 +6,14 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 14:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/17 10:00:30 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/17 10:27:50 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 static void	ft_set_export_arg_index(t_shell *shell, size_t *i,
-				int *quote_count, char *quote_char);
+				t_quote_info *quote_info);
 
 t_status	ft_handle_operator(t_shell *shell, size_t *i, int *is_export)
 {
@@ -31,15 +31,14 @@ t_status	ft_handle_operator(t_shell *shell, size_t *i, int *is_export)
 
 t_status	ft_handle_export_arg(t_shell *shell, size_t *i)
 {
-	size_t	start;
-	int		quote_count;
-	char	quote_char;
+	size_t			start;
+	t_quote_info	quote_info;
 
 	start = *i;
-	quote_count = 0;
-	quote_char = 0;
-	ft_set_export_arg_index(shell, i, &quote_count, &quote_char);
-	if (quote_count != 0)
+	quote_info.in_quotes = 0;
+	quote_info.quote_char = 0;
+	ft_set_export_arg_index(shell, i, &quote_info);
+	if (quote_info.in_quotes != 0)
 		return (ft_print_unmatched_quote_error());
 	while (*i > start && ft_is_space(shell->input[*i - 1]))
 		(*i)--;
@@ -47,25 +46,25 @@ t_status	ft_handle_export_arg(t_shell *shell, size_t *i)
 }
 
 static void	ft_set_export_arg_index(t_shell *shell, size_t *i,
-		int *quote_count, char *quote_char)
+		t_quote_info *quote_info)
 {
 	while (shell->input[*i])
 	{
 		if (shell->input[*i] == '\'' || shell->input[*i] == '"')
 		{
-			if (!*quote_char)
+			if (!quote_info->quote_char)
 			{
-				*quote_char = shell->input[*i];
-				(*quote_count)++;
+				quote_info->quote_char = shell->input[*i];
+				quote_info->in_quotes++;
 			}
-			else if (shell->input[*i] == *quote_char)
+			else if (shell->input[*i] == quote_info->quote_char)
 			{
-				(*quote_count)--;
-				if (*quote_count == 0)
-					*quote_char = 0;
+				quote_info->in_quotes--;
+				if (quote_info->in_quotes == 0)
+					quote_info->quote_char = 0;
 			}
 		}
-		else if (!*quote_count && (ft_is_space(shell->input[*i])
+		else if (!quote_info->in_quotes && (ft_is_space(shell->input[*i])
 				|| ft_is_operator(shell->input[*i])))
 			break ;
 		(*i)++;
