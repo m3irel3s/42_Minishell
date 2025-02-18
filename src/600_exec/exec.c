@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 09:30:04 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/18 10:05:36 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,23 @@ void	ft_handle_exec(t_shell *shell)
 }
 void	ft_execute_input(t_shell *shell)
 {
-	ft_handle_exec(shell);
-	// int	saved_stdin;
-	// int	saved_stdout;
+	int	saved_stdin;
+	int	saved_stdout;
 
-	// saved_stdin = dup(STDIN_FILENO);
-	// saved_stdout = dup(STDOUT_FILENO);
-	// if (saved_stdin == -1 || saved_stdout == -1)
-	// {
-	// 	ft_putstr_fd("minishell: error duplicating file descriptors\n", STDERR_FILENO);
-	// 	return ;
-	// }
-
-	// ft_handle_redirections(shell);
-
-	// if (dup2(saved_stdin, STDIN_FILENO) == -1 || dup2(saved_stdout, STDOUT_FILENO) == -1)
-		// ft_putstr_fd("minishell: error restoring file descriptors\n", STDERR_FILENO);
-	//
-	// close(saved_stdin);
-	// close(saved_stdout);
+	ft_create_redirection_list(shell);
+	saved_stdin = dup(STDIN_FILENO);
+	saved_stdout = dup(STDOUT_FILENO);
+	if (saved_stdin == -1 || saved_stdout == -1)
+	{
+		ft_putstr_fd("minishell: error duplicating file descriptors\n", STDERR_FILENO);
+		return ;
+	}
+	ft_handle_redirections(shell);
+	//ft_handle_exec(shell);
+	if (dup2(saved_stdin, STDIN_FILENO) == -1 || dup2(saved_stdout, STDOUT_FILENO) == -1)
+		ft_putstr_fd("minishell: error restoring file descriptors\n", STDERR_FILENO);
+	close(saved_stdin);
+	close(saved_stdout);
 }
 
 t_cmd_type	ft_get_cmd_type(char *cmd)

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:45:07 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/12 13:39:31 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/18 09:41:42 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,37 @@ static void	ft_apply_redirection(t_redirect *redirect)
 		return (ft_redirect_heredoc(redirect->filename));
 	if (fd == -1)
 	{
-		ft_putstr_fd("minishell: no such file or directory\n",
-			STDERR_FILENO);
+		ft_printf(STDERR_FILENO, ERR_REDIR_NO_FILE, redirect->filename);
 		return ;
 	}
 	if (dup2(fd, target_fd) == -1)
-		ft_putstr_fd("minishell: error: dup2 failed\n", STDERR_FILENO);
+	{
+		ft_printf(STDERR_FILENO, ERR_REDIR_AMBIGUOUS, redirect->filename);
+		return ;
+	}
 	close(fd);
 }
 
 static void	ft_redirect_heredoc(char *delimiter)
 {
-	(void)delimiter;
-	return ;
+	int		fd;
+	char	*line;
+
+	fd = open(".heredoc", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	if (fd == -1)
+	{
+		ft_putstr_fd("minishell: error creating heredoc file\n", STDERR_FILENO);
+		return ;
+	}
+	while (1)
+	{
+		line = readline("> ");
+		if (!line || ft_strcmp(line, delimiter) == 0)
+			break ;
+		write(fd, line, ft_strlen(line));
+		write(fd, "\n", 1);
+		free(line);
+	}
+	free(line);
+	close(fd);
 }
