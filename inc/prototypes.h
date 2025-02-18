@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 15:29:22 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/18 18:06:11 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ void			ft_handle_redirections(t_shell *shell);
 //============================================================================//
 /* 600_exec/exec.c */
 void			ft_execute_input(t_shell *shell);
-void			ft_handle_exec(t_shell *shell);
+void			ft_handle_exec(t_shell *shell, int cmd);
 t_cmd_type		ft_get_cmd_type(char *cmd);
 
 

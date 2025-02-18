@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/18 15:57:38 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/18 18:10:38 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,7 +84,6 @@ SRCS = \
        ${SRC_PATH}/540_redirects/redirects_setting.c \
        ${SRC_PATH}/540_redirects/redirects_handling.c \
        ${SRC_PATH}/600_exec/exec.c \
-       ${SRC_PATH}/600_exec/exec_builtin.c \
        ${SRC_PATH}/600_exec/exec_execve.c \
        ${SRC_PATH}/600_exec/exec_pipes.c \
        ${SRC_PATH}/610_builtins/cd.c \

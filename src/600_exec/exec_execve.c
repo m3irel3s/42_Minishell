@@ -6,11 +6,13 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:34:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 15:56:44 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/18 18:10:39 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+static int	ft_count_type_words(t_token *start_pos);
 
 void	ft_execute_cmd(t_shell *shell, char *cmd)
 {
@@ -71,15 +73,10 @@ char	**ft_create_arr_cmd(t_token *start_pos)
 	i = 0;
 	arr = NULL;
 	curr = start_pos;
-	while (curr && curr->type != PIPE)
-	{
-		if(curr->type == WORD)
-			i++;
-		curr = curr->next;
-	}
-	curr = start_pos;
+	i = ft_count_type_words(curr);
 	arr = ft_safe_malloc(sizeof(char *) * (i + 1));
 	i = 0;
+	curr = start_pos;
 	while (curr && curr->type != PIPE)
 	{
 		if (curr->type == WORD)
@@ -89,3 +86,18 @@ char	**ft_create_arr_cmd(t_token *start_pos)
 	arr[i] = NULL;
 	return (arr);
 }
+
+static int	ft_count_type_words(t_token *start_pos)
+{
+	int	counter;
+
+	counter = 0;
+	while (start_pos && start_pos->type != PIPE)
+	{
+		if (start_pos->type == WORD)
+			counter++;
+		start_pos = start_pos->next;
+	}
+	return (counter);
+}
+

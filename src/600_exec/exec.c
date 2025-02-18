@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 15:58:57 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/18 18:10:39 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,33 @@
 
 void	ft_execute_input(t_shell *shell)
 {
-
-	if (ft_has_pipes(shell) == SUCCESS)
-		ft_handle_pipes(shell);
-	else
-	{
-		char	*cmd;
-		cmd = shell->tokens->value;
-		ft_execute_cmd(shell , cmd);
-	}
-}
-
-void	ft_handle_exec(t_shell *shell)
-{
 	t_token		*curr;
 	t_cmd_type	cmd;
 
 	curr = shell->tokens;
+	
 	if (!curr || !curr->value)
 		return ;
+	if (ft_has_pipes(shell) == SUCCESS)
+	{
+		ft_handle_pipes(shell);
+		return ;
+	}
+	/* 820_exec_utils */
+	/* if (ft_has_redirects(shell) == SUCCESS)
+	{
+		ft_handle_redirects();
+		return ;
+	} */
 	cmd = ft_get_cmd_type(curr->value);
-	// if (cmd == CMD_EXEC)
-	// 	ft_execute_external(shell);
+	if (cmd)
+		ft_handle_exec(shell, cmd);
+}
+
+void	ft_handle_exec(t_shell *shell, int cmd)
+{
+	if (cmd == CMD_EXEC)
+		ft_execute_cmd(shell, shell->tokens->value);
 	if (cmd == CMD_ECHO)
 		ft_echo(shell);
 	else if (cmd == CMD_CD)
@@ -52,7 +57,7 @@ void	ft_handle_exec(t_shell *shell)
 	else if (cmd == CMD_UNSET)
 		ft_unset(shell);
 	else
-		ft_print_command_not_found_error(curr->value);
+		ft_print_command_not_found_error(shell->tokens->value);
 }
 
 t_cmd_type	ft_get_cmd_type(char *cmd)
