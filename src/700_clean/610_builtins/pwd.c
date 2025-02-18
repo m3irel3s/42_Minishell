@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 11:22:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/17 19:17:40 by jmeirele         ###   ########.fr       */
+/*   Created: 2025/02/11 13:22:08 by jmeirele          #+#    #+#             */
+/*   Updated: 2025/02/18 12:45:49 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ft_exit(t_shell *shell)
+void	ft_pwd(void)
 {
-	ft_cleanup(shell);
-	if (shell->env_cpy)
-		ft_free_arr(shell->env_cpy);
-	exit(1);
+	char	*path;
+
+	path = ft_get_current_directory();
+	ft_printf(1, "%s\n", path);
+	ft_free(path);
 }

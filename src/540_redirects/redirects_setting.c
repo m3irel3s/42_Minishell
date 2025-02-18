@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:11:23 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/18 11:07:02 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:19:43 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ void	ft_create_redirection_list(t_shell *shell)
 			free(redirect_token);
 			free(filename_token->value);
 			free(filename_token);
+			token = token->next->next;
 		}
-		token = token->next;
+		if (token->next)
+			token = token->next;
 	}
 }
 

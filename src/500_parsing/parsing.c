@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:29:46 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/18 16:00:42 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:02:11 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 
 int	ft_parse_input(t_shell *shell)
 {
-	// t_token	*current;
+	t_token	*current;
 
 	if (ft_tokenize(shell) != SUCCESS)
 		return (ERROR);
@@ -44,7 +44,8 @@ int	ft_parse_input(t_shell *shell)
 	}
 	if (ft_expand(shell) == ERROR)
 		return (ERROR);
-	/* current = shell->tokens;
+		
+	current = shell->tokens;
 	while (current)
 	{
 		printf("this is token: %s, type: ", current->value);
@@ -75,9 +76,7 @@ int	ft_parse_input(t_shell *shell)
 		printf("\n");
 		current = current->next;
 	}
-	current = shell->tokens; */
-
-	//ft_create_redirection_list(shell);
+	current = shell->tokens;
 	return (SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/18 11:06:39 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/18 15:57:38 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,6 +84,9 @@ SRCS = \
        ${SRC_PATH}/540_redirects/redirects_setting.c \
        ${SRC_PATH}/540_redirects/redirects_handling.c \
        ${SRC_PATH}/600_exec/exec.c \
+       ${SRC_PATH}/600_exec/exec_builtin.c \
+       ${SRC_PATH}/600_exec/exec_execve.c \
+       ${SRC_PATH}/600_exec/exec_pipes.c \
        ${SRC_PATH}/610_builtins/cd.c \
        ${SRC_PATH}/610_builtins/echo.c \
        ${SRC_PATH}/610_builtins/env.c \
@@ -92,13 +95,14 @@ SRCS = \
 	   ${SRC_PATH}/610_builtins/unset.c \
 	   ${SRC_PATH}/610_builtins/exit.c \
 	   ${SRC_PATH}/700_clean/clean.c \
-	   ${SRC_PATH}/800_utils/env_utils.c \
 	   ${SRC_PATH}/800_utils/variable_utils.c \
 	   ${SRC_PATH}/800_utils/variable_utils_2.c \
-	   ${SRC_PATH}/800_utils/export_utils.c \
-	   ${SRC_PATH}/800_utils/export_print.c \
        ${SRC_PATH}/800_utils/check_type_functions.c \
-       ${SRC_PATH}/800_utils/safe_functions.c
+       ${SRC_PATH}/800_utils/safe_functions.c \
+	   ${SRC_PATH}/810_builtins_utils/env_utils.c \
+	   ${SRC_PATH}/810_builtins_utils/export_utils.c \
+	   ${SRC_PATH}/810_builtins_utils/export_print.c \
+	   ${SRC_PATH}/820_exec_utils/pipes_utils.c
 
 # Object files derived from source files
 # OBJS = ${addprefix ${BUILD_PATH}/, ${notdir ${SRCS:.c=.o}}}
