@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:43:44 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/18 11:48:48 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/18 12:17:58 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 t_status	ft_validate_syntax(t_token *tokens)
 {
+	t_token	*current;
+	t_token	*prev;
+
+	current = tokens;
+	prev = tokens->prev;
 	if (current->type == PIPE)
 		{
 			if (!prev || prev->type == PIPE || !current->next)
