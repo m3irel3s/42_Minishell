@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipes.c                                            :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/18 12:08:17 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 12:16:35 by jmeirele         ###   ########.fr       */
+/*   Created: 2025/02/10 14:15:19 by jmeirele          #+#    #+#             */
+/*   Updated: 2025/02/18 12:45:39 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ft_handle_pipes(t_shell *shell)
+void	ft_env(t_shell *shell)
 {
-	if (ft_has_pipes(shell) == SUCCESS)
-		printf("NICE\n");
+	char	**env;
+	char	*res;
+	int		i;
+
+	i = 0;
+	env = shell->env_cpy;
+	while (env[i])
+	{
+		res = env[i];
+		printf("%s\n", res);
+		i++;
+	}
+	return ;
 }

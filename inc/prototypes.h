@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 12:15:03 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/18 15:29:22 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,15 +126,22 @@ void			ft_handle_exec(t_shell *shell);
 t_cmd_type		ft_get_cmd_type(char *cmd);
 
 
+/* 600_exec/exec_execve.c */
+void			ft_execute_cmd(t_shell *shell, char *cmd);
+char			*ft_get_path_to_execute(t_shell *shell, char *cmd);
+char			*ft_add_cmd_to_path(char **arr, char *cmd);
+char			**ft_create_arr_cmd(t_token *start_pos);
+
+
 //============================================================================//
 //                                  PIPES                                     //
 //============================================================================//
 
 /* 610_pipes.c */
-void	ft_handle_pipes(t_shell *shell);
+void			ft_handle_pipes(t_shell *shell);
 
 /* 610_pipes_utils.c */
-int	ft_has_pipes(t_shell *shell);
+int				ft_has_pipes(t_shell *shell);
 
 
 //============================================================================//

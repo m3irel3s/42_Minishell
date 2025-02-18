@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipes_utils.c                                      :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/18 12:08:03 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 12:16:32 by jmeirele         ###   ########.fr       */
+/*   Created: 2025/02/11 13:22:08 by jmeirele          #+#    #+#             */
+/*   Updated: 2025/02/18 12:45:49 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	ft_has_pipes(t_shell *shell)
+void	ft_pwd(void)
 {
-	t_token	*curr;
+	char	*path;
 
-	curr = shell->tokens;
-	while (curr)
-	{
-		if (curr->type == PIPE)
-			return SUCCESS;
-		curr = curr->next;
-	}
-	return ERROR;
+	path = ft_get_current_directory();
+	ft_printf(1, "%s\n", path);
+	ft_free(path);
 }
