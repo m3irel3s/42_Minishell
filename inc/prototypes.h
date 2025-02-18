@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 11:06:45 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/18 12:15:03 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,35 +126,45 @@ void			ft_handle_exec(t_shell *shell);
 t_cmd_type		ft_get_cmd_type(char *cmd);
 
 
+//============================================================================//
+//                                  PIPES                                     //
+//============================================================================//
+
+/* 610_pipes.c */
+void	ft_handle_pipes(t_shell *shell);
+
+/* 610_pipes_utils.c */
+int	ft_has_pipes(t_shell *shell);
+
 
 //============================================================================//
 //                               BUILT-IN COMMANDS                            //
 //============================================================================//
-/* 610_builtins/echo.c */
+/* 650_builtins/echo.c */
 void			ft_echo(t_shell *shell);
 
-/* 610_builtins/cd.c */
+/* 650_builtins/cd.c */
 void			ft_cd(t_shell *shell);
 
-/* 610_builtins/env.c */
+/* 650_builtins/env.c */
 void			ft_env(t_shell *shell);
 
-/* 610_builtins/pwd.c */
+/* 650_builtins/pwd.c */
 void			ft_pwd(void);
 
-/* 610_builtins/export.c */
+/* 650_builtins/export.c */
 void			ft_export(t_shell *shell);
 void			ft_add_var_to_env(t_shell *shell, char *var, char *value);
 
-/* 610_builtins/export_print.c */
+/* 650_builtins/export_print.c */
 void			ft_print_export(t_shell *shell);
 void			ft_output_export(char **export);
 char			**ft_sort_export(char **export);
 
-/* 610_builtins/exit.c */
+/* 650_builtins/exit.c */
 void			ft_exit(t_shell *shell);
 
-/* 610_builtins/unset.c */
+/* 650_builtins/unset.c */
 void			ft_unset(t_shell *shell);
 
 

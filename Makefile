@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/18 11:06:39 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/18 12:13:36 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,13 +84,15 @@ SRCS = \
        ${SRC_PATH}/540_redirects/redirects_setting.c \
        ${SRC_PATH}/540_redirects/redirects_handling.c \
        ${SRC_PATH}/600_exec/exec.c \
-       ${SRC_PATH}/610_builtins/cd.c \
-       ${SRC_PATH}/610_builtins/echo.c \
-       ${SRC_PATH}/610_builtins/env.c \
-	   ${SRC_PATH}/610_builtins/pwd.c \
-	   ${SRC_PATH}/610_builtins/export.c \
-	   ${SRC_PATH}/610_builtins/unset.c \
-	   ${SRC_PATH}/610_builtins/exit.c \
+       ${SRC_PATH}/610_pipes/pipes.c \
+       ${SRC_PATH}/610_pipes/pipes_utils.c \
+       ${SRC_PATH}/650_builtins/cd.c \
+       ${SRC_PATH}/650_builtins/echo.c \
+       ${SRC_PATH}/650_builtins/env.c \
+	   ${SRC_PATH}/650_builtins/pwd.c \
+	   ${SRC_PATH}/650_builtins/export.c \
+	   ${SRC_PATH}/650_builtins/unset.c \
+	   ${SRC_PATH}/650_builtins/exit.c \
 	   ${SRC_PATH}/700_clean/clean.c \
 	   ${SRC_PATH}/800_utils/env_utils.c \
 	   ${SRC_PATH}/800_utils/variable_utils.c \
