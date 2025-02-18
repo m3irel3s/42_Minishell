@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/17 14:55:41 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/18 08:31:42 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void			ft_add_token_to_shell(t_shell *shell, t_token *new_token);
 /* 510_tokenization/tokens_helpers.c */
 int				ft_is_export_command(t_shell *shell, size_t i);
 t_status		ft_create_export_token(t_shell *shell, size_t *i, int *is_export);
-t_status		ft_print_unmatched_quote_error(void);
 
 //============================================================================//
 //                  TOKENIZATION - OPERATORS AND EXPORT ARGUMENTS             //
@@ -92,6 +91,9 @@ t_status		ft_handle_word(t_shell *shell, size_t *i);
 //============================================================================//
 /* 520_syntax_validation/syntax_validation.c */
 t_status		ft_validate_syntax(t_token *token);
+t_status		ft_print_unmatched_quote_error(void);
+t_status		ft_print_syntax_error(char *token);
+t_status		ft_print_redirect_no_file_error(void);
 
 //============================================================================//
 //                             VARIABLE EXPANSION                             //
