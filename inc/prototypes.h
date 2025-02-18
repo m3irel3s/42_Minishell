@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 09:25:18 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/18 09:30:04 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,12 @@ t_status		ft_handle_export_arg(t_shell *shell, size_t *i);
 t_status		ft_handle_word(t_shell *shell, size_t *i);
 
 //============================================================================//
-//                             SYNTAX VALIDATION                              //
+//                             ERROR HANDLING                                 //
 //============================================================================//
-/* 520_syntax_validation/syntax_validation.c */
+/* 520_errors_handler/syntax_validation.c */
 t_status		ft_validate_syntax(t_token *token);
+
+/* 520_errors_handler/print_errors.c */
 t_status		ft_print_unmatched_quote_error(void);
 t_status		ft_print_syntax_error(char *token);
 t_status		ft_print_redirect_no_file_error(void);

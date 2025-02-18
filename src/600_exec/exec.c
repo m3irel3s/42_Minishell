@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/17 14:56:16 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/18 09:30:04 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_handle_exec(t_shell *shell)
 	else if (cmd == CMD_UNSET)
 		ft_unset(shell);
 	else
-		ft_putstr_fd("minishell: command not found\n", STDERR_FILENO);
+		ft_print_command_not_found_error(curr->value);
 }
 void	ft_execute_input(t_shell *shell)
 {

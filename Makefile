@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
+#    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/17 14:45:27 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/18 09:29:49 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,8 +77,8 @@ SRCS = \
 	   ${SRC_PATH}/510_tokenization/tokens_helpers.c \
        ${SRC_PATH}/510_tokenization/tokens_utils.c \
        ${SRC_PATH}/510_tokenization/tokens_utils_2.c \
-       ${SRC_PATH}/520_syntax_validation/syntax_validation.c \
-       ${SRC_PATH}/520_syntax_validation/syntax_validation_2.c \
+       ${SRC_PATH}/520_errors_handler/syntax_validation.c \
+	   ${SRC_PATH}/520_errors_handler/print_errors.c \
        ${SRC_PATH}/530_expansion/expand.c \
 	   ${SRC_PATH}/530_expansion/expand_handle_dollar.c \
        ${SRC_PATH}/540_redirects/redirects_setting.c \
