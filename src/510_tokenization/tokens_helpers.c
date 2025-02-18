@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 14:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/17 09:53:05 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/18 08:14:56 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ t_status	ft_create_export_token(t_shell *shell, size_t *i, int *is_export)
 
 t_status	ft_print_unmatched_quote_error(void)
 {
-	ft_putstr_fd("minishell: syntax error: unmatched quote\n", 2);
+	ft_putstr_fd(ERR_UNMATCHED_QUOTE, 2);
 	return (ERROR);
 }
