@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 09:30:04 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:06:45 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,19 +136,19 @@ void			ft_echo(t_shell *shell);
 /* 610_builtins/cd.c */
 void			ft_cd(t_shell *shell);
 
-
 /* 610_builtins/env.c */
 void			ft_env(t_shell *shell);
 
 /* 610_builtins/pwd.c */
-void			ft_pwd(t_shell *shell);
+void			ft_pwd(void);
 
 /* 610_builtins/export.c */
 void			ft_export(t_shell *shell);
 void			ft_add_var_to_env(t_shell *shell, char *var, char *value);
 
 /* 610_builtins/export_print.c */
-void			ft_print_export(char **export);
+void			ft_print_export(t_shell *shell);
+void			ft_output_export(char **export);
 char			**ft_sort_export(char **export);
 
 /* 610_builtins/exit.c */

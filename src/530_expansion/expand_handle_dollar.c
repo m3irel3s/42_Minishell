@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 14:14:30 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/17 14:50:27 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/17 19:31:13 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static char	*ft_expand_variable(t_shell *shell, char *token, size_t *i,
 	if (!var_name)
 		return (ft_strdup("$"));
 	var_value = ft_get_var_value(var_name, shell->env_cpy);
-	free(var_name);
+	ft_free(var_name);
 	if (var_value)
 		res = ft_strdup_safe(var_value);
 	else

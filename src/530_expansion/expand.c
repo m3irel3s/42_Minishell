@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/17 15:56:34 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/17 19:31:13 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_status	ft_expand(t_shell *shell)
 		expanded_value = ft_expand_token(shell, current->value, current->quoted);
 		if (!expanded_value)
 			return (ERROR);
-		free(current->value);
+		ft_free(current->value);
 		current->value = expanded_value;
 		current = current->next;
 	}
@@ -49,7 +49,7 @@ static char	*ft_expand_token(t_shell *shell, char *token, int quoted)
 			if (temp)
 			{
 				expanded_value = ft_strjoin_gnl(expanded_value, temp);
-				free(temp);
+				ft_free(temp);
 			}
 		}
 		else
@@ -69,6 +69,6 @@ static char	*ft_process_char(char *expanded_value, char c)
 	c_str[0] = c;
 	c_str[1] = '\0';
 	new_expanded = ft_strjoin(expanded_value, c_str);
-	free(expanded_value);
+	ft_free(expanded_value);
 	return (new_expanded);
 }

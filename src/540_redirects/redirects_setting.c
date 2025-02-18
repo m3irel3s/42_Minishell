@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirects_setting.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:11:23 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/18 10:06:34 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:07:02 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static void	ft_create_and_add_redirect(t_token *token, t_shell *shell,
 	redirect->type = token->type;
 	redirect->filename = ft_strdup_safe(token->next->value);
 	if (!redirect->filename)
-		return (free(redirect));
+		return (ft_free(redirect));
 	redirect->next = NULL;
 	if (!(*last_redirect))
 		shell->redirects = redirect;

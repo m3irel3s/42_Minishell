@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 10:05:36 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/18 11:07:07 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_handle_exec(t_shell *shell)
 	else if (cmd == CMD_CD)
 		ft_cd(shell);
 	else if (cmd == CMD_PWD)
-		ft_pwd(shell);
+		ft_pwd();
 	else if (cmd == CMD_EXPORT)
 		ft_export(shell);
 	else if (cmd == CMD_ENV)
