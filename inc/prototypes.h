@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 08:31:42 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/18 09:25:18 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ t_status		ft_validate_syntax(t_token *token);
 t_status		ft_print_unmatched_quote_error(void);
 t_status		ft_print_syntax_error(char *token);
 t_status		ft_print_redirect_no_file_error(void);
+t_status		ft_print_heredoc_delim_error(void);
+t_status		ft_print_command_not_found_error(char *cmd);
 
 //============================================================================//
 //                             VARIABLE EXPANSION                             //

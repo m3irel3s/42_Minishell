@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:29:46 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/17 15:15:37 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/18 08:37:00 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,13 @@ int	ft_parse_input(t_shell *shell)
 
 	if (ft_tokenize(shell) != SUCCESS)
 		return (ERROR);
-	/* while (current)
+	current = shell->tokens;
+	while (current)
 	{
 		if (ft_validate_syntax(current) != SUCCESS)
 			return (ERROR);
 		current = current->next;
-	} */
+	}
 	if (ft_expand(shell) == ERROR)
 		return (ERROR);
 	current = shell->tokens;

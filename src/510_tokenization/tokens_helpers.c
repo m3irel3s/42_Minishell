@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 14:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/18 08:14:56 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/18 08:34:20 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,4 @@ t_status	ft_create_export_token(t_shell *shell, size_t *i, int *is_export)
 	*is_export = 1;
 	*i += 6;
 	return (ft_create_and_add_token(shell, start, *i, 0));
-}
-
-t_status	ft_print_unmatched_quote_error(void)
-{
-	ft_putstr_fd(ERR_UNMATCHED_QUOTE, 2);
-	return (ERROR);
 }
