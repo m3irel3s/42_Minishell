@@ -6,14 +6,14 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 18:10:39 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/18 18:44:11 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
 
-void	ft_execute_input(t_shell *shell)
+void	ft_exec(t_shell *shell)
 {
 	t_token		*curr;
 	t_cmd_type	cmd;
@@ -34,8 +34,7 @@ void	ft_execute_input(t_shell *shell)
 		return ;
 	} */
 	cmd = ft_get_cmd_type(curr->value);
-	if (cmd)
-		ft_handle_exec(shell, cmd);
+	ft_handle_exec(shell, cmd);
 }
 
 void	ft_handle_exec(t_shell *shell, int cmd)
@@ -56,8 +55,8 @@ void	ft_handle_exec(t_shell *shell, int cmd)
 		ft_exit(shell);
 	else if (cmd == CMD_UNSET)
 		ft_unset(shell);
-	else
-		ft_print_command_not_found_error(shell->tokens->value);
+	// else
+	// 	ft_print_command_not_found_error(shell->tokens->value);
 }
 
 t_cmd_type	ft_get_cmd_type(char *cmd)

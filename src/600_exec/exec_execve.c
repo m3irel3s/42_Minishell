@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:34:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 18:10:39 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/18 18:44:15 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,27 @@ void	ft_execute_cmd(t_shell *shell, char *cmd)
 {
 	char	*path;
 	char	**arr;
+	pid_t	pid;
+
 	arr = NULL;
 	path = ft_get_path_to_execute(shell, cmd);
 	arr = ft_create_arr_cmd(shell->tokens);
-	execve(path, arr, shell->env_cpy);
+	pid = fork();
+	if (pid == -1)
+	{
+		perror("Fork failed");
+		return;
+	}
+	if (pid == 0)
+	{
+		if (execve(path, arr, shell->env_cpy) == -1)
+		{
+			perror("execve failed");
+			exit(EXIT_FAILURE);
+		}
+	}
+	else
+		waitpid(pid, NULL, 0);
 }
 
 char	*ft_get_path_to_execute(t_shell *shell, char *cmd)
@@ -35,11 +52,7 @@ char	*ft_get_path_to_execute(t_shell *shell, char *cmd)
 	arr = ft_split(full_path, ':');
 	full_path = ft_add_cmd_to_path(arr, cmd);
 	if (!full_path)
-	{
-		ft_printf(2, "Command not found %s\n", cmd);
 		return (NULL);
-	}
-	printf("%s\n", full_path);
 	return (full_path);
 }
 
