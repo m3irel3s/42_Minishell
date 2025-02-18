@@ -177,3 +177,451 @@ DW_FORM_GNU_str_index or DW_FORM_strx used without .debug_str section in CU at o
 Breakpoint 1 at 0x1000017a8
 .gdbinit:25: Error in sourced command file:
 DW_FORM_GNU_str_index or DW_FORM_strx used without .debug_str section in CU at offset 0x0 [in module /Users/melaniereis/Projects/42_minishell/.build/000_intro.o]
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x1975: file src/100_main.c, line 33.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x0000000000001975 in main at src/100_main.c:33
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
+Continuing.
+
+Program received signal SIGINT, Interrupt.
+ft_create_redirection_list (shell=0x7fffffffe2f0) at src/540_redirects/redirects_setting.c:70
+Breakpoint 2 at 0x555555556cd8: file src/520_errors_handler/syntax_validation.c, line 20.
+Starting program: /home/miguel/Code/CommonCore/rank03/42_Minishell/minishell 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
+Undefined catch command: "file.txt | grep hello > output.txt".  Try "help catch".
+Continuing.
+
+Breakpoint 2, ft_validate_syntax (tokens=0x555555599b60) at src/520_errors_handler/syntax_validation.c:20
+--------------------------
+--------------------------
+--------------------------
+1: current->type = WORD
+1: current->type = WORD
+--------------------------
+1: current->type = WORD
+--------------------------
+1: current->type = WORD
+--------------------------
+1: current->type = WORD
+--------------------------
+1: current->type = WORD
+--------------------------
+1: current->type = WORD
+--------------------------
+1: current->type = WORD
+--------------------------
+1: current->type = WORD
+--------------------------
+1: current->type = PIPE
+--------------------------
+1: current->type = PIPE
+--------------------------
+1: current->type = PIPE
+--------------------------
+2: prev = (t_token *) 0x555555599bb0
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599c50
+$1 = 0x555555599c80 "grep"
+$2 = 0x555555599be0 "file.txt"
+1: current->type = PIPE
+2: prev = (t_token *) 0x555555599bb0
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599c50
+--------------------------
+1: current->type = PIPE
+2: prev = (t_token *) 0x555555599c00
+3: prev->type = PIPE
+4: current->next = (struct s_token *) 0x555555599c50
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599c00
+3: prev->type = PIPE
+4: current->next = (struct s_token *) 0x555555599ca0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599c00
+3: prev->type = PIPE
+4: current->next = (struct s_token *) 0x555555599ca0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599c00
+3: prev->type = PIPE
+4: current->next = (struct s_token *) 0x555555599ca0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599c00
+3: prev->type = PIPE
+4: current->next = (struct s_token *) 0x555555599ca0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599c50
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599ca0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599c50
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599cf0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599c50
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599cf0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599c50
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599cf0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599c50
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599cf0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599ca0
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599cf0
+--------------------------
+1: current->type = REDIRECT_OUT
+2: prev = (t_token *) 0x555555599ca0
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599d40
+--------------------------
+1: current->type = REDIRECT_OUT
+2: prev = (t_token *) 0x555555599ca0
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599d40
+--------------------------
+1: current->type = REDIRECT_OUT
+2: prev = (t_token *) 0x555555599ca0
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599d40
+--------------------------
+1: current->type = REDIRECT_OUT
+2: prev = (t_token *) 0x555555599ca0
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599d40
+--------------------------
+1: current->type = REDIRECT_OUT
+2: prev = (t_token *) 0x555555599ca0
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599d40
+--------------------------
+1: current->type = REDIRECT_OUT
+2: prev = (t_token *) 0x555555599ca0
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599d40
+--------------------------
+1: current->type = REDIRECT_OUT
+2: prev = (t_token *) 0x555555599ca0
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599d40
+--------------------------
+1: current->type = REDIRECT_OUT
+2: prev = (t_token *) 0x555555599cf0
+3: prev->type = REDIRECT_OUT
+4: current->next = (struct s_token *) 0x555555599d40
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599cf0
+3: prev->type = REDIRECT_OUT
+4: current->next = (struct s_token *) 0x0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599cf0
+3: prev->type = REDIRECT_OUT
+4: current->next = (struct s_token *) 0x0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599cf0
+3: prev->type = REDIRECT_OUT
+4: current->next = (struct s_token *) 0x0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599cf0
+3: prev->type = REDIRECT_OUT
+4: current->next = (struct s_token *) 0x0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599d40
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x0
+--------------------------
+1: current->type = <error: Cannot access memory at address 0x8>
+2: prev = (t_token *) 0x555555599d40
+3: prev->type = WORD
+4: current->next = <error: Cannot access memory at address 0x10>
+--------------------------
+1: current->type = <error: Cannot access memory at address 0x8>
+2: prev = (t_token *) 0x555555599d40
+3: prev->type = WORD
+4: current->next = <error: Cannot access memory at address 0x10>
+--------------------------
+1: current->type = <error: Cannot access memory at address 0x8>
+2: prev = (t_token *) 0x555555599d40
+3: prev->type = WORD
+4: current->next = <error: Cannot access memory at address 0x10>
+--------------------------
+ft_parse_input (shell=0x7fffffffe2f0) at src/500_parsing/parsing.c:43
+--------------------------
+--------------------------
+--------------------------
+
+Breakpoint 2, ft_validate_syntax (tokens=0x555555599bb0) at src/520_errors_handler/syntax_validation.c:20
+1: current->type = <error: Cannot access memory at address 0x8>
+2: prev = (t_token *) 0x555555599d40
+3: prev->type = WORD
+4: current->next = <error: Cannot access memory at address 0x10>
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599d40
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599c00
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x0
+3: prev->type = <error: Cannot access memory at address 0x8>
+4: current->next = (struct s_token *) 0x555555599c00
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x0
+3: prev->type = <error: Cannot access memory at address 0x8>
+4: current->next = (struct s_token *) 0x555555599c00
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x0
+3: prev->type = <error: Cannot access memory at address 0x8>
+4: current->next = (struct s_token *) 0x555555599c00
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x0
+3: prev->type = <error: Cannot access memory at address 0x8>
+4: current->next = (struct s_token *) 0x555555599c00
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599bb0
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599c00
+--------------------------
+1: current->type = PIPE
+2: prev = (t_token *) 0x555555599bb0
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599c50
+--------------------------
+1: current->type = PIPE
+2: prev = (t_token *) 0x555555599bb0
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599c50
+--------------------------
+1: current->type = PIPE
+2: prev = (t_token *) 0x555555599bb0
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599c50
+--------------------------
+1: current->type = PIPE
+2: prev = (t_token *) 0x555555599bb0
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599c50
+--------------------------
+1: current->type = PIPE
+2: prev = (t_token *) 0x555555599c00
+3: prev->type = PIPE
+4: current->next = (struct s_token *) 0x555555599c50
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599c00
+3: prev->type = PIPE
+4: current->next = (struct s_token *) 0x555555599ca0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599c00
+3: prev->type = PIPE
+4: current->next = (struct s_token *) 0x555555599ca0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599c00
+3: prev->type = PIPE
+4: current->next = (struct s_token *) 0x555555599ca0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599c00
+3: prev->type = PIPE
+4: current->next = (struct s_token *) 0x555555599ca0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599c50
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599ca0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599c50
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599cf0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599c50
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599cf0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599c50
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599cf0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599c50
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599cf0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599ca0
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599cf0
+--------------------------
+1: current->type = REDIRECT_OUT
+2: prev = (t_token *) 0x555555599ca0
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599d40
+--------------------------
+1: current->type = REDIRECT_OUT
+2: prev = (t_token *) 0x555555599ca0
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599d40
+--------------------------
+1: current->type = REDIRECT_OUT
+2: prev = (t_token *) 0x555555599ca0
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599d40
+--------------------------
+1: current->type = REDIRECT_OUT
+2: prev = (t_token *) 0x555555599ca0
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599d40
+--------------------------
+1: current->type = REDIRECT_OUT
+2: prev = (t_token *) 0x555555599ca0
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599d40
+--------------------------
+1: current->type = REDIRECT_OUT
+2: prev = (t_token *) 0x555555599ca0
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599d40
+--------------------------
+1: current->type = REDIRECT_OUT
+2: prev = (t_token *) 0x555555599ca0
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599d40
+--------------------------
+1: current->type = REDIRECT_OUT
+2: prev = (t_token *) 0x555555599cf0
+3: prev->type = REDIRECT_OUT
+4: current->next = (struct s_token *) 0x555555599d40
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599cf0
+3: prev->type = REDIRECT_OUT
+4: current->next = (struct s_token *) 0x0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599cf0
+3: prev->type = REDIRECT_OUT
+4: current->next = (struct s_token *) 0x0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599cf0
+3: prev->type = REDIRECT_OUT
+4: current->next = (struct s_token *) 0x0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599cf0
+3: prev->type = REDIRECT_OUT
+4: current->next = (struct s_token *) 0x0
+--------------------------
+1: current->type = WORD
+2: prev = (t_token *) 0x555555599d40
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x0
+--------------------------
+1: current->type = <error: Cannot access memory at address 0x8>
+2: prev = (t_token *) 0x555555599d40
+3: prev->type = WORD
+4: current->next = <error: Cannot access memory at address 0x10>
+--------------------------
+1: current->type = <error: Cannot access memory at address 0x8>
+2: prev = (t_token *) 0x555555599d40
+3: prev->type = WORD
+4: current->next = <error: Cannot access memory at address 0x10>
+--------------------------
+1: current->type = <error: Cannot access memory at address 0x8>
+2: prev = (t_token *) 0x555555599d40
+3: prev->type = WORD
+4: current->next = <error: Cannot access memory at address 0x10>
+--------------------------
+ft_parse_input (shell=0x7fffffffe2f0) at src/500_parsing/parsing.c:43
+--------------------------
+--------------------------
+--------------------------
+
+Breakpoint 2, ft_validate_syntax (tokens=0x555555599c00) at src/520_errors_handler/syntax_validation.c:20
+1: current->type = <error: Cannot access memory at address 0x8>
+2: prev = (t_token *) 0x555555599d40
+3: prev->type = WORD
+4: current->next = <error: Cannot access memory at address 0x10>
+--------------------------
+1: current->type = PIPE
+2: prev = (t_token *) 0x555555599d40
+3: prev->type = WORD
+4: current->next = (struct s_token *) 0x555555599c50
+--------------------------
+1: current->type = PIPE
+2: prev = (t_token *) 0x0
+3: prev->type = <error: Cannot access memory at address 0x8>
+4: current->next = (struct s_token *) 0x555555599c50
+--------------------------
+1: current->type = PIPE
+2: prev = (t_token *) 0x0
+3: prev->type = <error: Cannot access memory at address 0x8>
+4: current->next = (struct s_token *) 0x555555599c50
+--------------------------
+1: current->type = PIPE
+2: prev = (t_token *) 0x0
+3: prev->type = <error: Cannot access memory at address 0x8>
+4: current->next = (struct s_token *) 0x555555599c50
+--------------------------
+1: current->type = PIPE
+2: prev = (t_token *) 0x0
+3: prev->type = <error: Cannot access memory at address 0x8>
+4: current->next = (struct s_token *) 0x555555599c50
+--------------------------
+1: current->type = PIPE
+2: prev = (t_token *) 0x0
+3: prev->type = <error: Cannot access memory at address 0x8>
+4: current->next = (struct s_token *) 0x555555599c50
+--------------------------
+ft_parse_input (shell=0x7fffffffe2f0) at src/500_parsing/parsing.c:42
+--------------------------
+--------------------------
+main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:56
+--------------------------
+--------------------------
+--------------------------
+--------------------------
+--------------------------
+--------------------------
+Continuing.
+[Inferior 1 (process 11838) exited normally]
+Quit
