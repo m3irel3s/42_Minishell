@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 17:49:29 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/19 13:31:35 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ typedef struct s_shell
 	char			*input;
 	t_token			*tokens;
 	t_redirect		*redirects;
+	int				redirected_stdin;
+	int				redirected_stdout;
 	int				in_export;
 	int				exit_status;
 } t_shell;
