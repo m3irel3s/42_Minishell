@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
+#    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/18 18:10:38 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/19 09:46:33 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,7 @@ SRCS = \
 	   ${SRC_PATH}/810_builtins_utils/env_utils.c \
 	   ${SRC_PATH}/810_builtins_utils/export_utils.c \
 	   ${SRC_PATH}/810_builtins_utils/export_print.c \
-	   ${SRC_PATH}/820_exec_utils/pipes_utils.c
+	   ${SRC_PATH}/820_exec_utils/exec_utils.c
 
 # Object files derived from source files
 # OBJS = ${addprefix ${BUILD_PATH}/, ${notdir ${SRCS:.c=.o}}}

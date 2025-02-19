@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 18:44:11 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/19 09:45:59 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,17 @@ void	ft_exec(t_shell *shell)
 	t_cmd_type	cmd;
 
 	curr = shell->tokens;
-	
+
 	if (!curr || !curr->value)
 		return ;
+	ft_create_redirection_list(shell);
 	if (ft_has_pipes(shell) == SUCCESS)
 	{
 		ft_handle_pipes(shell);
 		return ;
 	}
-	/* 820_exec_utils */
-	/* if (ft_has_redirects(shell) == SUCCESS)
-	{
-		ft_handle_redirects();
-		return ;
-	} */
+	if (shell->redirects)
+		ft_handle_redirections(shell);
 	cmd = ft_get_cmd_type(curr->value);
 	ft_handle_exec(shell, cmd);
 }
