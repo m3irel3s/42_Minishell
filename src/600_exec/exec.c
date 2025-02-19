@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/19 12:25:03 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/19 13:44:51 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	ft_handle_exec(t_shell *shell, int cmd)
 	int original_stdin = dup(STDIN_FILENO);
 
 	ft_handle_redirections(shell);
+	dup2(shell->redirected_stdin, STDIN_FILENO);
+	dup2(shell->redirected_stdout, STDOUT_FILENO);
 	if (cmd == CMD_EXEC)
 		ft_execute_cmd(shell, shell->tokens->value);
 	if (cmd == CMD_ECHO)
@@ -56,10 +58,12 @@ void	ft_handle_exec(t_shell *shell, int cmd)
 		ft_unset(shell);
 	// else
 	// 	ft_print_command_not_found_error(shell->tokens->value);
-	dup2(original_stdout, STDOUT_FILENO);
 	dup2(original_stdin, STDIN_FILENO);
-	close(original_stdout);
+	dup2(original_stdout, STDOUT_FILENO);
 	close(original_stdin);
+	close(original_stdout);
+	close(shell->redirected_stdin);
+	close(shell->redirected_stdout);
 }
 
 t_cmd_type	ft_get_cmd_type(char *cmd)
