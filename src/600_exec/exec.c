@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/19 10:10:50 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:30:25 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	ft_exec(t_shell *shell)
 		ft_handle_pipes(shell);
 		return ;
 	}
-	if (shell->redirects)
-		ft_handle_redirections(shell);
 	cmd = ft_get_cmd_type(curr->value);
 	ft_handle_exec(shell, cmd);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_execve.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:34:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 18:44:15 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:36:15 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,12 @@ void	ft_execute_cmd(t_shell *shell, char *cmd)
 	if (pid == -1)
 	{
 		perror("Fork failed");
-		return;
+		return ;
 	}
 	if (pid == 0)
 	{
+		if (shell->redirects)
+			ft_handle_redirections(shell);
 		if (execve(path, arr, shell->env_cpy) == -1)
 		{
 			perror("execve failed");

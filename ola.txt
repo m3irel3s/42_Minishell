@@ -1,4 +1,28 @@
-ola
-[?2004h[0;32mmelaniereis[0m@[0;36m/Users/melaniereis/Projects/42_minishell[0m ¨^C[?2004l
+DEBUG: Entering ft_execute_cmd with cmd: ola
+DEBUG: Path to execute: (null)
+DEBUG: Command array created
+DEBUG: arr[0] = ola
+DEBUG: Command not found in PATH
+[?2004h[0;32mmelaniereis[0m@[0;36m/Users/melaniereis/Projects/42_minishell[0m [?2004l
+exit
+DEBUG: dup2 successful
+DEBUG: Exiting ft_apply_redirection
+DEBUG: Exiting ft_handle_redirections
+DEBUG: Entering ft_execute_cmd with cmd: ola
+DEBUG: Path to execute: (null)
+DEBUG: Command array created
+DEBUG: arr[0] = ola
+DEBUG: Command not found in PATH
+[?2004h[0;32mmelaniereis[0m@[0;36m/Users/melaniereis/Projects/42_minishell[0m ^C[?2004l
 [0;32mmelaniereis[0m@[0;36m/Users/melaniereis/Projects/42_minishell[0m [?2004h[?2004l
 exit
+42_Libft
+Makefile
+README.md
+gdb.txt
+inc
+minishell
+ola
+ola.txt
+readline.supp
+src
