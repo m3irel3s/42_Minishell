@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirects_setting.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:11:23 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/18 11:19:43 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/19 10:19:43 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,47 +28,47 @@ static void	ft_create_and_add_redirect(t_token *token, t_shell *shell,
  *              which redirection tokens are to be extracted and added to the
  *              redirection list.
  */
-void	ft_create_redirection_list(t_shell *shell)
+void ft_create_redirection_list(t_shell *shell)
 {
 	t_token		*token;
+	t_token		*next_token;
+	t_token		*after_next;
 	t_redirect	*last_redirect;
 
 	token = shell->tokens;
 	last_redirect = NULL;
-	if (!token)
-		return ;
 	while (token)
 	{
+		next_token = token->next;
+		if (!next_token)
+			after_next = NULL;
+		else
+			after_next = next_token->next;
 		if (token->type == REDIRECT_IN
 			|| token->type == REDIRECT_OUT
 			|| token->type == HEREDOC
 			|| token->type == REDIRECT_APPEND)
 		{
-			if (!token->next)
+			if (!next_token)
 			{
 				ft_print_redirect_no_file_error();
 				return ;
 			}
 			ft_create_and_add_redirect(token, shell, &last_redirect);
-			// Unlink redirect tokens from the token list
-			t_token *redirect_token = token;
-			t_token *filename_token = token->next;
-			if (redirect_token->prev)
-				redirect_token->prev->next = filename_token->next;
+			if (token->prev)
+				token->prev->next = after_next;
 			else
-				shell->tokens = filename_token->next; // Update head if redirect is first token
-			if (filename_token->next)
-				filename_token->next->prev = redirect_token->prev;
-			token = filename_token->next;
-			// Free the unlinked tokens
-			free(redirect_token->value);
-			free(redirect_token);
-			free(filename_token->value);
-			free(filename_token);
-			token = token->next->next;
+				shell->tokens = after_next;
+			if (after_next)
+				after_next->prev = token->prev;
+			free(token->value);
+			free(token);
+			free(next_token->value);
+			free(next_token);
+			token = after_next;
 		}
-		if (token->next)
-			token = token->next;
+		else
+			token = next_token;
 	}
 }
 

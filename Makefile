@@ -6,7 +6,7 @@
 #    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/19 09:46:33 by meferraz         ###   ########.fr        #
+#    Updated: 2025/02/19 10:04:42 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -117,7 +117,7 @@ LIBFT_ARC = ${LIBFT_PATH}/libft.a
 
 ## Core ##
 CC				= cc
-CCFLAGS			= -Wall -Wextra -Werror -g
+CCFLAGS			= -Wall -Wextra -Werror -g -fsanitize=address
 RM				= rm -fr
 MKDIR_P			= mkdir -p
 INC				= -I ${INC_PATH}  -I$(READLINE_PATH)/include
