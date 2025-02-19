@@ -6,7 +6,7 @@
 #    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/19 12:32:14 by meferraz         ###   ########.fr        #
+#    Updated: 2025/02/19 13:38:06 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,6 +84,7 @@ SRCS = \
        ${SRC_PATH}/600_exec/exec.c \
        ${SRC_PATH}/600_exec/exec_execve.c \
        ${SRC_PATH}/600_exec/exec_pipes.c \
+	   ${SRC_PATH}/600_exec/exec_heredoc.c \
 	   ${SRC_PATH}/600_exec/exec_redirection.c \
 	   ${SRC_PATH}/600_exec/exec_redirection_utils.c \
        ${SRC_PATH}/610_builtins/cd.c \
