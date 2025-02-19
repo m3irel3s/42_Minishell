@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/19 13:44:51 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:54:49 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,10 @@ void	ft_handle_exec(t_shell *shell, int cmd)
 	dup2(shell->redirected_stdout, STDOUT_FILENO);
 	if (cmd == CMD_EXEC)
 		ft_execute_cmd(shell, shell->tokens->value);
-	if (cmd == CMD_ECHO)
+	if (cmd == CMD_AUTHORS)
+		ft_authors();
+	else if
+	 (cmd == CMD_ECHO)
 		ft_echo(shell);
 	else if (cmd == CMD_CD)
 		ft_cd(shell);
@@ -70,6 +73,8 @@ t_cmd_type	ft_get_cmd_type(char *cmd)
 {
 	if (!cmd)
 		return (CMD_UNKNOWN);
+	if (ft_strcmp(cmd, "authors") == SUCCESS)
+		return (CMD_AUTHORS);
 	if (ft_strcmp(cmd, "echo") == SUCCESS)
 		return (CMD_ECHO);
 	if (ft_strcmp(cmd, "cd") == SUCCESS)

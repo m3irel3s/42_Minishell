@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/19 13:31:35 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:55:12 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef enum e_token_type
 
 typedef enum e_cmd_type
 {
+	CMD_AUTHORS,
 	CMD_ECHO,
 	CMD_CD,
 	CMD_PWD,

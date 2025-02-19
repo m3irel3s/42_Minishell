@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   000_intro.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 08:37:43 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/11 13:30:55 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:03:24 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,20 +94,23 @@ static void	ft_display_infos(void)
  */
 int	ft_authors(void)
 {
-	const char	*authors[10];
+	const char	*authors[14];
 	int			i;
 
 	authors[0] = BYEL "\n+-------------------------------------------+" RESET;
 	authors[1] = BMAG "|                AUTHORS                    |" RESET;
 	authors[2] = BYEL "+-------------------------------------------+" RESET;
 	authors[3] = BGRN "| Minishell - 42 School Project             |" RESET;
-	authors[4] = HCYN "| Created by:                               |" RESET;
-	authors[5] = HRED "| > Miguel Meirele <jmeirele@student.42porto.com> |"
-		RESET;
-	authors[6] = HRED "| > Melanie Reis <meferraz@student.42porto.com> |" RESET;
-	authors[7] = HYEL "| February 2025                             |" RESET;
-	authors[8] = BYEL "+-------------------------------------------+\n" RESET;
-	authors[9] = NULL;
+	authors[4] = BYEL "|                                           |" RESET;
+	authors[5] = HCYN "| Created by:                               |" RESET;
+	authors[6] = BMAG "| > Miguel Meireles                         |" RESET;
+	authors[7] = HRED "| <jmeirele@student.42porto.com>            |" RESET;
+	authors[8] = BMAG "| > Melanie Reis                            |" RESET;
+	authors[9] = HRED "| <meferraz@student.42porto.com>            |" RESET;
+	authors[10] = BYEL "|                                           |" RESET;
+	authors[11] = HYEL "| February 2025                             |" RESET;
+	authors[12] = BYEL "+-------------------------------------------+\n" RESET;
+	authors[13] = NULL;
 	i = 0;
 	while (authors[i] != NULL)
 	{
