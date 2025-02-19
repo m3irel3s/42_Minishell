@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 18:26:33 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/19 12:38:34 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,15 +109,6 @@ t_status		ft_expand(t_shell *shell);
 char			*ft_handle_dollar(t_shell *shell, char *token, size_t *i);
 
 //============================================================================//
-//                               REDIRECTIONS                                 //
-//============================================================================//
-/* 540_redirects/redirects_setting.c */
-void			ft_create_redirection_list(t_shell *shell);
-
-/* 540_redirects/redirects_handling.c */
-void			ft_handle_redirections(t_shell *shell);
-
-//============================================================================//
 //                                EXECUTION                                   //
 //============================================================================//
 /* 600_exec/exec.c */
@@ -142,6 +133,15 @@ void			ft_handle_pipes(t_shell *shell);
 
 /* 610_pipes_utils.c */
 int				ft_has_pipes(t_shell *shell);
+
+//============================================================================//
+//                         EXECUTION - REDIRECTIONS                           //
+//============================================================================//
+/* 600_exec/exec_redirection.c */
+void			ft_handle_redirections(t_shell *shell);
+
+/* 600_exec/exec_redirection_utils.c */
+void			ft_create_redirection_list(t_shell *shell);
 
 
 //============================================================================//

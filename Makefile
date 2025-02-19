@@ -6,7 +6,7 @@
 #    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/19 10:04:42 by meferraz         ###   ########.fr        #
+#    Updated: 2025/02/19 12:32:14 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -81,11 +81,11 @@ SRCS = \
 	   ${SRC_PATH}/520_errors_handler/print_errors.c \
        ${SRC_PATH}/530_expansion/expand.c \
 	   ${SRC_PATH}/530_expansion/expand_handle_dollar.c \
-       ${SRC_PATH}/540_redirects/redirects_setting.c \
-       ${SRC_PATH}/540_redirects/redirects_handling.c \
        ${SRC_PATH}/600_exec/exec.c \
        ${SRC_PATH}/600_exec/exec_execve.c \
        ${SRC_PATH}/600_exec/exec_pipes.c \
+	   ${SRC_PATH}/600_exec/exec_redirection.c \
+	   ${SRC_PATH}/600_exec/exec_redirection_utils.c \
        ${SRC_PATH}/610_builtins/cd.c \
        ${SRC_PATH}/610_builtins/echo.c \
        ${SRC_PATH}/610_builtins/env.c \
