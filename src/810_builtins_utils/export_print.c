@@ -6,11 +6,23 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:56:02 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/15 17:33:23 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/17 19:31:13 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+void	ft_print_export(t_shell *shell)
+{
+	char	**export;
+	
+	export = NULL;
+	export = ft_duplicate_env(shell->env_cpy);
+	export = ft_sort_export(export);
+	ft_output_export(export);
+	ft_free_arr(export);
+	return ;
+}
 
 char	**ft_sort_export(char **export)
 {
@@ -34,8 +46,8 @@ char	**ft_sort_export(char **export)
 				export[i] = export[i + 1];
 				export[i + 1] = temp;
 			}
-			free(var_name1);
-			free(var_name2);
+			ft_free(var_name1);
+			ft_free(var_name2);
 			i++;
 		}
 		j++;
@@ -43,7 +55,7 @@ char	**ft_sort_export(char **export)
 	return (export);
 }
 
-void	ft_print_export(char **export)
+void	ft_output_export(char **export)
 {
 	char	*res;
 	char	*var;
@@ -57,6 +69,7 @@ void	ft_print_export(char **export)
 		var = ft_get_var_name(res);
 		value = ft_get_var_value(var, export);
 		ft_printf(1, "declare - x %s=\"%s\"\n", var, value);
+		ft_free(var);
 		i++;
 	}
 }

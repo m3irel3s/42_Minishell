@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_utils_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:26:26 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/17 09:59:03 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/17 19:31:13 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ t_token	*ft_init_new_token(t_shell *shell, size_t start,
 	new_token->value = ft_substr(shell->input, start, end - start);
 	if (!new_token->value)
 	{
-		free(new_token);
+		ft_free(new_token);
 		return (NULL);
 	}
 	new_token->type = ft_determine_token_type(new_token->value, end - start);

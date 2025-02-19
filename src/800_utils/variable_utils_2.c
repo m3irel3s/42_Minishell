@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:35:08 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/15 17:20:11 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/17 19:31:13 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_update_or_add_var(char *var, char *value, t_shell *shell)
 		return ;
 	}
 	new_var = ft_update_var(var, value);
-	free(shell->env_cpy[var_index]);
+	ft_free(shell->env_cpy[var_index]);
 	shell->env_cpy[var_index] = new_var;
 	return ;
 }

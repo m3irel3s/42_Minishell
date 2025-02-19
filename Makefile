@@ -6,7 +6,7 @@
 #    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/18 09:29:49 by meferraz         ###   ########.fr        #
+#    Updated: 2025/02/19 10:04:42 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,21 +84,24 @@ SRCS = \
        ${SRC_PATH}/540_redirects/redirects_setting.c \
        ${SRC_PATH}/540_redirects/redirects_handling.c \
        ${SRC_PATH}/600_exec/exec.c \
+       ${SRC_PATH}/600_exec/exec_execve.c \
+       ${SRC_PATH}/600_exec/exec_pipes.c \
        ${SRC_PATH}/610_builtins/cd.c \
        ${SRC_PATH}/610_builtins/echo.c \
        ${SRC_PATH}/610_builtins/env.c \
 	   ${SRC_PATH}/610_builtins/pwd.c \
 	   ${SRC_PATH}/610_builtins/export.c \
-	   ${SRC_PATH}/610_builtins/export_print.c \
 	   ${SRC_PATH}/610_builtins/unset.c \
 	   ${SRC_PATH}/610_builtins/exit.c \
 	   ${SRC_PATH}/700_clean/clean.c \
-	   ${SRC_PATH}/800_utils/env_utils.c \
 	   ${SRC_PATH}/800_utils/variable_utils.c \
 	   ${SRC_PATH}/800_utils/variable_utils_2.c \
-	   ${SRC_PATH}/800_utils/export_utils.c \
        ${SRC_PATH}/800_utils/check_type_functions.c \
-       ${SRC_PATH}/800_utils/safe_functions.c
+       ${SRC_PATH}/800_utils/safe_functions.c \
+	   ${SRC_PATH}/810_builtins_utils/env_utils.c \
+	   ${SRC_PATH}/810_builtins_utils/export_utils.c \
+	   ${SRC_PATH}/810_builtins_utils/export_print.c \
+	   ${SRC_PATH}/820_exec_utils/exec_utils.c
 
 # Object files derived from source files
 # OBJS = ${addprefix ${BUILD_PATH}/, ${notdir ${SRCS:.c=.o}}}
@@ -114,7 +117,7 @@ LIBFT_ARC = ${LIBFT_PATH}/libft.a
 
 ## Core ##
 CC				= cc
-CCFLAGS			= -Wall -Wextra -Werror -g
+CCFLAGS			= -Wall -Wextra -Werror -g -fsanitize=address
 RM				= rm -fr
 MKDIR_P			= mkdir -p
 INC				= -I ${INC_PATH}  -I$(READLINE_PATH)/include

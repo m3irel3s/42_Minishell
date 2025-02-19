@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 09:30:04 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/18 18:26:33 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,40 +121,57 @@ void			ft_handle_redirections(t_shell *shell);
 //                                EXECUTION                                   //
 //============================================================================//
 /* 600_exec/exec.c */
-void			ft_execute_input(t_shell *shell);
-void			ft_handle_exec(t_shell *shell);
+void			ft_exec(t_shell *shell);
+void			ft_handle_exec(t_shell *shell, int cmd);
 t_cmd_type		ft_get_cmd_type(char *cmd);
 
+
+/* 600_exec/exec_execve.c */
+void			ft_execute_cmd(t_shell *shell, char *cmd);
+char			*ft_get_path_to_execute(t_shell *shell, char *cmd);
+char			*ft_add_cmd_to_path(char **arr, char *cmd);
+char			**ft_create_arr_cmd(t_token *start_pos);
+
+
+//============================================================================//
+//                                  PIPES                                     //
+//============================================================================//
+
+/* 610_pipes.c */
+void			ft_handle_pipes(t_shell *shell);
+
+/* 610_pipes_utils.c */
+int				ft_has_pipes(t_shell *shell);
 
 
 //============================================================================//
 //                               BUILT-IN COMMANDS                            //
 //============================================================================//
-/* 610_builtins/echo.c */
+/* 650_builtins/echo.c */
 void			ft_echo(t_shell *shell);
 
-/* 610_builtins/cd.c */
+/* 650_builtins/cd.c */
 void			ft_cd(t_shell *shell);
 
-
-/* 610_builtins/env.c */
+/* 650_builtins/env.c */
 void			ft_env(t_shell *shell);
 
-/* 610_builtins/pwd.c */
-void			ft_pwd(t_shell *shell);
+/* 650_builtins/pwd.c */
+void			ft_pwd(void);
 
-/* 610_builtins/export.c */
+/* 650_builtins/export.c */
 void			ft_export(t_shell *shell);
 void			ft_add_var_to_env(t_shell *shell, char *var, char *value);
 
-/* 610_builtins/export_print.c */
-void			ft_print_export(char **export);
+/* 650_builtins/export_print.c */
+void			ft_print_export(t_shell *shell);
+void			ft_output_export(char **export);
 char			**ft_sort_export(char **export);
 
-/* 610_builtins/exit.c */
+/* 650_builtins/exit.c */
 void			ft_exit(t_shell *shell);
 
-/* 610_builtins/unset.c */
+/* 650_builtins/unset.c */
 void			ft_unset(t_shell *shell);
 
 

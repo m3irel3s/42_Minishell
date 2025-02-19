@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 14:14:30 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/17 14:50:27 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/18 16:00:48 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,27 @@
 static char	*ft_expand_exit_status(t_shell *shell, size_t *i);
 static char	*ft_expand_variable(t_shell *shell, char *token, size_t *i,
 				size_t start);
-static char *ft_expand_variable(t_shell *shell, char *token, size_t *i,
+static char	*ft_expand_variable(t_shell *shell, char *token, size_t *i,
 				size_t start);
 
+/*************  ✨ Codeium Command ⭐  *************/
+/**
+ * @brief Handles dollar sign expansion in a token.
+ *
+ * This function processes a token starting with a dollar sign ('$') at the
+ * current index, expanding either the exit status if followed by '?' or a
+ * variable name otherwise. The index is updated to point after the processed
+ * part of the token.
+ *
+ * @param shell The shell struct containing the environment and state
+ * information.
+ * @param token The input string token being processed.
+ * @param i Pointer to the current index in the token string.
+ * @return A string representing the expanded value, or NULL if no expansion
+ *         was possible.
+ */
+
+/******  ef8972ce-2033-4dba-86a4-5cf9c702427c  *******/
 char	*ft_handle_dollar(t_shell *shell, char *token, size_t *i)
 {
 	char	*res;
@@ -37,6 +55,17 @@ char	*ft_handle_dollar(t_shell *shell, char *token, size_t *i)
 	return (res);
 }
 
+/**
+ * @brief Expands the exit status variable in the shell.
+ *
+ * This function increments the index to skip the '?' character
+ * and converts the shell's exit status to a string.
+ *
+ * @param shell The shell struct containing the exit status.
+ * @param i Pointer to the current index in the token string.
+ * @return A string representing the exit status.
+ */
+
 static char	*ft_expand_exit_status(t_shell *shell, size_t *i)
 {
 	char	*res;
@@ -46,6 +75,20 @@ static char	*ft_expand_exit_status(t_shell *shell, size_t *i)
 	return (res);
 }
 
+/**
+ * @brief Expands a variable in the shell.
+ *
+ * This function extracts the variable name from the token, gets its value from
+ * the environment and returns it as a string. If the variable doesn't exist,
+ * it returns an empty string.
+ *
+ * @param shell The shell struct containing the environment and state
+ * information.
+ * @param token The input string token being processed.
+ * @param i Pointer to the current index in the token string.
+ * @param start The start index of the variable name in the token string.
+ * @return A string representing the expanded variable value.
+ */
 static char	*ft_expand_variable(t_shell *shell, char *token, size_t *i,
 	size_t start)
 {
@@ -57,7 +100,7 @@ static char	*ft_expand_variable(t_shell *shell, char *token, size_t *i,
 	if (!var_name)
 		return (ft_strdup("$"));
 	var_value = ft_get_var_value(var_name, shell->env_cpy);
-	free(var_name);
+	ft_free(var_name);
 	if (var_value)
 		res = ft_strdup_safe(var_value);
 	else

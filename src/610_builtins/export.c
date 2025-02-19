@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/17 16:39:00 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/18 12:45:43 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,17 @@
 	// 1 single quote
 	// 2 double quote
 
+// static void	ft_append_to_var(t_shell *shell, char *var, char *new_value);
+
 void	ft_export(t_shell *shell)
 {
 	t_token *curr;
-	char	**export;
 
-	export = NULL;
 	curr = shell->tokens;
 	if (!curr->next)
 	{
-		export = ft_duplicate_env(shell->env_cpy);
-		export = ft_sort_export(export);
-		ft_print_export(export);
-		ft_free_arr(export);
-		return;
+		ft_print_export(shell);
+		return ;
 	}
 	while (curr->next)
 	{
@@ -55,38 +52,36 @@ void	ft_export(t_shell *shell)
 		else
 			value = "";
 		ft_update_or_add_var(var, value, shell);
-		free(var);
+		ft_free(var);
 	}
 }
 
 void	ft_add_var_to_env(t_shell *shell, char *var, char *value)
 {
 	char	**new_env;
-	char	**old_env;
 	int		new_size;
 	int		i;
 	
-	old_env = shell->env_cpy;
 	i = 0;
 	new_size = ft_get_env_size(shell) + 1;
-	new_env = ft_safe_malloc(sizeof(char *) * new_size);
-	while (old_env[i])
+	new_env = ft_safe_malloc(sizeof(char *) * (new_size + 1));
+	while (shell->env_cpy[i])
 	{
-		new_env[i] = ft_strdup(old_env[i]);
+		new_env[i] = ft_strdup(shell->env_cpy[i]);
 		i++;
 	}
-	new_env[i] = ft_update_var(var, value);
-	new_env[++i] = NULL;
-	ft_free_arr(old_env);
+	new_env[i++] = ft_update_var(var, value);
+	new_env[i] = NULL;
+	ft_free_arr(shell->env_cpy);
 	shell->env_cpy = ft_duplicate_env(new_env);
+	ft_free_arr(new_env);
 }
 
 // ### Function to handle the append += 
 // ### ex: a=ola a+=ola res: a=olaola
 // ### Still an error variable needs to be received without the + , ft_substr might help
 
-/* static void	ft_append_to_var(t_shell *shell, char *var, char *new_value);
-static void	ft_append_to_var(t_shell *shell, char *var, char *new_value)
+/* static void	ft_append_to_var(t_shell *shell, char *var, char *new_value)
 {
 	char	*full_value;
 	char	*old_value;
@@ -97,7 +92,7 @@ static void	ft_append_to_var(t_shell *shell, char *var, char *new_value)
 	old_value = ft_get_var_value(var, shell->env_cpy);
 	full_value = ft_strjoin(old_value, new_value);
 	new_var = ft_update_var(var, full_value);
-	free(shell->env_cpy[var_index]);
+	ft_free(shell->env_cpy[var_index]);
 	shell->env_cpy[var_index] = new_var;
 } */
 
