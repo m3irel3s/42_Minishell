@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/19 13:36:56 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:13:03 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,14 @@ void	ft_redirect_heredoc(char *delimiter)
 		write(fd, "\n", 1);
 		free(line);
 	}
-	free(line);
+	close(fd);
+	fd = open(".heredoc", O_RDONLY);
+	if (fd == -1)
+	{
+		ft_putstr_fd("minishell: error opening heredoc file\n", STDERR_FILENO);
+		return ;
+	}
+	unlink(".heredoc");
+	dup2(fd, STDIN_FILENO);
 	close(fd);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_handle_dollar.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 14:14:30 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/18 16:00:48 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:05:38 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static char	*ft_expand_variable(t_shell *shell, char *token, size_t *i,
 static char	*ft_expand_variable(t_shell *shell, char *token, size_t *i,
 				size_t start);
 
-/*************  ✨ Codeium Command ⭐  *************/
 /**
  * @brief Handles dollar sign expansion in a token.
  *
@@ -35,7 +34,6 @@ static char	*ft_expand_variable(t_shell *shell, char *token, size_t *i,
  *         was possible.
  */
 
-/******  ef8972ce-2033-4dba-86a4-5cf9c702427c  *******/
 char	*ft_handle_dollar(t_shell *shell, char *token, size_t *i)
 {
 	char	*res;
