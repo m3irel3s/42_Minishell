@@ -732,3 +732,147 @@ Breakpoint 2, ft_exec (shell=0x7fffffffe2f0) at src/600_exec/exec.c:21
 --------------------------
 [Detaching after fork from child process 49948]
 --------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x19f5: file src/100_main.c, line 33.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x00000000000019f5 in main at src/100_main.c:33
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
+Breakpoint 2 at 0x555555557781: file src/600_exec/exec.c, line 21.
+Continuing.
+
+Breakpoint 2, ft_exec (shell=0x7fffffffe2f0) at src/600_exec/exec.c:21
+--------------------------
+--------------------------
+--------------------------
+ft_handle_pipes (shell=0x7fffffffe2f0) at src/600_exec/exec_pipes.c:16
+--------------------------
+--------------------------
+--------------------------
+1: curr->value = 0x555555599c80 "export"
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x19f5: file src/100_main.c, line 33.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x00000000000019f5 in main at src/100_main.c:33
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
+Breakpoint 2 at 0x555555557781: file src/600_exec/exec.c, line 21.
+Continuing.
+
+Breakpoint 2, ft_exec (shell=0x7fffffffe2f0) at src/600_exec/exec.c:21
+--------------------------
+--------------------------
+--------------------------
+ft_handle_pipes (shell=0x7fffffffe2f0) at src/600_exec/exec_pipes.c:16
+warning: Source file is more recent than executable.
+--------------------------
+--------------------------
+--------------------------
+1: curr->type = WORD
+1: curr->type = WORD
+--------------------------
+1: curr->type = PIPE
+--------------------------
+1: curr->type = PIPE
+--------------------------
+1: curr->type = PIPE
+--------------------------
+1: curr->type = PIPE
+--------------------------
+[Detaching after fork from child process 14018]
+1: curr->type = PIPE
+--------------------------
+$1 = 14018
+1: curr->type = PIPE
+--------------------------
+1: curr->type = PIPE
+--------------------------
+1: curr->type = PIPE
+--------------------------
+1: curr->type = PIPE
+--------------------------
+1: curr->type = PIPE
+--------------------------
+1: curr->type = PIPE
+--------------------------
+1: curr->type = PIPE
+--------------------------
+1: curr->type = WORD
+--------------------------
+1: curr->type = WORD
+--------------------------
+1: curr->type = WORD
+--------------------------
+1: curr->type = WORD
+--------------------------
+1: curr->type = WORD
+--------------------------
+1: curr->type = WORD
+--------------------------
+1: curr->type = <error: Cannot access memory at address 0x8>
+--------------------------
+1: curr->type = <error: Cannot access memory at address 0x8>
+--------------------------
+[Detaching after fork from child process 14032]
+1: curr->type = <error: Cannot access memory at address 0x8>
+--------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x19f5: file src/100_main.c, line 33.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x00000000000019f5 in main at src/100_main.c:33
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
+Breakpoint 2 at 0x555555557781: file src/600_exec/exec.c, line 21.
+Continuing.
+
+Breakpoint 2, ft_exec (shell=0x7fffffffe2f0) at src/600_exec/exec.c:21
+--------------------------
+--------------------------
+--------------------------
+ft_handle_pipes (shell=0x7fffffffe2f0) at src/600_exec/exec_pipes.c:16
+--------------------------
+--------------------------
+--------------------------
+--------------------------
+--------------------------
+1: curr->type = WORD
+2: curr->value = 0x555555599c80 "export"
+1: curr->type = WORD
+2: curr->value = 0x555555599c80 "export"
+--------------------------
+1: curr->type = PIPE
+2: curr->value = 0x555555599ca0 "|"
+--------------------------
+1: curr->type = PIPE
+2: curr->value = 0x555555599ca0 "|"
+--------------------------
+1: curr->type = PIPE
+2: curr->value = 0x555555599ca0 "|"
+--------------------------
+1: curr->type = PIPE
+2: curr->value = 0x555555599ca0 "|"
+--------------------------
+1: curr->type = PIPE
+2: curr->value = 0x555555599ca0 "|"
+--------------------------
+1: curr->type = PIPE
+2: curr->value = 0x555555599ca0 "|"
+--------------------------

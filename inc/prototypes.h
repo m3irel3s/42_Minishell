@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 18:26:33 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/19 12:15:20 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,11 +163,6 @@ void			ft_pwd(void);
 void			ft_export(t_shell *shell);
 void			ft_add_var_to_env(t_shell *shell, char *var, char *value);
 
-/* 650_builtins/export_print.c */
-void			ft_print_export(t_shell *shell);
-void			ft_output_export(char **export);
-char			**ft_sort_export(char **export);
-
 /* 650_builtins/exit.c */
 void			ft_exit(t_shell *shell);
 
@@ -188,11 +183,20 @@ void			ft_free_arr(char **arr);
 //                       ENVIRONMENT VARIABLE UTILITIES                       //
 //============================================================================//
 
-/* 800_utils*/
+/* 810_builtins_utils*/
 /* env_utils.c */
 char			**ft_duplicate_env(char **envp);
 int				ft_get_env_size(t_shell *shell);
 
+/* export_utils.c */
+int				ft_check_var_chars(char *var);
+
+/* export_print.c */
+void			ft_print_export(t_shell *shell);
+void			ft_output_export(char **export);
+char			**ft_sort_export(char **export);
+
+/* 800_utils */
 /* variable_utils.c */
 int				ft_get_str_length(char *str1, char *str2);
 char			*ft_get_var_value(char *var, char **env);
@@ -202,9 +206,6 @@ char			*ft_get_var_name(char *str);
 /* variable_utils_2.c */
 char			*ft_update_var(char *var, char *value);
 void			ft_update_or_add_var(char *var, char *value, t_shell *shell);
-
-/* export_utils.c */
-int				ft_check_var_chars(char *var);
 
 
 //============================================================================//
@@ -224,5 +225,9 @@ int				ft_is_command(char *value, size_t len);
 void			*ft_safe_malloc(size_t size);
 char			*ft_safe_readline(t_shell *shell);
 char			*ft_strdup_safe(const char *s);
+
+int	ft_has_pipes(t_shell *shell);
+
+
 
 #endif
