@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 16:11:29 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 16:16:18 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,10 @@
 	"minishell: Failed to create token\n"
 # define ERR_SUBSTR_FAIL \
 	"minishell: Failed to create substring for token\n"
+# define ERR_INVALID_PARAMS \
+	"minishell: Invalid parameters\n"
+# define ERR_EXPORT_TOKEN_CREATION_FAIL \
+	"minishell: Failed to create export token\n"
 
 //============================================================================//
 //                              EXIT STATUS CODES                             //
