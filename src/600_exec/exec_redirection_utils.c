@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:11:23 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/20 10:30:54 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 11:30:47 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,20 +73,22 @@ void ft_create_redirection_list(t_shell *shell)
 }
 
 /**
- * @brief Creates a new redirection token from a token and adds it to the
- *        shell's redirection list.
+ * @brief Creates a new redirection from a token and adds it to the shell's
+ *        redirection list.
  *
- * This function allocates memory for a new redirection token and copies the
- * value of the given token into the new redirection token. It then finds the
- * last redirection token in the shell's redirection list and appends the new
- * redirection token to the list. If the shell's redirection list is initially
- * empty, the new redirection token becomes the first token in the list.
+ * This function allocates a new redirection structure, initializes it based on
+ * the provided token's type and its subsequent token's value and quoted status.
+ * It then appends this redirection to the shell's list of redirections. If the
+ * allocation of the redirection or its filename fails, the function frees any
+ * allocated resources and returns without adding the redirection.
  *
- * @param token A pointer to the token whose value is to be copied into the
- *              new redirection token.
- * @param shell A pointer to the shell structure containing the redirection
- *              list to which the new redirection token is to be added.
+ * @param token A pointer to the token representing the redirection operator.
+ * @param shell A pointer to the shell structure where the redirection list is
+ *              maintained.
+ * @param last_redirect A double pointer to the last redirection in the list,
+ *                      used to append the newly created redirection.
  */
+
 static void	ft_create_and_add_redirect(t_token *token, t_shell *shell,
 										t_redirect **last_redirect)
 {
