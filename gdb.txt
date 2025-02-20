@@ -909,3 +909,730 @@ Continuing.
 
 Breakpoint 2, ft_get_var_value (var=0x502000002a70 "HO", env=0x514000000040) at src/700_utils_other/variable_utils.c:24
 1: var = 0x502000002a70 "HO"
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x1a30: file src/100_main.c, line 18.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x0000000000001a30 in main at src/100_main.c:18
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:18
+Breakpoint 2 at 0x555555557759: file src/600_exec/exec_pipes.c, line 24.
+Continuing.
+
+Breakpoint 2, ft_handle_pipes (shell=0x7fffffffe2f0) at src/600_exec/exec_pipes.c:24
+--------------------------
+1: num_pipes = 0
+1: num_pipes = 1
+--------------------------
+1: num_pipes = 1
+--------------------------
+2: curr = (t_token *) 0x555555565440
+3: curr->value = 0x55555559acd0 "ls"
+1: num_pipes = 1
+3: curr->value = 0x55555559acd0 "ls"
+--------------------------
+1: num_pipes = 1
+3: curr->value = 0x55555559acd0 "ls"
+--------------------------
+1: num_pipes = 1
+3: curr->value = 0x55555559acd0 "ls"
+--------------------------
+[Detaching after fork from child process 81159]
+1: num_pipes = 1
+3: curr->value = 0x55555559acd0 "ls"
+--------------------------
+1: num_pipes = 1
+3: curr->value = 0x55555559acd0 "ls"
+--------------------------
+4: pid = 81159
+1: num_pipes = 1
+3: curr->value = 0x55555559acf0 "-al"
+4: pid = 81159
+--------------------------
+1: num_pipes = 1
+3: curr->value = 0x55555559acf0 "-al"
+4: pid = 81159
+--------------------------
+1: num_pipes = 1
+3: curr->value = 0x55555559acf0 "-al"
+4: pid = 81159
+--------------------------
+1: num_pipes = 1
+3: curr->value = 0x55555559acf0 "-al"
+4: pid = 81159
+--------------------------
+1: num_pipes = 1
+3: curr->value = 0x55555559acf0 "-al"
+4: pid = 81159
+--------------------------
+1: num_pipes = 1
+3: curr->value = 0x55555559acf0 "-al"
+4: pid = 81159
+--------------------------
+1: num_pipes = 1
+3: curr->value = 0x55555559acf0 "-al"
+4: pid = 81159
+--------------------------
+1: num_pipes = 1
+3: curr->value = 0x55555559acf0 "-al"
+4: pid = 81159
+--------------------------
+1: num_pipes = 1
+3: curr->value = 0x55555559acf0 "-al"
+4: pid = 81159
+--------------------------
+ft_exec (shell=0x7fffffffe2f0) at src/600_exec/exec.c:37
+--------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x1a30: file src/100_main.c, line 18.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x0000000000001a30 in main at src/100_main.c:18
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:18
+Breakpoint 2 at 0x555555557759: file src/600_exec/exec_pipes.c, line 24.
+Continuing.
+
+Breakpoint 2, ft_handle_pipes (shell=0x7fffffffe2f0) at src/600_exec/exec_pipes.c:24
+--------------------------
+--------------------------
+--------------------------
+--------------------------
+--------------------------
+--------------------------
+1: pid = -7440
+[Detaching after fork from child process 81411]
+1: pid = 81411
+--------------------------
+1: pid = 81411
+--------------------------
+1: pid = 81411
+--------------------------
+1: pid = 81411
+--------------------------
+1: pid = 81411
+--------------------------
+1: pid = 81411
+--------------------------
+1: pid = 81411
+--------------------------
+1: pid = 81411
+--------------------------
+1: pid = 81411
+--------------------------
+1: pid = 81411
+--------------------------
+1: pid = 81411
+--------------------------
+1: pid = 81411
+--------------------------
+ft_exec (shell=0x7fffffffe2f0) at src/600_exec/exec.c:37
+--------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x1a30: file src/100_main.c, line 18.
+Breakpoint 2 at 0x3759: file src/600_exec/exec_pipes.c, line 24.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x0000000000001a30 in main at src/100_main.c:18
+2       breakpoint     keep y   0x0000000000003759 in ft_handle_pipes at src/600_exec/exec_pipes.c:24
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:18
+Continuing.
+
+Breakpoint 2, ft_handle_pipes (shell=0x7fffffffe2f0) at src/600_exec/exec_pipes.c:24
+1: num_pipes = 0
+2: pid = -7440
+3: i = 0
+4: curr->value = <error: Cannot access memory at address 0x0>
+5: curr->type = <error: Cannot access memory at address 0x8>
+--------------------------
+1: num_pipes = 1
+2: pid = -7440
+3: i = 0
+4: curr->value = <error: Cannot access memory at address 0x0>
+5: curr->type = <error: Cannot access memory at address 0x8>
+--------------------------
+1: num_pipes = 1
+2: pid = -7440
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = -7440
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = -7440
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = -7440
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+[Detaching after fork from child process 81644]
+1: num_pipes = 1
+2: pid = 81644
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 81644
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 81644
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 81644
+3: i = 0
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 81644
+3: i = 0
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 81644
+3: i = 1
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 81644
+3: i = 1
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 81644
+3: i = 1
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 81644
+3: i = 1
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 81644
+3: i = 1
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 81644
+3: i = 1
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 81644
+3: i = 1
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+ft_exec (shell=0x7fffffffe2f0) at src/600_exec/exec.c:37
+--------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x1a30: file src/100_main.c, line 18.
+Breakpoint 2 at 0x3759: file src/600_exec/exec_pipes.c, line 24.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x0000000000001a30 in main at src/100_main.c:18
+2       breakpoint     keep y   0x0000000000003759 in ft_handle_pipes at src/600_exec/exec_pipes.c:24
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:18
+No symbol "num_pipes" in current context.
+Continuing.
+
+Breakpoint 2, ft_handle_pipes (shell=0x7fffffffe2f0) at src/600_exec/exec_pipes.c:24
+--------------------------
+1: num_pipes = 1
+2: pid = -7440
+3: i = 0
+4: curr->value = <error: Cannot access memory at address 0x0>
+5: curr->type = <error: Cannot access memory at address 0x8>
+--------------------------
+1: num_pipes = 1
+2: pid = -7440
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = -7440
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = -7440
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = -7440
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+[Detaching after fork from child process 82286]
+1: num_pipes = 1
+2: pid = 82286
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 82286
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 82286
+3: i = 0
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 82286
+3: i = 0
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 82286
+3: i = 1
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 82286
+3: i = 1
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+[Detaching after fork from child process 82288]
+1: num_pipes = 1
+2: pid = 82288
+3: i = 1
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 82288
+3: i = 1
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 82288
+3: i = 1
+4: curr->value = 0x55555559ab70 "|"
+5: curr->type = PIPE
+--------------------------
+1: num_pipes = 1
+2: pid = 82288
+3: i = 1
+4: curr->value = 0x55555559ab70 "|"
+5: curr->type = PIPE
+--------------------------
+1: num_pipes = 1
+2: pid = 82288
+3: i = 1
+4: curr->value = 0x55555559ac10 "wc"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 82288
+3: i = 2
+4: curr->value = 0x55555559ac10 "wc"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 82288
+3: i = 2
+4: curr->value = 0x55555559ac10 "wc"
+5: curr->type = WORD
+--------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x1a30: file src/100_main.c, line 18.
+Breakpoint 2 at 0x3759: file src/600_exec/exec_pipes.c, line 24.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x0000000000001a30 in main at src/100_main.c:18
+2       breakpoint     keep y   0x0000000000003759 in ft_handle_pipes at src/600_exec/exec_pipes.c:24
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:18
+Continuing.
+
+Breakpoint 2, ft_handle_pipes (shell=0x7fffffffe2f0) at src/600_exec/exec_pipes.c:24
+1: num_pipes = 0
+2: pid = -7440
+3: i = 0
+4: curr->value = <error: Cannot access memory at address 0x0>
+5: curr->type = <error: Cannot access memory at address 0x8>
+--------------------------
+1: num_pipes = 1
+2: pid = -7440
+3: i = 0
+4: curr->value = <error: Cannot access memory at address 0x0>
+5: curr->type = <error: Cannot access memory at address 0x8>
+--------------------------
+1: num_pipes = 1
+2: pid = -7440
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = -7440
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = -7440
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = -7440
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+[Detaching after fork from child process 82484]
+1: num_pipes = 1
+2: pid = 82484
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 82484
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 82484
+3: i = 0
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 82484
+3: i = 0
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 82484
+3: i = 0
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+[Detaching after fork from child process 82488]
+1: num_pipes = 1
+2: pid = 82488
+3: i = 0
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 82488
+3: i = 0
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 82488
+3: i = 0
+4: curr->value = 0x55555559ab70 "|"
+5: curr->type = PIPE
+--------------------------
+1: num_pipes = 1
+2: pid = 82488
+3: i = 0
+4: curr->value = 0x55555559ab70 "|"
+5: curr->type = PIPE
+--------------------------
+1: num_pipes = 1
+2: pid = 82488
+3: i = 0
+4: curr->value = 0x55555559ac10 "wc"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 82488
+3: i = 0
+4: curr->value = 0x55555559ac10 "wc"
+5: curr->type = WORD
+--------------------------
+[Detaching after fork from child process 82490]
+1: num_pipes = 1
+2: pid = 82490
+3: i = 0
+4: curr->value = 0x55555559ac10 "wc"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 82490
+3: i = 0
+4: curr->value = 0x55555559ac10 "wc"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 82490
+3: i = 0
+4: curr->value = 0x55555559ac60 "-l"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 82490
+3: i = 0
+4: curr->value = 0x55555559ac60 "-l"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 82490
+3: i = 0
+4: curr->value = 0x55555559ac60 "-l"
+5: curr->type = WORD
+--------------------------
+[Detaching after fork from child process 82492]
+1: num_pipes = 1
+2: pid = 82492
+3: i = 0
+4: curr->value = 0x55555559ac60 "-l"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 82492
+3: i = 0
+4: curr->value = 0x55555559ac60 "-l"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 82492
+3: i = 0
+4: curr->value = <error: Cannot access memory at address 0x0>
+5: curr->type = <error: Cannot access memory at address 0x8>
+--------------------------
+1: num_pipes = 1
+2: pid = 82492
+3: i = 0
+4: curr->value = <error: Cannot access memory at address 0x0>
+5: curr->type = <error: Cannot access memory at address 0x8>
+--------------------------
+1: num_pipes = 1
+2: pid = 82492
+3: i = 0
+4: curr->value = <error: Cannot access memory at address 0x0>
+5: curr->type = <error: Cannot access memory at address 0x8>
+--------------------------
+1: num_pipes = 1
+2: pid = 82492
+3: i = 0
+4: curr->value = <error: Cannot access memory at address 0x0>
+5: curr->type = <error: Cannot access memory at address 0x8>
+--------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x1a30: file src/100_main.c, line 18.
+Breakpoint 2 at 0x3759: file src/600_exec/exec_pipes.c, line 24.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x0000000000001a30 in main at src/100_main.c:18
+2       breakpoint     keep y   0x0000000000003759 in ft_handle_pipes at src/600_exec/exec_pipes.c:24
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:18
+Continuing.
+
+Breakpoint 2, ft_handle_pipes (shell=0x7fffffffe2f0) at src/600_exec/exec_pipes.c:24
+1: num_pipes = 0
+2: pid = -7440
+3: i = 0
+4: curr->value = <error: Cannot access memory at address 0x0>
+5: curr->type = <error: Cannot access memory at address 0x8>
+--------------------------
+1: num_pipes = 1
+2: pid = -7440
+3: i = 0
+4: curr->value = <error: Cannot access memory at address 0x0>
+5: curr->type = <error: Cannot access memory at address 0x8>
+--------------------------
+1: num_pipes = 1
+2: pid = -7440
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = -7440
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = -7440
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = -7440
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+[Detaching after fork from child process 83353]
+1: num_pipes = 1
+2: pid = 83353
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 83353
+3: i = 0
+4: curr->value = 0x55555559acd0 "ls"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 83353
+3: i = 0
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 83353
+3: i = 0
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 83353
+3: i = 1
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 83353
+3: i = 1
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+[Detaching after fork from child process 83357]
+1: num_pipes = 1
+2: pid = 83357
+3: i = 1
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 83357
+3: i = 1
+4: curr->value = 0x55555559acf0 "-al"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 83357
+3: i = 1
+4: curr->value = 0x55555559ab70 "|"
+5: curr->type = PIPE
+--------------------------
+1: num_pipes = 1
+2: pid = 83357
+3: i = 1
+4: curr->value = 0x55555559ab70 "|"
+5: curr->type = PIPE
+--------------------------
+1: num_pipes = 1
+2: pid = 83357
+3: i = 1
+4: curr->value = 0x55555559ac10 "wc"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 83357
+3: i = 2
+4: curr->value = 0x55555559ac10 "wc"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 83357
+3: i = 2
+4: curr->value = 0x55555559ac10 "wc"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 83357
+3: i = 2
+4: curr->value = 0x55555559ac10 "wc"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 83357
+3: i = 2
+4: curr->value = 0x55555559ac10 "wc"
+5: curr->type = WORD
+--------------------------
+1: num_pipes = 1
+2: pid = 83357
+3: i = 2
+4: curr->value = 0x55555559ac10 "wc"
+5: curr->type = WORD
+--------------------------
+Please answer y or n.

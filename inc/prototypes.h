@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 15:46:39 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/20 18:00:09 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ char			*ft_handle_dollar(t_shell *shell, char *token, size_t *i);
 void			ft_exec(t_shell *shell);
 t_cmd_type		ft_get_cmd_type(char *cmd);
 void			ft_handle_exec(t_shell *shell, int cmd);
+void			ft_execute_command(t_shell *shell, int cmd);
 
 /* 620_execve/exec_execve.c */
 void			ft_execute_cmd(t_shell *shell, char *cmd);

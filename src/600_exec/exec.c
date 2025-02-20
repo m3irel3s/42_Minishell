@@ -6,14 +6,11 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 17:21:36 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/20 19:33:10 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-
-static void			ft_execute_command(t_shell *shell, int cmd);
-
 
 /**
  * @brief Executes a command in a shell.
@@ -85,7 +82,7 @@ void	ft_handle_exec(t_shell *shell, int cmd)
  * command. If the command is CMD_EXEC, it will execute the command given as
  * argument. For other commands, it will call the corresponding function.
  */
-static void	ft_execute_command(t_shell *shell, int cmd)
+void	ft_execute_command(t_shell *shell, int cmd)
 {
 	if (cmd == CMD_EXEC)
 		ft_execute_cmd(shell, shell->tokens->value);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 10:27:44 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 18:00:16 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,12 @@ typedef enum e_cmd_type
 //                                STRUCTURES                                  //
 //============================================================================//
 
+typedef struct s_pipe
+{
+	int	read_fd;
+	int	write_fd;
+}	t_pipe;
+
 typedef struct s_token
 {
 	char			*value;
@@ -86,6 +92,6 @@ typedef struct s_shell
 	int				redirected_stdout;
 	int				in_export;
 	int				exit_status;
-} t_shell;
+}	t_shell;
 
 #endif
