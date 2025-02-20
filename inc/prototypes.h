@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 14:34:38 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 16:12:47 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,11 @@ t_status		ft_tokenize(t_shell *shell);
 //                              TOKEN UTILITIES                               //
 //============================================================================//
 /* 510_tokenization/tokens_utils.c */
-t_token_type	ft_determine_token_type(char *value, size_t len);
+t_token_type	ft_determine_token_type(t_shell *shell, char *value,
+				size_t len);
 /* 510_tokenization/tokens_utils_2.c */
 int				ft_create_and_add_token(t_shell *shell, size_t start,
 					size_t end, int quoted);
-t_token			*ft_init_new_token(t_shell *shell, size_t start, size_t end,
-					int quoted);
-void			ft_add_token_to_shell(t_shell *shell, t_token *new_token);
 
 //============================================================================//
 //                       TOKENIZATION - HELPERS FUNCTIONS                     //
