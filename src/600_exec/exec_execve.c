@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:34:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/19 12:25:12 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 11:11:45 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	ft_execute_cmd(t_shell *shell, char *cmd)
 	}
 	if (pid == 0)
 	{
-		if (shell->redirects)
-			ft_handle_redirections(shell);
 		if (execve(path, arr, shell->env_cpy) == -1)
 		{
 			perror("execve failed");

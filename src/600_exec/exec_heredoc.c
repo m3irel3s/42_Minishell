@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/20 10:33:00 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 11:04:05 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,36 +16,31 @@ static char *ft_expanded_line(t_shell *shell, char *line);
 
 void ft_redirect_heredoc(t_shell *shell, t_redirect *redirect)
 {
-	int		fd;
+	int		fd[2];
 	char	*line;
 
-	fd = open(".heredoc", O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (fd == -1)
+	if (pipe(fd) == -1)
 	{
-		ft_putstr_fd("minishell: error creating heredoc file\n", STDERR_FILENO);
+		ft_putstr_fd("minishell: error creating heredoc pipe\n", STDERR_FILENO);
 		return ;
 	}
 	while (1)
 	{
 		line = readline("> ");
 		if (!line || ft_strcmp(line, redirect->filename) == 0)
+		{
+			free(line);
 			break ;
+		}
 		if (!redirect->quoted)
 			line = ft_expanded_line(shell, line);
-		write(fd, line, ft_strlen(line));
-		write(fd, "\n", 1);
+		write(fd[1], line, ft_strlen(line));
+		write(fd[1], "\n", 1);
 		free(line);
 	}
-	close(fd);
-	fd = open(".heredoc", O_RDONLY);
-	if (fd == -1)
-	{
-		ft_putstr_fd("minishell: error opening heredoc file\n", STDERR_FILENO);
-		return ;
-	}
-	unlink(".heredoc");
-	dup2(fd, STDIN_FILENO);
-	close(fd);
+	close(fd[1]);
+	dup2(fd[0], STDIN_FILENO);
+	close(fd[0]);
 }
 
 static char	*ft_expanded_line(t_shell *shell, char *line)
