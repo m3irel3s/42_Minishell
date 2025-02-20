@@ -6,13 +6,12 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 13:47:10 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 13:59:58 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-static void	ft_handle_eof(t_shell *shell);
 static void	ft_process_input(t_shell *shell);
 
 int	main(int argc, char **argv, char **envp)
@@ -48,27 +47,15 @@ int	main(int argc, char **argv, char **envp)
 	return (shell.exit_status);
 }
 
-static void	ft_handle_eof(t_shell *shell)
-{
-	write(STDOUT_FILENO, "exit\n", 5);
-	if (shell->env_cpy)
-		ft_free_arr(shell->env_cpy);
-	shell->exit_status = EXIT_SUCCESS;
-}
-
 static void	ft_process_input(t_shell *shell)
 {
 	if (*shell->input)
 	{
 		add_history(shell->input);
 		if (ft_parse_input(shell) == SUCCESS)
-		{
 			ft_exec(shell);
-		}
 		else
-		{
 			shell->exit_status = EXIT_FAILURE;
-		}
 	}
 	ft_cleanup(shell);
 }

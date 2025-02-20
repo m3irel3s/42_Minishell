@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 13:51:10 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:00:27 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ void			ft_output_export(char **export);
 char			**ft_sort_export(char **export);
 /* 610_builtins/exit.c */
 void			ft_exit(t_shell *shell);
+void			ft_handle_eof(t_shell *shell);
 /* 610_builtins/unset.c */
 void			ft_unset(t_shell *shell);
 
