@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 13:13:59 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 12:45:53 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:34:04 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_cd(t_shell *shell)
 	char	*curr_path;
 
 	curr = shell->tokens;
-	curr_path = ft_get_current_directory();
+	curr_path = ft_get_current_directory(shell);
 	if (!curr->next || ft_strncmp(curr->next->value, "~", 2) == SUCCESS)
 		ft_handle_cd_home(shell, curr, curr_path);
 	else if (ft_strncmp(curr->next->value, "-", 2) == SUCCESS)
@@ -40,7 +40,7 @@ static void	ft_handle_cd_home(t_shell *shell, t_token *curr, char *curr_path)
 	{
 		ft_update_or_add_var("OLDPWD", curr_path, shell);
 		chdir(ft_get_var_value("HOME", shell->env_cpy));
-		new_path = ft_get_current_directory();
+		new_path = ft_get_current_directory(shell);
 		ft_update_or_add_var("PWD", new_path, shell);
 		ft_free(new_path);
 	}
@@ -57,7 +57,7 @@ static void	ft_handle_cd_oldpwd(t_shell *shell, char *curr_path)
 		chdir(old_pwd);
 		ft_printf(1, "%s\n", old_pwd);
 		ft_update_or_add_var("OLDPWD", curr_path, shell);
-		new_path = ft_get_current_directory();
+		new_path = ft_get_current_directory(shell);
 		ft_update_or_add_var("PWD", new_path, shell);
 		ft_free(new_path);
 	}
@@ -71,7 +71,7 @@ static void	ft_handle_cd_to_dir(t_shell *shell, t_token *curr, char *curr_path)
 	path = curr->next->value;
 	if (chdir(path) == SUCCESS)
 	{
-		new_path = ft_get_current_directory();
+		new_path = ft_get_current_directory(shell);
 		ft_update_or_add_var("PWD", new_path, shell);
 		ft_update_or_add_var("OLDPWD", curr_path, shell);
 		ft_free(new_path);

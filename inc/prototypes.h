@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 14:27:11 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:34:38 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ t_status		ft_init_shell(t_shell *shell, char **envp);
 //                               PROMPT HANDLING                              //
 //============================================================================//
 /* 300_prompt/prompt.c */
-char			*ft_set_prompt(void);
-char			*ft_get_current_directory(void);
+char			*ft_set_prompt(t_shell *shell);
+char			*ft_get_current_directory(t_shell *shell);
 
 //============================================================================//
 //                              SIGNAL HANDLING                               //
@@ -145,7 +145,7 @@ void			ft_cd(t_shell *shell);
 /* 610_builtins/env.c */
 void			ft_env(t_shell *shell);
 /* 610_builtins/pwd.c */
-void			ft_pwd(void);
+void			ft_pwd(t_shell *shell);
 /* 610_builtins/export.c */
 void			ft_export(t_shell *shell);
 void			ft_add_var_to_env(t_shell *shell, char *var, char *value);

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 12:09:09 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:34:43 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ static void	ft_execute_command(t_shell *shell, int cmd)
 	else if (cmd == CMD_CD)
 		ft_cd(shell);
 	else if (cmd == CMD_PWD)
-		ft_pwd();
+		ft_pwd(shell);
 	else if (cmd == CMD_EXPORT)
 		ft_export(shell);
 	else if (cmd == CMD_ENV)

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 14:26:51 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:32:08 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	while (1)
 	{
-		shell.prompt = ft_set_prompt();
+		shell.prompt = ft_set_prompt(&shell);
 		shell.input = ft_safe_readline(&shell);
 		if (shell.input == NULL)
 		{
