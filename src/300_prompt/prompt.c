@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:04:18 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/20 13:52:16 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:17:45 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,17 @@ static char	*ft_build_prompt(const char *user, const char *cwd);
 /**
  * @brief Constructs and returns a colorful shell prompt string.
  *
- * Retrieves the username and current working directory to build a prompt
- * in the format "user@cwd $ " with colors. Defaults to "user" and "unknown"
- * if retrieval fails.
- *
+ * @param shell Pointer to the shell structure.
  * @return A dynamically allocated string containing the prompt, or NULL on
  * failure.
  */
-char	*ft_set_prompt(void)
+char	*ft_set_prompt(t_shell *shell)
 {
 	char	*cwd;
 	char	*user;
 	char	*prompt;
 
-	cwd = ft_get_current_directory();
+	cwd = ft_get_current_directory(shell);
 	if (!cwd)
 		return (NULL);
 	user = getenv("USER");
@@ -38,43 +35,51 @@ char	*ft_set_prompt(void)
 		user = "user";
 	prompt = ft_build_prompt(user, cwd);
 	ft_free(cwd);
+	if (!prompt)
+		shell->exit_status = EXIT_FAILURE;
 	return (prompt);
 }
 
 /**
  * @brief Retrieves the current working directory.
  *
- * If the current working directory cannot be retrieved, returns NULL.
- *
+ * @param shell Pointer to the shell structure.
  * @return A dynamically allocated string containing the current
  * working directory, or NULL on failure.
  */
-char	*ft_get_current_directory(void)
+char	*ft_get_current_directory(t_shell *shell)
 {
 	char	*cwd;
 	char	*res;
 
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
-		return (ft_printf(STDERR_FILENO, ERR_GET_CWD_FAIL), NULL);
+	{
+		ft_printf(STDERR_FILENO, ERR_GET_CWD_FAIL);
+		shell->exit_status = EXIT_FAILURE;
+		return (NULL);
+	}
 	res = ft_strdup_safe(cwd);
 	ft_free(cwd);
+	if (!res)
+		shell->exit_status = EXIT_FAILURE;
 	return (res);
 }
 
 /**
- * @brief Constructs a colorful shell prompt string.
+ * @brief Builds a colorful shell prompt string using the user's name and
+ *        current working directory.
  *
- * Retrieves the username and current working directory to build a prompt
- * in the format "user@cwd $ " with colors. Defaults to "user" and "unknown"
- * if retrieval fails.
+ * This function constructs a prompt string formatted with color codes to
+ * enhance readability. The prompt includes the user's name and the current
+ * working directory, and it is followed by a dollar sign to indicate the
+ * shell prompt. The function ensures memory allocation for the prompt
+ * string and returns a pointer to it.
  *
- * @param user The username to use. If NULL, defaults to "user".
- * @param cwd The current working directory to use. If NULL, defaults to
- * "unknown".
- *
- * @return A dynamically allocated string containing the prompt, or NULL
- * on failure.
+ * @param user The username to be included in the prompt.
+ * @param cwd The current working directory to be included in the prompt.
+ * @return A dynamically allocated string containing the formatted prompt,
+ *         or NULL if memory allocation fails.
  */
 static char	*ft_build_prompt(const char *user, const char *cwd)
 {
