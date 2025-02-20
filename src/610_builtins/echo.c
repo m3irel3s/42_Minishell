@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:22:57 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 12:45:52 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/20 11:14:47 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ void	ft_echo(t_shell *shell)
 	add_new_line = true;
 	curr = shell->tokens;
 	if (!curr->next)
+	{
+		ft_printf(1, "\n");
 		return ;
+	}
 	if (ft_strncmp(curr->next->value, "-n", 3) == SUCCESS)
 	{
 		add_new_line = false;

@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:34:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/19 12:06:06 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:56:47 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	ft_execute_cmd(t_shell *shell, char *cmd)
 	if (pid == -1)
 	{
 		perror("Fork failed");
-		return;
+		return ;
 	}
 	if (pid == 0)
 	{
 		if (execve(path, arr, shell->env_cpy) == -1)
 		{
-			perror("execve failed");
+			ft_print_command_not_found_error(shell->tokens->value);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -113,4 +113,3 @@ static int	ft_count_type_words(t_token *start_pos)
 	}
 	return (counter);
 }
-

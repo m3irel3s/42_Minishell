@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/18 16:00:53 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/20 08:19:46 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 static char	*ft_expand_token(t_shell *shell, char *token, int quoted);
-static char	*ft_process_char(char *expanded_value, char c);
 
 /**
  * @brief Expand tokens in the token list, replacing '$' with their expanded
@@ -99,7 +98,7 @@ static char	*ft_expand_token(t_shell *shell, char *token, int quoted)
  * @return The new expanded value string with the character appended.
  */
 
-static char	*ft_process_char(char *expanded_value, char c)
+char	*ft_process_char(char *expanded_value, char c)
 {
 	char	c_str[2];
 	char	*new_expanded;

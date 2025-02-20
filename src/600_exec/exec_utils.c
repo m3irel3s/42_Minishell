@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:08:03 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 18:02:45 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/20 12:11:41 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int	ft_has_pipes(t_shell *shell)
 	while (curr)
 	{
 		if (curr->type == PIPE)
-			return SUCCESS;
+			return (SUCCESS);
 		curr = curr->next;
 	}
-	return ERROR;
+	return (ERROR);
 }
 
 // int	ft_has_redirects()

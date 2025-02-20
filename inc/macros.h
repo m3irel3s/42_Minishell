@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 09:16:28 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:44:54 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 	"minishell: syntax error: pipe at end of input\n"
 # define ERR_SYNTAX_EOF_HEREDOC \
 	"minishell: warning: here-document delimited by end-of-file (wanted `%s')\n"
+# define ERR_SYNTAX_VALIDATION_FAIL \
+	"minishell: Syntax validation failed\n"
 
 //============================================================================//
 //                         REDIRECTION ERROR MESSAGES                         //
@@ -96,5 +98,52 @@
 	"minishell: fatal error: fork failed\n"
 # define ERR_PIPE_FAIL \
 	"minishell: fatal error: pipe creation failed\n"
+
+//============================================================================//
+//                           SIGNAL ERROR MESSAGES                            //
+//============================================================================//
+# define ERR_SIGNAL_SETUP_INT \
+	"minishell: Error setting up SIGINT handler\n"
+# define ERR_SIGNAL_SETUP_QUIT \
+	"minishell: Error setting up SIGQUIT handler\n"
+# define ERR_SIGNAL_SETUP_FAIL \
+	"minishell: Failed to set up signal handlers\n"
+
+//============================================================================//
+//                        INITIALIZATION ERROR MESSAGES                       //
+//============================================================================//
+# define ERR_SHELL_INIT_FAIL \
+	"minishell: Failed to initialize shell\n"
+# define ERR_ENV_DUP_FAIL \
+	"minishell: Failed to duplicate environment\n"
+# define ERR_GET_CWD_FAIL \
+	"minishell: Failed to get current working directory\n"
+
+//============================================================================//
+//                           PARSING ERROR MESSAGES                           //
+//============================================================================//
+# define ERR_TOKENIZATION_FAIL \
+	"minishell: Failed to tokenize input\n"
+# define ERR_EXPANSION_FAIL \
+	"minishell: Failed to expand variables\n"
+
+//============================================================================//
+//                           PROMPT ERROR MESSAGES                            //
+//============================================================================//
+# define ERR_PROMPT_CREATE_FAIL \
+	"minishell: Failed to create prompt\n"
+# define ERR_STRDUP_FAIL \
+	"minishell: Failed to duplicate string\n"
+
+//============================================================================//
+//                              EXIT STATUS CODES                             //
+//============================================================================//
+# define EXIT_SUCCESS 0
+# define EXIT_FAILURE 1
+# define EXIT_MISUSE 2
+# define EXIT_CANNOT_EXECUTE 126
+# define EXIT_COMMAND_NOT_FOUND 127
+# define EXIT_INVALID_EXIT_ARG 128
+# define EXIT_FATAL_SIGNAL 128
 
 #endif

@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/19 12:56:59 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/20 14:56:20 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,36 +72,39 @@ SRCS = \
        ${SRC_PATH}/400_signals/signals.c \
        ${SRC_PATH}/500_parsing/parsing.c \
        ${SRC_PATH}/510_tokenization/tokens.c \
-	   ${SRC_PATH}/510_tokenization/tokens_handlers.c \
-	   ${SRC_PATH}/510_tokenization/tokens_handlers_2.c \
-	   ${SRC_PATH}/510_tokenization/tokens_helpers.c \
+       ${SRC_PATH}/510_tokenization/tokens_handlers.c \
+       ${SRC_PATH}/510_tokenization/tokens_handlers_2.c \
+       ${SRC_PATH}/510_tokenization/tokens_helpers.c \
        ${SRC_PATH}/510_tokenization/tokens_utils.c \
        ${SRC_PATH}/510_tokenization/tokens_utils_2.c \
        ${SRC_PATH}/520_errors_handler/syntax_validation.c \
-	   ${SRC_PATH}/520_errors_handler/print_errors.c \
+       ${SRC_PATH}/520_errors_handler/print_errors.c \
        ${SRC_PATH}/530_expansion/expand.c \
-	   ${SRC_PATH}/530_expansion/expand_handle_dollar.c \
-       ${SRC_PATH}/540_redirects/redirects_setting.c \
-       ${SRC_PATH}/540_redirects/redirects_handling.c \
+       ${SRC_PATH}/530_expansion/expand_handle_dollar.c \
        ${SRC_PATH}/600_exec/exec.c \
-       ${SRC_PATH}/600_exec/exec_execve.c \
        ${SRC_PATH}/600_exec/exec_pipes.c \
+       ${SRC_PATH}/600_exec/exec_utils.c \
        ${SRC_PATH}/610_builtins/cd.c \
        ${SRC_PATH}/610_builtins/echo.c \
        ${SRC_PATH}/610_builtins/env.c \
-	   ${SRC_PATH}/610_builtins/pwd.c \
-	   ${SRC_PATH}/610_builtins/export.c \
-	   ${SRC_PATH}/610_builtins/unset.c \
-	   ${SRC_PATH}/610_builtins/exit.c \
-	   ${SRC_PATH}/700_clean/clean.c \
-	   ${SRC_PATH}/800_utils/variable_utils.c \
-	   ${SRC_PATH}/800_utils/variable_utils_2.c \
-       ${SRC_PATH}/800_utils/check_type_functions.c \
-       ${SRC_PATH}/800_utils/safe_functions.c \
-	   ${SRC_PATH}/810_builtins_utils/env_utils.c \
-	   ${SRC_PATH}/810_builtins_utils/export_utils.c \
-	   ${SRC_PATH}/810_builtins_utils/export_print.c \
-	   ${SRC_PATH}/820_exec_utils/exec_utils.c 
+       ${SRC_PATH}/610_builtins/pwd.c \
+       ${SRC_PATH}/610_builtins/export.c \
+       ${SRC_PATH}/610_builtins/unset.c \
+       ${SRC_PATH}/610_builtins/exit.c \
+       ${SRC_PATH}/611_builtins_utils/env_utils.c \
+       ${SRC_PATH}/611_builtins_utils/export_utils.c \
+       ${SRC_PATH}/611_builtins_utils/export_print.c \
+       ${SRC_PATH}/620_execve/exec_execve.c \
+       ${SRC_PATH}/630_redirects/exec_heredoc.c \
+       ${SRC_PATH}/630_redirects/exec_redirection.c \
+       ${SRC_PATH}/630_redirects/exec_redirection_utils.c \
+       ${SRC_PATH}/700_utils_other/variable_utils.c \
+       ${SRC_PATH}/700_utils_other/variable_utils_2.c \
+       ${SRC_PATH}/700_utils_other/check_type_functions.c \
+       ${SRC_PATH}/700_utils_other/safe_functions.c \
+       ${SRC_PATH}/800_clean/clean.c \
+       ${SRC_PATH}/800_clean/free.c
+
 
 # Object files derived from source files
 # OBJS = ${addprefix ${BUILD_PATH}/, ${notdir ${SRCS:.c=.o}}}
@@ -117,7 +120,7 @@ LIBFT_ARC = ${LIBFT_PATH}/libft.a
 
 ## Core ##
 CC				= cc
-CCFLAGS			= -Wall -Wextra -Werror -g
+CCFLAGS			= -Wall -Wextra -Werror -g -fsanitize=address
 RM				= rm -fr
 MKDIR_P			= mkdir -p
 INC				= -I ${INC_PATH}  -I$(READLINE_PATH)/include
