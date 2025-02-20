@@ -3,32 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   100_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 18:26:28 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/20 13:47:10 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-/**
- * Main entry point of the program.
- *
- * This function contains the main loop of the minishell program. It first
- * displays the startup banner, sets up the signal handlers and initializes
- * the shell structure. Then, it enters an infinite loop where it displays
- * the shell prompt, reads a line of input from the user, parses the line,
- * executes the parsed commands and frees the allocated memory. If the user
- * enters "exit", the loop is broken and the function returns an exit status.
- *
- * @param argc The number of command line arguments passed to the program.
- * @param argv An array of command line arguments passed to the program.
- * @param envp An array of environment variables passed to the program.
- *
- * @return An exit status of the program. If the user enters "exit", it
- *         returns SUCCESS (0). Otherwise, it returns FAILURE (1).
- */
+static void	ft_handle_eof(t_shell *shell);
+static void	ft_process_input(t_shell *shell);
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_shell	shell;
@@ -36,25 +22,53 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	ft_display_startup_banner();
-	ft_set_up_signals();
-	ft_init_shell(&shell, envp);
+	if (ft_set_up_signals() == ERROR)
+	{
+		ft_printf(STDERR_FILENO, ERR_SIGNAL_SETUP_FAIL);
+		return (EXIT_FAILURE);
+	}
+	if (ft_init_shell(&shell, envp) == ERROR)
+	{
+		ft_printf(STDERR_FILENO, ERR_SHELL_INIT_FAIL);
+		return (EXIT_FAILURE);
+	}
 	while (1)
 	{
 		shell.prompt = ft_set_prompt();
 		shell.input = ft_safe_readline(&shell);
 		if (shell.input == NULL)
 		{
-			write(1, "exit\n", 5);
-			if (shell.env_cpy)
-				ft_free_arr(shell.env_cpy);
+			ft_handle_eof(&shell);
 			break ;
 		}
-		if (*shell.input)
-			add_history(shell.input);
-		if (ft_parse_input(&shell) == SUCCESS)
-			ft_exec(&shell);
-		ft_cleanup(&shell);
+		ft_process_input(&shell);
 	}
 	ft_cleanup(&shell);
-	return (rl_clear_history(), SUCCESS);
+	rl_clear_history();
+	return (shell.exit_status);
+}
+
+static void	ft_handle_eof(t_shell *shell)
+{
+	write(STDOUT_FILENO, "exit\n", 5);
+	if (shell->env_cpy)
+		ft_free_arr(shell->env_cpy);
+	shell->exit_status = EXIT_SUCCESS;
+}
+
+static void	ft_process_input(t_shell *shell)
+{
+	if (*shell->input)
+	{
+		add_history(shell->input);
+		if (ft_parse_input(shell) == SUCCESS)
+		{
+			ft_exec(shell);
+		}
+		else
+		{
+			shell->exit_status = EXIT_FAILURE;
+		}
+	}
+	ft_cleanup(shell);
 }

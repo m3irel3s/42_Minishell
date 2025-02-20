@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 12:37:46 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 13:51:10 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int				ft_authors(void);
 //                             INITIALIZATION                                 //
 //============================================================================//
 /* 200_inits/init.c */
-void			ft_init_shell(t_shell *shell, char **envp);
+t_status		ft_init_shell(t_shell *shell, char **envp);
 
 //============================================================================//
 //                               PROMPT HANDLING                              //
@@ -37,9 +37,7 @@ char			*ft_get_current_directory(void);
 //                              SIGNAL HANDLING                               //
 //============================================================================//
 /* 400_signals/signals.c */
-void			ft_set_up_signals(void);
-void			ft_handle_sigint(int sig);
-void			ft_handle_sigquit(int sig);
+t_status		ft_set_up_signals(void);
 
 //============================================================================//
 //                                  PARSING                                   //

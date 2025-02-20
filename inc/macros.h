@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 09:16:28 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 13:49:46 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,25 @@
 	"minishell: fatal error: fork failed\n"
 # define ERR_PIPE_FAIL \
 	"minishell: fatal error: pipe creation failed\n"
+
+//============================================================================//
+//                           SIGNAL ERROR MESSAGES                            //
+//============================================================================//
+# define ERR_SIGNAL_SETUP_INT \
+	"minishell: Error setting up SIGINT handler\n"
+# define ERR_SIGNAL_SETUP_QUIT \
+	"minishell: Error setting up SIGQUIT handler\n"
+# define ERR_SIGNAL_SETUP_FAIL \
+	"minishell: Failed to set up signal handlers\n"
+
+//============================================================================//
+//                        INITIALIZATION ERROR MESSAGES                       //
+//============================================================================//
+# define ERR_SHELL_INIT_FAIL \
+	"minishell: Failed to initialize shell\n"
+# define ERR_ENV_DUP_FAIL \
+	"minishell: Failed to duplicate environment\n"
+# define ERR_GET_CWD_FAIL \
+	"minishell: Failed to get current working directory\n"
 
 #endif

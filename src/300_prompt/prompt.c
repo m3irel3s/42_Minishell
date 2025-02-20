@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:04:18 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/17 19:31:13 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/20 13:52:16 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static char	*ft_build_prompt(const char *user, const char *cwd);
  * in the format "user@cwd $ " with colors. Defaults to "user" and "unknown"
  * if retrieval fails.
  *
- * @return A dynamically allocated string containing the prompt.
+ * @return A dynamically allocated string containing the prompt, or NULL on
+ * failure.
  */
 char	*ft_set_prompt(void)
 {
@@ -30,6 +31,8 @@ char	*ft_set_prompt(void)
 	char	*prompt;
 
 	cwd = ft_get_current_directory();
+	if (!cwd)
+		return (NULL);
 	user = getenv("USER");
 	if (!user)
 		user = "user";
@@ -41,10 +44,10 @@ char	*ft_set_prompt(void)
 /**
  * @brief Retrieves the current working directory.
  *
- * If the current working directory cannot be retrieved, defaults to "unknown".
+ * If the current working directory cannot be retrieved, returns NULL.
  *
  * @return A dynamically allocated string containing the current
- * working directory.
+ * working directory, or NULL on failure.
  */
 char	*ft_get_current_directory(void)
 {
@@ -53,24 +56,25 @@ char	*ft_get_current_directory(void)
 
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
-	{
-		cwd = ft_strdup_safe("unknown");
-		return (NULL);
-	}
+		return (ft_printf(STDERR_FILENO, ERR_GET_CWD_FAIL), NULL);
 	res = ft_strdup_safe(cwd);
 	ft_free(cwd);
 	return (res);
 }
 
 /**
- * @brief Builds the colorful shell prompt string.
+ * @brief Constructs a colorful shell prompt string.
  *
- * Combines the username, current working directory, and additional symbols
- * into a single prompt string with colors.
+ * Retrieves the username and current working directory to build a prompt
+ * in the format "user@cwd $ " with colors. Defaults to "user" and "unknown"
+ * if retrieval fails.
  *
- * @param user The username string.
- * @param cwd The current working directory string.
- * @return A dynamically allocated string containing the prompt.
+ * @param user The username to use. If NULL, defaults to "user".
+ * @param cwd The current working directory to use. If NULL, defaults to
+ * "unknown".
+ *
+ * @return A dynamically allocated string containing the prompt, or NULL
+ * on failure.
  */
 static char	*ft_build_prompt(const char *user, const char *cwd)
 {
@@ -82,6 +86,8 @@ static char	*ft_build_prompt(const char *user, const char *cwd)
 		+ ft_strlen(GRN2) + ft_strlen(CYN2) + ft_strlen(RESET2)
 		+ 9;
 	prompt = ft_safe_malloc(len * sizeof(char));
+	if (!prompt)
+		return (NULL);
 	offset = 0;
 	offset += ft_strlcpy(prompt + offset, GRN2, len - offset);
 	offset += ft_strlcat(prompt + offset, user, len - offset);
