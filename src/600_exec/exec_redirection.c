@@ -6,13 +6,13 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:45:07 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/19 15:10:19 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 08:16:01 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static void	ft_apply_redirection(t_redirect *redirect);
+static void	ft_apply_redirection(t_shell *shell, t_redirect *redirect);
 static void	ft_redirect_in(t_redirect *redirect);
 static void	ft_redirect_out(t_redirect *redirect);
 static void	ft_redirect_append(t_redirect *redirect);
@@ -28,7 +28,7 @@ void	ft_handle_redirections(t_shell *shell)
 	redirect = shell->redirects;
 	while (redirect)
 	{
-		ft_apply_redirection(redirect);
+		ft_apply_redirection(shell, redirect);
 		redirect = redirect->next;
 	}
 	shell->redirected_stdin = dup(STDIN_FILENO);
@@ -39,7 +39,7 @@ void	ft_handle_redirections(t_shell *shell)
 	close(saved_stdout);
 }
 
-static void	ft_apply_redirection(t_redirect *redirect)
+static void	ft_apply_redirection(t_shell *shell, t_redirect *redirect)
 {
 	if (redirect->type == REDIRECT_IN)
 		ft_redirect_in(redirect);
@@ -48,7 +48,7 @@ static void	ft_apply_redirection(t_redirect *redirect)
 	else if (redirect->type == REDIRECT_APPEND)
 		ft_redirect_append(redirect);
 	else if (redirect->type == HEREDOC)
-		ft_redirect_heredoc(redirect->filename);
+		ft_redirect_heredoc(shell, redirect->filename);
 }
 
 static void ft_redirect_in(t_redirect *redirect)
