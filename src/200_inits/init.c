@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:59:06 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/20 13:51:17 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:14:36 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ t_status	ft_init_shell(t_shell *shell, char **envp)
 {
 	shell->env_cpy = ft_duplicate_env(envp);
 	if (!shell->env_cpy)
-		return (ft_printf(STDERR_FILENO, ERR_ENV_DUP_FAIL), ERROR);
+	{
+		shell->exit_status = EXIT_FAILURE;
+		ft_printf(STDERR_FILENO, ERR_ENV_DUP_FAIL);
+		return (ERROR);
+	}
 	shell->prompt = NULL;
 	shell->input = NULL;
 	shell->tokens = NULL;

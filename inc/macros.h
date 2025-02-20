@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 14:05:08 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:11:14 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,5 +126,21 @@
 	"minishell: Failed to tokenize input\n"
 # define ERR_EXPANSION_FAIL \
 	"minishell: Failed to expand variables\n"
+
+//============================================================================//
+//                              EXIT STATUS CODES                             //
+//============================================================================//
+# define EXIT_SUCCESS 0
+# define EXIT_FAILURE 1
+# define EXIT_MISUSE 2
+# define EXIT_CANNOT_EXECUTE 126
+# define EXIT_COMMAND_NOT_FOUND 127
+# define EXIT_INVALID_EXIT_ARG 128
+# define EXIT_FATAL_SIGNAL 128
+
+//============================================================================//
+//                           EXIT STATUS UPDATE MACRO                         //
+//============================================================================//
+# define UPDATE_EXIT_STATUS(shell, status) ((shell)->exit_status = (status))
 
 #endif
