@@ -6,7 +6,7 @@
 #    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/19 13:38:06 by meferraz         ###   ########.fr        #
+#    Updated: 2025/02/20 12:23:06 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,7 +94,6 @@ SRCS = \
 	   ${SRC_PATH}/610_builtins/export.c \
 	   ${SRC_PATH}/610_builtins/unset.c \
 	   ${SRC_PATH}/610_builtins/exit.c \
-	   ${SRC_PATH}/700_clean/clean.c \
 	   ${SRC_PATH}/800_utils/variable_utils.c \
 	   ${SRC_PATH}/800_utils/variable_utils_2.c \
        ${SRC_PATH}/800_utils/check_type_functions.c \
@@ -102,7 +101,9 @@ SRCS = \
 	   ${SRC_PATH}/810_builtins_utils/env_utils.c \
 	   ${SRC_PATH}/810_builtins_utils/export_utils.c \
 	   ${SRC_PATH}/810_builtins_utils/export_print.c \
-	   ${SRC_PATH}/820_exec_utils/exec_utils.c
+	   ${SRC_PATH}/820_exec_utils/exec_utils.c \
+	   ${SRC_PATH}/900_clean/clean.c \
+	   ${SRC_PATH}/900_clean/free.c
 
 # Object files derived from source files
 # OBJS = ${addprefix ${BUILD_PATH}/, ${notdir ${SRCS:.c=.o}}}

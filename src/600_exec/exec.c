@@ -6,14 +6,14 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 12:07:06 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 12:09:09 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-static void	ft_handle_exec(t_shell *shell, int cmd);
-static void	ft_execute_command(t_shell *shell, int cmd);
+static void			ft_handle_exec(t_shell *shell, int cmd);
+static void			ft_execute_command(t_shell *shell, int cmd);
 static t_cmd_type	ft_get_cmd_type(char *cmd);
 
 /**

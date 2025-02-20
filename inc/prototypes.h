@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 11:59:11 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 12:24:45 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ t_status		ft_tokenize(t_shell *shell);
 t_token_type	ft_determine_token_type(char *value, size_t len);
 
 /* 510_tokenization/tokens_utils_2.c */
-int				ft_create_and_add_token(t_shell *shell, size_t start, size_t end,
-								int quoted);
+int				ft_create_and_add_token(t_shell *shell, size_t start,
+					size_t end, int quoted);
 t_token			*ft_init_new_token(t_shell *shell, size_t start, size_t end,
-								int quoted);
+					int quoted);
 void			ft_add_token_to_shell(t_shell *shell, t_token *new_token);
 
 //============================================================================//
@@ -71,7 +71,8 @@ void			ft_add_token_to_shell(t_shell *shell, t_token *new_token);
 //============================================================================//
 /* 510_tokenization/tokens_helpers.c */
 int				ft_is_export_command(t_shell *shell, size_t i);
-t_status		ft_create_export_token(t_shell *shell, size_t *i, int *is_export);
+t_status		ft_create_export_token(t_shell *shell, size_t *i,
+					int *is_export);
 
 //============================================================================//
 //                  TOKENIZATION - OPERATORS AND EXPORT ARGUMENTS             //
@@ -176,14 +177,6 @@ void			ft_exit(t_shell *shell);
 void			ft_unset(t_shell *shell);
 
 
-//============================================================================//
-//                                  CLEANUP                                   //
-//============================================================================//
-/* 700_clean/clean.c */
-void			ft_cleanup(t_shell *shell);
-void			ft_free(void *ptr);
-void			ft_free_token(t_token *token);
-void			ft_free_arr(char **arr);
 
 //============================================================================//
 //                       ENVIRONMENT VARIABLE UTILITIES                       //
@@ -225,5 +218,16 @@ int				ft_is_command(char *value, size_t len);
 void			*ft_safe_malloc(size_t size);
 char			*ft_safe_readline(t_shell *shell);
 char			*ft_strdup_safe(const char *s);
+
+//============================================================================//
+//                                  CLEANUP                                   //
+//============================================================================//
+/* 900_clean/clean.c */
+void			ft_cleanup(t_shell *shell);
+
+/* 900_clean/free.c */
+void			ft_free(void *ptr);
+void			ft_free_token(t_token *token);
+void			ft_free_arr(char **arr);
 
 #endif
