@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 14:32:59 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:44:54 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,6 @@
 # define EXIT_CANNOT_EXECUTE 126
 # define EXIT_COMMAND_NOT_FOUND 127
 # define EXIT_INVALID_EXIT_ARG 128
-# define EXIT_FATAL_SIGNAL 128  // Add signal number to this base
+# define EXIT_FATAL_SIGNAL 128
 
 #endif
