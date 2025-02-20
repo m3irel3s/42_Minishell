@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 14:00:27 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:27:11 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_status		ft_set_up_signals(void);
 //                                  PARSING                                   //
 //============================================================================//
 /* 500_parsing/parsing.c */
-int				ft_parse_input(t_shell *shell);
+t_status		ft_parse_input(t_shell *shell);
 
 //============================================================================//
 //                              TOKENIZATION                                  //
