@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/20 09:38:22 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 10:33:00 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char *ft_expanded_line(t_shell *shell, char *line);
 
-void ft_redirect_heredoc(t_shell *shell, char *delimiter)
+void ft_redirect_heredoc(t_shell *shell, t_redirect *redirect)
 {
 	int		fd;
 	char	*line;
@@ -28,9 +28,10 @@ void ft_redirect_heredoc(t_shell *shell, char *delimiter)
 	while (1)
 	{
 		line = readline("> ");
-		if (!line || ft_strcmp(line, delimiter) == 0)
+		if (!line || ft_strcmp(line, redirect->filename) == 0)
 			break ;
-		line = ft_expanded_line(shell, line);
+		if (!redirect->quoted)
+			line = ft_expanded_line(shell, line);
 		write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);
 		free(line);

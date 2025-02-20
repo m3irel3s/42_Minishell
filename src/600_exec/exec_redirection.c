@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:45:07 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/20 10:21:34 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 10:30:15 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	ft_apply_redirection(t_shell *shell, t_redirect *redirect)
 	else if (redirect->type == REDIRECT_APPEND)
 		ft_redirect_append(redirect);
 	else if (redirect->type == HEREDOC)
-		ft_redirect_heredoc(shell, redirect->filename);
+		ft_redirect_heredoc(shell, redirect);
 }
 
 static void	ft_redirect_in(t_redirect *redirect)
