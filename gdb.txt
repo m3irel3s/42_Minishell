@@ -876,3 +876,36 @@ ft_handle_pipes (shell=0x7fffffffe2f0) at src/600_exec/exec_pipes.c:16
 1: curr->type = PIPE
 2: curr->value = 0x555555599ca0 "|"
 --------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x545d: file src/100_main.c, line 18.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000000545d in main at src/100_main.c:18
+No watchpoints.
+warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:18
+Breakpoint 2 at 0x555555561a66: file src/700_utils_other/variable_utils.c, line 53.
+Continuing.
+[Inferior 1 (process 7859) exited with code 01]
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x545d: file src/100_main.c, line 18.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000000545d in main at src/100_main.c:18
+No watchpoints.
+warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:18
+Breakpoint 2 at 0x55555556188a: file src/700_utils_other/variable_utils.c, line 24.
+Breakpoint 3 at 0x555555561a66: file src/700_utils_other/variable_utils.c, line 53.
+Continuing.
+
+Breakpoint 2, ft_get_var_value (var=0x502000002a70 "HO", env=0x514000000040) at src/700_utils_other/variable_utils.c:24
+1: var = 0x502000002a70 "HO"

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_handle_dollar.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 14:14:30 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/20 14:50:40 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:11:46 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

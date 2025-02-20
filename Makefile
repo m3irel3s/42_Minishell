@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/20 14:56:20 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/20 15:30:04 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,7 +120,8 @@ LIBFT_ARC = ${LIBFT_PATH}/libft.a
 
 ## Core ##
 CC				= cc
-CCFLAGS			= -Wall -Wextra -Werror -g -fsanitize=address
+CCFLAGS			= -Wall -Wextra -Werror -g
+SANITIZE		= -fsanitize=address
 RM				= rm -fr
 MKDIR_P			= mkdir -p
 INC				= -I ${INC_PATH}  -I$(READLINE_PATH)/include

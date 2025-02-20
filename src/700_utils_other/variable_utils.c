@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:40:57 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/17 15:16:20 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:12:52 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,34 @@ int	ft_get_str_length(char *str1, char *str2)
 
 char	*ft_get_var_value(char *var, char **env)
 {
-	int	i;
+	int		i;
+	char	*to_compare;
 
 	i = 0;
 	while (env[i])
 	{
-		if (ft_strncmp(env[i], var, ft_strlen(var)) == SUCCESS)
-			return (env[i] + ft_strlen(var) + 1);
+		to_compare = ft_get_var_name(env[i]);
+		if (ft_strcmp(to_compare, var) == SUCCESS)
+			return (ft_free(to_compare), env[i] + ft_strlen(var) + 1);
 		i++;
+		ft_free(to_compare);
 	}
 	return (NULL);
 }
 
 int	ft_get_var_index(char *var, char **env)
 {
-	int	i;
+	int		i;
+	char	*to_compare;
 
 	i = 0;
 	while (env[i])
 	{
-		if (ft_strncmp(env[i], var, ft_strlen(var)) == SUCCESS)
-			return (i);
+		to_compare = ft_get_var_name(env[i]);
+		if (ft_strcmp(to_compare, var) == SUCCESS)
+			return (ft_free(to_compare), i);
 		i++;
+		ft_free(to_compare);
 	}
 	return (-1);
 }
