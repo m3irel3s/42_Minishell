@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:34:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 11:11:45 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 11:52:15 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,4 +113,3 @@ static int	ft_count_type_words(t_token *start_pos)
 	}
 	return (counter);
 }
-

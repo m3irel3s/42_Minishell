@@ -6,13 +6,13 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/20 11:30:49 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 11:52:49 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static char *ft_expanded_line(t_shell *shell, char *line);
+static char	*ft_expanded_line(t_shell *shell, char *line);
 
 /**
  * @brief Redirects the input from a heredoc to the standard input of a command.
@@ -25,7 +25,7 @@ static char *ft_expanded_line(t_shell *shell, char *line);
  * @param redirect A pointer to the redirection structure containing the
  * filename associated with the heredoc delimiter.
  */
-void ft_redirect_heredoc(t_shell *shell, t_redirect *redirect)
+void	ft_redirect_heredoc(t_shell *shell, t_redirect *redirect)
 {
 	int		fd[2];
 	char	*line;
