@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:45:07 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/20 08:16:01 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 10:21:34 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	ft_apply_redirection(t_shell *shell, t_redirect *redirect)
 		ft_redirect_heredoc(shell, redirect->filename);
 }
 
-static void ft_redirect_in(t_redirect *redirect)
+static void	ft_redirect_in(t_redirect *redirect)
 {
 	int	fd;
 
@@ -59,13 +59,13 @@ static void ft_redirect_in(t_redirect *redirect)
 	if (fd == -1)
 	{
 		ft_printf(STDERR_FILENO, ERR_REDIR_NO_FILE, redirect->filename);
-		return;
+		return ;
 	}
 	dup2(fd, STDIN_FILENO);
 	close(fd);
 }
 
-static void ft_redirect_out(t_redirect *redirect)
+static void	ft_redirect_out(t_redirect *redirect)
 {
 	int	fd;
 
@@ -79,7 +79,7 @@ static void ft_redirect_out(t_redirect *redirect)
 	close(fd);
 }
 
-static void ft_redirect_append(t_redirect *redirect)
+static void	ft_redirect_append(t_redirect *redirect)
 {
 	int	fd;
 

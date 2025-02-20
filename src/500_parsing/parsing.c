@@ -6,16 +6,15 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:29:46 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/19 13:52:52 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 10:22:57 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-
 /**
- * @brief Parses the input string of the shell, tokenizing it, validating its syntax,
- *        expanding variables, and setting up redirections.
+ * @brief Parses the input string of the shell, tokenizing it, validating its
+ * syntax, expanding variables, and setting up redirections.
  *
  * This function first tokenizes the input string stored in the shell structure.
  * If tokenization fails, it returns ERROR. It then iterates through the tokens
@@ -26,9 +25,9 @@
  *
  * @param shell A pointer to the shell structure containing the input string.
  *
- * @return Returns SUCCESS if the input is successfully parsed; otherwise, returns ERROR.
+ * @return Returns SUCCESS if the input is successfully parsed; otherwise,
+ * returns ERROR.
  */
-
 int	ft_parse_input(t_shell *shell)
 {
 	t_token	*current;
