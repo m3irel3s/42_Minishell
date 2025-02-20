@@ -6,12 +6,13 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:11:23 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/20 11:51:08 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 12:03:43 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+static t_token	*ft_get_after_next(t_token *next_token);
 static int		ft_is_redirect_token(int type);
 static t_token	*ft_update_tokens(t_shell *shell, t_token *token,
 					t_token *next_token, t_token *after_next);
@@ -44,20 +45,27 @@ void	ft_create_redirection_list(t_shell *shell)
 	while (token)
 	{
 		next_token = token->next;
-		if (!next_token)
-			after_next = NULL;
-		else
-			after_next = next_token->next;
+		after_next = ft_get_after_next(next_token);
 		if (ft_is_redirect_token(token->type))
 		{
 			if (!next_token)
-				return (ft_print_redirect_no_file_error());
+			{
+				ft_print_redirect_no_file_error();
+				return ;
+			}
 			ft_create_and_add_redirect(token, shell, &last_redirect);
 			token = ft_update_tokens(shell, token, next_token, after_next);
 		}
 		else
 			token = next_token;
 	}
+}
+
+static t_token	*ft_get_after_next(t_token *next_token)
+{
+	if (!next_token)
+		return (NULL);
+	return (next_token->next);
 }
 
 /**

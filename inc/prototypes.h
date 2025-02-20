@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 10:30:36 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 11:59:11 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,6 @@ char			*ft_handle_dollar(t_shell *shell, char *token, size_t *i);
 //============================================================================//
 /* 600_exec/exec.c */
 void			ft_exec(t_shell *shell);
-void			ft_handle_exec(t_shell *shell, int cmd);
-t_cmd_type		ft_get_cmd_type(char *cmd);
 
 
 /* 600_exec/exec_execve.c */

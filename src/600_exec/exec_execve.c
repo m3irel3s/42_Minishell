@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:34:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 11:52:15 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 12:05:51 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_execute_cmd(t_shell *shell, char *cmd)
 	{
 		if (execve(path, arr, shell->env_cpy) == -1)
 		{
-			perror("execve failed");
+			ft_print_command_not_found_error(shell->tokens->value);
 			exit(EXIT_FAILURE);
 		}
 	}
