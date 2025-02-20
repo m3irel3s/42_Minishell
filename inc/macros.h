@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 13:49:46 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:05:08 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 	"minishell: syntax error: pipe at end of input\n"
 # define ERR_SYNTAX_EOF_HEREDOC \
 	"minishell: warning: here-document delimited by end-of-file (wanted `%s')\n"
+# define ERR_SYNTAX_VALIDATION_FAIL \
+	"minishell: Syntax validation failed\n"
 
 //============================================================================//
 //                         REDIRECTION ERROR MESSAGES                         //
@@ -116,5 +118,13 @@
 	"minishell: Failed to duplicate environment\n"
 # define ERR_GET_CWD_FAIL \
 	"minishell: Failed to get current working directory\n"
+
+//============================================================================//
+//                           PARSING ERROR MESSAGES                           //
+//============================================================================//
+# define ERR_TOKENIZATION_FAIL \
+	"minishell: Failed to tokenize input\n"
+# define ERR_EXPANSION_FAIL \
+	"minishell: Failed to expand variables\n"
 
 #endif
