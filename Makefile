@@ -6,7 +6,7 @@
 #    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/21 15:24:16 by meferraz         ###   ########.fr        #
+#    Updated: 2025/02/21 21:47:04 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,6 @@ SRCS = \
        ${SRC_PATH}/530_expansion/expand.c \
        ${SRC_PATH}/530_expansion/expand_handle_dollar.c \
        ${SRC_PATH}/600_exec/exec.c \
-       ${SRC_PATH}/600_exec/exec_pipes.c \
        ${SRC_PATH}/600_exec/exec_utils.c \
        ${SRC_PATH}/610_builtins/cd.c \
        ${SRC_PATH}/610_builtins/echo.c \
@@ -105,6 +104,9 @@ SRCS = \
        ${SRC_PATH}/630_redirects/exec_heredoc.c \
        ${SRC_PATH}/630_redirects/exec_redirection.c \
        ${SRC_PATH}/630_redirects/exec_redirection_utils.c \
+	   ${SRC_PATH}/640_pipes/exec_pipes_child.c \
+	   ${SRC_PATH}/640_pipes/exec_pipes_utils.c \
+	   ${SRC_PATH}/640_pipes/exec_pipes.c \
        ${SRC_PATH}/700_utils_other/variable_utils.c \
        ${SRC_PATH}/700_utils_other/variable_utils_2.c \
        ${SRC_PATH}/700_utils_other/check_type_functions.c \

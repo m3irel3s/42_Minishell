@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 20:57:37 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 21:48:45 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,13 +139,26 @@ char			*ft_get_path_to_execute(t_shell *shell, char *cmd);
 char			*ft_add_cmd_to_path(char **arr, char *cmd);
 char			**ft_create_arr_cmd(t_token *start_pos);
 
+/* 600_exec/exec_utils.c */
+t_status		ft_has_pipes(t_shell *shell);
+
 //============================================================================//
 //                                  PIPES                                     //
 //============================================================================//
-/* 600_exec/exec_pipes.c */
+/* 640_pipes/exec_pipes.c */
 void			ft_handle_pipes(t_shell *shell);
-/* 600_exec/exec_utils.c */
-t_status		ft_has_pipes(t_shell *shell);
+
+/* 640_pipes/exec_pipes_utils.c */
+t_pipe			*ft_allocate_and_create_pipes(t_token *tokens);
+int				ft_count_pipes(t_token *tokens);
+void			ft_cleanup_pipes(t_pipe *pipes, int num_pipes);
+void			ft_advance_to_next_cmd(t_token **curr_cmd);
+
+/* 640_pipes/exec_pipes_child.c */
+void			ft_execute_child(t_shell *shell, t_token *curr_cmd, int i, t_pipe *pipes, int num_pipes);
+void			ft_setup_child_redirections(int i, t_pipe *pipes, int num_pipes);
+void			ft_close_child_pipes(t_pipe *pipes, int num_pipes);
+t_token			*ft_copy_tokens(t_token *start, t_token *end);
 
 //============================================================================//
 //                         EXECUTION - REDIRECTIONS                           //
