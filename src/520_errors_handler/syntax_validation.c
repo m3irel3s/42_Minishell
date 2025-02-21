@@ -6,14 +6,15 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:43:44 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 08:23:19 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 09:10:48 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
+static t_status	ft_handle_syntax_error(t_shell *shell);
 static t_status	ft_validate_pipe(t_shell *shell, t_token *current,
-	t_token *prev);
+					t_token *prev);
 static t_status	ft_validate_redirect(t_shell *shell, t_token *current);
 
 /**
@@ -35,13 +36,8 @@ t_status	ft_validate_syntax(t_shell *shell, t_token *tokens)
 	t_token	*current;
 	t_token	*prev;
 
-	if (!shell || !tokens)
-	{
-		ft_putstr_fd(ERR_INVALID_PARAMS, STDERR_FILENO);
-		if (shell)
-			shell->exit_status = EXIT_FAILURE;
-		return (ERROR);
-	}
+	if (!tokens || !shell)
+		return (ft_handle_syntax_error(shell));
 	current = tokens;
 	prev = tokens->prev;
 	while (current)
@@ -60,6 +56,22 @@ t_status	ft_validate_syntax(t_shell *shell, t_token *tokens)
 		current = current->next;
 	}
 	return (SUCCESS);
+}
+
+/**
+ * @brief Handles a syntax error, printing an error message and setting the
+ * shell's exit status to EXIT_FAILURE.
+ *
+ * @param shell The shell structure containing the tokens to validate.
+ *
+ * @return Returns ERROR, indicating that an error was found.
+ */
+static t_status	ft_handle_syntax_error(t_shell *shell)
+{
+	ft_putstr_fd(ERR_INVALID_PARAMS, STDERR_FILENO);
+	if (shell)
+		shell->exit_status = EXIT_FAILURE;
+	return (ERROR);
 }
 
 /**
