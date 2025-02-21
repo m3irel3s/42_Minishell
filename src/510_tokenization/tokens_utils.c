@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/20 16:02:01 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:44:26 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ t_token_type	ft_determine_token_type(t_shell *shell, char *value, size_t len)
 {
 	if (!value)
 	{
-		ft_printf(STDERR_FILENO, ERR_NULL_TOKEN_VALUE);
-		shell->exit_status = EXIT_FAILURE;
+		ft_print_error(shell, ERR_NULL_TOKEN_VALUE);
 		return (ERROR_TOKEN);
 	}
 	if (len == 1)
@@ -58,8 +57,7 @@ static t_token_type	ft_check_single_char(t_shell *shell, char *value)
 {
 	if (!value)
 	{
-		ft_printf(STDERR_FILENO, ERR_NULL_TOKEN_VALUE);
-		shell->exit_status = EXIT_FAILURE;
+		ft_print_error(shell, ERR_NULL_TOKEN_VALUE);
 		return (ERROR_TOKEN);
 	}
 	if (*value == '|')
@@ -86,8 +84,7 @@ static t_token_type	ft_check_double_char(t_shell *shell, char *value)
 {
 	if (!value)
 	{
-		ft_printf(STDERR_FILENO, ERR_NULL_TOKEN_VALUE);
-		shell->exit_status = EXIT_FAILURE;
+		ft_print_error(shell, ERR_NULL_TOKEN_VALUE);
 		return (ERROR_TOKEN);
 	}
 	if (ft_strncmp(value, "<<", 2) == 0)

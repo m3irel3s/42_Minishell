@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 12:47:17 by passunca          #+#    #+#             */
-/*   Updated: 2025/02/21 09:35:42 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 15:03:58 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define BRED2 "\001\033[0;31m\002"
 # define BYEL2 "\001\033[0;33m\002"
 # define BCYN2 "\001\033[1;36m\002"
+# define WHT2 "\001\033[0;37m\002"
 # define RESET2 "\001\033[0m\002"
 
 //Regular bold text

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 10:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 14:18:36 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 15:39:12 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_get_git_branch(t_shell *shell)
 	fd = open(".git/HEAD", O_RDONLY);
 	if (fd == -1)
 	{
-		ft_print_error(shell, ERR_OPEN_FAIL);
+		ft_print_error(shell, "");
 		return (NULL);
 	}
 	bytes_read = read(fd, buffer, sizeof(buffer) - 1);

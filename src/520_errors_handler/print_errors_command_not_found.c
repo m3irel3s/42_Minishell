@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:36:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 13:46:45 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:58:35 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,11 @@
  * @return Always returns ERROR, indicating that a command not found error
  *         occurred.
  */
-
 t_status	ft_print_command_not_found_error(t_shell *shell, char *cmd)
 {
 	if (!cmd)
 		return (ft_print_error(shell, ERR_INVALID_PARAMS));
-
-	ft_putstr_fd(ERR_CMD_NOT_FOUND, STDERR_FILENO);
-	ft_putstr_fd(cmd, STDERR_FILENO);
-	ft_putstr_fd("\n", STDERR_FILENO);
+	ft_printf(STDERR_FILENO, ERR_CMD_NOT_FOUND, cmd);
 	if (shell)
 		shell->exit_status = EXIT_COMMAND_NOT_FOUND;
 	return (ERROR);

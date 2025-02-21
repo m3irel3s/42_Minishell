@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 14:18:32 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 15:35:09 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,9 @@ t_status		ft_print_error_invalid_exit_arg(t_shell *shell,
 t_status		ft_print_error_fatal_signal(t_shell *shell, char *error_msg,
 					int signal_number);
 
+/* 520_errors_handler/print_errors_utils.c */
+char			*ft_format_error(const char *err, const char *file);
+
 //============================================================================//
 //                             VARIABLE EXPANSION                             //
 //============================================================================//
@@ -152,11 +155,11 @@ int				ft_has_pipes(t_shell *shell);
 //                         EXECUTION - REDIRECTIONS                           //
 //============================================================================//
 /* 630_redirects/exec_redirection.c */
-void			ft_handle_redirections(t_shell *shell);
+t_status		ft_handle_redirections(t_shell *shell);
 /* 630_redirects/exec_redirection_utils.c */
 void			ft_create_redirection_list(t_shell *shell);
 /* 630_redirects/exec_heredoc.c */
-void			ft_redirect_heredoc(t_shell *shell, t_redirect *redirect);
+t_status		ft_redirect_heredoc(t_shell *shell, t_redirect *redirect);
 
 //============================================================================//
 //                               BUILT-IN COMMANDS                            //

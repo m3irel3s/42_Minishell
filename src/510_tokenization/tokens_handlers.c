@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 14:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 11:56:24 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:44:15 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,21 @@ static void	ft_check_quote_state(t_shell *shell, size_t start,
 				size_t *i, t_quote_info *quote_info);
 
 /**
- * @brief Handles an operator character in the input string.
+ * @brief Handles an operator in the input string.
  *
- * If the character is an operator, it creates an operator token and adds it to
- * the list of tokens. If the current context is an export, it sets the flag to
- * 0. If the operator is a double operator (e.g. ';;'), it increments the index
- * by 2. Otherwise, it increments the index by 1.
+ * Checks if the current character is an operator and creates a new token
+ * accordingly. If the character is a double operator (e.g., '&&', '||'),
+ * it increments the index by 2. Otherwise, it increments the index by 1.
+ * If there is an error during token creation, it sets an error status and
+ * returns ERROR.
  *
- * @param shell The shell struct containing the input string.
- * @param i Pointer to the index of the current character in the input string.
- * @param is_export Pointer to the flag indicating if the current context is an
- * export.
+ * @param shell A pointer to the shell structure containing the input string.
+ * @param i A pointer to the index of the current character in the input string.
+ * @param is_export A pointer to the flag indicating if the current context is
+ * an export.
  *
- * @return Returns ERROR if there was an error during token creation,
- *         SUCCESS otherwise.
+ * @return Returns SUCCESS if the operator is handled successfully; otherwise,
+ * returns ERROR.
  */
 t_status	ft_handle_operator(t_shell *shell, size_t *i, int *is_export)
 {
@@ -39,11 +40,7 @@ t_status	ft_handle_operator(t_shell *shell, size_t *i, int *is_export)
 	t_status	status;
 
 	if (!shell || !i || !is_export)
-	{
-		ft_printf(STDERR_FILENO, ERR_INVALID_PARAMS);
-		shell->exit_status = EXIT_FAILURE;
-		return (ERROR);
-	}
+		return (ft_print_error(shell, ERR_INVALID_PARAMS));
 	if (*is_export)
 		*is_export = 0;
 	start = *i;
@@ -58,21 +55,19 @@ t_status	ft_handle_operator(t_shell *shell, size_t *i, int *is_export)
 }
 
 /**
- * @brief Handles an export argument.
+ * @brief Handles an export argument in the input string.
  *
- * Advances the index to determine the extent of the export argument, taking
- * into account any quotes. If the argument is quoted, it sets the quoted flag
- * to 1 or 2, respectively, and moves the index to the end of the quoted
- * section. If the quote is unmatched, it prints an error and sets the exit
- * status to EXIT_FAILURE.
+ * This function processes an export argument in the shell's input string.
+ * It handles quotes within the argument and creates a token for it. If
+ * unmatched quotes are found, an error is returned.
  *
- * @param shell The shell struct containing the input string.
- * @param i Pointer to the index of the start of the export argument in the
- * input string.
+ * @param shell A pointer to the shell structure containing the input string.
+ * @param i A pointer to the current index in the input string.
  *
- * @return Returns ERROR if there was an error during token creation,
- *         SUCCESS otherwise.
+ * @return Returns SUCCESS if the export argument is processed and tokenized
+ *         successfully, otherwise returns ERROR.
  */
+
 t_status	ft_handle_export_arg(t_shell *shell, size_t *i)
 {
 	size_t			start;
@@ -80,18 +75,13 @@ t_status	ft_handle_export_arg(t_shell *shell, size_t *i)
 	t_status		status;
 
 	if (!shell || !i)
-	{
-		ft_printf(STDERR_FILENO, ERR_INVALID_PARAMS);
-		shell->exit_status = EXIT_FAILURE;
-		return (ERROR);
-	}
+		return (ft_print_error(shell, ERR_INVALID_PARAMS));
 	start = *i;
 	ft_reset_quote_info(&quote_info);
 	ft_set_export_arg_index(shell, i, &quote_info);
 	if (quote_info.in_quotes != 0)
 	{
 		ft_print_unmatched_quote_error(shell);
-		shell->exit_status = EXIT_FAILURE;
 		return (ERROR);
 	}
 	ft_check_quote_state(shell, start, i, &quote_info);
@@ -102,20 +92,19 @@ t_status	ft_handle_export_arg(t_shell *shell, size_t *i)
 }
 
 /**
- * @brief Advances the index to determine the extent of an export argument.
+ * @brief Sets the export argument index while handling quotes.
  *
- * This function iterates over the input string starting from the current
- * index, updating the quote information as it encounters quote characters.
- * It increments the index until it reaches the end of the input, a space,
- * updating the quote information structure with the current quote character,
- * whether the index is within quotes, and the type of quotes encountered.
+ * This function iterates through the input string starting from the current
+ * index, updating the index and quote information as it processes each character.
+ * It tracks whether the current position is within quotes and adjusts the quote
+ * information structure accordingly. The function stops iterating when it
+ * encounters an unquoted space or operator.
  *
  * @param shell A pointer to the shell structure containing the input string.
- * @param i A pointer to the current index in the input string, which will
- *          be incremented as the function processes characters.
+ * @param i A pointer to the current index in the input string.
  * @param quote_info A pointer to a structure holding information about the
- *                   current quote state, including whether the current
- *                   character is within quotes and the type of quotes.
+ *                   current quote state, indicating if inside a quote and the
+ *                   type of quote.
  */
 
 static void	ft_set_export_arg_index(t_shell *shell, size_t *i,
@@ -149,23 +138,20 @@ static void	ft_set_export_arg_index(t_shell *shell, size_t *i,
 }
 
 /**
- * @brief Determines the quote state within a given range of the input string.
+ * @brief Checks for single and double quotes in a segment of the input string.
  *
- * This function iterates through the input string from the provided start index
- * up to the index pointed to by `i`, checking for occurrences of single or
- * double quotes. It updates the quote information structure based on the type
- * of quotes encountered, marking whether the section is quoted and if it's
- * enclosed by single or double quotes.
+ * This function iterates through a segment of the input string, checking for
+ * single and double quotes. If it finds a single quote, it sets the `quoted`
+ * field of the `t_quote_info` structure to 1. If it finds a double quote, it
+ * sets the `quoted` field to 2. The function does not return any value.
  *
  * @param shell A pointer to the shell structure containing the input string.
- * @param start The starting index to check for quotes in the input string.
- * @param i A pointer to the current index in the input string, marking the
- *          end of the range to check for quotes.
- * @param quote_info A pointer to a structure to store the quote state,
- *                   indicating whether the section is quoted and the type of
- *                   quotes used.
+ * @param start The starting index of the segment to be checked.
+ * @param i A pointer to the current index in the input string.
+ * @param quote_info A pointer to a structure holding information about the
+ *                   current quote state, indicating if inside a quote and the
+ *                   type of quote.
  */
-
 static void	ft_check_quote_state(t_shell *shell, size_t start, size_t *i,
 		t_quote_info *quote_info)
 {

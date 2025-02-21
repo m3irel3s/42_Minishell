@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 14:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 08:15:47 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:36:59 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ int	ft_is_export_command(t_shell *shell, size_t i)
 {
 	if (!shell || !shell->input)
 	{
-		ft_printf(STDERR_FILENO, ERR_INVALID_SHELL_OR_INPUT);
-		shell->exit_status = EXIT_FAILURE;
+		ft_print_error(shell, ERR_INVALID_SHELL_OR_INPUT);
 		return (0);
 	}
 	return (ft_strncmp(shell->input + i, "export", 6) == 0
@@ -48,19 +47,15 @@ t_status	ft_create_export_token(t_shell *shell, size_t *i, int *is_export)
 	t_status	status;
 
 	if (!shell || !shell->input || !i || !is_export)
-	{
-		ft_printf(STDERR_FILENO, ERR_INVALID_PARAMS);
-		shell->exit_status = EXIT_FAILURE;
-		return (ERROR);
-	}
+		return (ft_print_error(shell, ERR_INVALID_PARAMS));
 	start = *i;
 	*is_export = 1;
 	*i += 6;
 	status = ft_create_and_add_token(shell, start, *i, 0);
 	if (status == ERROR)
 	{
-		ft_printf(STDERR_FILENO, ERR_EXPORT_TOKEN_CREATION_FAIL);
-		shell->exit_status = EXIT_FAILURE;
+		ft_print_error(shell, ERR_TOKEN_CREATION_FAIL);
+		return (ERROR);
 	}
 	return (status);
 }

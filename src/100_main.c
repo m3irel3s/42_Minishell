@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 14:24:48 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:35:52 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,23 @@
 
 static void	ft_process_input(t_shell *shell);
 
+/**
+ * Main entry point of the minishell program.
+ *
+ * This function takes care of initializing the shell, setting up signal
+ * handlers, and entering the main loop, which processes user input and
+ * executes commands.
+ *
+ * Parameters:
+ * @param argc: The number of command line arguments passed to the program.
+ *              This is ignored.
+ * @param argv: The command line arguments passed to the program. This is
+ *              ignored.
+ * @param envp: The environment variables passed to the program.
+ *
+ * Returns:
+ * An exit status that is used to determine the exit status of the program.
+ */
 int	main(int argc, char **argv, char **envp)
 {
 	t_shell	shell;

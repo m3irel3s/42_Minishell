@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 11:56:42 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:29:59 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,7 @@ t_status	ft_tokenize(t_shell *shell)
 	int		is_export;
 
 	if (!shell || !shell->input)
-	{
-		shell->exit_status = EXIT_FAILURE;
-		ft_printf(STDERR_FILENO, ERR_TOKENIZATION_FAIL);
-		return (ERROR);
-	}
+		return (ft_print_error(shell, ERR_TOKENIZATION_FAIL));
 	i = 0;
 	is_export = 0;
 	while (shell->input[i])
@@ -49,10 +45,7 @@ t_status	ft_tokenize(t_shell *shell)
 		if (ft_is_space(shell->input[i]))
 			i++;
 		else if (ft_process_input_element(shell, &i, &is_export) != SUCCESS)
-		{
-			shell->exit_status = EXIT_FAILURE;
-			return (ERROR);
-		}
+			return (ft_print_error(shell, ERR_TOKENIZATION_FAIL));
 	}
 	return (SUCCESS);
 }
@@ -80,10 +73,7 @@ static t_status	ft_process_input_element(t_shell *shell, size_t *i,
 	if (ft_is_operator(shell->input[*i]))
 	{
 		if (ft_handle_operator(shell, i, is_export) != SUCCESS)
-		{
-			ft_printf(STDERR_FILENO, ERR_OPERATOR_HANDLING_FAIL);
-			return (ERROR);
-		}
+			return (ft_print_error(shell, ERR_OPERATOR_HANDLING_FAIL));
 	}
 	else
 	{
@@ -113,26 +103,17 @@ static t_status	ft_handle_non_operator(t_shell *shell, size_t *i,
 	if (ft_is_export_command(shell, *i))
 	{
 		if (ft_create_export_token(shell, i, is_export) != SUCCESS)
-		{
-			ft_printf(STDERR_FILENO, ERR_EXPORT_TOKEN_FAIL);
-			return (ERROR);
-		}
+			return (ft_print_error(shell, ERR_EXPORT_TOKEN_FAIL));
 	}
 	else if (*is_export)
 	{
 		if (ft_handle_export_arg(shell, i) != SUCCESS)
-		{
-			ft_printf(STDERR_FILENO, ERR_EXPORT_ARG_HANDLING_FAIL);
-			return (ERROR);
-		}
+			return (ft_print_error(shell, ERR_EXPORT_ARG_HANDLING_FAIL));
 	}
 	else
 	{
 		if (ft_handle_word(shell, i) != SUCCESS)
-		{
-			ft_printf(STDERR_FILENO, ERR_WORD_HANDLING_FAIL);
-			return (ERROR);
-		}
+			return (ft_print_error(shell, ERR_WORD_HANDLING_FAIL));
 	}
 	return (SUCCESS);
 }

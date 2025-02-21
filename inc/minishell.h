@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:40:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/10 14:32:08 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 15:08:42 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # include <signal.h>
 # include <stdio.h>
 # include <string.h>
+# include <errno.h>
 
 # include "macros.h"
 # include "types.h"

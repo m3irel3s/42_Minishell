@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 11:16:14 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 15:36:43 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,15 @@ static char	*ft_expanded_line(t_shell *shell, char *line);
  * @param shell A pointer to the shell structure containing the redirection.
  * @param redirect A pointer to the redirection structure containing the
  * filename associated with the heredoc delimiter.
+ * @return t_status SUCCESS if the heredoc was successfully set up, ERROR otherwise.
  */
-void	ft_redirect_heredoc(t_shell *shell, t_redirect *redirect)
+t_status	ft_redirect_heredoc(t_shell *shell, t_redirect *redirect)
 {
 	int		fd[2];
 	char	*line;
 
 	if (pipe(fd) == -1)
-	{
-		ft_putstr_fd("minishell: error creating heredoc pipe\n", STDERR_FILENO);
-		return ;
-	}
+		return (ft_print_error(shell, ERR_PIPE_FAIL));
 	while (1)
 	{
 		line = readline("> ");
@@ -45,13 +43,24 @@ void	ft_redirect_heredoc(t_shell *shell, t_redirect *redirect)
 		}
 		if (!redirect->quoted)
 			line = ft_expanded_line(shell, line);
-		write(fd[1], line, ft_strlen(line));
-		write(fd[1], "\n", 1);
+		if (write(fd[1], line, ft_strlen(line)) == -1 ||
+			write(fd[1], "\n", 1) == -1)
+		{
+			free(line);
+			close(fd[1]);
+			close(fd[0]);
+			return (ft_print_error(shell, ERR_WRITE_FAIL));
+		}
 		free(line);
 	}
 	close(fd[1]);
-	dup2(fd[0], STDIN_FILENO);
+	if (dup2(fd[0], STDIN_FILENO) == -1)
+	{
+		close(fd[0]);
+		return (ft_print_error(shell, ERR_DUP2_FAIL));
+	}
 	close(fd[0]);
+	return (SUCCESS);
 }
 
 /**

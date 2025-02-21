@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:04:18 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 14:18:34 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 15:03:51 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,5 @@ static char	*ft_build_prompt(t_shell *shell, char *user, char *cwd)
 		prompt = ft_safe_strjoin(shell, prompt, BCYN2"]", 1);
 		free(git_branch);
 	}
-	return (ft_safe_strjoin(shell, prompt, "\n"BCYN2"└─$ "WHT, 1));
+	return (ft_safe_strjoin(shell, prompt, "\n"BCYN2"└─$ "WHT2, 1));
 }

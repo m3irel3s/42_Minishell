@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:29:46 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 14:02:42 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:28:49 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,14 @@ static t_status	ft_validate_all_tokens(t_shell *shell);
 t_status	ft_parse_input(t_shell *shell)
 {
 	if (ft_tokenize(shell) != SUCCESS)
-	{
-		ft_printf(STDERR_FILENO, ERR_TOKENIZATION_FAIL);
-		shell->exit_status = EXIT_FAILURE;
-		return (ERROR);
-	}
+		return (ft_print_error(shell, ERR_TOKENIZATION_FAIL));
+
 	if (ft_validate_all_tokens(shell) != SUCCESS)
-	{
-		shell->exit_status = EXIT_FAILURE;
-		return (ERROR);
-	}
+		return (ft_print_error(shell, ERR_SYNTAX_VALIDATION_FAIL));
+
 	if (ft_expand(shell) != SUCCESS)
-	{
-		ft_printf(STDERR_FILENO, ERR_EXPANSION_FAIL);
-		shell->exit_status = EXIT_FAILURE;
-		return (ERROR);
-	}
+		return (ft_print_error(shell, ERR_EXPANSION_FAIL));
+
 	shell->exit_status = EXIT_SUCCESS;
 	return (SUCCESS);
 }
@@ -63,7 +55,7 @@ static t_status	ft_validate_all_tokens(t_shell *shell)
 	{
 		if (ft_validate_syntax(shell, current) != SUCCESS)
 		{
-			ft_printf(STDERR_FILENO, ERR_SYNTAX_VALIDATION_FAIL);
+			ft_print_error(shell, ERR_SYNTAX_VALIDATION_FAIL);
 			return (ERROR);
 		}
 		current = current->next;
