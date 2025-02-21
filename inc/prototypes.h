@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 15:35:09 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 15:57:00 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ int				ft_has_pipes(t_shell *shell);
 /* 630_redirects/exec_redirection.c */
 t_status		ft_handle_redirections(t_shell *shell);
 /* 630_redirects/exec_redirection_utils.c */
-void			ft_create_redirection_list(t_shell *shell);
+t_status		ft_create_redirection_list(t_shell *shell);
 /* 630_redirects/exec_heredoc.c */
 t_status		ft_redirect_heredoc(t_shell *shell, t_redirect *redirect);
 

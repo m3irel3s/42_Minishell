@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:11:23 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 11:06:07 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 15:58:08 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,26 @@ static t_token	*ft_get_after_next(t_token *next_token);
 static int		ft_is_redirect_token(int type);
 static t_token	*ft_update_tokens(t_shell *shell, t_token *token,
 					t_token *next_token, t_token *after_next);
-static void		ft_create_and_add_redirect(t_token *token, t_shell *shell,
+static t_status		ft_create_and_add_redirect(t_token *token, t_shell *shell,
 					t_redirect **last_redirect);
 
+
 /**
- * @brief Creates a list of redirections from the shell's token list.
+ * @brief Creates a list of redirections from the token list.
  *
- * This function iterates through the shell's token list, identifies
- * redirection tokens, and creates a linked list of redirection structures
- * based on these tokens. For each identified redirection token, it checks
- * if there is a following token representing the filename and creates a
- * redirection structure using `ft_create_and_add_redirect`. It updates the
- * token list to remove the redirection-related tokens using
- * `ft_update_tokens`. If a redirection token is found without a following
- * filename token, an error is printed and the function exits early.
+ * This function iterates through the token list and creates a new redirection
+ * structure for each token that is a redirection operator. It checks if the
+ * redirection operator is followed by a filename token, and if not, prints an
+ * error message and returns ERROR. If the redirection operator is followed by a
+ * filename token, it creates a new redirection structure and adds it to the
+ * list of redirections. It then updates the token list by removing the
+ * redirection operator token and its next token (the filename token).
  *
  * @param shell A pointer to the shell structure containing the token list.
+ * @return t_status SUCCESS if the list of redirections was successfully created,
+ * ERROR otherwise.
  */
-void	ft_create_redirection_list(t_shell *shell)
+t_status	ft_create_redirection_list(t_shell *shell)
 {
 	t_token		*token;
 	t_token		*next_token;
@@ -49,16 +51,15 @@ void	ft_create_redirection_list(t_shell *shell)
 		if (ft_is_redirect_token(token->type))
 		{
 			if (!next_token)
-			{
-				ft_print_redirect_no_file_error(shell);
-				return ;
-			}
-			ft_create_and_add_redirect(token, shell, &last_redirect);
+				return (ft_print_error(shell, ERR_SYNTAX_EOF_REDIR));
+			if (!ft_create_and_add_redirect(token, shell, &last_redirect))
+				return (ERROR);
 			token = ft_update_tokens(shell, token, next_token, after_next);
 		}
 		else
 			token = next_token;
 	}
+	return (SUCCESS);
 }
 
 static t_token	*ft_get_after_next(t_token *next_token)
@@ -116,38 +117,44 @@ static t_token	*ft_update_tokens(t_shell *shell, t_token *token,
 }
 
 /**
- * @brief Creates a new redirection from a token and adds it to the shell's
- *        redirection list.
+ * @brief Creates a new redirection structure and adds it to the list of redirections.
  *
- * This function allocates a new redirection structure, initializes it based on
- * the provided token's type and its subsequent token's value and quoted status.
- * It then appends this redirection to the shell's list of redirections. If the
- * allocation of the redirection or its filename fails, the function frees any
- * allocated resources and returns without adding the redirection.
+ * This function creates a new redirection structure from the given token and adds
+ * it to the list of redirections in the shell structure. If the list of redirections
+ * is empty, it sets the shell's redirects field to the new redirection structure.
+ * Otherwise, it links the new redirection structure to the last redirection structure
+ * in the list. It also sets the quoted field of the new redirection structure to the
+ * quoted field of the given token's next token (the filename token).
  *
- * @param token A pointer to the token representing the redirection operator.
- * @param shell A pointer to the shell structure where the redirection list is
- *              maintained.
- * @param last_redirect A double pointer to the last redirection in the list,
- *                      used to append the newly created redirection.
+ * @param token The token to be used to create the new redirection structure.
+ * @param shell A pointer to the shell structure containing the list of redirections.
+ * @param last_redirect A pointer to the last redirection structure in the list of
+ * redirections.
+ * @return t_status SUCCESS if the new redirection structure was successfully added
+ * to the list of redirections, ERROR otherwise.
  */
-static void	ft_create_and_add_redirect(t_token *token, t_shell *shell,
-										t_redirect **last_redirect)
+static t_status	ft_create_and_add_redirect(t_token *token, t_shell *shell,
+	t_redirect **last_redirect)
 {
 	t_redirect	*redirect;
 
 	redirect = ft_safe_malloc(sizeof(t_redirect));
 	if (!redirect)
-		return ;
+		return (ft_print_error(shell, ERR_MALLOC_FAIL));
 	redirect->type = token->type;
 	redirect->filename = ft_safe_strdup(token->next->value);
-	redirect->quoted = token->next->quoted;
 	if (!redirect->filename)
-		return (ft_free(redirect));
+	{
+		free(redirect);
+		return (ft_print_error(shell, ERR_STRDUP_FAIL));
+	}
+	redirect->quoted = token->next->quoted;
 	redirect->next = NULL;
 	if (!(*last_redirect))
 		shell->redirects = redirect;
 	else
 		(*last_redirect)->next = redirect;
-	(*last_redirect) = redirect;
+		(*last_redirect) = redirect;
+	return (SUCCESS);
 }
+
