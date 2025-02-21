@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   100_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 14:03:51 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:24:48 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,9 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	ft_display_startup_banner();
 	if (ft_set_up_signals() == ERROR)
-	{
-		ft_printf(STDERR_FILENO, ERR_SIGNAL_SETUP_FAIL);
-		return (EXIT_FAILURE);
-	}
+		return (ft_print_error(NULL, ERR_SIGNAL_SETUP_FAIL), EXIT_FAILURE);
 	if (ft_init_shell(&shell, envp) == ERROR)
-	{
-		ft_printf(STDERR_FILENO, ERR_SHELL_INIT_FAIL);
-		return (EXIT_FAILURE);
-	}
+		return (ft_print_error(NULL, ERR_SHELL_INIT_FAIL), EXIT_FAILURE);
 	while (1)
 	{
 		shell.prompt = ft_set_prompt(&shell);
@@ -47,6 +41,18 @@ int	main(int argc, char **argv, char **envp)
 	return (shell.exit_status);
 }
 
+/**
+ * @brief Process the input string from the user.
+ *
+ * This function takes the input string from the user and adds it to the
+ * readline history. It then calls ft_parse_input to parse the input string
+ * and ft_exec to execute the parsed commands. If the parsing is successful,
+ * the exit status of the shell is set to SUCCESS; otherwise, it is set to
+ * EXIT_FAILURE. Finally, it calls ft_cleanup to free any dynamically
+ * allocated memory.
+ *
+ * @param shell A pointer to the shell structure containing the input string.
+ */
 static void	ft_process_input(t_shell *shell)
 {
 	if (*shell->input)
