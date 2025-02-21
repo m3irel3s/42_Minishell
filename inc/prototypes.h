@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 08:54:37 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 09:51:53 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,12 @@ t_status		ft_init_shell(t_shell *shell, char **envp);
 //============================================================================//
 /* 300_prompt/prompt.c */
 char			*ft_set_prompt(t_shell *shell);
-char			*ft_get_current_directory(t_shell *shell);
+
+/* 300_prompt/prompt_utils.c */
+char			*ft_get_git_branch(t_shell *shell);
+char			*ft_shorten_path(t_shell *shell, const char *path);
+char			*ft_handle_error(t_shell *shell, char *error_msg);
+char			*ft_safe_join(t_shell *shell, char *s1, char *s2, int free_s1);
 
 //============================================================================//
 //                              SIGNAL HANDLING                               //
@@ -147,22 +152,28 @@ void			ft_pwd(t_shell *shell);
 /* 610_builtins/export.c */
 void			ft_export(t_shell *shell);
 void			ft_add_var_to_env(t_shell *shell, char *var, char *value);
-/* 611_builtins_utils/export_print.c */
-void			ft_print_export(t_shell *shell);
-void			ft_output_export(char **export);
-char			**ft_sort_export(char **export);
 /* 610_builtins/exit.c */
 void			ft_exit(t_shell *shell);
 void			ft_handle_eof(t_shell *shell);
 /* 610_builtins/unset.c */
 void			ft_unset(t_shell *shell);
 
-//============================================================================//
-//                       ENVIRONMENT VARIABLE UTILITIES                       //
-//============================================================================//
+/* 611_builtins_utils/export_print.c */
+void			ft_print_export(t_shell *shell);
+void			ft_output_export(char **export);
+char			**ft_sort_export(char **export);
+
+/*611_builtins_utils/cd_and_pwd_utils.c*/
+char			*ft_get_current_directory(t_shell *shell);
+
 /* 611_builtins_utils/env_utils.c */
 char			**ft_duplicate_env(char **envp);
 int				ft_get_env_size(t_shell *shell);
+
+//============================================================================//
+//                       ENVIRONMENT VARIABLE UTILITIES                       //
+//============================================================================//
+
 /* 700_utils_other/variable_utils.c */
 int				ft_get_str_length(char *str1, char *str2);
 char			*ft_get_var_value(char *var, char **env);
