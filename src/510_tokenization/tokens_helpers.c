@@ -6,14 +6,15 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 14:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/20 16:14:37 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 08:15:47 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 /**
- * @brief Checks if the current position in the input is the start of an export command.
+ * @brief Checks if the current position in the input is the start of an export
+ * command.
  *
  * @param shell Pointer to the shell structure.
  * @param i Current index in the input string.
@@ -36,13 +37,15 @@ int	ft_is_export_command(t_shell *shell, size_t i)
  *
  * @param shell Pointer to the shell structure.
  * @param i Pointer to the current index in the input string.
- * @param is_export Pointer to the flag indicating if we're processing an export command.
- * @return SUCCESS if the token was created and added successfully, ERROR otherwise.
+ * @param is_export Pointer to the flag indicating if we're processing an export
+ * command.
+ * @return SUCCESS if the token was created and added successfully, ERROR
+ * otherwise.
  */
 t_status	ft_create_export_token(t_shell *shell, size_t *i, int *is_export)
 {
-	size_t	start;
-	t_status status;
+	size_t		start;
+	t_status	status;
 
 	if (!shell || !shell->input || !i || !is_export)
 	{

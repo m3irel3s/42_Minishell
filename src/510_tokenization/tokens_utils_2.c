@@ -6,14 +6,14 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:26:26 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/20 16:12:38 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 08:50:11 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 static t_token	*ft_init_new_token(t_shell *shell, size_t start,
-				size_t end, int quoted);
+					size_t end, int quoted);
 static void		ft_add_token_to_shell(t_shell *shell, t_token *new_token);
 
 /**
@@ -30,9 +30,11 @@ static void		ft_add_token_to_shell(t_shell *shell, t_token *new_token);
  * @param shell The shell struct containing the token list and environment info.
  * @param start The starting index of the token's value in the shell's input.
  * @param end The ending index of the token's value in the shell's input.
- * @param quoted Indicates whether the token is quoted (1 if quoted, 0 otherwise).
+ * @param quoted Indicates whether the token is quoted (1 if quoted, 0
+ * otherwise).
  *
- * @return SUCCESS if the token is created and added successfully, ERROR on failure.
+ * @return SUCCESS if the token is created and added successfully, ERROR
+ * on failure.
  */
 int	ft_create_and_add_token(t_shell *shell, size_t start,
 		size_t end, int quoted)
@@ -96,7 +98,7 @@ static t_token	*ft_init_new_token(t_shell *shell, size_t start,
 		return (NULL);
 	}
 	new_token->type = ft_determine_token_type(shell, new_token->value,
-		end - start);
+			end - start);
 	new_token->next = NULL;
 	new_token->prev = NULL;
 	new_token->quoted = quoted;

@@ -6,24 +6,22 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:04:18 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/20 14:33:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 11:09:01 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static char	*ft_build_prompt(t_shell *shell, const char *user, const char *cwd);
+static char	*ft_build_prompt(t_shell *shell, char *user, char *cwd);
 
 /**
- * @brief Constructs and returns a colorful shell prompt string.
+ * @brief Returns a dynamically allocated string containing the shell's prompt.
  *
- * Retrieves the username and current working directory to build a prompt
- * in the format "user@cwd $ " with colors. Defaults to "user" if retrieval
- * fails.
+ * The prompt is built with the user's name, the current working directory, and
+ * the current Git branch if applicable.
  *
- * @param shell Pointer to the shell structure for updating exit status.
- * @return A dynamically allocated string containing the prompt, or NULL on
- * failure.
+ * @param shell A pointer to the shell structure.
+ * @return A dynamically allocated string containing the shell's prompt.
  */
 char	*ft_set_prompt(t_shell *shell)
 {
@@ -31,91 +29,55 @@ char	*ft_set_prompt(t_shell *shell)
 	char	*user;
 	char	*prompt;
 
-	cwd = ft_get_current_directory(shell);
+	if (!shell)
+		return (ft_handle_error(shell, ERR_INVALID_PARAMS));
+	cwd = getcwd(NULL, 0);
 	if (!cwd)
-		return (NULL);
+		return (ft_handle_error(shell, ERR_GET_CWD_FAIL));
 	user = getenv("USER");
 	if (!user)
 		user = "user";
 	prompt = ft_build_prompt(shell, user, cwd);
-	ft_free(cwd);
-	if (!prompt)
-	{
-		ft_printf(STDERR_FILENO, ERR_PROMPT_CREATE_FAIL);
-		shell->exit_status = EXIT_FAILURE;
-	}
+	free(cwd);
 	return (prompt);
 }
 
 /**
- * @brief Retrieves the current working directory.
+ * @brief Constructs the shell prompt string.
  *
- * If the current working directory cannot be retrieved, updates exit status
- * and returns NULL.
+ * This function builds the shell prompt using the user's name, the current
+ * working directory (shortened if possible), and the current Git branch if
+ * applicable. The prompt is formatted with specific colors and symbols for
+ * improved readability.
  *
- * @param shell Pointer to the shell structure for updating exit status.
- * @return A dynamically allocated string containing the current working
- * directory, or NULL on failure.
+ * @param shell A pointer to the shell structure.
+ * @param user The name of the user to display in the prompt.
+ * @param cwd The current working directory to display in the prompt.
+ * @return A dynamically allocated string containing the formatted prompt.
+ *         Returns NULL if memory allocation fails for any component.
  */
-char	*ft_get_current_directory(t_shell *shell)
-{
-	char	*cwd;
-	char	*res;
 
-	cwd = getcwd(NULL, 0);
-	if (!cwd)
-	{
-		ft_printf(STDERR_FILENO, ERR_GET_CWD_FAIL);
-		shell->exit_status = EXIT_FAILURE;
-		return (NULL);
-	}
-	res = ft_strdup_safe(cwd);
-	ft_free(cwd);
-	if (!res)
-	{
-		ft_printf(STDERR_FILENO, ERR_STRDUP_FAIL);
-		shell->exit_status = EXIT_FAILURE;
-	}
-	return (res);
-}
-
-/**
- * @brief Constructs a colorful shell prompt string.
- *
- * Combines the username and current working directory into a single prompt
- * string with colors.
- *
- * @param shell Pointer to the shell structure for updating exit status.
- * @param user The username to use. If NULL, defaults to "user".
- * @param cwd The current working directory to use. If NULL, defaults to
- * "unknown".
- *
- * @return A dynamically allocated string containing the prompt, or NULL on
- * failure.
- */
-static char	*ft_build_prompt(t_shell *shell, const char *user, const char *cwd)
+static char	*ft_build_prompt(t_shell *shell, char *user, char *cwd)
 {
 	char	*prompt;
-	size_t	len;
-	size_t	offset;
+	char	*short_cwd;
+	char	*git_branch;
 
-	len = ft_strlen(user) + ft_strlen(cwd)
-		+ ft_strlen(GRN2) + ft_strlen(CYN2) + ft_strlen(RESET2)
-		+ 9;
-	prompt = ft_safe_malloc(len * sizeof(char));
-	if (!prompt)
-	{
-		shell->exit_status = EXIT_FAILURE; // Update exit status on failure
+	short_cwd = ft_shorten_path(shell, cwd);
+	git_branch = ft_get_git_branch(shell);
+	if (!short_cwd)
 		return (NULL);
+	prompt = ft_safe_strjoin(shell, BCYN2"┌─["BGRN2, user, 0);
+	prompt = ft_safe_strjoin(shell, prompt, BCYN2"]─["BYEL2, 1);
+	prompt = ft_safe_strjoin(shell, prompt, short_cwd, 1);
+	prompt = ft_safe_strjoin(shell, prompt, BCYN2"]", 1);
+	free(short_cwd);
+	if (git_branch)
+	{
+		prompt = ft_safe_strjoin(shell, prompt, "─["BRED2, 1);
+		prompt = ft_safe_strjoin(shell, prompt, git_branch, 1);
+		prompt = ft_safe_strjoin(shell, prompt, BCYN2"]", 1);
+		free(git_branch);
 	}
-	offset = 0;
-	offset += ft_strlcpy(prompt + offset, GRN2, len - offset);
-	offset += ft_strlcat(prompt + offset, user, len - offset);
-	offset += ft_strlcat(prompt + offset, RESET2, len - offset);
-	offset += ft_strlcat(prompt + offset, "@", len - offset);
-	offset += ft_strlcat(prompt + offset, CYN2, len - offset);
-	offset += ft_strlcat(prompt + offset, cwd, len - offset);
-	offset += ft_strlcat(prompt + offset, RESET2, len - offset);
-	offset += ft_strlcat(prompt + offset, " $ ", len - offset);
-	return (prompt);
+	return (ft_safe_strjoin(shell, prompt, "\n"BCYN2"└─$ "WHT, 1));
 }

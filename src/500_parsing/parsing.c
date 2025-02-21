@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:29:46 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/20 14:20:45 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 08:15:23 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static t_status	ft_validate_all_tokens(t_shell *shell)
 	current = shell->tokens;
 	while (current)
 	{
-		if (ft_validate_syntax(current) != SUCCESS)
+		if (ft_validate_syntax(shell, current) != SUCCESS)
 		{
 			ft_printf(STDERR_FILENO, ERR_SYNTAX_VALIDATION_FAIL);
 			return (ERROR);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   safe_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 12:58:31 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/13 15:12:27 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/21 11:06:23 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*ft_safe_readline(t_shell *shell)
  *         string is NULL.
  */
 
-char	*ft_strdup_safe(const char *s)
+char	*ft_safe_strdup(const char *s)
 {
 	char	*dup;
 	size_t	len;
@@ -91,4 +91,33 @@ char	*ft_strdup_safe(const char *s)
 		return (NULL);
 	ft_memcpy(dup, s, len);
 	return (dup);
+}
+
+/**
+ * @brief A safe version of ft_strjoin that handles errors and frees the first
+ * string if requested.
+ *
+ * This function is similar to ft_strjoin, but it checks for errors and frees
+ * the first string if requested. If the memory allocation fails, it sets the
+ * shell's exit status to EXIT_FAILURE and returns NULL.
+ *
+ * @param shell The shell structure.
+ * @param s1 The first string to join.
+ * @param s2 The second string to join.
+ * @param free_s1 A flag indicating whether to free the first string.
+ * @return The joined string, or NULL if there was an error.
+ */
+char	*ft_safe_strjoin(t_shell *shell, char *s1, char *s2, int free_s1)
+{
+	char	*result;
+
+	result = ft_strjoin(s1, s2);
+	if (free_s1)
+	{
+		if (s1)
+			ft_free(s1);
+	}
+	if (!result)
+		return (ft_handle_error(shell, ERR_STRJOIN_FAIL));
+	return (result);
 }

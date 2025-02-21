@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 16:16:18 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 09:40:49 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@
 	"minishell: fatal error: fork failed\n"
 # define ERR_PIPE_FAIL \
 	"minishell: fatal error: pipe creation failed\n"
+# define ERR_STRJOIN_FAIL "minishell: String join operation failed\n"
 
 //============================================================================//
 //                           SIGNAL ERROR MESSAGES                            //
@@ -146,7 +147,7 @@
 	"minishell: Error: Null token value\n"
 
 //============================================================================//
-//                           NEW ERROR MESSAGES                               //
+//                           GENERAL ERROR MESSAGES                           //
 //============================================================================//
 # define ERR_INVALID_SHELL_OR_INPUT \
 	"minishell: Invalid shell or input\n"
@@ -158,6 +159,15 @@
 	"minishell: Invalid parameters\n"
 # define ERR_EXPORT_TOKEN_CREATION_FAIL \
 	"minishell: Failed to create export token\n"
+
+//============================================================================//
+//                           FILE ERROR MESSAGES                             //
+//============================================================================//
+# define ERR_OPEN_FAIL \
+	"minishell: Error opening file\n"
+# define ERR_READ_FAIL \
+	"minishell: Error reading file\n"
+
 
 //============================================================================//
 //                              EXIT STATUS CODES                             //

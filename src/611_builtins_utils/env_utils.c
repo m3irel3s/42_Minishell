@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 13:50:07 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 12:10:13 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 11:06:07 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	**ft_duplicate_env(char **envp)
 	i = 0;
 	while (envp[i])
 	{
-		env_cpy[i] = ft_strdup_safe(envp[i]);
+		env_cpy[i] = ft_safe_strdup(envp[i]);
 		i++;
 	}
 	env_cpy[i] = NULL;

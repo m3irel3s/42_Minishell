@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/20 16:01:59 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 11:56:42 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ t_status	ft_tokenize(t_shell *shell)
 	}
 	return (SUCCESS);
 }
-
 
 /**
  * @brief Processes a single element of the input string of the shell.

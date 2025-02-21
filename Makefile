@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/20 15:30:04 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/21 12:35:27 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,7 @@ SRCS = \
        ${SRC_PATH}/100_main.c \
        ${SRC_PATH}/200_inits/init.c \
        ${SRC_PATH}/300_prompt/prompt.c \
+	   ${SRC_PATH}/300_prompt/prompt_utils.c \
        ${SRC_PATH}/400_signals/signals.c \
        ${SRC_PATH}/500_parsing/parsing.c \
        ${SRC_PATH}/510_tokenization/tokens.c \
@@ -94,6 +95,7 @@ SRCS = \
        ${SRC_PATH}/611_builtins_utils/env_utils.c \
        ${SRC_PATH}/611_builtins_utils/export_utils.c \
        ${SRC_PATH}/611_builtins_utils/export_print.c \
+	   ${SRC_PATH}/611_builtins_utils/cd_and_pwd_utils.c \
        ${SRC_PATH}/620_execve/exec_execve.c \
        ${SRC_PATH}/630_redirects/exec_heredoc.c \
        ${SRC_PATH}/630_redirects/exec_redirection.c \
@@ -224,16 +226,31 @@ re: fclean all          # Rebuild everything from scratch
 
 ##  Norms Rules  ##
 
-norm:                # Check norms for mandatory sources
+norm:
 	@printf "\n${BLUE}${BOLD}${TEST} Checking Norminette...${RESET}\n"
-	@norminette_output=$$(norminette *.c *.h | grep -v "OK!" || true); \
-	if [ -z "$$norminette_output" ]; then \
-		printf "${GREEN}${BOLD}${CHECK} No norminette errors found!${RESET}\n"; \
+	@norminette_files=$$(find . -name "*.c" -o -name "*.h"); \
+	if [ -n "$$norminette_files" ]; then \
+		norminette_output=$$(norminette $$norminette_files); \
+		error_count=0; \
+		while IFS= read -r line; do \
+			if [[ "$$line" == *"Error:"* ]]; then \
+				printf "${RED}${BOLD}$$line${RESET}\n"; \
+				error_count=$$((error_count + 1)); \
+			elif [[ "$$line" == *": OK!"* ]]; then \
+				printf "${GREEN}$$line${RESET}\n"; \
+			else \
+				printf "  ${WHITE}$$line${RESET}\n"; \
+			fi \
+		done <<< "$$norminette_output"; \
+		if [ $$error_count -gt 0 ]; then \
+			printf "\n${RED}${BOLD}❌ Found $$error_count norminette error(s).${RESET}\n"; \
+		else \
+			printf "\n${GREEN}${BOLD}✓ No norminette errors found!${RESET}\n"; \
+		fi \
 	else \
-		printf "$$norminette_output\n"; \
-		printf "${RED}${BOLD}❌ Norminette errors found.${RESET}\n"; \
+		printf "${YELLOW}${BOLD}⚠️ No .c or .h files found to check!${RESET}\n"; \
 	fi
-	@printf "${GREEN}${BOLD}${CHECK} Norminette check completed!${RESET}\n"
+	@printf "${BLUE}${BOLD}${TEST} Norminette check completed!${RESET}\n"
 
 ##   Check for external functions  ##
 check_external_functions: all               # Check norms for mandatory sources
