@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 14:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 08:19:34 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 11:54:49 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,7 @@ t_status	ft_handle_export_arg(t_shell *shell, size_t *i)
 		return (ERROR);
 	}
 	start = *i;
-	quote_info.in_quotes = 0;
-	quote_info.quote_char = 0;
-	quote_info.quoted = 0;
+	ft_reset_quote_info(&quote_info);
 	ft_set_export_arg_index(shell, i, &quote_info);
 	if (quote_info.in_quotes != 0)
 	{

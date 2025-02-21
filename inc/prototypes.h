@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 11:14:32 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 11:54:33 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ t_status		ft_create_export_token(t_shell *shell, size_t *i,
 t_status		ft_handle_operator(t_shell *shell, size_t *i, int *is_export);
 /* 510_tokenization/tokens_handlers_2.c */
 t_status		ft_handle_export_arg(t_shell *shell, size_t *i);
+void			ft_reset_quote_info(t_quote_info *quote_info);
 
 //============================================================================//
 //                       TOKENIZATION - WORD PROCESSING                       //

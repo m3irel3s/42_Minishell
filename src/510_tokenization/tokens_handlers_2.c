@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 14:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 08:53:01 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 11:55:05 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static t_status	ft_process_quoted_word(t_shell *shell, size_t *i,
 					size_t *start, t_quote_info *quote_info);
 static t_status	ft_handle_quote(t_shell *shell, size_t *i, size_t *start,
 					t_quote_info *quote_info);
-static void		ft_reset_quote_info(t_quote_info *quote_info);
 
 /**
  * @brief Processes a word in the input string, handling any quotes.
@@ -160,7 +159,7 @@ static t_status	ft_handle_quote(t_shell *shell, size_t *i,
  * @param quote_info A pointer to the `t_quote_info` structure to be reset.
  */
 
-static void	ft_reset_quote_info(t_quote_info *quote_info)
+void	ft_reset_quote_info(t_quote_info *quote_info)
 {
 	quote_info->in_quotes = 0;
 	quote_info->quote_char = 0;
