@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/21 12:35:27 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/21 14:03:22 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -196,16 +196,6 @@ gdb: all $(NAME)
 test: all $(NAME)
 	./$(NAME)
 
-# gdb: all $(NAME)
-# 	tmux split-window -h "gdb --tui -x .gdbinit -ex 'set logging file gdb.txt' -ex 'set logging on' --args ./$(NAME)"
-# 	tmux resize-pane -L 5
-# 	make get_log
-
-# get_log:
-# 	rm -f gdb.txt
-# 	touch gdb.txt
-# 	lnav gdb.txt
-
 ##  Cleaning Rules  ##
 
 clean:                       # Clean up object files and temporary build files
@@ -232,21 +222,21 @@ norm:
 	if [ -n "$$norminette_files" ]; then \
 		norminette_output=$$(norminette $$norminette_files); \
 		error_count=0; \
-		while IFS= read -r line; do \
-			if [[ "$$line" == *"Error:"* ]]; then \
+		echo "$$norminette_output" | while IFS= read -r line; do \
+			if echo "$$line" | grep -q "Error:"; then \
 				printf "${RED}${BOLD}$$line${RESET}\n"; \
 				error_count=$$((error_count + 1)); \
-			elif [[ "$$line" == *": OK!"* ]]; then \
+			elif echo "$$line" | grep -q ": OK!"; then \
 				printf "${GREEN}$$line${RESET}\n"; \
 			else \
 				printf "  ${WHITE}$$line${RESET}\n"; \
-			fi \
-		done <<< "$$norminette_output"; \
+			fi; \
+		done; \
 		if [ $$error_count -gt 0 ]; then \
 			printf "\n${RED}${BOLD}❌ Found $$error_count norminette error(s).${RESET}\n"; \
 		else \
 			printf "\n${GREEN}${BOLD}✓ No norminette errors found!${RESET}\n"; \
-		fi \
+		fi; \
 	else \
 		printf "${YELLOW}${BOLD}⚠️ No .c or .h files found to check!${RESET}\n"; \
 	fi
