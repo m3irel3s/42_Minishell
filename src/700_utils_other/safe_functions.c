@@ -6,22 +6,20 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 12:58:31 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 13:50:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:20:10 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 /**
- * Allocates memory for an object of the given size.
+ * Allocate memory safely.
  *
- * @param size The size of the object to allocate in bytes.
- * @return A pointer to the allocated memory if the allocation was successful,
- *         otherwise the program will exit with an error message.
+ * This function calls malloc and checks for errors. If there is an error, it
+ * will print an error message and exit the program.
  *
- * @note This function does not check if the allocation size is valid
- *       (i.e. not zero). It is the caller's responsibility to ensure the size
- *       is valid before calling this function.
+ * @param size The amount of memory to allocate.
+ * @return A void pointer to the beginning of the allocated memory.
  */
 void	*ft_safe_malloc(size_t size)
 {
@@ -29,28 +27,26 @@ void	*ft_safe_malloc(size_t size)
 
 	if (size <= 0)
 	{
-		write(2, "Error: Invalid allocation size <= 0.\n", 37);
+		ft_print_error(NULL, ERR_INVALID_ALLOC_SIZE);
 		exit(EXIT_FAILURE);
 	}
 	ptr = malloc(size);
 	if (!ptr)
 	{
-		write(2, "Error: Memory allocation failed.\n", 33);
+		ft_print_error(NULL, ERR_MALLOC_FAIL);
 		exit(EXIT_FAILURE);
 	}
 	return (ptr);
 }
 
 /**
- * Reads a line of input from the user using readline(3) safely.
+ * Reads a line of input from the user safely.
  *
- * @param shell A pointer to the shell's internal state.
- * @return A pointer to the input string if the read was successful, otherwise
- *         the program will exit with an error message.
+ * This function checks if the prompt is not NULL and prints an error if it is.
+ * It then reads a line of input using readline and returns it as a string.
  *
- * @note This function will clean up the shell's internal state and exit the
- *       program if the read fails. It is the caller's responsibility to ensure
- *       the shell's prompt is valid before calling this function.
+ * @param shell A pointer to the shell structure containing the prompt.
+ * @return The input line as a string, or NULL if there was an error.
  */
 char	*ft_safe_readline(t_shell *shell)
 {
@@ -58,25 +54,12 @@ char	*ft_safe_readline(t_shell *shell)
 
 	if (!shell->prompt)
 	{
-		write(2, "minishell: invalid prompt\n", 26);
+		ft_print_error(shell, ERR_INVALID_PROMPT);
 		return (NULL);
 	}
 	input = readline(shell->prompt);
 	return (input);
 }
-
-/**
- * @brief Safely duplicates a string.
- *
- * Allocates memory for a duplicate of the input string and copies its
- * contents into the newly allocated memory. If memory allocation fails,
- * the program exits with an error message.
- *
- * @param s The string to be duplicated.
- *
- * @return A pointer to the newly duplicated string or NULL if the input
- *         string is NULL.
- */
 
 char	*ft_safe_strdup(char *s)
 {
@@ -94,17 +77,18 @@ char	*ft_safe_strdup(char *s)
 }
 
 /**
- * @brief A safe version of ft_strjoin that handles errors and frees the first
- * string if requested.
+ * Joins two strings together safely.
  *
- * This function is similar to ft_strjoin, but it checks for errors and frees
- * the first string if requested. If the memory allocation fails, it sets the
- * shell's exit status to EXIT_FAILURE and returns NULL.
+ * This function joins two strings together using ft_strjoin and checks for
+ * errors. If there is an error, it prints an error message and returns NULL.
  *
- * @param shell The shell structure.
- * @param s1 The first string to join.
- * @param s2 The second string to join.
- * @param free_s1 A flag indicating whether to free the first string.
+ * If free_s1 is set to a non-zero value, the first string is freed after the
+ * join operation.
+ *
+ * @param shell A pointer to the shell structure.
+ * @param s1 The first string.
+ * @param s2 The second string.
+ * @param free_s1 Whether to free the first string after the join.
  * @return The joined string, or NULL if there was an error.
  */
 char	*ft_safe_strjoin(t_shell *shell, char *s1, char *s2, int free_s1)
@@ -112,12 +96,9 @@ char	*ft_safe_strjoin(t_shell *shell, char *s1, char *s2, int free_s1)
 	char	*result;
 
 	result = ft_strjoin(s1, s2);
-	if (free_s1)
-	{
-		if (s1)
-			ft_free(s1);
-	}
+	if (free_s1 && s1)
+		ft_free(s1);
 	if (!result)
-		return (ft_handle_error(shell, ERR_STRJOIN_FAIL));
+		return (ft_print_error(shell, ERR_STRJOIN_FAIL), NULL);
 	return (result);
 }

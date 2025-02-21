@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 10:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 11:07:29 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:18:36 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,7 @@ char	*ft_get_git_branch(t_shell *shell)
 	fd = open(".git/HEAD", O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putstr_fd(ERR_OPEN_FAIL, STDERR_FILENO);
-		shell->exit_status = EXIT_FAILURE;
+		ft_print_error(shell, ERR_OPEN_FAIL);
 		return (NULL);
 	}
 	bytes_read = read(fd, buffer, sizeof(buffer) - 1);
@@ -70,21 +69,6 @@ char	*ft_shorten_path(t_shell *shell, char *path)
 	else
 		short_path = ft_safe_strdup(path);
 	if (!short_path)
-		return (ft_handle_error(shell, ERR_STRDUP_FAIL));
+		return (ft_print_error(shell, ERR_STRDUP_FAIL), NULL);
 	return (short_path);
-}
-
-/**
- * @brief Handles an error by printing an error message and setting the shell's
- * exit status to EXIT_FAILURE.
- *
- * @param shell The shell structure to update the exit status.
- * @param error_msg The error message to print to the standard error stream.
- * @return Always returns NULL, indicating that an error occurred.
- */
-char	*ft_handle_error(t_shell *shell, char *error_msg)
-{
-	ft_putstr_fd(error_msg, STDERR_FILENO);
-	shell->exit_status = EXIT_FAILURE;
-	return (NULL);
 }

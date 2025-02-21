@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 14:14:40 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:18:32 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ char			*ft_set_prompt(t_shell *shell);
 /* 300_prompt/prompt_utils.c */
 char			*ft_get_git_branch(t_shell *shell);
 char			*ft_shorten_path(t_shell *shell, char *path);
-char			*ft_handle_error(t_shell *shell, char *error_msg);
 
 //============================================================================//
 //                              SIGNAL HANDLING                               //

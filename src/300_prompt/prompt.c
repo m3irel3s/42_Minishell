@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:04:18 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 11:09:01 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 14:18:34 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,16 @@ char	*ft_set_prompt(t_shell *shell)
 	char	*prompt;
 
 	if (!shell)
-		return (ft_handle_error(shell, ERR_INVALID_PARAMS));
+	{
+		ft_print_error(shell, ERR_INVALID_PARAMS);
+		return (NULL);
+	}
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
-		return (ft_handle_error(shell, ERR_GET_CWD_FAIL));
+	{
+		ft_print_error(shell, ERR_GET_CWD_FAIL);
+		return (NULL);
+	}
 	user = getenv("USER");
 	if (!user)
 		user = "user";
@@ -56,7 +62,6 @@ char	*ft_set_prompt(t_shell *shell)
  * @return A dynamically allocated string containing the formatted prompt.
  *         Returns NULL if memory allocation fails for any component.
  */
-
 static char	*ft_build_prompt(t_shell *shell, char *user, char *cwd)
 {
 	char	*prompt;
