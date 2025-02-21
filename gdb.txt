@@ -1636,3 +1636,98 @@ Breakpoint 2, ft_handle_pipes (shell=0x7fffffffe2f0) at src/600_exec/exec_pipes.
 5: curr->type = WORD
 --------------------------
 Please answer y or n.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x1a30: file src/100_main.c, line 18.
+Breakpoint 2 at 0x3fbb: file src/600_exec/exec_pipes.c, line 28.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x0000000000001a30 in main at src/100_main.c:18
+2       breakpoint     keep y   0x0000000000003fbb in ft_handle_pipes at src/600_exec/exec_pipes.c:28
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:18
+Continuing.
+[Inferior 1 (process 8180) exited normally]
+Breakpoint 3 at 0x55555555739e: file src/520_errors_handler/syntax_validation.c, line 41.
+The program is not being run.
+Starting program: /home/miguel/Code/CommonCore/rank03/42_Minishell/minishell 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:18
+Continuing.
+
+Breakpoint 3, ft_validate_syntax (shell=0x7fffffffe2f0, tokens=0x5555555656c0) at src/520_errors_handler/syntax_validation.c:41
+--------------------------
+1: current->value = 0x7fffffffe2a0 "\300\342\377\377\377\177"
+1: current->value = 0x55555559ad00 "env"
+--------------------------
+1: current->value = 0x55555559ad00 "env"
+--------------------------
+1: current->value = 0x55555559ad00 "env"
+--------------------------
+1: current->value = 0x55555559ad00 "env"
+--------------------------
+1: current->value = 0x55555559ad00 "env"
+--------------------------
+1: current->value = 0x55555559ad00 "env"
+--------------------------
+1: current->value = 0x55555559ad50 "|"
+--------------------------
+1: current->value = 0x55555559ad50 "|"
+--------------------------
+1: current->value = 0x55555559ad50 "|"
+--------------------------
+ft_validate_pipe (shell=0x7fffffffe2f0, current=0x55555559ad20, prev=0x5555555656c0) at src/520_errors_handler/syntax_validation.c:95
+2: prev = (t_token *) 0x5555555656c0
+3: prev->value = 0x55555559ad00 "env"
+4: current->next = (struct s_token *) 0x55555559ad70
+5: current->next->value = 0x55555559ada0 "grep"
+2: prev = (t_token *) 0x5555555656c0
+3: prev->value = 0x55555559ad00 "env"
+4: current->next = (struct s_token *) 0x55555559ad70
+5: current->next->value = 0x55555559ada0 "grep"
+--------------------------
+2: prev = (t_token *) 0x5555555656c0
+3: prev->value = 0x55555559ad00 "env"
+4: current->next = (struct s_token *) 0x55555559ad70
+5: current->next->value = 0x55555559ada0 "grep"
+--------------------------
+ft_validate_syntax (shell=0x7fffffffe2f0, tokens=0x5555555656c0) at src/520_errors_handler/syntax_validation.c:57
+1: current->value = 0x55555559ad50 "|"
+--------------------------
+1: current->value = 0x55555559ad50 "|"
+--------------------------
+1: current->value = 0x55555559ada0 "grep"
+--------------------------
+1: current->value = 0x55555559ada0 "grep"
+--------------------------
+1: current->value = 0x55555559ada0 "grep"
+--------------------------
+1: current->value = 0x55555559ada0 "grep"
+--------------------------
+1: current->value = 0x55555559ada0 "grep"
+--------------------------
+1: current->value = 0x55555559adf0 "PATH"
+--------------------------
+1: current->value = 0x55555559adf0 "PATH"
+--------------------------
+1: current->value = 0x55555559adf0 "PATH"
+--------------------------
+1: current->value = 0x55555559adf0 "PATH"
+--------------------------
+1: current->value = 0x55555559adf0 "PATH"
+--------------------------
+1: current->value = <error: Cannot access memory at address 0x0>
+--------------------------
+1: current->value = <error: Cannot access memory at address 0x0>
+--------------------------
+1: current->value = <error: Cannot access memory at address 0x0>
+--------------------------
+ft_validate_all_tokens (shell=0x7fffffffe2f0) at src/500_parsing/parsing.c:69
+--------------------------
