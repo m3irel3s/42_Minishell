@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 14:44:54 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/20 16:16:18 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,14 @@
 	"minishell: Failed to tokenize input\n"
 # define ERR_EXPANSION_FAIL \
 	"minishell: Failed to expand variables\n"
+# define ERR_OPERATOR_HANDLING_FAIL \
+	"minishell: Failed to handle operator\n"
+# define ERR_EXPORT_TOKEN_FAIL \
+	"minishell: Failed to create export token\n"
+# define ERR_EXPORT_ARG_HANDLING_FAIL \
+	"minishell: Failed to handle export argument\n"
+# define ERR_WORD_HANDLING_FAIL \
+	"minishell: Failed to handle word\n"
 
 //============================================================================//
 //                           PROMPT ERROR MESSAGES                            //
@@ -134,6 +142,22 @@
 	"minishell: Failed to create prompt\n"
 # define ERR_STRDUP_FAIL \
 	"minishell: Failed to duplicate string\n"
+# define ERR_NULL_TOKEN_VALUE \
+	"minishell: Error: Null token value\n"
+
+//============================================================================//
+//                           NEW ERROR MESSAGES                               //
+//============================================================================//
+# define ERR_INVALID_SHELL_OR_INPUT \
+	"minishell: Invalid shell or input\n"
+# define ERR_TOKEN_CREATION_FAIL \
+	"minishell: Failed to create token\n"
+# define ERR_SUBSTR_FAIL \
+	"minishell: Failed to create substring for token\n"
+# define ERR_INVALID_PARAMS \
+	"minishell: Invalid parameters\n"
+# define ERR_EXPORT_TOKEN_CREATION_FAIL \
+	"minishell: Failed to create export token\n"
 
 //============================================================================//
 //                              EXIT STATUS CODES                             //
@@ -144,6 +168,6 @@
 # define EXIT_CANNOT_EXECUTE 126
 # define EXIT_COMMAND_NOT_FOUND 127
 # define EXIT_INVALID_EXIT_ARG 128
-# define EXIT_FATAL_SIGNAL 128
+# define EXIT_FATAL_SIGNAL 128  // Add signal number to this base
 
 #endif
