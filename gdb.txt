@@ -1731,3 +1731,37 @@ ft_validate_syntax (shell=0x7fffffffe2f0, tokens=0x5555555656c0) at src/520_erro
 --------------------------
 ft_validate_all_tokens (shell=0x7fffffffe2f0) at src/500_parsing/parsing.c:69
 --------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x1a50: file src/100_main.c, line 35.
+Breakpoint 2 at 0x3fab: file src/600_exec/exec_pipes.c, line 28.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x0000000000001a50 in main at src/100_main.c:35
+2       breakpoint     keep y   0x0000000000003fab in ft_handle_pipes at src/600_exec/exec_pipes.c:28
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe448, envp=0x7fffffffe458) at src/100_main.c:35
+Continuing.
+[Inferior 1 (process 35226) exited normally]
+Breakpoint 3 at 0x5555555587f8: file src/610_builtins/echo.c, line 20.
+The program is not being run.
+Starting program: /home/miguel/Code/CommonCore/rank03/42_Minishell/minishell 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe448, envp=0x7fffffffe458) at src/100_main.c:35
+Continuing.
+
+Breakpoint 3, ft_echo (shell=0x7fffffffe2e0) at src/610_builtins/echo.c:20
+Continuing.
+
+Breakpoint 3, ft_echo (shell=0x7fffffffe2e0) at src/610_builtins/echo.c:20
+--------------------------
+--------------------------
+--------------------------
+--------------------------
