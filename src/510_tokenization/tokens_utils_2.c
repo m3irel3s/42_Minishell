@@ -6,14 +6,14 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:26:26 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 08:25:06 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 08:50:11 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 static t_token	*ft_init_new_token(t_shell *shell, size_t start,
-				size_t end, int quoted);
+					size_t end, int quoted);
 static void		ft_add_token_to_shell(t_shell *shell, t_token *new_token);
 
 /**

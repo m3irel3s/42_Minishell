@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:04:18 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/20 14:33:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 08:49:06 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static char	*ft_build_prompt(t_shell *shell, const char *user, const char *cwd)
 	prompt = ft_safe_malloc(len * sizeof(char));
 	if (!prompt)
 	{
-		shell->exit_status = EXIT_FAILURE; // Update exit status on failure
+		shell->exit_status = EXIT_FAILURE;
 		return (NULL);
 	}
 	offset = 0;

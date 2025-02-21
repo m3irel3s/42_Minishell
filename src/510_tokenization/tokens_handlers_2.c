@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 14:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 08:19:29 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 08:53:01 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,12 @@ t_status	ft_handle_word(t_shell *shell, size_t *i)
 	start = *i;
 	ft_reset_quote_info(&quote_info);
 	if (ft_process_quoted_word(shell, i, &start, &quote_info) != SUCCESS)
-	{
-		shell->exit_status = EXIT_FAILURE;
-		return (ERROR);
-	}
+		return (shell->exit_status = EXIT_FAILURE, ERROR);
 	if (*i > start)
 	{
-		if (ft_create_and_add_token(shell, start, *i, quote_info.quoted) != SUCCESS)
-		{
-			shell->exit_status = EXIT_FAILURE;
-			return (ERROR);
-		}
+		if (ft_create_and_add_token(shell, start, *i,
+				quote_info.quoted) != SUCCESS)
+			return (shell->exit_status = EXIT_FAILURE, ERROR);
 	}
 	return (SUCCESS);
 }
@@ -135,10 +130,7 @@ static t_status	ft_handle_quote(t_shell *shell, size_t *i,
 			{
 				if (ft_create_and_add_token(shell, *start, *i,
 						quote_info->quoted) != SUCCESS)
-				{
-					shell->exit_status = EXIT_FAILURE;
-					return (ERROR);
-				}
+					return (shell->exit_status = EXIT_FAILURE, ERROR);
 			}
 			quote_info->in_quotes = 1;
 			quote_info->quote_char = shell->input[*i];
@@ -149,10 +141,7 @@ static t_status	ft_handle_quote(t_shell *shell, size_t *i,
 		{
 			if (ft_create_and_add_token(shell, *start, *i,
 					quote_info->quoted) != SUCCESS)
-			{
-				shell->exit_status = EXIT_FAILURE;
-				return (ERROR);
-			}
+				return (shell->exit_status = EXIT_FAILURE, ERROR);
 			ft_reset_quote_info(quote_info);
 			*start = *i + 1;
 		}
