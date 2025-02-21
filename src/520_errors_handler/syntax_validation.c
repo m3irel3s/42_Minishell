@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:43:44 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 09:10:48 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 12:01:11 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,21 @@ static t_status	ft_validate_pipe(t_shell *shell, t_token *current,
 static t_status	ft_validate_redirect(t_shell *shell, t_token *current);
 
 /**
- * @brief Validates the syntax of a linked list of tokens.
+ * @brief Validates the syntax of all tokens in the shell structure.
  *
- * Checks that the linked list of tokens is syntactically valid. If the list
- * is invalid, prints an error message and updates the shell's exit status.
- * If valid, returns SUCCESS.
+ * Checks if a pipe token is at the start of the list, or if it is preceded
+ * by another pipe token, or if it is the last token in the list. Also checks
+ * if a redirection token is at the start of the list, or if it is followed
+ * by a non-redirect token, or if it is the last token in the list. If any of
+ * these conditions are true, prints an error message and sets the shell's
+ * exit status to EXIT_FAILURE.
  *
- * @param shell The shell structure containing the linked list of tokens to
- * validate.
- * @param tokens The linked list of tokens to validate.
- * @return Returns SUCCESS if the linked list of tokens is syntactically valid;
- * otherwise, returns ERROR.
+ * @param shell A pointer to the shell structure containing the tokens.
+ * @param tokens The first token in the list of tokens to be validated.
+ *
+ * @return Returns SUCCESS if all tokens have valid syntax; otherwise,
+ * returns ERROR.
  */
-
 t_status	ft_validate_syntax(t_shell *shell, t_token *tokens)
 {
 	t_token	*current;
@@ -39,7 +41,7 @@ t_status	ft_validate_syntax(t_shell *shell, t_token *tokens)
 	if (!tokens || !shell)
 		return (ft_handle_syntax_error(shell));
 	current = tokens;
-	prev = tokens->prev;
+	prev = NULL;
 	while (current)
 	{
 		if (current->type == PIPE)
@@ -59,33 +61,33 @@ t_status	ft_validate_syntax(t_shell *shell, t_token *tokens)
 }
 
 /**
- * @brief Handles a syntax error, printing an error message and setting the
- * shell's exit status to EXIT_FAILURE.
+ * @brief Handles a syntax error by printing an error message and setting the
+ *        shell's exit status to EXIT_FAILURE.
  *
- * @param shell The shell structure containing the tokens to validate.
+ * @param shell The shell struct to update the exit status.
  *
  * @return Returns ERROR, indicating that an error was found.
  */
 static t_status	ft_handle_syntax_error(t_shell *shell)
 {
-	ft_putstr_fd(ERR_INVALID_PARAMS, STDERR_FILENO);
+	ft_putstr_fd(ERR_SYNTAX_VALIDATION_FAIL, STDERR_FILENO);
 	if (shell)
 		shell->exit_status = EXIT_FAILURE;
 	return (ERROR);
 }
 
 /**
- * @brief Validates the syntax of a pipe token.
+ * @brief Validates a pipe token.
  *
- * Checks if the previous token is not a pipe and if there is a next token.
- * If not, prints an error message and sets the shell's exit status to
- * EXIT_FAILURE. Otherwise, returns SUCCESS.
+ * Checks if the pipe token is at the start of the list, or if it is preceded
+ * by another pipe token, or if it is the last token in the list. If any of
+ * these conditions are true, prints an error message and returns ERROR.
  *
- * @param shell The shell structure containing the tokens to validate.
- * @param current The pipe token to validate.
- * @param prev The previous token of the pipe token.
+ * @param shell The shell struct containing the exit status.
+ * @param current The current token being validated.
+ * @param prev The previous token in the list.
  *
- * @return Returns SUCCESS if the pipe token is valid; otherwise, returns ERROR.
+ * @return Returns SUCCESS if the pipe token is valid, otherwise returns ERROR.
  */
 static t_status	ft_validate_pipe(t_shell *shell, t_token *current,
 		t_token *prev)
@@ -96,21 +98,19 @@ static t_status	ft_validate_pipe(t_shell *shell, t_token *current,
 }
 
 /**
- * @brief Validates the syntax of a redirection token.
+ * @brief Validates a redirection token.
  *
- * This function checks if the redirection token is followed by a valid
- * token. It ensures that a filename follows redirection tokens, and
- * that a valid delimiter follows heredoc tokens. If these conditions
- * are not met, the appropriate error message is printed.
+ * This function checks if the redirection token is valid:
+ * - Checks if there is a following token (the filename).
+ * - Checks if the following token is a WORD token.
+ * - Checks if the redirection token is a HEREDOC and if its value is not empty.
  *
- * @param shell A pointer to the shell structure used for error reporting.
- * @param current A pointer to the current token being validated.
+ * @param shell A pointer to the shell structure.
+ * @param current The redirection token to be validated.
  *
  * @return Returns SUCCESS if the redirection token is valid; otherwise,
- * returns ERROR if there's no following valid token or if there is a
- * heredoc token with an empty delimiter.
+ * returns ERROR.
  */
-
 static t_status	ft_validate_redirect(t_shell *shell, t_token *current)
 {
 	if (!current->next)
