@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:34:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 08:20:24 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 11:14:59 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ char	*ft_get_path_to_execute(t_shell *shell, char *cmd)
 	if (!full_path)
 		return (NULL);
 	arr = ft_split(full_path, ':');
-	full_path = ft_add_cmd_to_path(arr, cmd);
+	full_path = ft_add_cmd_to_path(shell, arr, cmd);
 	if (!full_path)
 		return (NULL);
 	return (full_path);
 }
 
-char	*ft_add_cmd_to_path(char **arr, char *cmd)
+char	*ft_add_cmd_to_path(t_shell *shell, char **arr, char *cmd)
 {
 	char	**cmd_arr;
 	char	*full_path;
@@ -67,8 +67,8 @@ char	*ft_add_cmd_to_path(char **arr, char *cmd)
 	cmd_arr = ft_split(cmd, ' ');
 	while (arr[i])
 	{
-		arr[i] = ft_strjoin_gnl(arr[i], "/");
-		full_path = ft_strjoin(arr[i], cmd_arr[0]);
+		arr[i] = ft_safe_strjoin(shell, arr[i], "/", 1);
+		full_path = ft_safe_strjoin(shell, arr[i], cmd_arr[0], 0);
 		if (access(full_path, X_OK) == SUCCESS)
 			return (ft_free_arr(arr), ft_free_arr(cmd_arr), full_path);
 		ft_free(full_path);
@@ -93,7 +93,7 @@ char	**ft_create_arr_cmd(t_token *start_pos)
 	while (curr && curr->type != PIPE)
 	{
 		if (curr->type == WORD)
-			arr[i++] = ft_strdup_safe(curr->value);
+			arr[i++] = ft_safe_strdup(curr->value);
 		curr = curr->next;
 	}
 	arr[i] = NULL;

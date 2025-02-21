@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/20 11:52:49 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 11:16:14 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static char	*ft_expanded_line(t_shell *shell, char *line)
 	char	*tmp;
 	size_t	i;
 
-	expanded_line = ft_strdup("");
+	expanded_line = ft_safe_strdup("");
 	i = 0;
 	while (line[i])
 	{
@@ -80,12 +80,12 @@ static char	*ft_expanded_line(t_shell *shell, char *line)
 			tmp = ft_handle_dollar(shell, line, &i);
 			if (tmp)
 			{
-				expanded_line = ft_strjoin(expanded_line, tmp);
+				expanded_line = ft_safe_strjoin(shell, expanded_line, tmp, 0);
 				free(tmp);
 			}
 		}
 		else
-			expanded_line = ft_process_char(expanded_line, line[i++]);
+			expanded_line = ft_process_char(shell, expanded_line, line[i++]);
 	}
 	free(line);
 	return (expanded_line);

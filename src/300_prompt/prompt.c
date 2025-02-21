@@ -6,13 +6,13 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:04:18 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 10:03:54 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 11:09:01 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static char	*ft_build_prompt(t_shell *shell, char *user, const char *cwd);
+static char	*ft_build_prompt(t_shell *shell, char *user, char *cwd);
 
 /**
  * @brief Returns a dynamically allocated string containing the shell's prompt.
@@ -57,7 +57,7 @@ char	*ft_set_prompt(t_shell *shell)
  *         Returns NULL if memory allocation fails for any component.
  */
 
-static char	*ft_build_prompt(t_shell *shell, char *user, const char *cwd)
+static char	*ft_build_prompt(t_shell *shell, char *user, char *cwd)
 {
 	char	*prompt;
 	char	*short_cwd;
@@ -67,17 +67,17 @@ static char	*ft_build_prompt(t_shell *shell, char *user, const char *cwd)
 	git_branch = ft_get_git_branch(shell);
 	if (!short_cwd)
 		return (NULL);
-	prompt = ft_safe_join(shell, BCYN2"┌─["BGRN2, user, 0);
-	prompt = ft_safe_join(shell, prompt, BCYN2"]─["BYEL2, 1);
-	prompt = ft_safe_join(shell, prompt, short_cwd, 1);
-	prompt = ft_safe_join(shell, prompt, BCYN2"]", 1);
+	prompt = ft_safe_strjoin(shell, BCYN2"┌─["BGRN2, user, 0);
+	prompt = ft_safe_strjoin(shell, prompt, BCYN2"]─["BYEL2, 1);
+	prompt = ft_safe_strjoin(shell, prompt, short_cwd, 1);
+	prompt = ft_safe_strjoin(shell, prompt, BCYN2"]", 1);
 	free(short_cwd);
 	if (git_branch)
 	{
-		prompt = ft_safe_join(shell, prompt, "─["BRED2, 1);
-		prompt = ft_safe_join(shell, prompt, git_branch, 1);
-		prompt = ft_safe_join(shell, prompt, BCYN2"]", 1);
+		prompt = ft_safe_strjoin(shell, prompt, "─["BRED2, 1);
+		prompt = ft_safe_strjoin(shell, prompt, git_branch, 1);
+		prompt = ft_safe_strjoin(shell, prompt, BCYN2"]", 1);
 		free(git_branch);
 	}
-	return (ft_safe_join(shell, prompt, "\n"BCYN2"└─$ "WHT, 1));
+	return (ft_safe_strjoin(shell, prompt, "\n"BCYN2"└─$ "WHT, 1));
 }

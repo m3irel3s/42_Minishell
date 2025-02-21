@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 12:45:43 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/21 11:06:17 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_export(t_shell *shell)
 		char	*var;
 		char	*value;
 		char	*eq_sign;
-	
+
 		curr = curr->next;
 		if(ft_check_var_chars(curr->value) == SUCCESS)
 			ft_printf(1, "Chars ok\n");
@@ -61,13 +61,13 @@ void	ft_add_var_to_env(t_shell *shell, char *var, char *value)
 	char	**new_env;
 	int		new_size;
 	int		i;
-	
+
 	i = 0;
 	new_size = ft_get_env_size(shell) + 1;
 	new_env = ft_safe_malloc(sizeof(char *) * (new_size + 1));
 	while (shell->env_cpy[i])
 	{
-		new_env[i] = ft_strdup(shell->env_cpy[i]);
+		new_env[i] = ft_safe_strdup(shell->env_cpy[i]);
 		i++;
 	}
 	new_env[i++] = ft_update_var(var, value);
@@ -77,7 +77,7 @@ void	ft_add_var_to_env(t_shell *shell, char *var, char *value)
 	ft_free_arr(new_env);
 }
 
-// ### Function to handle the append += 
+// ### Function to handle the append +=
 // ### ex: a=ola a+=ola res: a=olaola
 // ### Still an error variable needs to be received without the + , ft_substr might help
 
@@ -90,7 +90,7 @@ void	ft_add_var_to_env(t_shell *shell, char *var, char *value)
 
 	var_index = ft_get_var_index(var, shell->env_cpy);
 	old_value = ft_get_var_value(var, shell->env_cpy);
-	full_value = ft_strjoin(old_value, new_value);
+	full_value = ft_safe_strjoin(old_value, new_value, 0);
 	new_var = ft_update_var(var, full_value);
 	ft_free(shell->env_cpy[var_index]);
 	shell->env_cpy[var_index] = new_var;

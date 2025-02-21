@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 14:14:30 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 08:44:58 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 11:06:07 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,9 +121,9 @@ static char	*ft_expand_variable(t_shell *shell, char *token, size_t *i,
 	var_value = ft_get_var_value(var_name, shell->env_cpy);
 	ft_free(var_name);
 	if (var_value)
-		res = ft_strdup_safe(var_value);
+		res = ft_safe_strdup(var_value);
 	else
-		res = ft_strdup_safe("");
+		res = ft_safe_strdup("");
 	if (!res)
 	{
 		ft_putstr_fd(ERR_MALLOC_FAIL, STDERR_FILENO);

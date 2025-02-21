@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:15:19 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 10:01:15 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 10:57:58 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_env(t_shell *shell)
 	while (env[i])
 	{
 		res = env[i];
-		ft_printf("%s\n", res);
+		ft_printf(STDOUT_FILENO, "%s\n", res);
 		i++;
 	}
 	return ;

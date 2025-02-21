@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 09:51:53 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 11:14:32 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,8 @@ char			*ft_set_prompt(t_shell *shell);
 
 /* 300_prompt/prompt_utils.c */
 char			*ft_get_git_branch(t_shell *shell);
-char			*ft_shorten_path(t_shell *shell, const char *path);
+char			*ft_shorten_path(t_shell *shell, char *path);
 char			*ft_handle_error(t_shell *shell, char *error_msg);
-char			*ft_safe_join(t_shell *shell, char *s1, char *s2, int free_s1);
 
 //============================================================================//
 //                              SIGNAL HANDLING                               //
@@ -105,7 +104,7 @@ t_status		ft_print_command_not_found_error(t_shell *shell, char *cmd);
 //============================================================================//
 /* 530_expansion/expand.c */
 t_status		ft_expand(t_shell *shell);
-char			*ft_process_char(char *expanded_value, char c);
+char			*ft_process_char(t_shell *shell, char *expanded_value, char c);
 /* 530_expansion/expand_handle_dollar.c */
 char			*ft_handle_dollar(t_shell *shell, char *token, size_t *i);
 
@@ -117,7 +116,7 @@ void			ft_exec(t_shell *shell);
 /* 620_execve/exec_execve.c */
 void			ft_execute_cmd(t_shell *shell, char *cmd);
 char			*ft_get_path_to_execute(t_shell *shell, char *cmd);
-char			*ft_add_cmd_to_path(char **arr, char *cmd);
+char			*ft_add_cmd_to_path(t_shell *shell, char **arr, char *cmd);
 char			**ft_create_arr_cmd(t_token *start_pos);
 
 //============================================================================//
@@ -201,7 +200,9 @@ int				ft_is_command(char *value, size_t len);
 /* 700_utils_other/safe_functions.c */
 void			*ft_safe_malloc(size_t size);
 char			*ft_safe_readline(t_shell *shell);
-char			*ft_strdup_safe(const char *s);
+char			*ft_safe_strdup(const char *s);
+char			*ft_safe_strjoin(t_shell *shell, char *s1, char *s2,
+	int free_s1);
 
 //============================================================================//
 //                                  CLEANUP                                   //

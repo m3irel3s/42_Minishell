@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 10:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 10:03:57 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 11:07:29 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_get_git_branch(t_shell *shell)
 	if (ft_strncmp(buffer, "ref: refs/heads/", 16) == 0)
 	{
 		buffer[ft_strchr(buffer, '\n') - buffer] = '\0';
-		return (ft_strdup(buffer + 16));
+		return (ft_safe_strdup(buffer + 16));
 	}
 	return (NULL);
 }
@@ -59,16 +59,16 @@ char	*ft_get_git_branch(t_shell *shell)
  * @param path The path to shorten.
  * @return The shortened path string, or NULL if there was an error.
  */
-char	*ft_shorten_path(t_shell *shell, const char *path)
+char	*ft_shorten_path(t_shell *shell, char *path)
 {
 	char	*home;
 	char	*short_path;
 
 	home = getenv("HOME");
 	if (home && ft_strncmp(path, home, ft_strlen(home)) == 0)
-		short_path = ft_strjoin("~", path + ft_strlen(home));
+		short_path = ft_safe_strjoin(shell, "~", path + ft_strlen(home), 0);
 	else
-		short_path = ft_strdup(path);
+		short_path = ft_safe_strdup(path);
 	if (!short_path)
 		return (ft_handle_error(shell, ERR_STRDUP_FAIL));
 	return (short_path);
@@ -87,30 +87,4 @@ char	*ft_handle_error(t_shell *shell, char *error_msg)
 	ft_putstr_fd(error_msg, STDERR_FILENO);
 	shell->exit_status = EXIT_FAILURE;
 	return (NULL);
-}
-
-/**
- * @brief A safe version of ft_strjoin that handles errors and frees the first
- * string if requested.
- *
- * This function is similar to ft_strjoin, but it checks for errors and frees
- * the first string if requested. If the memory allocation fails, it sets the
- * shell's exit status to EXIT_FAILURE and returns NULL.
- *
- * @param shell The shell structure.
- * @param s1 The first string to join.
- * @param s2 The second string to join.
- * @param free_s1 A flag indicating whether to free the first string.
- * @return The joined string, or NULL if there was an error.
- */
-char	*ft_safe_join(t_shell *shell, char *s1, char *s2, int free_s1)
-{
-	char	*result;
-
-	result = ft_strjoin(s1, s2);
-	if (free_s1)
-		free(s1);
-	if (!result)
-		return (ft_handle_error(shell, ERR_STRJOIN_FAIL));
-	return (result);
 }

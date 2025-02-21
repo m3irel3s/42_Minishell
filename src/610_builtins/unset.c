@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:15:01 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 12:45:51 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/21 11:06:17 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	ft_remove_var_update_env(t_shell *shell, char *var)
 	while (shell->env_cpy[i])
 	{
 		if (i != var_index)
-			new_env[j++] = ft_strdup(shell->env_cpy[i]);
+			new_env[j++] = ft_safe_strdup(shell->env_cpy[i]);
 		i++;
 	}
 	new_env[j] = NULL;

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 09:43:33 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 09:45:42 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 11:06:07 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_get_current_directory(t_shell *shell)
 		shell->exit_status = EXIT_FAILURE;
 		return (NULL);
 	}
-	res = ft_strdup_safe(cwd);
+	res = ft_safe_strdup(cwd);
 	ft_free(cwd);
 	if (!res)
 	{

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 08:46:30 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 11:11:21 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*ft_expand_token(t_shell *shell, char *token, int quoted);
 static char	*ft_handle_expansion_error(t_shell *shell);
-static char	*ft_join_and_free(char *expanded_value, char *temp);
+static char	*ft_join_and_free(t_shell *shell, char *expanded_value, char *temp);
 
 /**
  * @brief Expands all tokens in the shell by replacing any '$' characters with
@@ -80,7 +80,7 @@ static char	*ft_expand_token(t_shell *shell, char *token, int quoted)
 
 	if (!token)
 		return (NULL);
-	expanded_value = ft_strdup_safe("");
+	expanded_value = ft_safe_strdup("");
 	if (!expanded_value)
 		return (ft_handle_expansion_error(shell));
 	i = 0;
@@ -90,10 +90,10 @@ static char	*ft_expand_token(t_shell *shell, char *token, int quoted)
 		{
 			temp = ft_handle_dollar(shell, token, &i);
 			if (temp)
-				expanded_value = ft_join_and_free(expanded_value, temp);
+				expanded_value = ft_join_and_free(shell, expanded_value, temp);
 		}
 		else
-			expanded_value = ft_process_char(expanded_value, token[i++]);
+			expanded_value = ft_process_char(shell, expanded_value, token[i++]);
 		if (!expanded_value)
 			return (ft_handle_expansion_error(shell));
 	}
@@ -110,11 +110,11 @@ static char	*ft_expand_token(t_shell *shell, char *token, int quoted)
  * @param temp Temporary string.
  * @return The concatenated string.
  */
-static char	*ft_join_and_free(char *expanded_value, char *temp)
+static char	*ft_join_and_free(t_shell *shell, char *expanded_value, char *temp)
 {
 	char	*result;
 
-	result = ft_strjoin_gnl(expanded_value, temp);
+	result = ft_safe_strjoin(shell, expanded_value, temp, 1);
 	ft_free(temp);
 	return (result);
 }
@@ -151,13 +151,13 @@ static char	*ft_handle_expansion_error(t_shell *shell)
  * allocation fails.
  */
 
-char	*ft_process_char(char *expanded_value, char c)
+char	*ft_process_char(t_shell *shell, char *expanded_value, char c)
 {
 	char	c_str[2];
 	char	*new_expanded;
 
 	c_str[0] = c;
 	c_str[1] = '\0';
-	new_expanded = ft_strjoin_gnl(expanded_value, c_str);
+	new_expanded = ft_safe_strjoin(shell, expanded_value, c_str, 1);
 	return (new_expanded);
 }
