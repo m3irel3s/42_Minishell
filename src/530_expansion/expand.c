@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 17:08:44 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:22:39 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,6 @@ char	*ft_process_char(char *expanded_value, char c)
  * @return The updated expanded value with an empty string appended, or NULL
  * if a memory allocation error occurs.
  */
-
 static char	*ft_handle_null_expansion(char *expanded_value)
 {
 	char	*result;
