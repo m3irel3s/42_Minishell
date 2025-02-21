@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/21 14:03:22 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/21 14:14:35 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ SRCS = \
        ${SRC_PATH}/100_main.c \
        ${SRC_PATH}/200_inits/init.c \
        ${SRC_PATH}/300_prompt/prompt.c \
-	   ${SRC_PATH}/300_prompt/prompt_utils.c \
+       ${SRC_PATH}/300_prompt/prompt_utils.c \
        ${SRC_PATH}/400_signals/signals.c \
        ${SRC_PATH}/500_parsing/parsing.c \
        ${SRC_PATH}/510_tokenization/tokens.c \
@@ -79,7 +79,11 @@ SRCS = \
        ${SRC_PATH}/510_tokenization/tokens_utils.c \
        ${SRC_PATH}/510_tokenization/tokens_utils_2.c \
        ${SRC_PATH}/520_errors_handler/syntax_validation.c \
-       ${SRC_PATH}/520_errors_handler/print_errors.c \
+       ${SRC_PATH}/520_errors_handler/print_errors_exit_failure.c \
+       ${SRC_PATH}/520_errors_handler/print_errors_heredoc.c \
+       ${SRC_PATH}/520_errors_handler/print_errors_command_not_found.c \
+       ${SRC_PATH}/520_errors_handler/print_errors_misuse.c \
+       ${SRC_PATH}/520_errors_handler/print_errors_fatal_signal.c \
        ${SRC_PATH}/530_expansion/expand.c \
        ${SRC_PATH}/530_expansion/expand_handle_dollar.c \
        ${SRC_PATH}/600_exec/exec.c \
@@ -95,7 +99,7 @@ SRCS = \
        ${SRC_PATH}/611_builtins_utils/env_utils.c \
        ${SRC_PATH}/611_builtins_utils/export_utils.c \
        ${SRC_PATH}/611_builtins_utils/export_print.c \
-	   ${SRC_PATH}/611_builtins_utils/cd_and_pwd_utils.c \
+       ${SRC_PATH}/611_builtins_utils/cd_and_pwd_utils.c \
        ${SRC_PATH}/620_execve/exec_execve.c \
        ${SRC_PATH}/630_redirects/exec_heredoc.c \
        ${SRC_PATH}/630_redirects/exec_redirection.c \
@@ -106,7 +110,6 @@ SRCS = \
        ${SRC_PATH}/700_utils_other/safe_functions.c \
        ${SRC_PATH}/800_clean/clean.c \
        ${SRC_PATH}/800_clean/free.c
-
 
 # Object files derived from source files
 # OBJS = ${addprefix ${BUILD_PATH}/, ${notdir ${SRCS:.c=.o}}}
