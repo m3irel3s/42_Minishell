@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:27:21 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 08:19:38 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 08:23:56 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_status	ft_print_unmatched_quote_error(t_shell *shell)
 	shell->exit_status = EXIT_FAILURE;
 	return (ERROR);
 }
-
 
 /**
  * @brief Prints an error message for an unexpected token in the syntax.
@@ -103,6 +102,16 @@ t_status	ft_print_command_not_found_error(t_shell *shell, char *cmd)
 	return (ERROR);
 }
 
+/**
+ * @brief Prints an error message when a heredoc delimiter is not found.
+ *
+ * Prints ERR_SYNTAX_EOF_HEREDOC to the standard error stream and sets the
+ * shell's exit status to EXIT_FAILURE.
+ *
+ * @param shell The shell struct to update the exit status.
+ *
+ * @return Returns ERROR, indicating that an error was found.
+ */
 t_status	ft_print_heredoc_delim_error(t_shell *shell)
 {
 	ft_putstr_fd(ERR_SYNTAX_EOF_HEREDOC, STDERR_FILENO);
