@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 14:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/20 16:18:32 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 08:19:34 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ t_status	ft_handle_export_arg(t_shell *shell, size_t *i)
 	ft_set_export_arg_index(shell, i, &quote_info);
 	if (quote_info.in_quotes != 0)
 	{
-		ft_print_unmatched_quote_error();
+		ft_print_unmatched_quote_error(shell);
 		shell->exit_status = EXIT_FAILURE;
 		return (ERROR);
 	}

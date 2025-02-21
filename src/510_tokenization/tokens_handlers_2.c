@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 14:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/20 16:22:32 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 08:19:29 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static t_status	ft_process_quoted_word(t_shell *shell, size_t *i,
 	}
 	if (quote_info->in_quotes)
 	{
-		ft_print_unmatched_quote_error();
+		ft_print_unmatched_quote_error(shell);
 		shell->exit_status = EXIT_FAILURE;
 		return (ERROR);
 	}

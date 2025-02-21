@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 16:12:47 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 08:18:53 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,13 +87,13 @@ t_status		ft_handle_word(t_shell *shell, size_t *i);
 //                             ERROR HANDLING                                 //
 //============================================================================//
 /* 520_errors_handler/syntax_validation.c */
-t_status		ft_validate_syntax(t_token *token);
+t_status		ft_validate_syntax(t_shell *shell, t_token *token);
 /* 520_errors_handler/print_errors.c */
-t_status		ft_print_unmatched_quote_error(void);
-t_status		ft_print_syntax_error(char *token);
-t_status		ft_print_redirect_no_file_error(void);
-t_status		ft_print_heredoc_delim_error(void);
-t_status		ft_print_command_not_found_error(char *cmd);
+t_status		ft_print_unmatched_quote_error(t_shell *shell);
+t_status		ft_print_syntax_error(t_shell *shell, char *token);
+t_status		ft_print_redirect_no_file_error(t_shell *shell);
+t_status		ft_print_heredoc_delim_error(t_shell *shell);
+t_status		ft_print_command_not_found_error(t_shell *shell, char *cmd);
 
 //============================================================================//
 //                             VARIABLE EXPANSION                             //

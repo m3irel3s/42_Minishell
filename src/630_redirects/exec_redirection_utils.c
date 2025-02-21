@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:11:23 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/20 12:14:13 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 08:20:46 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	ft_create_redirection_list(t_shell *shell)
 		{
 			if (!next_token)
 			{
-				ft_print_redirect_no_file_error();
+				ft_print_redirect_no_file_error(shell);
 				return ;
 			}
 			ft_create_and_add_redirect(token, shell, &last_redirect);
