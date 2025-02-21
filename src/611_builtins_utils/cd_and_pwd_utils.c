@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 09:43:33 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 11:06:07 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:10:46 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  * @return A dynamically allocated string containing the current working
  * directory, or NULL on failure.
  */
-char	*ft_get_current_directory(t_shell *shell)
+char	*ft_get_current_directory(void)
 {
 	char	*cwd;
 	char	*res;
@@ -31,7 +31,7 @@ char	*ft_get_current_directory(t_shell *shell)
 	if (!cwd)
 	{
 		ft_printf(STDERR_FILENO, ERR_GET_CWD_FAIL);
-		shell->exit_status = EXIT_FAILURE;
+		g_exit_status = EXIT_FAILURE;
 		return (NULL);
 	}
 	res = ft_safe_strdup(cwd);
@@ -39,7 +39,7 @@ char	*ft_get_current_directory(t_shell *shell)
 	if (!res)
 	{
 		ft_printf(STDERR_FILENO, ERR_STRDUP_FAIL);
-		shell->exit_status = EXIT_FAILURE;
+		g_exit_status = EXIT_FAILURE;
 	}
 	return (res);
 }

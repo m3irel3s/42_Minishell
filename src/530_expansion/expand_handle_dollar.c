@@ -3,32 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   expand_handle_dollar.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 14:14:30 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 12:35:46 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:09:45 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static char	*ft_expand_exit_status(t_shell *shell, size_t *i);
+static char	*ft_expand_exit_status(size_t *i);
 static char	*ft_expand_variable(t_shell *shell, char *token, size_t *i,
 				size_t start);
+static char	*ft_set_error_and_return_null(void);
 
 /**
- * @brief Expands a dollar character ($) in a token into its value.
+ * @brief Expands a special variable starting with "$".
  *
- * Handles the expansion of a dollar character in a token by calling the
- * appropriate function based on the following character. If the character is a
- * '?', the function ft_expand_exit_status is called. Otherwise,
- * ft_expand_variable is called. If either of the functions fail, the
- * shell->exit_status is set to EXIT_FAILURE.
+ * This function takes a pointer to the shell structure, a string token, and a
+ * pointer to the current index of the token string. It expands the special
+ * variable starting with "$" and returns the expanded value as a string.
  *
- * @param shell A pointer to the shell structure containing environment info.
- * @param token The token containing the dollar character.
- * @param i A pointer to the index of the dollar character in the token.
- * @return The expanded value of the dollar character as a string.
+ * The function supports two special variables: "$?" and any variable name
+ * starting with "$" followed by alphanumeric characters or "_". The "$?"
+ * special variable is expanded to the exit status of the last command executed
+ * in the shell, and any other variable name is expanded to the value of the
+ * corresponding environment variable.
+ *
+ * The function returns NULL and sets the shell's exit status to failure if
+ * memory allocation fails.
+ *
+ * @param shell A pointer to the shell structure.
+ * @param token The token string containing the special variable to be expanded.
+ * @param i A pointer to the current index of the token string.
+ * @return The expanded value of the special variable as a string, or NULL if
+ * memory allocation fails.
  */
 char	*ft_handle_dollar(t_shell *shell, char *token, size_t *i)
 {
@@ -37,15 +46,13 @@ char	*ft_handle_dollar(t_shell *shell, char *token, size_t *i)
 
 	if (!shell || !token || !i)
 	{
-		ft_putstr_fd(ERR_INVALID_PARAMS, STDERR_FILENO);
-		if (shell)
-			shell->exit_status = EXIT_FAILURE;
+		ft_print_error(ERR_INVALID_PARAMS);
 		return (NULL);
 	}
 	res = NULL;
 	(*i)++;
 	if (token[*i] == '?')
-		res = ft_expand_exit_status(shell, i);
+		res = ft_expand_exit_status(i);
 	else
 	{
 		start = *i;
@@ -54,56 +61,51 @@ char	*ft_handle_dollar(t_shell *shell, char *token, size_t *i)
 		res = ft_expand_variable(shell, token, i, start);
 	}
 	if (!res)
-		shell->exit_status = EXIT_FAILURE;
+		return (ft_set_error_and_return_null());
 	return (res);
 }
 
 /**
- * @brief Converts the shell's exit status to a string.
+ * @brief Expands the "$?" special variable.
  *
- * This function increments the index pointer, converts the shell's current
- * exit status into a string using ft_itoa, and returns the result. If memory
- * allocation fails during the conversion, an error message is printed to
- * standard error, and the shell's exit status is set to failure.
+ * This function returns a string containing the exit status of the last
+ * command executed in the shell. The exit status is retrieved from the shell's
+ * exit_status field and converted to a string using ft_itoa.
  *
- * @param shell A pointer to the shell structure containing the exit status.
- * @param i A pointer to the current position, which will be incremented.
- * @return The exit status as a string, or NULL on failure.
+ * @param shell A pointer to the shell structure containing the exit_status
+ * field.
+ * @param i A pointer to the current index of the token string.
+ * @return A string containing the exit status of the last command, or NULL if
+ * memory allocation fails.
  */
-
-static char	*ft_expand_exit_status(t_shell *shell, size_t *i)
+static char	*ft_expand_exit_status(size_t *i)
 {
 	char	*res;
 
 	(*i)++;
-	res = ft_itoa(shell->exit_status);
+	res = ft_itoa(g_exit_status);
 	if (!res)
-	{
-		ft_putstr_fd(ERR_MALLOC_FAIL, STDERR_FILENO);
-		shell->exit_status = EXIT_FAILURE;
-	}
+		return (ft_set_error_and_return_null());
 	return (res);
 }
 
 /**
- * @brief Expands a variable from a token, retrieving its value from the
- * environment.
+ * @brief Expands a variable from the shell's environment.
  *
- * This function extracts a variable name starting at a given position within
- * a token, retrieves its value from the shell's environment, and returns the
- * value as a string.
- * If the variable does not exist, an empty string is returned. In case of memory
- * allocation failure, the function sets the shell's exit status to failure and
- * returns NULL.
+ * This function takes a substring of the token, starting from the position
+ * where the '$' character was found, and up to the current index, and uses
+ * it as a variable name. It then looks up the variable's value in the
+ * shell's environment, and returns a copy of that value. If the variable is
+ * not found, an empty string is returned. If memory allocation fails, the
+ * function sets the shell's exit status to failure and returns NULL.
  *
- * @param shell A pointer to the shell structure containing environment info.
- * @param token The token containing the variable to be expanded.
- * @param i A pointer to the current position in the token, which will be
- * updated.
- * @param start The starting index of the variable name in the token.
- * @return The expanded variable value as a string, or NULL on failure.
+ * @param shell A pointer to the shell structure containing the environment.
+ * @param token The token containing the variable name.
+ * @param i A pointer to the current index in the token.
+ * @param start The starting position of the substring.
+ * @return A copy of the variable's value, or an empty string if not found,
+ * or NULL if there is a memory allocation failure.
  */
-
 static char	*ft_expand_variable(t_shell *shell, char *token, size_t *i,
 	size_t start)
 {
@@ -111,13 +113,9 @@ static char	*ft_expand_variable(t_shell *shell, char *token, size_t *i,
 	char	*var_value;
 	char	*res;
 
-	var_name = ft_substr(token, start, *i - start);
+	var_name = ft_safe_substr(token, start, *i - start);
 	if (!var_name)
-	{
-		ft_putstr_fd(ERR_MALLOC_FAIL, STDERR_FILENO);
-		shell->exit_status = EXIT_FAILURE;
 		return (NULL);
-	}
 	var_value = ft_get_var_value(var_name, shell->env_cpy);
 	ft_free(var_name);
 	if (var_value)
@@ -125,9 +123,20 @@ static char	*ft_expand_variable(t_shell *shell, char *token, size_t *i,
 	else
 		res = ft_safe_strdup("");
 	if (!res)
-	{
-		ft_putstr_fd(ERR_MALLOC_FAIL, STDERR_FILENO);
-		shell->exit_status = EXIT_FAILURE;
-	}
+		return (ft_set_error_and_return_null());
 	return (res);
+}
+
+/**
+ * @brief Handles an error during variable expansion by setting the shell's
+ * exit status to failure and returning NULL.
+ *
+ * @param shell A pointer to the shell structure containing environment info.
+ *
+ * @return NULL to indicate that an error occurred.
+ */
+static char	*ft_set_error_and_return_null()
+{
+	g_exit_status = EXIT_FAILURE;
+	return (NULL);
 }

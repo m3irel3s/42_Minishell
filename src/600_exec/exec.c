@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 19:33:10 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:11:16 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	ft_execute_command(t_shell *shell, int cmd)
 	else if (cmd == CMD_CD)
 		ft_cd(shell);
 	else if (cmd == CMD_PWD)
-		ft_pwd(shell);
+		ft_pwd();
 	else if (cmd == CMD_EXPORT)
 		ft_export(shell);
 	else if (cmd == CMD_ENV)

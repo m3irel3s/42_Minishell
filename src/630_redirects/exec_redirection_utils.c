@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:11:23 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 15:58:08 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 16:46:11 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_status	ft_create_redirection_list(t_shell *shell)
 		if (ft_is_redirect_token(token->type))
 		{
 			if (!next_token)
-				return (ft_print_error(shell, ERR_SYNTAX_EOF_REDIR));
+				return (ft_print_error(ERR_SYNTAX_EOF_REDIR));
 			if (!ft_create_and_add_redirect(token, shell, &last_redirect))
 				return (ERROR);
 			token = ft_update_tokens(shell, token, next_token, after_next);
@@ -140,13 +140,13 @@ static t_status	ft_create_and_add_redirect(t_token *token, t_shell *shell,
 
 	redirect = ft_safe_malloc(sizeof(t_redirect));
 	if (!redirect)
-		return (ft_print_error(shell, ERR_MALLOC_FAIL));
+		return (ft_print_error(ERR_MALLOC_FAIL));
 	redirect->type = token->type;
 	redirect->filename = ft_safe_strdup(token->next->value);
 	if (!redirect->filename)
 	{
 		free(redirect);
-		return (ft_print_error(shell, ERR_STRDUP_FAIL));
+		return (ft_print_error(ERR_STRDUP_FAIL));
 	}
 	redirect->quoted = token->next->quoted;
 	redirect->next = NULL;

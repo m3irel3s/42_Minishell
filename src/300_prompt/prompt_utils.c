@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 10:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 15:39:12 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:03:43 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
  * @return The current git branch name as a string, or NULL if there was an
  * error or the file does not exist.
  */
-char	*ft_get_git_branch(t_shell *shell)
+char	*ft_get_git_branch(void)
 {
 	char	buffer[1024];
 	int		fd;
@@ -32,7 +32,7 @@ char	*ft_get_git_branch(t_shell *shell)
 	fd = open(".git/HEAD", O_RDONLY);
 	if (fd == -1)
 	{
-		ft_print_error(shell, "");
+		ft_print_error("");
 		return (NULL);
 	}
 	bytes_read = read(fd, buffer, sizeof(buffer) - 1);
@@ -58,17 +58,17 @@ char	*ft_get_git_branch(t_shell *shell)
  * @param path The path to shorten.
  * @return The shortened path string, or NULL if there was an error.
  */
-char	*ft_shorten_path(t_shell *shell, char *path)
+char	*ft_shorten_path(char *path)
 {
 	char	*home;
 	char	*short_path;
 
 	home = getenv("HOME");
 	if (home && ft_strncmp(path, home, ft_strlen(home)) == 0)
-		short_path = ft_safe_strjoin(shell, "~", path + ft_strlen(home), 0);
+		short_path = ft_safe_strjoin("~", path + ft_strlen(home), 0);
 	else
 		short_path = ft_safe_strdup(path);
 	if (!short_path)
-		return (ft_print_error(shell, ERR_STRDUP_FAIL), NULL);
+		return (ft_print_error(ERR_STRDUP_FAIL), NULL);
 	return (short_path);
 }

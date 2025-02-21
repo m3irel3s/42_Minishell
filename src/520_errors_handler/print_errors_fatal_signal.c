@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:46:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 13:49:13 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:00:40 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@
  *         indicates the result of the error handling operation.
  */
 
-t_status	ft_print_error_fatal_signal(t_shell *shell, char *error_msg,
+t_status	ft_print_error_fatal_signal(char *error_msg,
 		int signal_number)
 {
-	return (ft_print_error_custom_status(shell, error_msg,
+	return (ft_print_error_custom_status(error_msg,
 			EXIT_FATAL_SIGNAL + signal_number));
 }
