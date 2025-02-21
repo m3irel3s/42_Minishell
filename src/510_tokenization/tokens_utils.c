@@ -6,14 +6,14 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 14:44:26 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 16:50:47 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static t_token_type	ft_check_single_char(t_shell *shell, char *value);
-static t_token_type	ft_check_double_char(t_shell *shell, char *value);
+static t_token_type	ft_check_single_char(char *value);
+static t_token_type	ft_check_double_char(char *value);
 
 /**
  * @brief Determines the token type for a given string.
@@ -28,17 +28,17 @@ static t_token_type	ft_check_double_char(t_shell *shell, char *value);
  *
  * @return The corresponding token type or ERROR_TOKEN on failure.
  */
-t_token_type	ft_determine_token_type(t_shell *shell, char *value, size_t len)
+t_token_type	ft_determine_token_type(char *value, size_t len)
 {
 	if (!value)
 	{
-		ft_print_error(shell, ERR_NULL_TOKEN_VALUE);
+		ft_print_error(ERR_NULL_TOKEN_VALUE);
 		return (ERROR_TOKEN);
 	}
 	if (len == 1)
-		return (ft_check_single_char(shell, value));
+		return (ft_check_single_char(value));
 	if (len == 2)
-		return (ft_check_double_char(shell, value));
+		return (ft_check_double_char(value));
 	return (WORD);
 }
 
@@ -53,11 +53,11 @@ t_token_type	ft_determine_token_type(t_shell *shell, char *value, size_t len)
  *
  * @return The corresponding token type or ERROR_TOKEN on failure.
  */
-static t_token_type	ft_check_single_char(t_shell *shell, char *value)
+static t_token_type	ft_check_single_char(char *value)
 {
 	if (!value)
 	{
-		ft_print_error(shell, ERR_NULL_TOKEN_VALUE);
+		ft_print_error(ERR_NULL_TOKEN_VALUE);
 		return (ERROR_TOKEN);
 	}
 	if (*value == '|')
@@ -80,11 +80,11 @@ static t_token_type	ft_check_single_char(t_shell *shell, char *value)
  *
  * @return The corresponding token type or ERROR_TOKEN on failure.
  */
-static t_token_type	ft_check_double_char(t_shell *shell, char *value)
+static t_token_type	ft_check_double_char(char *value)
 {
 	if (!value)
 	{
-		ft_print_error(shell, ERR_NULL_TOKEN_VALUE);
+		ft_print_error(ERR_NULL_TOKEN_VALUE);
 		return (ERROR_TOKEN);
 	}
 	if (ft_strncmp(value, "<<", 2) == 0)

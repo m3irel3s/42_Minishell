@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 12:35:41 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/21 16:46:54 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,12 @@ typedef struct s_shell
 	int				redirected_stdin;
 	int				redirected_stdout;
 	int				in_export;
-	int				exit_status;
 }	t_shell;
+
+//============================================================================//
+//                                GLOBAL VARIABLE                             //
+//============================================================================//
+
+extern int			g_exit_status;
 
 #endif

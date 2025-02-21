@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 14:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 14:44:11 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 16:47:47 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_status	ft_handle_word(t_shell *shell, size_t *i)
 	t_status		status;
 
 	if (!shell || !i)
-		return (ft_print_error(shell, ERR_INVALID_PARAMS));
+		return (ft_print_error(ERR_INVALID_PARAMS));
 	start = *i;
 	ft_reset_quote_info(&quote_info);
 	status = ft_process_quoted_word(shell, i, &start, &quote_info);
@@ -88,7 +88,7 @@ static t_status	ft_process_quoted_word(t_shell *shell, size_t *i,
 	}
 	if (quote_info->in_quotes)
 	{
-		ft_print_unmatched_quote_error(shell);
+		ft_print_unmatched_quote_error();
 		return (ERROR);
 	}
 	return (SUCCESS);

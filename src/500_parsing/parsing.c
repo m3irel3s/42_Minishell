@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:29:46 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 14:28:49 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 16:56:14 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ static t_status	ft_validate_all_tokens(t_shell *shell);
 t_status	ft_parse_input(t_shell *shell)
 {
 	if (ft_tokenize(shell) != SUCCESS)
-		return (ft_print_error(shell, ERR_TOKENIZATION_FAIL));
+		return (ft_print_error(ERR_TOKENIZATION_FAIL));
 
 	if (ft_validate_all_tokens(shell) != SUCCESS)
-		return (ft_print_error(shell, ERR_SYNTAX_VALIDATION_FAIL));
+		return (ft_print_error(ERR_SYNTAX_VALIDATION_FAIL));
 
 	if (ft_expand(shell) != SUCCESS)
-		return (ft_print_error(shell, ERR_EXPANSION_FAIL));
+		return (ft_print_error(ERR_EXPANSION_FAIL));
 
-	shell->exit_status = EXIT_SUCCESS;
+	g_exit_status = EXIT_SUCCESS;
 	return (SUCCESS);
 }
 
@@ -53,9 +53,9 @@ static t_status	ft_validate_all_tokens(t_shell *shell)
 	current = shell->tokens;
 	while (current)
 	{
-		if (ft_validate_syntax(shell, current) != SUCCESS)
+		if (ft_validate_syntax(current) != SUCCESS)
 		{
-			ft_print_error(shell, ERR_SYNTAX_VALIDATION_FAIL);
+			ft_print_error(ERR_SYNTAX_VALIDATION_FAIL);
 			return (ERROR);
 		}
 		current = current->next;

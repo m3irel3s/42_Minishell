@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 15:36:43 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:08:04 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_status	ft_redirect_heredoc(t_shell *shell, t_redirect *redirect)
 	char	*line;
 
 	if (pipe(fd) == -1)
-		return (ft_print_error(shell, ERR_PIPE_FAIL));
+		return (ft_print_error(ERR_PIPE_FAIL));
 	while (1)
 	{
 		line = readline("> ");
@@ -49,7 +49,7 @@ t_status	ft_redirect_heredoc(t_shell *shell, t_redirect *redirect)
 			free(line);
 			close(fd[1]);
 			close(fd[0]);
-			return (ft_print_error(shell, ERR_WRITE_FAIL));
+			return (ft_print_error(ERR_WRITE_FAIL));
 		}
 		free(line);
 	}
@@ -57,7 +57,7 @@ t_status	ft_redirect_heredoc(t_shell *shell, t_redirect *redirect)
 	if (dup2(fd[0], STDIN_FILENO) == -1)
 	{
 		close(fd[0]);
-		return (ft_print_error(shell, ERR_DUP2_FAIL));
+		return (ft_print_error(ERR_DUP2_FAIL));
 	}
 	close(fd[0]);
 	return (SUCCESS);
@@ -89,12 +89,12 @@ static char	*ft_expanded_line(t_shell *shell, char *line)
 			tmp = ft_handle_dollar(shell, line, &i);
 			if (tmp)
 			{
-				expanded_line = ft_safe_strjoin(shell, expanded_line, tmp, 0);
+				expanded_line = ft_safe_strjoin(expanded_line, tmp, 0);
 				free(tmp);
 			}
 		}
 		else
-			expanded_line = ft_process_char(shell, expanded_line, line[i++]);
+			expanded_line = ft_process_char(expanded_line, line[i++]);
 	}
 	free(line);
 	return (expanded_line);

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:26:26 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 14:35:50 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:05:50 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ int	ft_create_and_add_token(t_shell *shell, size_t start,
 	if (end - start == 0)
 		return (SUCCESS);
 	if (!shell || !shell->input)
-		return (ft_print_error(shell, ERR_INVALID_SHELL_OR_INPUT));
+		return (ft_print_error(ERR_INVALID_SHELL_OR_INPUT));
 	new_token = ft_init_new_token(shell, start, end, quoted);
 	if (!new_token)
-		return (ft_print_error(shell, ERR_TOKEN_CREATION_FAIL));
+		return (ft_print_error(ERR_TOKEN_CREATION_FAIL));
 	ft_add_token_to_shell(shell, new_token);
 	return (SUCCESS);
 }
@@ -76,15 +76,15 @@ static t_token	*ft_init_new_token(t_shell *shell, size_t start,
 
 	new_token = ft_safe_malloc(sizeof(t_token));
 	if (!new_token)
-		return (ft_print_error(shell, ERR_MALLOC_FAIL), NULL);
-	new_token->value = ft_substr(shell->input, start, end - start);
+		return (ft_print_error(ERR_MALLOC_FAIL), NULL);
+	new_token->value = ft_safe_substr(shell->input, start, end - start);
 	if (!new_token->value)
 	{
 		ft_free(new_token);
-		ft_print_error(shell, ERR_SUBSTR_FAIL);
+		ft_print_error(ERR_SUBSTR_FAIL);
 		return (NULL);
 	}
-	new_token->type = ft_determine_token_type(shell, new_token->value,
+	new_token->type = ft_determine_token_type(new_token->value,
 			end - start);
 	new_token->next = NULL;
 	new_token->prev = NULL;

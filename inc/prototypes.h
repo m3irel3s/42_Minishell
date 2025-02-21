@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 15:35:09 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:15:03 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ t_status		ft_init_shell(t_shell *shell, char **envp);
 char			*ft_set_prompt(t_shell *shell);
 
 /* 300_prompt/prompt_utils.c */
-char			*ft_get_git_branch(t_shell *shell);
-char			*ft_shorten_path(t_shell *shell, char *path);
+char			*ft_get_git_branch(void);
+char			*ft_shorten_path(char *path);
 
 //============================================================================//
 //                              SIGNAL HANDLING                               //
@@ -58,8 +58,7 @@ t_status		ft_tokenize(t_shell *shell);
 //                              TOKEN UTILITIES                               //
 //============================================================================//
 /* 510_tokenization/tokens_utils.c */
-t_token_type	ft_determine_token_type(t_shell *shell, char *value,
-					size_t len);
+t_token_type	ft_determine_token_type(char *value, size_t len);
 /* 510_tokenization/tokens_utils_2.c */
 int				ft_create_and_add_token(t_shell *shell, size_t start,
 					size_t end, int quoted);
@@ -91,40 +90,39 @@ t_status		ft_handle_word(t_shell *shell, size_t *i);
 //                             ERROR HANDLING                                 //
 //============================================================================//
 /* 520_errors_handler/syntax_validation.c */
-t_status		ft_validate_syntax(t_shell *shell, t_token *token);
+t_status		ft_validate_syntax(t_token *token);
 
 /* 520_errors_handler/print_errors_exit_failure.c */
-t_status		ft_print_error(t_shell *shell, char *error_msg);
-t_status		ft_print_error_custom_status(t_shell *shell, char *error_msg,
+t_status		ft_print_error(char *error_msg);
+t_status		ft_print_error_custom_status(char *error_msg,
 					int exit_status);
-t_status		ft_print_syntax_error(t_shell *shell, char *token);
-t_status		ft_print_unmatched_quote_error(t_shell *shell);
-t_status		ft_print_redirect_no_file_error(t_shell *shell);
+t_status		ft_print_syntax_error(char *token);
+t_status		ft_print_unmatched_quote_error(void);
+t_status		ft_print_redirect_no_file_error(void);
 
 /* 520_errors_handler/print_errors_heredoc.c */
-t_status		ft_print_heredoc_delim_error(t_shell *shell);
+t_status		ft_print_heredoc_delim_error(void);
 
 /* 520_errors_handler/print_errors_command_not_found.c */
-t_status		ft_print_command_not_found_error(t_shell *shell, char *cmd);
+t_status		ft_print_command_not_found_error(char *cmd);
 
 /* 520_errors_handler/print_errors_misuse.c */
-t_status		ft_print_error_misuse(t_shell *shell, char *error_msg);
-t_status		ft_print_error_invalid_exit_arg(t_shell *shell,
-					char *error_msg);
+t_status		ft_print_error_misuse(char *error_msg);
+t_status		ft_print_error_invalid_exit_arg(char *error_msg);
 
 /* 520_errors_handler/print_errors_fatal_signal.c */
-t_status		ft_print_error_fatal_signal(t_shell *shell, char *error_msg,
+t_status		ft_print_error_fatal_signal(char *error_msg,
 					int signal_number);
 
 /* 520_errors_handler/print_errors_utils.c */
-char			*ft_format_error(const char *err, const char *file);
+char			*ft_format_error(char *err, const char *file);
 
 //============================================================================//
 //                             VARIABLE EXPANSION                             //
 //============================================================================//
 /* 530_expansion/expand.c */
 t_status		ft_expand(t_shell *shell);
-char			*ft_process_char(t_shell *shell, char *expanded_value, char c);
+char			*ft_process_char(char *expanded_value, char c);
 /* 530_expansion/expand_handle_dollar.c */
 char			*ft_handle_dollar(t_shell *shell, char *token, size_t *i);
 
@@ -140,7 +138,7 @@ void			ft_execute_command(t_shell *shell, int cmd);
 /* 620_execve/exec_execve.c */
 void			ft_execute_cmd(t_shell *shell, char *cmd);
 char			*ft_get_path_to_execute(t_shell *shell, char *cmd);
-char			*ft_add_cmd_to_path(t_shell *shell, char **arr, char *cmd);
+char			*ft_add_cmd_to_path(char **arr, char *cmd);
 char			**ft_create_arr_cmd(t_token *start_pos);
 
 //============================================================================//
@@ -157,7 +155,7 @@ int				ft_has_pipes(t_shell *shell);
 /* 630_redirects/exec_redirection.c */
 t_status		ft_handle_redirections(t_shell *shell);
 /* 630_redirects/exec_redirection_utils.c */
-void			ft_create_redirection_list(t_shell *shell);
+t_status		ft_create_redirection_list(t_shell *shell);
 /* 630_redirects/exec_heredoc.c */
 t_status		ft_redirect_heredoc(t_shell *shell, t_redirect *redirect);
 
@@ -171,7 +169,7 @@ void			ft_cd(t_shell *shell);
 /* 610_builtins/env.c */
 void			ft_env(t_shell *shell);
 /* 610_builtins/pwd.c */
-void			ft_pwd(t_shell *shell);
+void			ft_pwd(void);
 /* 610_builtins/export.c */
 void			ft_export(t_shell *shell);
 void			ft_add_var_to_env(t_shell *shell, char *var, char *value);
@@ -187,7 +185,7 @@ void			ft_output_export(char **export);
 char			**ft_sort_export(char **export);
 
 /*611_builtins_utils/cd_and_pwd_utils.c*/
-char			*ft_get_current_directory(t_shell *shell);
+char			*ft_get_current_directory(void);
 
 /* 611_builtins_utils/env_utils.c */
 char			**ft_duplicate_env(char **envp);
@@ -225,8 +223,9 @@ int				ft_is_command(char *value, size_t len);
 void			*ft_safe_malloc(size_t size);
 char			*ft_safe_readline(t_shell *shell);
 char			*ft_safe_strdup(char *s);
-char			*ft_safe_strjoin(t_shell *shell, char *s1, char *s2,
+char			*ft_safe_strjoin(char *s1, char *s2,
 	int free_s1);
+char			*ft_safe_substr(char *s, int start, int len);
 
 //============================================================================//
 //                                  CLEANUP                                   //

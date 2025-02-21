@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 14:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 14:36:59 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 16:46:11 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_is_export_command(t_shell *shell, size_t i)
 {
 	if (!shell || !shell->input)
 	{
-		ft_print_error(shell, ERR_INVALID_SHELL_OR_INPUT);
+		ft_print_error(ERR_INVALID_SHELL_OR_INPUT);
 		return (0);
 	}
 	return (ft_strncmp(shell->input + i, "export", 6) == 0
@@ -47,14 +47,14 @@ t_status	ft_create_export_token(t_shell *shell, size_t *i, int *is_export)
 	t_status	status;
 
 	if (!shell || !shell->input || !i || !is_export)
-		return (ft_print_error(shell, ERR_INVALID_PARAMS));
+		return (ft_print_error(ERR_INVALID_PARAMS));
 	start = *i;
 	*is_export = 1;
 	*i += 6;
 	status = ft_create_and_add_token(shell, start, *i, 0);
 	if (status == ERROR)
 	{
-		ft_print_error(shell, ERR_TOKEN_CREATION_FAIL);
+		ft_print_error(ERR_TOKEN_CREATION_FAIL);
 		return (ERROR);
 	}
 	return (status);

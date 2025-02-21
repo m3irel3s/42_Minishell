@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:30:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 13:46:39 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 16:54:10 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
  * @return Always returns ERROR, indicating that an error occurred.
  */
 
-t_status	ft_print_heredoc_delim_error(t_shell *shell)
+t_status	ft_print_heredoc_delim_error(void)
 {
-	return (ft_print_error(shell, ERR_SYNTAX_EOF_HEREDOC));
+	return (ft_print_error(ERR_SYNTAX_EOF_HEREDOC));
 }

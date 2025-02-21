@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 15:34:22 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 16:46:59 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,9 @@
 #define ERR_SUBSTR_FAIL "minishell: Substring creation failed\n"
 #define ERR_PIPE_FAIL "minishell: error creating heredoc pipe\n"
 #define ERR_WRITE_FAIL "minishell: error writing to heredoc pipe\n"
+#define ERR_INVALID_SHELL "minishell: Invalid shell structure\n"
+
+
 
 #endif
 

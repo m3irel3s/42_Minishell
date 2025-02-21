@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 14:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 14:44:15 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 16:47:54 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_status	ft_handle_operator(t_shell *shell, size_t *i, int *is_export)
 	t_status	status;
 
 	if (!shell || !i || !is_export)
-		return (ft_print_error(shell, ERR_INVALID_PARAMS));
+		return (ft_print_error(ERR_INVALID_PARAMS));
 	if (*is_export)
 		*is_export = 0;
 	start = *i;
@@ -50,7 +50,7 @@ t_status	ft_handle_operator(t_shell *shell, size_t *i, int *is_export)
 		(*i)++;
 	status = ft_create_and_add_token(shell, start, *i, 0);
 	if (status == ERROR)
-		shell->exit_status = EXIT_FAILURE;
+		g_exit_status = EXIT_FAILURE;
 	return (status);
 }
 
@@ -75,19 +75,19 @@ t_status	ft_handle_export_arg(t_shell *shell, size_t *i)
 	t_status		status;
 
 	if (!shell || !i)
-		return (ft_print_error(shell, ERR_INVALID_PARAMS));
+		return (ft_print_error(ERR_INVALID_PARAMS));
 	start = *i;
 	ft_reset_quote_info(&quote_info);
 	ft_set_export_arg_index(shell, i, &quote_info);
 	if (quote_info.in_quotes != 0)
 	{
-		ft_print_unmatched_quote_error(shell);
+		ft_print_unmatched_quote_error();
 		return (ERROR);
 	}
 	ft_check_quote_state(shell, start, i, &quote_info);
 	status = ft_create_and_add_token(shell, start, *i, quote_info.quoted);
 	if (status == ERROR)
-		shell->exit_status = EXIT_FAILURE;
+		g_exit_status = EXIT_FAILURE;
 	return (status);
 }
 
