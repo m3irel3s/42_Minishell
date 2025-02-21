@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:04:18 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 09:52:44 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 10:03:54 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 
 static char	*ft_build_prompt(t_shell *shell, char *user, const char *cwd);
 
+/**
+ * @brief Returns a dynamically allocated string containing the shell's prompt.
+ *
+ * The prompt is built with the user's name, the current working directory, and
+ * the current Git branch if applicable.
+ *
+ * @param shell A pointer to the shell structure.
+ * @return A dynamically allocated string containing the shell's prompt.
+ */
 char	*ft_set_prompt(t_shell *shell)
 {
 	char	*cwd;
@@ -32,6 +41,21 @@ char	*ft_set_prompt(t_shell *shell)
 	free(cwd);
 	return (prompt);
 }
+
+/**
+ * @brief Constructs the shell prompt string.
+ *
+ * This function builds the shell prompt using the user's name, the current
+ * working directory (shortened if possible), and the current Git branch if
+ * applicable. The prompt is formatted with specific colors and symbols for
+ * improved readability.
+ *
+ * @param shell A pointer to the shell structure.
+ * @param user The name of the user to display in the prompt.
+ * @param cwd The current working directory to display in the prompt.
+ * @return A dynamically allocated string containing the formatted prompt.
+ *         Returns NULL if memory allocation fails for any component.
+ */
 
 static char	*ft_build_prompt(t_shell *shell, char *user, const char *cwd)
 {

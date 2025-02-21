@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:15:19 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/18 12:45:39 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/21 10:01:15 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_env(t_shell *shell)
 	while (env[i])
 	{
 		res = env[i];
-		printf("%s\n", res);
+		ft_printf("%s\n", res);
 		i++;
 	}
 	return ;
