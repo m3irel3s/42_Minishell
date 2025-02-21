@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 11:54:33 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 13:50:02 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,29 @@ t_status		ft_handle_word(t_shell *shell, size_t *i);
 //============================================================================//
 /* 520_errors_handler/syntax_validation.c */
 t_status		ft_validate_syntax(t_shell *shell, t_token *token);
-/* 520_errors_handler/print_errors.c */
-t_status		ft_print_unmatched_quote_error(t_shell *shell);
+
+/* 520_errors_handler/print_errors_exit_failure.c */
+t_status		ft_print_error(t_shell *shell, char *error_msg);
+t_status		ft_print_error_custom_status(t_shell *shell, char *error_msg,
+					int exit_status);
 t_status		ft_print_syntax_error(t_shell *shell, char *token);
+t_status		ft_print_unmatched_quote_error(t_shell *shell);
 t_status		ft_print_redirect_no_file_error(t_shell *shell);
+
+/* 520_errors_handler/print_errors_heredoc.c */
 t_status		ft_print_heredoc_delim_error(t_shell *shell);
+
+/* 520_errors_handler/print_errors_command_not_found.c */
 t_status		ft_print_command_not_found_error(t_shell *shell, char *cmd);
+
+/* 520_errors_handler/print_errors_misuse.c */
+t_status		ft_print_error_misuse(t_shell *shell, char *error_msg);
+t_status		ft_print_error_invalid_exit_arg(t_shell *shell,
+					char *error_msg);
+
+/* 520_errors_handler/print_errors_fatal_signal.c */
+t_status		ft_print_error_fatal_signal(t_shell *shell, char *error_msg,
+					int signal_number);
 
 //============================================================================//
 //                             VARIABLE EXPANSION                             //
@@ -190,7 +207,7 @@ int				ft_check_var_chars(char *var);
 //============================================================================//
 /* 700_utils_other/check_type_functions.c */
 int				ft_is_operator(char c);
-int				ft_is_double_operator(const char *str);
+int				ft_is_double_operator(char *str);
 int				ft_is_space(char c);
 int				ft_is_quote(char c);
 int				ft_is_command(char *value, size_t len);
@@ -201,7 +218,7 @@ int				ft_is_command(char *value, size_t len);
 /* 700_utils_other/safe_functions.c */
 void			*ft_safe_malloc(size_t size);
 char			*ft_safe_readline(t_shell *shell);
-char			*ft_safe_strdup(const char *s);
+char			*ft_safe_strdup(char *s);
 char			*ft_safe_strjoin(t_shell *shell, char *s1, char *s2,
 	int free_s1);
 

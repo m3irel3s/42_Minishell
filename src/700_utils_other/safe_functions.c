@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 12:58:31 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 11:06:23 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 13:50:02 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	*ft_safe_readline(t_shell *shell)
  *         string is NULL.
  */
 
-char	*ft_safe_strdup(const char *s)
+char	*ft_safe_strdup(char *s)
 {
 	char	*dup;
 	size_t	len;

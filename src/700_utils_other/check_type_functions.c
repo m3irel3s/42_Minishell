@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 14:55:14 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/14 15:25:41 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 13:50:02 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_is_operator(char c)
  *
  * @return 1 if the string is a double operator, 0 otherwise.
  */
-int	ft_is_double_operator(const char *str)
+int	ft_is_double_operator(char *str)
 {
 	return (ft_strncmp(str, "<<", 2) == 0 || ft_strncmp(str, ">>", 2) == 0);
 }

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:43:44 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 12:01:11 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 13:54:51 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,16 @@ t_status	ft_validate_syntax(t_shell *shell, t_token *tokens)
 	if (!tokens || !shell)
 		return (ft_handle_syntax_error(shell));
 	current = tokens;
-	prev = NULL;
-	while (current)
+	prev = tokens->prev;
+	if (current->type == PIPE)
 	{
-		if (current->type == PIPE)
-		{
-			if (ft_validate_pipe(shell, current, prev) != SUCCESS)
-				return (ERROR);
-		}
-		else if (current->type >= REDIRECT_IN && current->type <= HEREDOC)
-		{
-			if (ft_validate_redirect(shell, current) != SUCCESS)
-				return (ERROR);
-		}
-		prev = current;
-		current = current->next;
+		if (ft_validate_pipe(shell, current, prev) != SUCCESS)
+			return (ERROR);
+	}
+	else if (current->type >= REDIRECT_IN && current->type <= HEREDOC)
+	{
+		if (ft_validate_redirect(shell, current) != SUCCESS)
+			return (ERROR);
 	}
 	return (SUCCESS);
 }

@@ -6,21 +6,21 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 08:37:43 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/19 16:03:24 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 13:50:02 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
 static void	ft_display_infos(void);
-static void	ft_print_banner_line(const char *banner[]);
+static void	ft_print_banner_line(char *banner[]);
 
 /**
  * @brief Display the startup banner and information in the terminal.
  */
 void	ft_display_startup_banner(void)
 {
-	const char	*banner[17];
+	char	*banner[17];
 
 	banner[0] = BBLU " /******************************************/ " RESET;
 	banner[1] = BMAG " /                                          / " RESET;
@@ -49,7 +49,7 @@ void	ft_display_startup_banner(void)
 /**
  * @brief Helper function to print each line of the banner.
  */
-static void	ft_print_banner_line(const char *banner[])
+static void	ft_print_banner_line(char *banner[])
 {
 	int	i;
 
@@ -94,7 +94,7 @@ static void	ft_display_infos(void)
  */
 int	ft_authors(void)
 {
-	const char	*authors[14];
+	char	*authors[14];
 	int			i;
 
 	authors[0] = BYEL "\n+-------------------------------------------+" RESET;
