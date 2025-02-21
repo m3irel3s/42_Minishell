@@ -6,7 +6,7 @@
 #    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/20 12:34:29 by meferraz         ###   ########.fr        #
+#    Updated: 2025/02/21 08:58:54 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -223,16 +223,31 @@ re: fclean all          # Rebuild everything from scratch
 
 ##  Norms Rules  ##
 
-norm:                # Check norms for mandatory sources
+norm:
 	@printf "\n${BLUE}${BOLD}${TEST} Checking Norminette...${RESET}\n"
-	@norminette_output=$$(norminette *.c *.h | grep -v "OK!" || true); \
-	if [ -z "$$norminette_output" ]; then \
-		printf "${GREEN}${BOLD}${CHECK} No norminette errors found!${RESET}\n"; \
+	@norminette_files=$$(find . -name "*.c" -o -name "*.h"); \
+	if [ -n "$$norminette_files" ]; then \
+		norminette_output=$$(norminette $$norminette_files); \
+		error_count=0; \
+		while IFS= read -r line; do \
+			if [[ "$$line" == *"Error:"* ]]; then \
+				printf "${RED}${BOLD}$$line${RESET}\n"; \
+				error_count=$$((error_count + 1)); \
+			elif [[ "$$line" == *": OK!"* ]]; then \
+				printf "${GREEN}$$line${RESET}\n"; \
+			else \
+				printf "  ${WHITE}$$line${RESET}\n"; \
+			fi \
+		done <<< "$$norminette_output"; \
+		if [ $$error_count -gt 0 ]; then \
+			printf "\n${RED}${BOLD}❌ Found $$error_count norminette error(s).${RESET}\n"; \
+		else \
+			printf "\n${GREEN}${BOLD}✓ No norminette errors found!${RESET}\n"; \
+		fi \
 	else \
-		printf "$$norminette_output\n"; \
-		printf "${RED}${BOLD}❌ Norminette errors found.${RESET}\n"; \
+		printf "${YELLOW}${BOLD}⚠️ No .c or .h files found to check!${RESET}\n"; \
 	fi
-	@printf "${GREEN}${BOLD}${CHECK} Norminette check completed!${RESET}\n"
+	@printf "${BLUE}${BOLD}${TEST} Norminette check completed!${RESET}\n"
 
 ##   Check for external functions  ##
 check_external_functions: all               # Check norms for mandatory sources
