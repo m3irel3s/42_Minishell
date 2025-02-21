@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 14:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 11:54:49 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 11:56:24 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static void	ft_check_quote_state(t_shell *shell, size_t start,
  */
 t_status	ft_handle_operator(t_shell *shell, size_t *i, int *is_export)
 {
-	size_t	start;
-	t_status status;
+	size_t		start;
+	t_status	status;
 
 	if (!shell || !i || !is_export)
 	{
@@ -117,7 +117,6 @@ t_status	ft_handle_export_arg(t_shell *shell, size_t *i)
  *                   current quote state, including whether the current
  *                   character is within quotes and the type of quotes.
  */
-
 
 static void	ft_set_export_arg_index(t_shell *shell, size_t *i,
 		t_quote_info *quote_info)
