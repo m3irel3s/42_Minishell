@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:22:57 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 16:16:12 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/21 16:21:13 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_echo(t_shell *shell)
 		ft_printf(1, "\n");
 		return ;
 	}
-	if (ft_echo_handle_flag(curr->value))
+	while (curr && ft_echo_handle_flag(curr->value))
 	{
 		add_new_line = false;
 		curr = curr->next;
