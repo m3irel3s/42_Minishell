@@ -6,7 +6,7 @@
 #    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/21 09:00:23 by meferraz         ###   ########.fr        #
+#    Updated: 2025/02/21 09:52:06 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,7 @@ SRCS = \
        ${SRC_PATH}/100_main.c \
        ${SRC_PATH}/200_inits/init.c \
        ${SRC_PATH}/300_prompt/prompt.c \
+	   ${SRC_PATH}/300_prompt/prompt_utils.c \
        ${SRC_PATH}/400_signals/signals.c \
        ${SRC_PATH}/500_parsing/parsing.c \
        ${SRC_PATH}/510_tokenization/tokens.c \
@@ -94,6 +95,7 @@ SRCS = \
        ${SRC_PATH}/611_builtins_utils/env_utils.c \
        ${SRC_PATH}/611_builtins_utils/export_utils.c \
        ${SRC_PATH}/611_builtins_utils/export_print.c \
+	   ${SRC_PATH}/611_builtins_utils/cd_and_pwd_utils.c \
        ${SRC_PATH}/620_execve/exec_execve.c \
        ${SRC_PATH}/630_redirects/exec_heredoc.c \
        ${SRC_PATH}/630_redirects/exec_redirection.c \
