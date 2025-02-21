@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 20:51:01 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 20:57:37 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ char			**ft_create_arr_cmd(t_token *start_pos);
 /* 600_exec/exec_pipes.c */
 void			ft_handle_pipes(t_shell *shell);
 /* 600_exec/exec_utils.c */
-int				ft_has_pipes(t_shell *shell);
+t_status		ft_has_pipes(t_shell *shell);
 
 //============================================================================//
 //                         EXECUTION - REDIRECTIONS                           //
