@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 11:06:17 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:50:08 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,38 +22,59 @@
 	// 1 single quote
 	// 2 double quote
 
-// static void	ft_append_to_var(t_shell *shell, char *var, char *new_value);
+static void	ft_append_to_var(t_shell *shell, char *var, char *new_value);
+static void	ft_handle_export_args(t_shell *shell, char *agr);
 
 void	ft_export(t_shell *shell)
 {
 	t_token *curr;
 
-	curr = shell->tokens;
-	if (!curr->next)
+	curr = shell->tokens->next;
+	if (!curr)
 	{
 		ft_print_export(shell);
 		return ;
 	}
-	while (curr->next)
+	while (curr)
 	{
-		char	*var;
-		char	*value;
-		char	*eq_sign;
-
+		if (ft_check_var_chars(curr->value) != SUCCESS)
+		{
+			curr = curr->next;
+			continue;
+		}
+		ft_handle_export_args(shell, curr->value);
 		curr = curr->next;
-		if(ft_check_var_chars(curr->value) == SUCCESS)
-			ft_printf(1, "Chars ok\n");
-		else
-			continue ;
-		var = ft_get_var_name(curr->value);
-		eq_sign = ft_strchr(curr->value, '=');
-		if (eq_sign)
-			value = eq_sign + 1;
-		else
-			value = "";
-		ft_update_or_add_var(var, value, shell);
-		ft_free(var);
 	}
+}
+
+static void	ft_handle_export_args(t_shell *shell, char *arg)
+{
+	char	*eq_sign;
+	char	*plus_sign;
+	char	*var;
+	char	*value;
+
+	eq_sign = ft_strchr(arg, '=');
+	plus_sign = ft_strchr(arg, '+');
+	if (plus_sign && eq_sign && plus_sign + 1 == eq_sign)
+	{
+		var = ft_substr(arg, 0, plus_sign - arg);
+		value = eq_sign + 1;
+		ft_append_to_var(shell, var, value);
+	}
+	else if (eq_sign)
+	{
+		var = ft_substr(arg, 0, eq_sign - arg);
+		value = eq_sign + 1;
+		ft_update_or_add_var(var, value, shell);
+	}
+	else
+	{
+		var = ft_safe_strdup(arg);
+		value = "";
+		ft_update_or_add_var(var, value, shell);
+	}
+	ft_free(var);
 }
 
 void	ft_add_var_to_env(t_shell *shell, char *var, char *value)
@@ -77,11 +98,7 @@ void	ft_add_var_to_env(t_shell *shell, char *var, char *value)
 	ft_free_arr(new_env);
 }
 
-// ### Function to handle the append +=
-// ### ex: a=ola a+=ola res: a=olaola
-// ### Still an error variable needs to be received without the + , ft_substr might help
-
-/* static void	ft_append_to_var(t_shell *shell, char *var, char *new_value)
+static void	ft_append_to_var(t_shell *shell, char *var, char *new_value)
 {
 	char	*full_value;
 	char	*old_value;
@@ -89,11 +106,16 @@ void	ft_add_var_to_env(t_shell *shell, char *var, char *value)
 	int		var_index;
 
 	var_index = ft_get_var_index(var, shell->env_cpy);
+	if (var_index == -1)
+	{
+		ft_update_or_add_var(var, new_value, shell);
+		return ;
+	}
 	old_value = ft_get_var_value(var, shell->env_cpy);
-	full_value = ft_safe_strjoin(old_value, new_value, 0);
+	full_value = ft_safe_strjoin(shell, old_value, new_value, 0);
 	new_var = ft_update_var(var, full_value);
 	ft_free(shell->env_cpy[var_index]);
 	shell->env_cpy[var_index] = new_var;
-} */
+}
 
 
