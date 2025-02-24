@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:15:01 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 09:40:33 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/24 09:43:26 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ void	ft_unset(t_shell *shell)
 		{
 			ft_print_error(ft_format_error(ERR_UNSET_INVALID_IDENTIFIER,
 				curr->value));
-			status = ERROR;
+			status = EXIT_FAILURE;
 		}
 		else if (ft_get_var_index(curr->value, shell->env_cpy) != -1)
 		{
 			if (ft_remove_var_update_env(shell, curr->value) == ERROR)
-				status = ERROR;
+				status = EXIT_FAILURE;
 		}
 	}
 	g_exit_status = status;
