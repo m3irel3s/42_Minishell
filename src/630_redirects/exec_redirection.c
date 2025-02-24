@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:45:07 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 17:19:17 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/24 10:32:53 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,21 @@ static t_status	ft_apply_redirection(t_shell *shell, t_redirect *redirect);
 static t_status	ft_redirect_in(t_redirect *redirect);
 static t_status	ft_redirect_out(t_redirect *redirect);
 static t_status	ft_redirect_append(t_redirect *redirect);
+
+/**
+ * @brief Handles the redirections specified in the shell structure.
+ *
+ * This function saves the current standard input and output file descriptors,
+ * then iterates through the linked list of redirections in the shell structure,
+ * applying each redirection in sequence. After applying the redirections, it
+ * updates the shell's redirected stdin and stdout to reflect the current state
+ * of the standard input and output. Finally, it restores the original standard
+ * input and output before returning.
+ *
+ * @param shell A pointer to the shell structure containing the redirections.
+ * @return t_status SUCCESS if all redirections were successfully handled, ERROR
+ * otherwise.
+ */
 
 t_status	ft_handle_redirections(t_shell *shell)
 {
@@ -46,6 +61,19 @@ t_status	ft_handle_redirections(t_shell *shell)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Applies a redirection to the shell's standard input or output.
+ *
+ * This function takes a redirection structure and applies it to the shell's
+ * standard input or output by calling the appropriate redirection function.
+ * If the redirection type is not recognized, it prints an error message and
+ * returns ERROR.
+ *
+ * @param shell A pointer to the shell structure containing the redirection.
+ * @param redirect A pointer to the redirection structure to be applied.
+ * @return t_status SUCCESS if the redirection was successfully applied,
+ * ERROR otherwise.
+ */
 static t_status	ft_apply_redirection(t_shell *shell, t_redirect *redirect)
 {
 	if (redirect->type == REDIRECT_IN)
@@ -59,6 +87,22 @@ static t_status	ft_apply_redirection(t_shell *shell, t_redirect *redirect)
 	return (ft_print_error(ERR_INVALID_REDIRECT_TYPE));
 }
 
+/**
+ * @brief Redirects the standard input to a file.
+ *
+ * This function opens the file associated with the given redirection structure
+ * and sets it as the standard input of the shell. If the file does not exist,
+ * it prints an error message and returns ERROR. If the file cannot be opened,
+ * it prints an appropriate error message and returns ERROR. If the file is
+ * successfully opened, it duplicates the file descriptor and sets it as the
+ * standard input, and then closes the original file descriptor. If the
+ * duplication fails, it prints an error message and returns ERROR.
+ *
+ * @param redirect A pointer to the redirection structure containing the
+ * filename associated with the redirection.
+ * @return t_status SUCCESS if the redirection was successfully applied,
+ * ERROR otherwise.
+ */
 static t_status	ft_redirect_in(t_redirect *redirect)
 {
 	int	fd;
@@ -85,6 +129,20 @@ static t_status	ft_redirect_in(t_redirect *redirect)
 	return (SUCCESS);
 }
 
+/**
+ * Opens the file associated with the given redirection structure and sets it
+ * as the standard output of the shell. If the file does not exist, it is
+ * created. If the file cannot be opened, it prints an appropriate error
+ * message and returns ERROR. If the file is successfully opened, it
+ * duplicates the file descriptor and sets it as the standard output, and then
+ * closes the original file descriptor. If the duplication fails, it prints an
+ * error message and returns ERROR.
+ *
+ * @param redirect A pointer to the redirection structure containing the
+ * filename associated with the redirection.
+ * @return t_status SUCCESS if the redirection was successfully applied,
+ * ERROR otherwise.
+ */
 static t_status	ft_redirect_out(t_redirect *redirect)
 {
 	int	fd;
@@ -111,6 +169,22 @@ static t_status	ft_redirect_out(t_redirect *redirect)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Redirects the standard output to a file in append mode.
+ *
+ * This function opens the file associated with the given redirection structure
+ * in append mode and sets it as the standard output of the shell. If the file
+ * does not exist, it is created. If the file cannot be opened, it prints an
+ * appropriate error message and returns ERROR. If the file is successfully
+ * opened, it duplicates the file descriptor and sets it as the standard output,
+ * and then closes the original file descriptor. If the duplication fails, it
+ * prints an error message and returns ERROR.
+ *
+ * @param redirect A pointer to the redirection structure containing the
+ * filename associated with the redirection.
+ * @return t_status SUCCESS if the redirection was successfully applied,
+ * ERROR otherwise.
+ */
 static t_status	ft_redirect_append(t_redirect *redirect)
 {
 	int	fd;
