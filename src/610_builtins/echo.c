@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:22:57 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 16:16:12 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/24 09:16:14 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+#include <unistd.h>
 
 static bool	ft_echo_handle_flag(char *str);
 
@@ -23,7 +24,8 @@ void	ft_echo(t_shell *shell)
 	curr = shell->tokens->next;
 	if (!curr)
 	{
-		ft_printf(1, "\n");
+		ft_printf(STDOUT_FILENO, "\n");
+		g_exit_status = EXIT_SUCCESS;
 		return ;
 	}
 	if (ft_echo_handle_flag(curr->value))
@@ -33,19 +35,20 @@ void	ft_echo(t_shell *shell)
 	}
 	while (curr)
 	{
-		ft_printf(1, "%s", curr->value);
+		ft_printf(STDOUT_FILENO, "%s", curr->value);
 		curr = curr->next;
 		if (curr)
-			ft_printf(1, " ");
+			ft_printf(STDOUT_FILENO, " ");
 	}
 	if (add_new_line)
-		ft_printf(1, "\n");
+		ft_printf(STDOUT_FILENO, "\n");
+	g_exit_status = EXIT_SUCCESS;
 }
 
 static bool	ft_echo_handle_flag(char *str)
 {
 	int		i;
-	
+
 	i = 0;
 	if (str[0] != '-' || str[1] != 'n')
 		return (false);
