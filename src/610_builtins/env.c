@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:15:19 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 10:20:49 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:17:05 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,15 @@
 void	ft_env(t_shell *shell)
 {
 	char	**env;
-	char	*res;
+	char	*eq_sign;
 	int		i;
 
 	i = 0;
 	env = shell->env_cpy;
-	res = NULL;
+	eq_sign = NULL;
 	while (env[i])
 	{
-		res = ft_get_var_value(ft_get_var_name(env[i]), env);
-		if (res != NULL)
+		if (ft_strchr(env[i], '='))
 			ft_printf(STDOUT_FILENO, "%s\n", env[i]);
 		i++;
 	}
