@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:56:02 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 14:55:20 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:05:31 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_output_export(char **export)
 		value = ft_get_var_value(var, export);
 		eq_sign = ft_strchr(export[i], '=');
 		if (eq_sign && ft_strcmp(value, "") == 0)
-			ft_printf(1, "declare - x %s=""\n", var);
+			ft_printf(1, "declare - x %s=\"\"\n", var);
 		else if (ft_strcmp(value, "") == 0)
 			ft_printf(1, "declare - x %s\n", var);
 		else
