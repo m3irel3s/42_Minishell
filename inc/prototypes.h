@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 21:48:45 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/24 09:48:14 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,11 +221,11 @@ int				ft_check_var_chars(char *var);
 //                      CHARACTER AND COMMAND TYPE CHECKS                     //
 //============================================================================//
 /* 700_utils_other/check_type_functions.c */
-int				ft_is_operator(char c);
-int				ft_is_double_operator(char *str);
-int				ft_is_space(char c);
-int				ft_is_quote(char c);
-int				ft_is_command(char *value, size_t len);
+bool			ft_is_operator(char c);
+bool			ft_is_double_operator(char *str);
+bool			ft_is_space(char c);
+bool			ft_is_quote(char c);
+bool			ft_is_command(char *value, size_t len);
 
 //============================================================================//
 //                          SAFE MEMORY AND IO OPERATIONS                     //

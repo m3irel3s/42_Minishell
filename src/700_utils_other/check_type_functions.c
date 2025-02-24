@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 14:55:14 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 13:50:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/24 09:47:36 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  *
  * @return 1 if the character is an operator, 0 otherwise.
  */
-int	ft_is_operator(char c)
+bool	ft_is_operator(char c)
 {
 	return (c == '|' || c == '<' || c == '>');
 }
@@ -36,7 +36,7 @@ int	ft_is_operator(char c)
  *
  * @return 1 if the string is a double operator, 0 otherwise.
  */
-int	ft_is_double_operator(char *str)
+bool	ft_is_double_operator(char *str)
 {
 	return (ft_strncmp(str, "<<", 2) == 0 || ft_strncmp(str, ">>", 2) == 0);
 }
@@ -55,7 +55,7 @@ int	ft_is_double_operator(char *str)
  * - Form feed (12)
  * - Carriage return (13)
  */
-int	ft_is_space(char c)
+bool	ft_is_space(char c)
 {
 	return (c == ' ' || (c >= 9 && c <= 13));
 }
@@ -70,7 +70,7 @@ int	ft_is_space(char c)
  * @return 1 if the character is a quote, 0 otherwise.
  */
 
-int	ft_is_quote(char c)
+bool	ft_is_quote(char c)
 {
 	return (c == '\'' || c == '\"');
 }
@@ -94,7 +94,7 @@ int	ft_is_quote(char c)
  * - env
  * - exit
  */
-int	ft_is_command(char *value, size_t len)
+bool	ft_is_command(char *value, size_t len)
 {
 	if (!value)
 		return (ERROR);
