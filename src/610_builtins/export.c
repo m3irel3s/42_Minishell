@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 14:55:18 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:08:10 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	ft_export(t_shell *shell)
 
 static int	ft_process_export_variable(t_shell *shell, char *arg)
 {
-	char	*error_msg;
 	char	*eq_sign;
 	char	*plus_sign;
 	char	*var;
@@ -59,8 +58,7 @@ static int	ft_process_export_variable(t_shell *shell, char *arg)
 	plus_sign = ft_strchr(arg, '+');
 	if (ft_check_var_chars(arg) != SUCCESS)
 	{
-		error_msg = ft_format_error(ERR_EXPORT_INVALID_IDENTIFIER, arg);
-		return (ft_print_error(error_msg), ft_free(error_msg), EXIT_FAILURE);
+		return (ft_print_error_w_arg(ERR_EXPORT_INVALID_IDENTIFIER, arg), EXIT_FAILURE);
 	}
 	ft_handle_export_oper(shell, arg, eq_sign, plus_sign);
 	var = ft_get_var_name(arg);

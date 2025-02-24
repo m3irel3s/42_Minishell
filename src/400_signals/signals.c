@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 09:56:30 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 16:45:55 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:28:02 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_status	ft_set_up_signals(void)
 	sa_quit.sa_handler = ft_handle_sigquit;
 	sigemptyset(&sa_quit.sa_mask);
 	sa_quit.sa_flags = 0;
+	// signal(SIGQUIT, SIG_IGN);
 	if (sigaction(SIGQUIT, &sa_quit, NULL) == -1)
 		return (ft_print_error(ERR_SIGNAL_SETUP_QUIT), ERROR);
 	return (SUCCESS);

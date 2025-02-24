@@ -29,3 +29,10 @@ char	*ft_format_error(char *err, const char *file)
 	ft_strlcat(formatted, file, total_len);
 	return (formatted);
 }
+
+t_status	ft_print_error_w_arg(char *error_msg, char *arg)
+{
+	ft_printf(STDERR_FILENO, error_msg, arg);
+	g_exit_status = EXIT_FAILURE;
+	return (ERROR);
+}
