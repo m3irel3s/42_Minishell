@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 09:48:14 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/24 10:36:27 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,6 +237,8 @@ char			*ft_safe_strdup(char *s);
 char			*ft_safe_strjoin(char *s1, char *s2,
 	int free_s1);
 char			*ft_safe_substr(char *s, int start, int len);
+
+void			*ft_safe_realloc(void *old_ptr, size_t new_size);
 
 //============================================================================//
 //                                  CLEANUP                                   //

@@ -6,7 +6,7 @@
 #    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/21 21:47:04 by meferraz         ###   ########.fr        #
+#    Updated: 2025/02/24 10:36:15 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,6 +111,7 @@ SRCS = \
        ${SRC_PATH}/700_utils_other/variable_utils_2.c \
        ${SRC_PATH}/700_utils_other/check_type_functions.c \
        ${SRC_PATH}/700_utils_other/safe_functions.c \
+	   ${SRC_PATH}/700_utils_other/ft_safe_realloc.c \
        ${SRC_PATH}/800_clean/clean.c \
        ${SRC_PATH}/800_clean/free.c
 
