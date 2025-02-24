@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 21:57:35 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/24 09:12:35 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,12 @@
     "minishell: %s: invalid option\n"
 # define ERR_CMD_TOO_MANY_ARGS \
     "minishell: %s: too many arguments\n"
+# define ERR_HOME_NOT_SET \
+    "minishell: cd: HOME not set\n"
+# define ERR_OLDPWD_NOT_SET \
+    "minishell: cd: OLDPWD not set\n"
+# define ERR_CD_FAIL \
+    "minishell: cd: %s: No such file or directory\n"
 
 //============================================================================//
 //                           GENERAL ERROR MESSAGES                           //
