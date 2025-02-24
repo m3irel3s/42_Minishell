@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:15:19 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 09:17:56 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/24 10:19:09 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,12 @@ void	ft_env(t_shell *shell)
 
 	i = 0;
 	env = shell->env_cpy;
+	res = NULL;
 	while (env[i])
 	{
-		ft_printf(STDOUT_FILENO, "%s\n", env[i]);
+		res = ft_get_var_value(ft_get_var_name(env[i]), env);
+		if (res != NULL)
+			ft_printf(STDOUT_FILENO, "%s\n", env[i]);
 		i++;
 	}
 	g_exit_status = EXIT_SUCCESS;

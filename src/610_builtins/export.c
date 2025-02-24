@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 09:35:33 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/24 10:20:02 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static int	ft_process_export_variable(t_shell *shell, char *arg);
 	// 1 single quote
 	// 2 double quote
 
-// static void	ft_append_to_var(t_shell *shell, char *var, char *new_value);
+static void	ft_append_to_var(t_shell *shell, char *var, char *new_value);
+static void	ft_handle_export_args(t_shell *shell, char *agr);
 
 void	ft_export(t_shell *shell)
 {
@@ -98,11 +99,7 @@ void	ft_add_var_to_env(t_shell *shell, char *var, char *value)
 	shell->env_cpy = new_env;
 }
 
-// ### Function to handle the append +=
-// ### ex: a=ola a+=ola res: a=olaola
-// ### Still an error variable needs to be received without the + , ft_substr might help
-
-/* static void	ft_append_to_var(t_shell *shell, char *var, char *new_value)
+static void	ft_append_to_var(t_shell *shell, char *var, char *new_value)
 {
 	char	*full_value;
 	char	*old_value;
@@ -110,11 +107,16 @@ void	ft_add_var_to_env(t_shell *shell, char *var, char *value)
 	int		var_index;
 
 	var_index = ft_get_var_index(var, shell->env_cpy);
+	if (var_index == -1)
+	{
+		ft_update_or_add_var(var, new_value, shell);
+		return ;
+	}
 	old_value = ft_get_var_value(var, shell->env_cpy);
-	full_value = ft_safe_strjoin(old_value, new_value,);
+	full_value = ft_safe_strjoin(shell, old_value, new_value, 0);
 	new_var = ft_update_var(var, full_value);
 	ft_free(shell->env_cpy[var_index]);
 	shell->env_cpy[var_index] = new_var;
-} */
+}
 
 

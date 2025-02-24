@@ -1,1744 +1,11 @@
 warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
 warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x1975: file src/100_main.c, line 33.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x0000000000001975 in main at src/100_main.c:33
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-Continuing.
-
-Program received signal SIGINT, Interrupt.
-0x0000555555557292 in ft_create_redirection_list (shell=0x7fffffffe2f0) at src/540_redirects/redirects_setting.c:43
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x1995: file src/100_main.c, line 33.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x0000000000001995 in main at src/100_main.c:33
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-Continuing.
-
-Program received signal SIGSEGV, Segmentation fault.
-0x0000555555557be1 in ft_create_arr_cmd (start_pos=0x555555564440) at src/600_exec/exec_execve.c:74
-Breakpoint 2 at 0x555555557bb4: file src/600_exec/exec_execve.c, line 71.
-Starting program: /home/miguel/Code/CommonCore/rank03/42_Minishell/minishell 
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-Continuing.
-
-Breakpoint 2, ft_create_arr_cmd (start_pos=0x555555564440) at src/600_exec/exec_execve.c:71
-1: curr = (t_token *) 0x555555599be0
-1: curr = (t_token *) 0x555555599be0
---------------------------
-1: curr = (t_token *) 0x555555599be0
---------------------------
-1: curr = (t_token *) 0x555555564440
---------------------------
-2: curr->type = WORD
-1: curr = (t_token *) 0x555555564440
-2: curr->type = WORD
---------------------------
-1: curr = (t_token *) 0x555555564440
-2: curr->type = WORD
---------------------------
-1: curr = (t_token *) 0x555555599b90
-2: curr->type = WORD
---------------------------
-1: curr = (t_token *) 0x555555599b90
-2: curr->type = WORD
---------------------------
-1: curr = (t_token *) 0x555555599b90
-2: curr->type = WORD
---------------------------
-1: curr = (t_token *) 0x0
-2: curr->type = <error: Cannot access memory at address 0x8>
---------------------------
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x1995: file src/100_main.c, line 33.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x0000000000001995 in main at src/100_main.c:33
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-Continuing.
-process 33601 is executing new program: /usr/bin/ls
-warning: could not find '.gnu_debugaltlink' file for /usr/bin/ls
-Error in re-setting breakpoint 1: Function "main" not defined.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-[Inferior 1 (process 33601) exited normally]
-Function "ft_execute_cmd" not defined.
-Breakpoint 2 (ft_execute_cmd) pending.
-Starting program: /usr/bin/ls 
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-[Inferior 1 (process 33644) exited normally]
-Starting program: /usr/bin/ls 
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-[Inferior 1 (process 33645) exited normally]
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x1995: file src/100_main.c, line 33.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x0000000000001995 in main at src/100_main.c:33
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-Breakpoint 2 at 0x555555557975: file src/600_exec/exec_execve.c, line 19.
-Continuing.
-
-Breakpoint 2, ft_execute_cmd (shell=0x7fffffffe2f0, cmd=0x555555599be0 "ls") at src/600_exec/exec_execve.c:19
---------------------------
-1: path = 0x0
-1: path = 0x555555599cd0 "/usr/bin/ls"
---------------------------
-1: path = 0x555555599cd0 "/usr/bin/ls"
---------------------------
-1: path = 0x555555599cd0 "/usr/bin/ls"
---------------------------
-No symbol "i" in current context.
-Starting program: /home/miguel/Code/CommonCore/rank03/42_Minishell/minishell 
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-Continuing.
-
-Breakpoint 2, ft_execute_cmd (shell=0x7fffffffe2f0, cmd=0x555555599be0 "ls") at src/600_exec/exec_execve.c:19
-1: path = 0x0
-1: path = 0x0
---------------------------
-1: path = 0x555555599cd0 "/usr/bin/ls"
---------------------------
-1: path = 0x555555599cd0 "/usr/bin/ls"
---------------------------
-A syntax error in expression, near the end of `arr[0]['.
-$1 = 0x0
-$2 = 0x0
-$3 = 0x0
-$4 = 0x21 <error: Cannot access memory at address 0x21>
-Starting program: /home/miguel/Code/CommonCore/rank03/42_Minishell/minishell 
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-#0  main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-Continuing.
-
-Breakpoint 2, ft_execute_cmd (shell=0x7fffffffe2f0, cmd=0x555555599be0 "ls") at src/600_exec/exec_execve.c:19
-1: path = 0x0
-Starting program: /home/miguel/Code/CommonCore/rank03/42_Minishell/minishell 
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-Continuing.
-process 33837 is executing new program: /usr/bin/ls
-warning: could not find '.gnu_debugaltlink' file for /usr/bin/ls
-Error in re-setting breakpoint 1: Function "main" not defined.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-[Inferior 1 (process 33837) exited normally]
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x1995: file src/100_main.c, line 33.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x0000000000001995 in main at src/100_main.c:33
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-Breakpoint 2 at 0x555555557bfc: file src/600_exec/exec_execve.c, line 75.
-Continuing.
-
-Breakpoint 2, ft_create_arr_cmd (start_pos=0x555555564440) at src/600_exec/exec_execve.c:75
---------------------------
-1: arr[0] = 0x5555555602a0 "`\004VUUU"
-2: arr[1] = 0x555555560ff0 "\001\033[0;32m\002miguel\001\033[0m\002@\001\033[0;36m\002/home/miguel/Code/CommonCore/rank03/42_Minishell\001\033[0m\002 "
-3: arr[2] = 0x555555598b30 "ls -al"
-1: arr[0] = <error: Cannot access memory at address 0x0>
-2: arr[1] = <error: Cannot access memory at address 0x8>
-3: arr[2] = <error: Cannot access memory at address 0x10>
---------------------------
-1: arr[0] = <error: Cannot access memory at address 0x0>
-2: arr[1] = <error: Cannot access memory at address 0x8>
-3: arr[2] = <error: Cannot access memory at address 0x10>
---------------------------
-1: arr[0] = <error: Cannot access memory at address 0x0>
-2: arr[1] = <error: Cannot access memory at address 0x8>
-3: arr[2] = <error: Cannot access memory at address 0x10>
---------------------------
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x1995: file src/100_main.c, line 33.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x0000000000001995 in main at src/100_main.c:33
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-Breakpoint 2 at 0x555555557bb4: file src/600_exec/exec_execve.c, line 71.
-Continuing.
-
-Breakpoint 2, ft_create_arr_cmd (start_pos=0x555555564440) at src/600_exec/exec_execve.c:71
---------------------------
---------------------------
---------------------------
-1: curr->type = WORD
-1: curr->type = WORD
---------------------------
-1: curr->type = WORD
---------------------------
-1: curr->type = WORD
---------------------------
-1: curr->type = WORD
---------------------------
-1: curr->type = WORD
---------------------------
-1: curr->type = <error: Cannot access memory at address 0x8>
---------------------------
-
-Program received signal SIGSEGV, Segmentation fault.
-0x0000555555557be1 in ft_create_arr_cmd (start_pos=0x555555564440) at src/600_exec/exec_execve.c:74
-1: curr->type = <error: Cannot access memory at address 0x8>
---------------------------
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x1995: file src/100_main.c, line 33.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x0000000000001995 in main at src/100_main.c:33
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-Breakpoint 2 at 0x555555557bb4: file src/600_exec/exec_execve.c, line 71.
---------------------------
-Continuing.
-
-Breakpoint 2, ft_create_arr_cmd (start_pos=0x555555564440) at src/600_exec/exec_execve.c:71
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
-$1 = WORD
-1: curr->type = WORD
-2: i = 7
-1: curr->type = WORD
-2: i = 7
---------------------------
-1: curr->type = WORD
-2: i = 8
---------------------------
-1: curr->type = WORD
-2: i = 8
---------------------------
-1: curr->type = WORD
-2: i = 8
---------------------------
-1: curr->type = WORD
-2: i = 9
---------------------------
-1: curr->type = WORD
-2: i = 9
---------------------------
-1: curr->type = WORD
-2: i = 9
---------------------------
-1: curr->type = WORD
-2: i = 10
---------------------------
-1: curr->type = WORD
-2: i = 10
---------------------------
-1: curr->type = WORD
-2: i = 10
---------------------------
-1: curr->type = WORD
-2: i = 11
---------------------------
-1: curr->type = WORD
-2: i = 11
---------------------------
-1: curr->type = WORD
-2: i = 11
---------------------------
-1: curr->type = WORD
-2: i = 12
---------------------------
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x1995: file src/100_main.c, line 33.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x0000000000001995 in main at src/100_main.c:33
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-Breakpoint 2 at 0x555555557bb4: file src/600_exec/exec_execve.c, line 71.
-Continuing.
-
-Breakpoint 2, ft_create_arr_cmd (start_pos=0x555555564440) at src/600_exec/exec_execve.c:71
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x1995: file src/100_main.c, line 33.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x0000000000001995 in main at src/100_main.c:33
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-Breakpoint 2 at 0x555555557bb4: file src/600_exec/exec_execve.c, line 71.
-Continuing.
-
-Breakpoint 2, ft_create_arr_cmd (start_pos=0x555555564440) at src/600_exec/exec_execve.c:71
-1: arr[0] = 0x5555555602a0 "`\004VUUU"
-2: arr[1] = 0x555555560ff0 "\001\033[0;32m\002miguel\001\033[0m\002@\001\033[0;36m\002/home/miguel/Code/CommonCore/rank03/42_Minishell\001\033[0m\002 "
-3: arr[2] = 0x555555598b30 "ls -al"
-1: arr[0] = 0x5555555602a0 "`\004VUUU"
-2: arr[1] = 0x555555560ff0 "\001\033[0;32m\002miguel\001\033[0m\002@\001\033[0;36m\002/home/miguel/Code/CommonCore/rank03/42_Minishell\001\033[0m\002 "
-3: arr[2] = 0x555555598b30 "ls -al"
---------------------------
-1: arr[0] = <error: Cannot access memory at address 0x0>
-2: arr[1] = <error: Cannot access memory at address 0x8>
-3: arr[2] = <error: Cannot access memory at address 0x10>
---------------------------
-1: arr[0] = <error: Cannot access memory at address 0x0>
-2: arr[1] = <error: Cannot access memory at address 0x8>
-3: arr[2] = <error: Cannot access memory at address 0x10>
---------------------------
-1: arr[0] = <error: Cannot access memory at address 0x0>
-2: arr[1] = <error: Cannot access memory at address 0x8>
-3: arr[2] = <error: Cannot access memory at address 0x10>
---------------------------
-1: arr[0] = <error: Cannot access memory at address 0x0>
-2: arr[1] = <error: Cannot access memory at address 0x8>
-3: arr[2] = <error: Cannot access memory at address 0x10>
---------------------------
-1: arr[0] = <error: Cannot access memory at address 0x0>
-2: arr[1] = <error: Cannot access memory at address 0x8>
-3: arr[2] = <error: Cannot access memory at address 0x10>
---------------------------
-1: arr[0] = <error: Cannot access memory at address 0x0>
-2: arr[1] = <error: Cannot access memory at address 0x8>
-3: arr[2] = <error: Cannot access memory at address 0x10>
---------------------------
-1: arr[0] = <error: Cannot access memory at address 0x0>
-2: arr[1] = <error: Cannot access memory at address 0x8>
-3: arr[2] = <error: Cannot access memory at address 0x10>
---------------------------
-1: arr[0] = 0x5550000cc8d9 <error: Cannot access memory at address 0x5550000cc8d9>
-2: arr[1] = 0x0
-3: arr[2] = 0x0
---------------------------
-1: arr[0] = 0x5550000cc8d9 <error: Cannot access memory at address 0x5550000cc8d9>
-2: arr[1] = 0x0
-3: arr[2] = 0x0
---------------------------
-1: arr[0] = 0x5550000cc8d9 <error: Cannot access memory at address 0x5550000cc8d9>
-2: arr[1] = 0x0
-3: arr[2] = 0x0
---------------------------
-1: arr[0] = 0x555555599d40 "ls"
-2: arr[1] = 0x0
-3: arr[2] = 0x0
---------------------------
-1: arr[0] = 0x555555599d40 "ls"
-2: arr[1] = 0x0
-3: arr[2] = 0x0
---------------------------
-1: arr[0] = 0x555555599d40 "ls"
-2: arr[1] = 0x0
-3: arr[2] = 0x0
---------------------------
-4: i = 1
-Starting program: /home/miguel/Code/CommonCore/rank03/42_Minishell/minishell 
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-Continuing.
-
-Breakpoint 2, ft_create_arr_cmd (start_pos=0x555555564440) at src/600_exec/exec_execve.c:71
-1: arr[0] = 0x5555555602a0 "`\004VUUU"
-2: arr[1] = 0x555555560ff0 "\001\033[0;32m\002miguel\001\033[0m\002@\001\033[0;36m\002/home/miguel/Code/CommonCore/rank03/42_Minishell\001\033[0m\002 "
-3: arr[2] = 0x555555598b30 "ls -al"
-4: i = 21845
-1: arr[0] = 0x5555555602a0 "`\004VUUU"
-2: arr[1] = 0x555555560ff0 "\001\033[0;32m\002miguel\001\033[0m\002@\001\033[0;36m\002/home/miguel/Code/CommonCore/rank03/42_Minishell\001\033[0m\002 "
-3: arr[2] = 0x555555598b30 "ls -al"
-4: i = 0
---------------------------
-1: arr[0] = <error: Cannot access memory at address 0x0>
-2: arr[1] = <error: Cannot access memory at address 0x8>
-3: arr[2] = <error: Cannot access memory at address 0x10>
-4: i = 0
---------------------------
-1: arr[0] = <error: Cannot access memory at address 0x0>
-2: arr[1] = <error: Cannot access memory at address 0x8>
-3: arr[2] = <error: Cannot access memory at address 0x10>
-4: i = 0
---------------------------
-1: arr[0] = <error: Cannot access memory at address 0x0>
-2: arr[1] = <error: Cannot access memory at address 0x8>
-3: arr[2] = <error: Cannot access memory at address 0x10>
-4: i = 0
---------------------------
-1: arr[0] = <error: Cannot access memory at address 0x0>
-2: arr[1] = <error: Cannot access memory at address 0x8>
-3: arr[2] = <error: Cannot access memory at address 0x10>
-4: i = 1
---------------------------
-1: arr[0] = <error: Cannot access memory at address 0x0>
-2: arr[1] = <error: Cannot access memory at address 0x8>
-3: arr[2] = <error: Cannot access memory at address 0x10>
-4: i = 1
---------------------------
-1: arr[0] = <error: Cannot access memory at address 0x0>
-2: arr[1] = <error: Cannot access memory at address 0x8>
-3: arr[2] = <error: Cannot access memory at address 0x10>
-4: i = 1
---------------------------
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x1995: file src/100_main.c, line 33.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x0000000000001995 in main at src/100_main.c:33
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-Breakpoint 2 at 0x555555557bb4: file src/600_exec/exec_execve.c, line 71.
-Continuing.
-
-Breakpoint 2, ft_create_arr_cmd (start_pos=0x555555564440) at src/600_exec/exec_execve.c:71
---------------------------
---------------------------
---------------------------
-1: i = 0
-1: i = 0
---------------------------
-1: i = 0
---------------------------
-1: i = 1
---------------------------
-1: i = 1
---------------------------
-1: i = 1
---------------------------
-1: i = 1
---------------------------
-1: i = 1
---------------------------
-1: i = 2
---------------------------
-1: i = 2
---------------------------
-1: i = 2
---------------------------
-1: i = 2
---------------------------
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x1995: file src/100_main.c, line 33.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x0000000000001995 in main at src/100_main.c:33
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-Please answer y or n.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x19d5: file src/100_main.c, line 33.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x00000000000019d5 in main at src/100_main.c:33
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x19d5: file src/100_main.c, line 33.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x00000000000019d5 in main at src/100_main.c:33
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-Breakpoint 2 at 0x555555557761: file src/600_exec/exec.c, line 21.
-Continuing.
-
-Breakpoint 2, ft_exec (shell=0x7fffffffe2f0) at src/600_exec/exec.c:21
---------------------------
---------------------------
---------------------------
---------------------------
-$1 = CMD_ECHO
---------------------------
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x19d5: file src/100_main.c, line 33.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x00000000000019d5 in main at src/100_main.c:33
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-Breakpoint 2 at 0x5555555579c3: file src/600_exec/exec_execve.c, line 23.
-Continuing.
-
-Breakpoint 2, ft_execute_cmd (shell=0x7fffffffe2f0, cmd=0x555555599be0 "ls") at src/600_exec/exec_execve.c:23
---------------------------
-1: path = 0x55556f45 <error: Cannot access memory at address 0x55556f45>
-1: path = 0x555555599cd0 "/usr/bin/ls"
---------------------------
-1: path = 0x555555599cd0 "/usr/bin/ls"
---------------------------
-1: path = 0x555555599cd0 "/usr/bin/ls"
---------------------------
-[Detaching after fork from child process 49777]
-1: path = 0x555555599cd0 "/usr/bin/ls"
---------------------------
-1: path = 0x555555599cd0 "/usr/bin/ls"
---------------------------
-1: path = 0x555555599cd0 "/usr/bin/ls"
---------------------------
-1: path = 0x555555599cd0 "/usr/bin/ls"
---------------------------
-ft_handle_exec (shell=0x7fffffffe2f0, cmd=7) at src/600_exec/exec.c:44
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x19d5: file src/100_main.c, line 33.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x00000000000019d5 in main at src/100_main.c:33
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-Breakpoint 2 at 0x555555557761: file src/600_exec/exec.c, line 21.
-Continuing.
-
-Breakpoint 2, ft_exec (shell=0x7fffffffe2f0) at src/600_exec/exec.c:21
---------------------------
---------------------------
---------------------------
---------------------------
-[Detaching after fork from child process 49947]
---------------------------
-main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:56
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
-
-Breakpoint 2, ft_exec (shell=0x7fffffffe2f0) at src/600_exec/exec.c:21
---------------------------
---------------------------
-Quit
-Continuing.
-
-Breakpoint 2, ft_exec (shell=0x7fffffffe2f0) at src/600_exec/exec.c:21
---------------------------
---------------------------
---------------------------
---------------------------
-[Detaching after fork from child process 49948]
---------------------------
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x19f5: file src/100_main.c, line 33.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x00000000000019f5 in main at src/100_main.c:33
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-Breakpoint 2 at 0x555555557781: file src/600_exec/exec.c, line 21.
-Continuing.
-
-Breakpoint 2, ft_exec (shell=0x7fffffffe2f0) at src/600_exec/exec.c:21
---------------------------
---------------------------
---------------------------
-ft_handle_pipes (shell=0x7fffffffe2f0) at src/600_exec/exec_pipes.c:16
---------------------------
---------------------------
---------------------------
-1: curr->value = 0x555555599c80 "export"
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x19f5: file src/100_main.c, line 33.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x00000000000019f5 in main at src/100_main.c:33
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-Breakpoint 2 at 0x555555557781: file src/600_exec/exec.c, line 21.
-Continuing.
-
-Breakpoint 2, ft_exec (shell=0x7fffffffe2f0) at src/600_exec/exec.c:21
---------------------------
---------------------------
---------------------------
-ft_handle_pipes (shell=0x7fffffffe2f0) at src/600_exec/exec_pipes.c:16
-warning: Source file is more recent than executable.
---------------------------
---------------------------
---------------------------
-1: curr->type = WORD
-1: curr->type = WORD
---------------------------
-1: curr->type = PIPE
---------------------------
-1: curr->type = PIPE
---------------------------
-1: curr->type = PIPE
---------------------------
-1: curr->type = PIPE
---------------------------
-[Detaching after fork from child process 14018]
-1: curr->type = PIPE
---------------------------
-$1 = 14018
-1: curr->type = PIPE
---------------------------
-1: curr->type = PIPE
---------------------------
-1: curr->type = PIPE
---------------------------
-1: curr->type = PIPE
---------------------------
-1: curr->type = PIPE
---------------------------
-1: curr->type = PIPE
---------------------------
-1: curr->type = PIPE
---------------------------
-1: curr->type = WORD
---------------------------
-1: curr->type = WORD
---------------------------
-1: curr->type = WORD
---------------------------
-1: curr->type = WORD
---------------------------
-1: curr->type = WORD
---------------------------
-1: curr->type = WORD
---------------------------
-1: curr->type = <error: Cannot access memory at address 0x8>
---------------------------
-1: curr->type = <error: Cannot access memory at address 0x8>
---------------------------
-[Detaching after fork from child process 14032]
-1: curr->type = <error: Cannot access memory at address 0x8>
---------------------------
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x19f5: file src/100_main.c, line 33.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x00000000000019f5 in main at src/100_main.c:33
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:33
-Breakpoint 2 at 0x555555557781: file src/600_exec/exec.c, line 21.
-Continuing.
-
-Breakpoint 2, ft_exec (shell=0x7fffffffe2f0) at src/600_exec/exec.c:21
---------------------------
---------------------------
---------------------------
-ft_handle_pipes (shell=0x7fffffffe2f0) at src/600_exec/exec_pipes.c:16
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
-1: curr->type = WORD
-2: curr->value = 0x555555599c80 "export"
-1: curr->type = WORD
-2: curr->value = 0x555555599c80 "export"
---------------------------
-1: curr->type = PIPE
-2: curr->value = 0x555555599ca0 "|"
---------------------------
-1: curr->type = PIPE
-2: curr->value = 0x555555599ca0 "|"
---------------------------
-1: curr->type = PIPE
-2: curr->value = 0x555555599ca0 "|"
---------------------------
-1: curr->type = PIPE
-2: curr->value = 0x555555599ca0 "|"
---------------------------
-1: curr->type = PIPE
-2: curr->value = 0x555555599ca0 "|"
---------------------------
-1: curr->type = PIPE
-2: curr->value = 0x555555599ca0 "|"
---------------------------
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x545d: file src/100_main.c, line 18.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x000000000000545d in main at src/100_main.c:18
-No watchpoints.
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:18
-Breakpoint 2 at 0x555555561a66: file src/700_utils_other/variable_utils.c, line 53.
-Continuing.
-[Inferior 1 (process 7859) exited with code 01]
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x545d: file src/100_main.c, line 18.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x000000000000545d in main at src/100_main.c:18
-No watchpoints.
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:18
-Breakpoint 2 at 0x55555556188a: file src/700_utils_other/variable_utils.c, line 24.
-Breakpoint 3 at 0x555555561a66: file src/700_utils_other/variable_utils.c, line 53.
-Continuing.
-
-Breakpoint 2, ft_get_var_value (var=0x502000002a70 "HO", env=0x514000000040) at src/700_utils_other/variable_utils.c:24
-1: var = 0x502000002a70 "HO"
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x1a30: file src/100_main.c, line 18.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x0000000000001a30 in main at src/100_main.c:18
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:18
-Breakpoint 2 at 0x555555557759: file src/600_exec/exec_pipes.c, line 24.
-Continuing.
-
-Breakpoint 2, ft_handle_pipes (shell=0x7fffffffe2f0) at src/600_exec/exec_pipes.c:24
---------------------------
-1: num_pipes = 0
-1: num_pipes = 1
---------------------------
-1: num_pipes = 1
---------------------------
-2: curr = (t_token *) 0x555555565440
-3: curr->value = 0x55555559acd0 "ls"
-1: num_pipes = 1
-3: curr->value = 0x55555559acd0 "ls"
---------------------------
-1: num_pipes = 1
-3: curr->value = 0x55555559acd0 "ls"
---------------------------
-1: num_pipes = 1
-3: curr->value = 0x55555559acd0 "ls"
---------------------------
-[Detaching after fork from child process 81159]
-1: num_pipes = 1
-3: curr->value = 0x55555559acd0 "ls"
---------------------------
-1: num_pipes = 1
-3: curr->value = 0x55555559acd0 "ls"
---------------------------
-4: pid = 81159
-1: num_pipes = 1
-3: curr->value = 0x55555559acf0 "-al"
-4: pid = 81159
---------------------------
-1: num_pipes = 1
-3: curr->value = 0x55555559acf0 "-al"
-4: pid = 81159
---------------------------
-1: num_pipes = 1
-3: curr->value = 0x55555559acf0 "-al"
-4: pid = 81159
---------------------------
-1: num_pipes = 1
-3: curr->value = 0x55555559acf0 "-al"
-4: pid = 81159
---------------------------
-1: num_pipes = 1
-3: curr->value = 0x55555559acf0 "-al"
-4: pid = 81159
---------------------------
-1: num_pipes = 1
-3: curr->value = 0x55555559acf0 "-al"
-4: pid = 81159
---------------------------
-1: num_pipes = 1
-3: curr->value = 0x55555559acf0 "-al"
-4: pid = 81159
---------------------------
-1: num_pipes = 1
-3: curr->value = 0x55555559acf0 "-al"
-4: pid = 81159
---------------------------
-1: num_pipes = 1
-3: curr->value = 0x55555559acf0 "-al"
-4: pid = 81159
---------------------------
-ft_exec (shell=0x7fffffffe2f0) at src/600_exec/exec.c:37
---------------------------
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x1a30: file src/100_main.c, line 18.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x0000000000001a30 in main at src/100_main.c:18
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:18
-Breakpoint 2 at 0x555555557759: file src/600_exec/exec_pipes.c, line 24.
-Continuing.
-
-Breakpoint 2, ft_handle_pipes (shell=0x7fffffffe2f0) at src/600_exec/exec_pipes.c:24
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
---------------------------
-1: pid = -7440
-[Detaching after fork from child process 81411]
-1: pid = 81411
---------------------------
-1: pid = 81411
---------------------------
-1: pid = 81411
---------------------------
-1: pid = 81411
---------------------------
-1: pid = 81411
---------------------------
-1: pid = 81411
---------------------------
-1: pid = 81411
---------------------------
-1: pid = 81411
---------------------------
-1: pid = 81411
---------------------------
-1: pid = 81411
---------------------------
-1: pid = 81411
---------------------------
-1: pid = 81411
---------------------------
-ft_exec (shell=0x7fffffffe2f0) at src/600_exec/exec.c:37
---------------------------
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x1a30: file src/100_main.c, line 18.
-Breakpoint 2 at 0x3759: file src/600_exec/exec_pipes.c, line 24.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x0000000000001a30 in main at src/100_main.c:18
-2       breakpoint     keep y   0x0000000000003759 in ft_handle_pipes at src/600_exec/exec_pipes.c:24
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:18
-Continuing.
-
-Breakpoint 2, ft_handle_pipes (shell=0x7fffffffe2f0) at src/600_exec/exec_pipes.c:24
-1: num_pipes = 0
-2: pid = -7440
-3: i = 0
-4: curr->value = <error: Cannot access memory at address 0x0>
-5: curr->type = <error: Cannot access memory at address 0x8>
---------------------------
-1: num_pipes = 1
-2: pid = -7440
-3: i = 0
-4: curr->value = <error: Cannot access memory at address 0x0>
-5: curr->type = <error: Cannot access memory at address 0x8>
---------------------------
-1: num_pipes = 1
-2: pid = -7440
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = -7440
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = -7440
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = -7440
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-[Detaching after fork from child process 81644]
-1: num_pipes = 1
-2: pid = 81644
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 81644
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 81644
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 81644
-3: i = 0
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 81644
-3: i = 0
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 81644
-3: i = 1
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 81644
-3: i = 1
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 81644
-3: i = 1
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 81644
-3: i = 1
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 81644
-3: i = 1
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 81644
-3: i = 1
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 81644
-3: i = 1
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-ft_exec (shell=0x7fffffffe2f0) at src/600_exec/exec.c:37
---------------------------
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x1a30: file src/100_main.c, line 18.
-Breakpoint 2 at 0x3759: file src/600_exec/exec_pipes.c, line 24.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x0000000000001a30 in main at src/100_main.c:18
-2       breakpoint     keep y   0x0000000000003759 in ft_handle_pipes at src/600_exec/exec_pipes.c:24
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:18
-No symbol "num_pipes" in current context.
-Continuing.
-
-Breakpoint 2, ft_handle_pipes (shell=0x7fffffffe2f0) at src/600_exec/exec_pipes.c:24
---------------------------
-1: num_pipes = 1
-2: pid = -7440
-3: i = 0
-4: curr->value = <error: Cannot access memory at address 0x0>
-5: curr->type = <error: Cannot access memory at address 0x8>
---------------------------
-1: num_pipes = 1
-2: pid = -7440
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = -7440
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = -7440
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = -7440
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-[Detaching after fork from child process 82286]
-1: num_pipes = 1
-2: pid = 82286
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 82286
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 82286
-3: i = 0
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 82286
-3: i = 0
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 82286
-3: i = 1
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 82286
-3: i = 1
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-[Detaching after fork from child process 82288]
-1: num_pipes = 1
-2: pid = 82288
-3: i = 1
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 82288
-3: i = 1
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 82288
-3: i = 1
-4: curr->value = 0x55555559ab70 "|"
-5: curr->type = PIPE
---------------------------
-1: num_pipes = 1
-2: pid = 82288
-3: i = 1
-4: curr->value = 0x55555559ab70 "|"
-5: curr->type = PIPE
---------------------------
-1: num_pipes = 1
-2: pid = 82288
-3: i = 1
-4: curr->value = 0x55555559ac10 "wc"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 82288
-3: i = 2
-4: curr->value = 0x55555559ac10 "wc"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 82288
-3: i = 2
-4: curr->value = 0x55555559ac10 "wc"
-5: curr->type = WORD
---------------------------
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x1a30: file src/100_main.c, line 18.
-Breakpoint 2 at 0x3759: file src/600_exec/exec_pipes.c, line 24.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x0000000000001a30 in main at src/100_main.c:18
-2       breakpoint     keep y   0x0000000000003759 in ft_handle_pipes at src/600_exec/exec_pipes.c:24
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:18
-Continuing.
-
-Breakpoint 2, ft_handle_pipes (shell=0x7fffffffe2f0) at src/600_exec/exec_pipes.c:24
-1: num_pipes = 0
-2: pid = -7440
-3: i = 0
-4: curr->value = <error: Cannot access memory at address 0x0>
-5: curr->type = <error: Cannot access memory at address 0x8>
---------------------------
-1: num_pipes = 1
-2: pid = -7440
-3: i = 0
-4: curr->value = <error: Cannot access memory at address 0x0>
-5: curr->type = <error: Cannot access memory at address 0x8>
---------------------------
-1: num_pipes = 1
-2: pid = -7440
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = -7440
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = -7440
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = -7440
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-[Detaching after fork from child process 82484]
-1: num_pipes = 1
-2: pid = 82484
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 82484
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 82484
-3: i = 0
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 82484
-3: i = 0
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 82484
-3: i = 0
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-[Detaching after fork from child process 82488]
-1: num_pipes = 1
-2: pid = 82488
-3: i = 0
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 82488
-3: i = 0
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 82488
-3: i = 0
-4: curr->value = 0x55555559ab70 "|"
-5: curr->type = PIPE
---------------------------
-1: num_pipes = 1
-2: pid = 82488
-3: i = 0
-4: curr->value = 0x55555559ab70 "|"
-5: curr->type = PIPE
---------------------------
-1: num_pipes = 1
-2: pid = 82488
-3: i = 0
-4: curr->value = 0x55555559ac10 "wc"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 82488
-3: i = 0
-4: curr->value = 0x55555559ac10 "wc"
-5: curr->type = WORD
---------------------------
-[Detaching after fork from child process 82490]
-1: num_pipes = 1
-2: pid = 82490
-3: i = 0
-4: curr->value = 0x55555559ac10 "wc"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 82490
-3: i = 0
-4: curr->value = 0x55555559ac10 "wc"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 82490
-3: i = 0
-4: curr->value = 0x55555559ac60 "-l"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 82490
-3: i = 0
-4: curr->value = 0x55555559ac60 "-l"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 82490
-3: i = 0
-4: curr->value = 0x55555559ac60 "-l"
-5: curr->type = WORD
---------------------------
-[Detaching after fork from child process 82492]
-1: num_pipes = 1
-2: pid = 82492
-3: i = 0
-4: curr->value = 0x55555559ac60 "-l"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 82492
-3: i = 0
-4: curr->value = 0x55555559ac60 "-l"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 82492
-3: i = 0
-4: curr->value = <error: Cannot access memory at address 0x0>
-5: curr->type = <error: Cannot access memory at address 0x8>
---------------------------
-1: num_pipes = 1
-2: pid = 82492
-3: i = 0
-4: curr->value = <error: Cannot access memory at address 0x0>
-5: curr->type = <error: Cannot access memory at address 0x8>
---------------------------
-1: num_pipes = 1
-2: pid = 82492
-3: i = 0
-4: curr->value = <error: Cannot access memory at address 0x0>
-5: curr->type = <error: Cannot access memory at address 0x8>
---------------------------
-1: num_pipes = 1
-2: pid = 82492
-3: i = 0
-4: curr->value = <error: Cannot access memory at address 0x0>
-5: curr->type = <error: Cannot access memory at address 0x8>
---------------------------
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x1a30: file src/100_main.c, line 18.
-Breakpoint 2 at 0x3759: file src/600_exec/exec_pipes.c, line 24.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x0000000000001a30 in main at src/100_main.c:18
-2       breakpoint     keep y   0x0000000000003759 in ft_handle_pipes at src/600_exec/exec_pipes.c:24
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:18
-Continuing.
-
-Breakpoint 2, ft_handle_pipes (shell=0x7fffffffe2f0) at src/600_exec/exec_pipes.c:24
-1: num_pipes = 0
-2: pid = -7440
-3: i = 0
-4: curr->value = <error: Cannot access memory at address 0x0>
-5: curr->type = <error: Cannot access memory at address 0x8>
---------------------------
-1: num_pipes = 1
-2: pid = -7440
-3: i = 0
-4: curr->value = <error: Cannot access memory at address 0x0>
-5: curr->type = <error: Cannot access memory at address 0x8>
---------------------------
-1: num_pipes = 1
-2: pid = -7440
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = -7440
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = -7440
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = -7440
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-[Detaching after fork from child process 83353]
-1: num_pipes = 1
-2: pid = 83353
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 83353
-3: i = 0
-4: curr->value = 0x55555559acd0 "ls"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 83353
-3: i = 0
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 83353
-3: i = 0
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 83353
-3: i = 1
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 83353
-3: i = 1
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-[Detaching after fork from child process 83357]
-1: num_pipes = 1
-2: pid = 83357
-3: i = 1
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 83357
-3: i = 1
-4: curr->value = 0x55555559acf0 "-al"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 83357
-3: i = 1
-4: curr->value = 0x55555559ab70 "|"
-5: curr->type = PIPE
---------------------------
-1: num_pipes = 1
-2: pid = 83357
-3: i = 1
-4: curr->value = 0x55555559ab70 "|"
-5: curr->type = PIPE
---------------------------
-1: num_pipes = 1
-2: pid = 83357
-3: i = 1
-4: curr->value = 0x55555559ac10 "wc"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 83357
-3: i = 2
-4: curr->value = 0x55555559ac10 "wc"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 83357
-3: i = 2
-4: curr->value = 0x55555559ac10 "wc"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 83357
-3: i = 2
-4: curr->value = 0x55555559ac10 "wc"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 83357
-3: i = 2
-4: curr->value = 0x55555559ac10 "wc"
-5: curr->type = WORD
---------------------------
-1: num_pipes = 1
-2: pid = 83357
-3: i = 2
-4: curr->value = 0x55555559ac10 "wc"
-5: curr->type = WORD
---------------------------
-Please answer y or n.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-Breakpoint 1 at 0x1a30: file src/100_main.c, line 18.
-Breakpoint 2 at 0x3fbb: file src/600_exec/exec_pipes.c, line 28.
-Focus set to cmd window.
-Num     Type           Disp Enb Address            What
-1       breakpoint     keep y   0x0000000000001a30 in main at src/100_main.c:18
-2       breakpoint     keep y   0x0000000000003fbb in ft_handle_pipes at src/600_exec/exec_pipes.c:28
-No watchpoints.
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:18
-Continuing.
-[Inferior 1 (process 8180) exited normally]
-Breakpoint 3 at 0x55555555739e: file src/520_errors_handler/syntax_validation.c, line 41.
-The program is not being run.
-Starting program: /home/miguel/Code/CommonCore/rank03/42_Minishell/minishell 
-[Thread debugging using libthread_db enabled]
-Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
-
-Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:18
-Continuing.
-
-Breakpoint 3, ft_validate_syntax (shell=0x7fffffffe2f0, tokens=0x5555555656c0) at src/520_errors_handler/syntax_validation.c:41
---------------------------
-1: current->value = 0x7fffffffe2a0 "\300\342\377\377\377\177"
-1: current->value = 0x55555559ad00 "env"
---------------------------
-1: current->value = 0x55555559ad00 "env"
---------------------------
-1: current->value = 0x55555559ad00 "env"
---------------------------
-1: current->value = 0x55555559ad00 "env"
---------------------------
-1: current->value = 0x55555559ad00 "env"
---------------------------
-1: current->value = 0x55555559ad00 "env"
---------------------------
-1: current->value = 0x55555559ad50 "|"
---------------------------
-1: current->value = 0x55555559ad50 "|"
---------------------------
-1: current->value = 0x55555559ad50 "|"
---------------------------
-ft_validate_pipe (shell=0x7fffffffe2f0, current=0x55555559ad20, prev=0x5555555656c0) at src/520_errors_handler/syntax_validation.c:95
-2: prev = (t_token *) 0x5555555656c0
-3: prev->value = 0x55555559ad00 "env"
-4: current->next = (struct s_token *) 0x55555559ad70
-5: current->next->value = 0x55555559ada0 "grep"
-2: prev = (t_token *) 0x5555555656c0
-3: prev->value = 0x55555559ad00 "env"
-4: current->next = (struct s_token *) 0x55555559ad70
-5: current->next->value = 0x55555559ada0 "grep"
---------------------------
-2: prev = (t_token *) 0x5555555656c0
-3: prev->value = 0x55555559ad00 "env"
-4: current->next = (struct s_token *) 0x55555559ad70
-5: current->next->value = 0x55555559ada0 "grep"
---------------------------
-ft_validate_syntax (shell=0x7fffffffe2f0, tokens=0x5555555656c0) at src/520_errors_handler/syntax_validation.c:57
-1: current->value = 0x55555559ad50 "|"
---------------------------
-1: current->value = 0x55555559ad50 "|"
---------------------------
-1: current->value = 0x55555559ada0 "grep"
---------------------------
-1: current->value = 0x55555559ada0 "grep"
---------------------------
-1: current->value = 0x55555559ada0 "grep"
---------------------------
-1: current->value = 0x55555559ada0 "grep"
---------------------------
-1: current->value = 0x55555559ada0 "grep"
---------------------------
-1: current->value = 0x55555559adf0 "PATH"
---------------------------
-1: current->value = 0x55555559adf0 "PATH"
---------------------------
-1: current->value = 0x55555559adf0 "PATH"
---------------------------
-1: current->value = 0x55555559adf0 "PATH"
---------------------------
-1: current->value = 0x55555559adf0 "PATH"
---------------------------
-1: current->value = <error: Cannot access memory at address 0x0>
---------------------------
-1: current->value = <error: Cannot access memory at address 0x0>
---------------------------
-1: current->value = <error: Cannot access memory at address 0x0>
---------------------------
-ft_validate_all_tokens (shell=0x7fffffffe2f0) at src/500_parsing/parsing.c:69
---------------------------
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
-warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
 Breakpoint 1 at 0x1a50: file src/100_main.c, line 35.
-Breakpoint 2 at 0x3fab: file src/600_exec/exec_pipes.c, line 28.
+Breakpoint 2 at 0x4950: file src/610_builtins/env.c, line 21.
 Focus set to cmd window.
 Num     Type           Disp Enb Address            What
 1       breakpoint     keep y   0x0000000000001a50 in main at src/100_main.c:35
-2       breakpoint     keep y   0x0000000000003fab in ft_handle_pipes at src/600_exec/exec_pipes.c:28
+2       breakpoint     keep y   0x0000000000004950 in ft_env at src/610_builtins/env.c:21
 No watchpoints.
 [Thread debugging using libthread_db enabled]
 Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
@@ -1746,9 +13,226 @@ warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libti
 
 Breakpoint 1, main (argc=1, argv=0x7fffffffe448, envp=0x7fffffffe458) at src/100_main.c:35
 Continuing.
-[Inferior 1 (process 35226) exited normally]
-Breakpoint 3 at 0x5555555587f8: file src/610_builtins/echo.c, line 20.
-The program is not being run.
+
+Breakpoint 2, ft_env (shell=0x7fffffffe2e0) at src/610_builtins/env.c:21
+--------------------------
+1: env[i] = 0x555555562460 "MEMORY_PRESSURE_WRITE=c29tZSAyMDAwMDAgMjAwMDAwMAA="
+2: res = 0x555555559b87 <ft_handle_redirections+313> "\270"
+3: i = 0
+--------------------------
+1: env[i] = 0x555555562460 "MEMORY_PRESSURE_WRITE=c29tZSAyMDAwMDAgMjAwMDAwMAA="
+2: res = 0x0
+3: i = 0
+--------------------------
+1: env[i] = 0x555555562460 "MEMORY_PRESSURE_WRITE=c29tZSAyMDAwMDAgMjAwMDAwMAA="
+2: res = 0x0
+3: i = 0
+--------------------------
+1: env[i] = 0x555555562460 "MEMORY_PRESSURE_WRITE=c29tZSAyMDAwMDAgMjAwMDAwMAA="
+2: res = 0x0
+3: i = 0
+--------------------------
+1: env[i] = 0x555555562460 "MEMORY_PRESSURE_WRITE=c29tZSAyMDAwMDAgMjAwMDAwMAA="
+2: res = 0x0
+3: i = 0
+--------------------------
+1: env[i] = 0x5555555624a0 "GNOME_SHELL_SESSION_MODE=ubuntu"
+2: res = 0x0
+3: i = 1
+--------------------------
+1: env[i] = 0x5555555624a0 "GNOME_SHELL_SESSION_MODE=ubuntu"
+2: res = 0x0
+3: i = 1
+--------------------------
+1: env[i] = 0x5555555624a0 "GNOME_SHELL_SESSION_MODE=ubuntu"
+2: res = 0x0
+3: i = 1
+--------------------------
+1: env[i] = 0x5555555624a0 "GNOME_SHELL_SESSION_MODE=ubuntu"
+2: res = 0x0
+3: i = 1
+--------------------------
+1: env[i] = 0x5555555624d0 "WINDOWPATH=2"
+2: res = 0x0
+3: i = 2
+--------------------------
+Not confirmed.
+1: env[i] = 0x5555555624d0 "WINDOWPATH=2"
+2: res = 0x0
+3: i = 2
+--------------------------
+1: env[i] = 0x5555555624d0 "WINDOWPATH=2"
+2: res = 0x0
+3: i = 2
+--------------------------
+1: env[i] = 0x5555555624d0 "WINDOWPATH=2"
+2: res = 0x0
+3: i = 2
+--------------------------
+1: env[i] = 0x5555555624f0 "QT_ACCESSIBILITY=1"
+2: res = 0x0
+3: i = 3
+--------------------------
+1: env[i] = 0x5555555624f0 "QT_ACCESSIBILITY=1"
+2: res = 0x0
+3: i = 3
+--------------------------
+1: env[i] = 0x5555555624f0 "QT_ACCESSIBILITY=1"
+2: res = 0x0
+3: i = 3
+--------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x1a70: file src/100_main.c, line 35.
+Breakpoint 2 at 0x4970: file src/610_builtins/env.c, line 21.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x0000000000001a70 in main at src/100_main.c:35
+2       breakpoint     keep y   0x0000000000004970 in ft_env at src/610_builtins/env.c:21
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe448, envp=0x7fffffffe458) at src/100_main.c:35
+Breakpoint 3 at 0x555555558a81: file src/610_builtins/export.c, line 33.
+Continuing.
+
+Breakpoint 3, ft_export (shell=0x7fffffffe2e0) at src/610_builtins/export.c:33
+--------------------------
+1: curr->value = 0x55555559bd70 "export"
+1: curr->value = 0x55555559bd70 "export"
+--------------------------
+1: curr->value = 0x55555559bd70 "export"
+--------------------------
+1: curr->value = 0x55555559bd70 "export"
+--------------------------
+1: curr->value = 0x55555559bd70 "export"
+--------------------------
+1: curr->value = 0x55555559bd00 ".l.ola"
+--------------------------
+1: curr->value = 0x55555559bd00 ".l.ola"
+--------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x1a70: file src/100_main.c, line 35.
+Breakpoint 2 at 0x4970: file src/610_builtins/env.c, line 21.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x0000000000001a70 in main at src/100_main.c:35
+2       breakpoint     keep y   0x0000000000004970 in ft_env at src/610_builtins/env.c:21
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe448, envp=0x7fffffffe458) at src/100_main.c:35
+Breakpoint 3 at 0x555555558a81: file src/610_builtins/export.c, line 33.
+Continuing.
+
+Breakpoint 3, ft_export (shell=0x7fffffffe2e0) at src/610_builtins/export.c:33
+--------------------------
+--------------------------
+--------------------------
+1: curr->value = 0x55555559bd60 "ola+=ola"
+1: curr->value = 0x55555559bd60 "ola+=ola"
+--------------------------
+ft_handle_export_args (shell=0x7fffffffe2e0, arg=0x55555559bd60 "ola+=ola") at src/610_builtins/export.c:62
+2: eq_sign = 0x55555559bdc0 "\233UUU\005"
+3: plus_sign = 0x55555559bd60 "ola+=ola"
+4: var = 0x0
+5: value = 0x35559bd70 <error: Cannot access memory at address 0x35559bd70>
+2: eq_sign = 0x55555559bd64 "=ola"
+3: plus_sign = 0x55555559bd60 "ola+=ola"
+4: var = 0x0
+5: value = 0x35559bd70 <error: Cannot access memory at address 0x35559bd70>
+--------------------------
+2: eq_sign = 0x55555559bd64 "=ola"
+3: plus_sign = 0x55555559bd63 "+=ola"
+4: var = 0x0
+5: value = 0x35559bd70 <error: Cannot access memory at address 0x35559bd70>
+--------------------------
+2: eq_sign = 0x55555559bd64 "=ola"
+3: plus_sign = 0x55555559bd63 "+=ola"
+4: var = 0x0
+5: value = 0x35559bd70 <error: Cannot access memory at address 0x35559bd70>
+--------------------------
+2: eq_sign = 0x55555559bd64 "=ola"
+3: plus_sign = 0x55555559bd63 "+=ola"
+4: var = 0x55555559bd80 "ola"
+5: value = 0x35559bd70 <error: Cannot access memory at address 0x35559bd70>
+--------------------------
+2: eq_sign = 0x55555559bd64 "=ola"
+3: plus_sign = 0x55555559bd63 "+=ola"
+4: var = 0x55555559bd80 "ola"
+5: value = 0x55555559bd65 "ola"
+--------------------------
+ft_append_to_var (shell=0x7fffffffe2e0, var=0x55555559bd80 "ola", new_value=0x55555559bd65 "ola") at src/610_builtins/export.c:108
+6: var_index = 0
+7: old_value = 0x55555559bd60 "ola+=ola"
+8: full_value = 0x8 <error: Cannot access memory at address 0x8>
+9: new_var = 0x55555559bd80 "ola"
+6: var_index = -1
+7: old_value = 0x55555559bd60 "ola+=ola"
+8: full_value = 0x8 <error: Cannot access memory at address 0x8>
+9: new_var = 0x55555559bd80 "ola"
+--------------------------
+6: var_index = -1
+7: old_value = 0x0
+8: full_value = 0x8 <error: Cannot access memory at address 0x8>
+9: new_var = 0x55555559bd80 "ola"
+--------------------------
+6: var_index = -1
+7: old_value = 0x0
+8: full_value = 0x0
+9: new_var = 0x55555559bd80 "ola"
+--------------------------
+10: new_value = 0x55555559bd65 "ola"
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x1a90: file src/100_main.c, line 35.
+Breakpoint 2 at 0x4990: file src/610_builtins/env.c, line 21.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x0000000000001a90 in main at src/100_main.c:35
+2       breakpoint     keep y   0x0000000000004990 in ft_env at src/610_builtins/env.c:21
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe448, envp=0x7fffffffe458) at src/100_main.c:35
+Breakpoint 3 at 0x555555558aa1: file src/610_builtins/export.c, line 33.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x1a90: file src/100_main.c, line 35.
+Breakpoint 2 at 0x4990: file src/610_builtins/env.c, line 21.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x0000000000001a90 in main at src/100_main.c:35
+2       breakpoint     keep y   0x0000000000004990 in ft_env at src/610_builtins/env.c:21
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe448, envp=0x7fffffffe458) at src/100_main.c:35
+Continuing.
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7cadd55 in __GI___libc_free (mem=0x1c1) at ./malloc/malloc.c:3375
+#0  0x00007ffff7cadd55 in __GI___libc_free (mem=0x1c1) at ./malloc/malloc.c:3375
+#1  0x000055555555accc in ft_free (ptr=0x1c1) at src/800_clean/free.c:25
+#2  0x0000555555558daf in ft_append_to_var (shell=0x7fffffffe2e0, var=0x55555559bde0 "ola", new_value=0x55555559bdc5 "hello") at src/610_builtins/export.c:115
+#3  0x0000555555558bbe in ft_handle_export_args (shell=0x7fffffffe2e0, arg=0x55555559bdc0 "ola+=hello") at src/610_builtins/export.c:68
+#4  0x0000555555558b0c in ft_export (shell=0x7fffffffe2e0) at src/610_builtins/export.c:48
+#5  0x0000555555557e60 in ft_execute_command (shell=0x7fffffffe2e0, cmd=4) at src/600_exec/exec.c:98
+#6  0x0000555555557d79 in ft_handle_exec (shell=0x7fffffffe2e0, cmd=4) at src/600_exec/exec.c:66
+#7  0x0000555555557d04 in ft_exec (shell=0x7fffffffe2e0) at src/600_exec/exec.c:40
+#8  0x0000555555555bba in ft_process_input (shell=0x7fffffffe2e0) at src/100_main.c:79
+#9  0x0000555555555b57 in main (argc=1, argv=0x7fffffffe448, envp=0x7fffffffe458) at src/100_main.c:54
+Breakpoint 3 at 0x555555558cff: file src/610_builtins/export.c, line 108.
+Please answer y or n.
 Starting program: /home/miguel/Code/CommonCore/rank03/42_Minishell/minishell 
 [Thread debugging using libthread_db enabled]
 Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
@@ -1757,11 +241,42 @@ warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libti
 Breakpoint 1, main (argc=1, argv=0x7fffffffe448, envp=0x7fffffffe458) at src/100_main.c:35
 Continuing.
 
-Breakpoint 3, ft_echo (shell=0x7fffffffe2e0) at src/610_builtins/echo.c:20
+Breakpoint 3, ft_append_to_var (shell=0x7fffffffe2e0, var=0x55555559bd50 "ola", new_value=0x55555559bd05 "hello") at src/610_builtins/export.c:108
+--------------------------
+1: old_value = 0x55555559bd00 "ola+=hello"
+1: old_value = 0x0
+--------------------------
+1: old_value = 0x0
+--------------------------
+1: old_value = 0x0
+--------------------------
+1: old_value = 0x0
+--------------------------
+$1 = 0x55555559bd05 "hello"
+1: old_value = 0x0
+--------------------------
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7cadd55 in __GI___libc_free (mem=0x1c1) at ./malloc/malloc.c:3375
+--------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x1a70: file src/100_main.c, line 35.
+Breakpoint 2 at 0x4970: file src/610_builtins/env.c, line 21.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x0000000000001a70 in main at src/100_main.c:35
+2       breakpoint     keep y   0x0000000000004970 in ft_env at src/610_builtins/env.c:21
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe448, envp=0x7fffffffe458) at src/100_main.c:35
+Breakpoint 3 at 0x555555558cdf: file src/610_builtins/export.c, line 108.
 Continuing.
 
-Breakpoint 3, ft_echo (shell=0x7fffffffe2e0) at src/610_builtins/echo.c:20
---------------------------
---------------------------
---------------------------
+Breakpoint 3, ft_append_to_var (shell=0x7fffffffe2e0, var=0x55555559bd50 "ola", new_value=0x55555559bd05 "hello") at src/610_builtins/export.c:108
+1: var_index = 0
+1: var_index = -1
 --------------------------

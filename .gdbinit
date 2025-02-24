@@ -20,17 +20,24 @@ set logging file gdb.txt
 # Load the program
 file minishell
 
-define ft_handle_pipes
-	disp num_pipes
-	disp pid
+# define ft_handle_pipes
+# 	disp num_pipes
+# 	disp pid
+# 	disp i
+# 	disp curr->value
+# 	disp curr->type
+# end
+
+define ft_env
+	disp env[i]
+	disp res
 	disp i
-	disp curr->value
-	disp curr->type
 end
+
 
 # Set breakpoints
 break main
-break ft_handle_pipes
+break ft_env
 fs cmd
 # break ft_export
 # break ft_set_var_value
