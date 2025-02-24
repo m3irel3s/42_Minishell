@@ -6,32 +6,43 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:15:01 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 11:06:17 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/24 09:40:33 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-static void	ft_remove_var_update_env(t_shell *shell, char *var);
+static t_status	ft_remove_var_update_env(t_shell *shell, char *var);
+static t_status	ft_is_valid_var_name(char *var);
 
 void	ft_unset(t_shell *shell)
 {
-	t_token	*curr;
+	t_token		*curr;
+	t_status	status;
 
 	curr = shell->tokens;
+	status = SUCCESS;
 	if (!curr->next)
 		return ;
 	while (curr->next)
 	{
 		curr = curr->next;
-		if (!(ft_get_var_index(curr->value, shell->env_cpy) == -1))
-			ft_remove_var_update_env(shell, curr->value);
-		else
-			continue ;
+		if (ft_is_valid_var_name(curr->value) == ERROR)
+		{
+			ft_print_error(ft_format_error(ERR_UNSET_INVALID_IDENTIFIER,
+				curr->value));
+			status = ERROR;
+		}
+		else if (ft_get_var_index(curr->value, shell->env_cpy) != -1)
+		{
+			if (ft_remove_var_update_env(shell, curr->value) == ERROR)
+				status = ERROR;
+		}
 	}
+	g_exit_status = status;
 }
 
-static void	ft_remove_var_update_env(t_shell *shell, char *var)
+static t_status	ft_remove_var_update_env(t_shell *shell, char *var)
 {
 	char	**new_env;
 	int		var_index;
@@ -42,14 +53,40 @@ static void	ft_remove_var_update_env(t_shell *shell, char *var)
 	j = 0;
 	var_index = ft_get_var_index(var, shell->env_cpy);
 	new_env = ft_safe_malloc(sizeof(char *) * (ft_get_env_size(shell)));
+	if (!new_env)
+		return (ERROR);
 	while (shell->env_cpy[i])
 	{
 		if (i != var_index)
-			new_env[j++] = ft_safe_strdup(shell->env_cpy[i]);
+		{
+			new_env[j] = ft_safe_strdup(shell->env_cpy[i]);
+			if (!new_env[j++])
+			{
+				ft_free_arr(new_env);
+				return (ERROR);
+			}
+		}
 		i++;
 	}
 	new_env[j] = NULL;
 	ft_free_arr(shell->env_cpy);
 	shell->env_cpy = ft_duplicate_env(new_env);
 	ft_free_arr(new_env);
+	return (SUCCESS);
+}
+
+static t_status	ft_is_valid_var_name(char *var)
+{
+	int	i;
+
+	if (!var || !*var || ft_isdigit(*var))
+		return (ERROR);
+	i = 0;
+	while (var[i])
+	{
+		if (!ft_isalnum(var[i]) && var[i] != '_')
+			return (ERROR);
+		i++;
+	}
+	return (SUCCESS);
 }

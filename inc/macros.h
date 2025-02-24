@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 09:26:30 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/24 09:41:08 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,8 @@
 #define ERR_FORK_FAIL "minishell: fork failed\n"
 # define ERR_EXPORT_INVALID_IDENTIFIER \
     "export: `%s': not a valid identifier\n"
-
+# define ERR_UNSET_INVALID_IDENTIFIER \
+    "unset: `%s': not a valid identifier\n"
 
 
 #endif
