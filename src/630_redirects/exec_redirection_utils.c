@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:11:23 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 16:46:11 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/24 08:57:21 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,6 @@ static t_status	ft_create_and_add_redirect(t_token *token, t_shell *shell,
 		shell->redirects = redirect;
 	else
 		(*last_redirect)->next = redirect;
-		(*last_redirect) = redirect;
+	(*last_redirect) = redirect;
 	return (SUCCESS);
 }
-
