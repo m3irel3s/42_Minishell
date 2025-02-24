@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 11:17:07 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/24 14:53:20 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ static void	ft_handle_export_oper(t_shell *shell, char *arg, char *eq_sign, char
 {
 	char	*var;
 	char	*value;
-	
+
+	var = NULL;
 	if (plus_sign && eq_sign && plus_sign + 1 == eq_sign)
 	{
 		var = ft_substr(arg, 0, plus_sign - arg);
@@ -84,17 +85,18 @@ static void	ft_handle_export_oper(t_shell *shell, char *arg, char *eq_sign, char
 	{
 		var = ft_substr(arg, 0, eq_sign - arg);
 		value = eq_sign + 1;
-		ft_update_or_add_var(var, value, shell);
+		ft_update_or_add_var(var, value, shell, 0);
 	}
 	else if (ft_get_var_index(arg, shell->env_cpy) == -1)
 	{
 		var = ft_safe_strdup(arg);
 		value = "";
-		ft_update_or_add_var(var, value, shell);
+		ft_update_or_add_var(var, value, shell, -1);
 	}
+	ft_free(var);
 }
 
-void	ft_add_var_to_env(t_shell *shell, char *var, char *value)
+void	ft_add_var_to_env(t_shell *shell, char *var, char *value, int sign)
 {
 	char	**new_env;
 	int		new_size;
@@ -115,7 +117,7 @@ void	ft_add_var_to_env(t_shell *shell, char *var, char *value)
 		}
 		i++;
 	}
-	new_env[i] = ft_update_var(var, value);
+	new_env[i] = ft_update_var(var, value, sign);
 	new_env[i + 1] = NULL;
 	ft_free_arr(shell->env_cpy);
 	shell->env_cpy = new_env;
@@ -131,14 +133,15 @@ static void	ft_append_to_var(t_shell *shell, char *var, char *new_value)
 	var_index = ft_get_var_index(var, shell->env_cpy);
 	if (var_index == -1)
 	{
-		ft_update_or_add_var(var, new_value, shell);
+		ft_update_or_add_var(var, new_value, shell, 0);
 		return ;
 	}
 	old_value = ft_get_var_value(var, shell->env_cpy);
 	full_value = ft_safe_strjoin(old_value, new_value, 0);
-	new_var = ft_update_var(var, full_value);
+	new_var = ft_update_var(var, full_value, 0);
 	ft_free(shell->env_cpy[var_index]);
 	shell->env_cpy[var_index] = new_var;
+	ft_free(full_value);
 }
 
 

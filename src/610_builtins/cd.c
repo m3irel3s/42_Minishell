@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 13:13:59 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 09:10:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/24 14:08:02 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ static int	ft_update_pwd(t_shell *shell, char *old_path)
 		ft_print_error(ERR_GET_CWD_FAIL);
 		return (EXIT_FAILURE);
 	}
-	ft_update_or_add_var("OLDPWD", old_path, shell);
-	ft_update_or_add_var("PWD", new_path, shell);
+	ft_update_or_add_var("OLDPWD", old_path, shell, 0);
+	ft_update_or_add_var("PWD", new_path, shell, 0);
 	ft_free(new_path);
 	return (EXIT_SUCCESS);
 }

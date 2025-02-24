@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_print.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:56:02 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/20 12:09:57 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/24 14:12:26 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	ft_output_export(char **export)
 	char	*res;
 	char	*var;
 	char	*value;
+	char	*eq_sign;
 	int		i;
 
 	i = 0;
@@ -68,7 +69,13 @@ void	ft_output_export(char **export)
 		res = export[i];
 		var = ft_get_var_name(res);
 		value = ft_get_var_value(var, export);
-		ft_printf(1, "declare - x %s=\"%s\"\n", var, value);
+		eq_sign = ft_strchr(export[i], '=');
+		if (eq_sign && ft_strcmp(value, "") == 0)
+			ft_printf(1, "declare - x %s=""\n", var);
+		else if (ft_strcmp(value, "") == 0)
+			ft_printf(1, "declare - x %s\n", var);
+		else
+			ft_printf(1, "declare - x %s=\"%s\"\n", var, value);
 		ft_free(var);
 		i++;
 	}
