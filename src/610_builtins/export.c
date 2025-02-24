@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 10:32:31 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/24 11:17:07 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static int	ft_process_export_variable(t_shell *shell, char *arg);
 
 static void	ft_append_to_var(t_shell *shell, char *var, char *new_value);
 static int	ft_process_export_variable(t_shell *shell, char *arg);
+static void		ft_handle_export_oper(t_shell *shell, char *arg, char *eq_sign, char *plus_sign);
+
 
 void	ft_export(t_shell *shell)
 {
@@ -48,11 +50,10 @@ void	ft_export(t_shell *shell)
 
 static int	ft_process_export_variable(t_shell *shell, char *arg)
 {
-	char	*var;
-	char	*value;
-	char	*eq_sign;
 	char	*error_msg;
+	char	*eq_sign;
 	char	*plus_sign;
+	char	*var;
 
 	eq_sign = ft_strchr(arg, '=');
 	plus_sign = ft_strchr(arg, '+');
@@ -61,6 +62,18 @@ static int	ft_process_export_variable(t_shell *shell, char *arg)
 		error_msg = ft_format_error(ERR_EXPORT_INVALID_IDENTIFIER, arg);
 		return (ft_print_error(error_msg), ft_free(error_msg), EXIT_FAILURE);
 	}
+	ft_handle_export_oper(shell, arg, eq_sign, plus_sign);
+	var = ft_get_var_name(arg);
+	if (!var)
+		return (EXIT_FAILURE);
+	return (ft_free(var), EXIT_SUCCESS);
+}
+
+static void	ft_handle_export_oper(t_shell *shell, char *arg, char *eq_sign, char *plus_sign)
+{
+	char	*var;
+	char	*value;
+	
 	if (plus_sign && eq_sign && plus_sign + 1 == eq_sign)
 	{
 		var = ft_substr(arg, 0, plus_sign - arg);
@@ -73,16 +86,12 @@ static int	ft_process_export_variable(t_shell *shell, char *arg)
 		value = eq_sign + 1;
 		ft_update_or_add_var(var, value, shell);
 	}
-	else
+	else if (ft_get_var_index(arg, shell->env_cpy) == -1)
 	{
 		var = ft_safe_strdup(arg);
 		value = "";
 		ft_update_or_add_var(var, value, shell);
 	}
-	var = ft_get_var_name(arg);
-	if (!var)
-		return (EXIT_FAILURE);
-	return (ft_free(var), EXIT_SUCCESS);
 }
 
 void	ft_add_var_to_env(t_shell *shell, char *var, char *value)
