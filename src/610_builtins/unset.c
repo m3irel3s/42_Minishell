@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:15:01 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 09:43:26 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:32:13 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void	ft_unset(t_shell *shell)
 		curr = curr->next;
 		if (ft_is_valid_var_name(curr->value) == ERROR)
 		{
-			ft_print_error(ft_format_error(ERR_UNSET_INVALID_IDENTIFIER,
-				curr->value));
 			status = EXIT_FAILURE;
 		}
 		else if (ft_get_var_index(curr->value, shell->env_cpy) != -1)

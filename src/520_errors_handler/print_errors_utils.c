@@ -12,7 +12,7 @@
 
 #include "../../inc/minishell.h"
 
-char	*ft_format_error(char *err, const char *file)
+/* char	*ft_format_error(char *err, const char *file)
 {
 	char	*formatted;
 	size_t	total_len;
@@ -28,7 +28,7 @@ char	*ft_format_error(char *err, const char *file)
 	ft_strlcat(formatted, ": ", total_len);
 	ft_strlcat(formatted, file, total_len);
 	return (formatted);
-}
+} */
 
 t_status	ft_print_error_w_arg(char *error_msg, char *arg)
 {

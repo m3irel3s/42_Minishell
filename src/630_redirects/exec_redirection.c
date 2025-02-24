@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_redirection.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:45:07 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 17:19:17 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:32:09 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,11 @@ static t_status	ft_redirect_in(t_redirect *redirect)
 	if (fd == -1)
 	{
 		if (errno == ENOENT)
-			return (ft_print_error(ft_format_error(ERR_REDIR_NO_FILE,
-						redirect->filename)));
+			return(ft_print_error_w_arg(ERR_REDIR_NO_FILE, redirect->filename));
 		else if (errno == EACCES)
-			return (ft_print_error(ft_format_error(ERR_REDIR_PERM_DENIED,
-						redirect->filename)));
+			return(ft_print_error_w_arg(ERR_REDIR_PERM_DENIED, redirect->filename));
 		else
-			return (ft_print_error(ft_format_error(ERR_REDIR_OPEN_FAIL,
-						redirect->filename)));
+			return(ft_print_error_w_arg(ERR_REDIR_OPEN_FAIL, redirect->filename));
 	}
 	if (dup2(fd, STDIN_FILENO) == -1)
 	{
@@ -93,14 +90,11 @@ static t_status	ft_redirect_out(t_redirect *redirect)
 	if (fd == -1)
 	{
 		if (errno == EACCES)
-			return (ft_print_error(ft_format_error(ERR_REDIR_PERM_DENIED,
-						redirect->filename)));
+			return(ft_print_error_w_arg(ERR_REDIR_PERM_DENIED, redirect->filename));
 		else if (errno == EISDIR)
-			return (ft_print_error(ft_format_error(ERR_REDIR_IS_DIR,
-						redirect->filename)));
+			return(ft_print_error_w_arg(ERR_REDIR_IS_DIR, redirect->filename));
 		else
-			return (ft_print_error(ft_format_error(ERR_REDIR_OPEN_FAIL,
-						redirect->filename)));
+			return(ft_print_error_w_arg(ERR_REDIR_OPEN_FAIL, redirect->filename));
 	}
 	if (dup2(fd, STDOUT_FILENO) == -1)
 	{
@@ -119,14 +113,11 @@ static t_status	ft_redirect_append(t_redirect *redirect)
 	if (fd == -1)
 	{
 		if (errno == EACCES)
-			return (ft_print_error(ft_format_error(ERR_REDIR_PERM_DENIED,
-						redirect->filename)));
+			return(ft_print_error_w_arg(ERR_REDIR_PERM_DENIED, redirect->filename));
 		else if (errno == EISDIR)
-			return (ft_print_error(ft_format_error(ERR_REDIR_IS_DIR,
-						redirect->filename)));
+			return(ft_print_error_w_arg(ERR_REDIR_IS_DIR, redirect->filename));
 		else
-			return (ft_print_error(ft_format_error(ERR_REDIR_OPEN_FAIL,
-						redirect->filename)));
+			return(ft_print_error_w_arg(ERR_REDIR_OPEN_FAIL, redirect->filename));
 	}
 	if (dup2(fd, STDOUT_FILENO) == -1)
 	{

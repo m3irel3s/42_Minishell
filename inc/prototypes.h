@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 16:06:41 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:32:11 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ t_status		ft_print_error_fatal_signal(char *error_msg,
 					int signal_number);
 
 /* 520_errors_handler/print_errors_utils.c */
-char			*ft_format_error(char *err, const char *file);
+// char			*ft_format_error(char *err, const char *file);
 t_status		ft_print_error_w_arg(char *error_msg, char *arg);
 
 //============================================================================//
