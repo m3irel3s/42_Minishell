@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/25 10:25:27 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:18:12 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,14 @@ void	ft_exec(t_shell *shell)
 	t_cmd_type	cmd;
 
 	curr = shell->tokens;
-	if (!curr || !curr->value)
+	if (!curr)
 		return ;
+	if (!curr->val.value)
+	{
+		if (ft_strncmp(curr->val.og_value, "\"\"", ft_strlen(curr->val.og_value)) || ft_strncmp(curr->val.og_value, "\'\'", ft_strlen(curr->val.og_value)))
+			ft_print_command_not_found_error("");
+		return ;
+	}
 	ft_create_redirection_list(shell);
 	// t_redirect	*redirects = shell->redirects;
 	// while (redirects)
@@ -45,7 +51,7 @@ void	ft_exec(t_shell *shell)
 	// t_token		*tokens = shell->tokens;
 	// while (tokens)
 	// {
-	// 	printf("value: %s\n", tokens->value);
+	// 	printf("value: %s\n", tokens->val.value);
 	// 	printf("type: %d\n", tokens->type);
 	// 	printf("quoted: %d\n", tokens->quoted);
 	// 	tokens = tokens->next;
@@ -55,7 +61,7 @@ void	ft_exec(t_shell *shell)
 		ft_handle_pipes(shell);
 		return ;
 	}
-	cmd = ft_get_cmd_type(curr->value);
+	cmd = ft_get_cmd_type(curr->val.value);
 	ft_handle_exec(shell, cmd);
 }
 
@@ -104,7 +110,7 @@ static void	ft_handle_exec(t_shell *shell, int cmd)
 void	ft_execute_command(t_shell *shell, t_cmd_type cmd)
 {
 	if (cmd == CMD_EXEC)
-		ft_execute_cmd(shell, shell->tokens->value);
+		ft_execute_cmd(shell, shell->tokens->val.value);
 	else if (cmd == CMD_AUTHORS)
 		ft_authors();
 	else if (cmd == CMD_ECHO)

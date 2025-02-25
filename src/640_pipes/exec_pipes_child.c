@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:00:00 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 21:49:28 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/25 16:57:47 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_execute_child(t_shell *shell, t_token *curr_cmd, int i, t_pipe *pipes, i
 	if (!cmd_copy)
 		exit(EXIT_FAILURE);
 	shell->tokens = cmd_copy;
-	ft_execute_command(shell, ft_get_cmd_type(shell->tokens->value));
+	ft_execute_command(shell, ft_get_cmd_type(shell->tokens->val.value));
 	ft_free_token(cmd_copy);
 	exit(g_exit_status);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:22:57 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 16:56:05 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:18:48 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	ft_echo_handler(t_token *curr, bool add_new_line)
 	}
 	while (curr)
 	{
-		ft_printf(STDOUT_FILENO, "%s", curr->value);
+		ft_printf(STDOUT_FILENO, "%s", curr->val.value);
 		curr = curr->next;
 		if (curr)
 			ft_printf(STDOUT_FILENO, " ");

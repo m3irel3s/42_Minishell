@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:17:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/24 12:26:05 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/25 16:57:47 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	ft_free_token(t_token *token)
 {
 	if (token)
 	{
-		ft_free(token->value);
+		ft_free(token->val.value);
+		ft_free(token->val.og_value);
 		ft_free(token);
 	}
 }
@@ -62,7 +63,7 @@ void	ft_free_tokens(t_token **tokens)
 	while (current)
 	{
 		next = current->next;
-		ft_free(current->value);
+		ft_free(current->val.value);
 		ft_free(current);
 		current = next;
 	}
