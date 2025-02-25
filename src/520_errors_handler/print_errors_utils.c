@@ -1,20 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_errors_utils.c                               :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/21 15:21:02 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 17:01:40 by meferraz         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "../../inc/minishell.h"
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
 /*   ft_format_error.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: meferraz <meferraz@student.42porto.pt>       +#+  +:+       +#+        */
@@ -26,7 +12,7 @@
 
 #include "../../inc/minishell.h"
 
-char	*ft_format_error(char *err, const char *file)
+/* char	*ft_format_error(char *err, const char *file)
 {
 	char	*formatted;
 	size_t	total_len;
@@ -42,4 +28,11 @@ char	*ft_format_error(char *err, const char *file)
 	ft_strlcat(formatted, ": ", total_len);
 	ft_strlcat(formatted, file, total_len);
 	return (formatted);
+} */
+
+t_status	ft_print_error_w_arg(char *error_msg, char *arg)
+{
+	ft_printf(STDERR_FILENO, error_msg, arg);
+	g_exit_status = EXIT_FAILURE;
+	return (ERROR);
 }

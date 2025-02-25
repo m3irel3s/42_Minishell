@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variable_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:40:57 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 17:05:23 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/24 13:50:19 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ char	*ft_get_var_value(char *var, char **env)
 	while (env[i])
 	{
 		to_compare = ft_get_var_name(env[i]);
-		if (ft_strcmp(to_compare, var) == SUCCESS)
+		if (ft_strcmp(to_compare, var) == SUCCESS && ft_strchr(env[i], '='))
 			return (ft_free(to_compare), env[i] + ft_strlen(var) + 1);
 		i++;
 		ft_free(to_compare);
 	}
-	return (NULL);
+	return ("");
 }
 
 int	ft_get_var_index(char *var, char **env)

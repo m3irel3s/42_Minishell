@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 22:04:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/25 10:25:17 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ t_status		ft_print_error_invalid_exit_arg(char *error_msg);
 t_status		ft_print_error_fatal_signal(char *error_msg, int signal_number);
 
 /* 520_errors_handler/print_errors_utils.c */
-char			*ft_format_error(char *err, const char *file);
+// char			*ft_format_error(char *err, const char *file);
+t_status		ft_print_error_w_arg(char *error_msg, char *arg);
 
 //============================================================================//
 //                             VARIABLE EXPANSION                             //
@@ -170,7 +171,7 @@ void			ft_env(t_shell *shell);
 void			ft_pwd(void);
 /* 610_builtins/export.c */
 void			ft_export(t_shell *shell);
-void			ft_add_var_to_env(t_shell *shell, char *var, char *value);
+void			ft_add_var_to_env(t_shell *shell, char *var, char *value, int sign);
 /* 610_builtins/exit.c */
 void			ft_exit(t_shell *shell);
 void			ft_handle_eof(t_shell *shell);
@@ -198,8 +199,8 @@ char			*ft_get_var_value(char *var, char **env);
 int				ft_get_var_index(char *var, char **env);
 char			*ft_get_var_name(char *str);
 /* 700_utils_other/variable_utils_2.c */
-char			*ft_update_var(char *var, char *value);
-void			ft_update_or_add_var(char *var, char *value, t_shell *shell);
+char			*ft_update_var(char *var, char *value, int sign);
+void			ft_update_or_add_var(char *var, char *value, t_shell *shell, int sign);
 /* 611_builtins_utils/export_utils.c */
 int				ft_check_var_chars(char *var);
 
