@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:26:26 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/25 16:57:05 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:09:55 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_status	ft_create_and_add_token(t_shell *shell, char *value, size_t len, int qu
 		ft_free(new_token);
 		return (ft_print_error(ERR_TOKEN_CREATION_FAIL));
 	}
-	new_token->type = ft_determine_token_type(new_token->val.value, len);
+	new_token->type = ft_determine_token_type(new_token->val.og_value, new_token->val.value, len);
 	new_token->quoted = quoted;
 	new_token->next = NULL;
 	new_token->prev = NULL;
