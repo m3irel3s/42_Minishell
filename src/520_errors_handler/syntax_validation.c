@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:43:44 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 16:56:03 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/25 16:57:47 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,8 @@ static t_status	ft_validate_redirect(t_token *current)
 	if (!current->next)
 		return (ft_print_redirect_no_file_error());
 	if (current->next->type != WORD)
-		return (ft_print_syntax_error(current->next->value));
-	if (current->type == HEREDOC && ft_strlen(current->next->value) == 0)
+		return (ft_print_syntax_error(current->next->val.value));
+	if (current->type == HEREDOC && ft_strlen(current->next->val.value) == 0)
 		return (ft_print_heredoc_delim_error());
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 09:04:46 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/25 16:57:47 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ static void	ft_cleanup_tokens(t_shell *shell)
 	while (current)
 	{
 		next = current->next;
-		if (current->value)
-			ft_free(current->value);
+		if (current->val.value)
+			ft_free(current->val.value);
 		ft_free(current);
 		current = next;
 	}

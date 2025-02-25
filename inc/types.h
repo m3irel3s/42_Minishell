@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 20:57:01 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/25 14:07:19 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,15 @@ typedef struct s_pipe
 	int	write_fd;
 }	t_pipe;
 
-typedef struct s_token
+typedef struct s_token_val
 {
 	char			*value;
+	char			*og_value;
+}	t_token_val;
+
+typedef struct s_token
+{
+	t_token_val		val;
 	t_token_type	type;
 	int				quoted;
 	struct s_token	*next;

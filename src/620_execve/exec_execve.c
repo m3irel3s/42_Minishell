@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:34:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 22:20:35 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/25 16:57:47 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ char	**ft_create_arr_cmd(t_token *start_pos)
 	while (curr && curr->type != PIPE)
 	{
 		if (curr->type == WORD)
-			arr[i++] = ft_safe_strdup(curr->value);
+			arr[i++] = ft_safe_strdup(curr->val.value);
 		curr = curr->next;
 	}
 	arr[i] = NULL;
@@ -145,7 +145,7 @@ static t_status	ft_exec_child(t_shell *shell, char *path, char **arr)
 {
 	if (execve(path, arr, shell->env_cpy) == -1)
 	{
-		ft_print_command_not_found_error(shell->tokens->value);
+		ft_print_command_not_found_error(shell->tokens->val.value);
 		ft_cleanup_cmd_execution(path, arr);
 		exit(EXIT_FAILURE);
 	}

@@ -24,7 +24,7 @@ file minishell
 # 	disp num_pipes
 # 	disp pid
 # 	disp i
-# 	disp curr->value
+# 	disp curr->val.value
 # 	disp curr->type
 # end
 

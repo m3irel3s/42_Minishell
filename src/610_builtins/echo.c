@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:22:57 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 10:18:45 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/25 16:57:47 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ void	ft_echo(t_shell *shell)
 		g_exit_status = EXIT_SUCCESS;
 		return ;
 	}
-	while (curr && ft_echo_handle_flag(curr->value))
+	while (curr && ft_echo_handle_flag(curr->val.value))
 	{
 		add_new_line = false;
 		curr = curr->next;
 	}
 	while (curr)
 	{
-		ft_printf(STDOUT_FILENO, "%s", curr->value);
+		ft_printf(STDOUT_FILENO, "%s", curr->val.value);
 		curr = curr->next;
 		if (curr)
 			ft_printf(STDOUT_FILENO, " ");

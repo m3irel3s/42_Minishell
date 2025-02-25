@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 10:32:31 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/25 16:57:47 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_export(t_shell *shell)
 	while (curr->next)
 	{
 		curr = curr->next;
-		if (ft_process_export_variable(shell, curr->value) == EXIT_FAILURE)
+		if (ft_process_export_variable(shell, curr->val.value) == EXIT_FAILURE)
 			g_exit_status = EXIT_FAILURE;
 	}
 }

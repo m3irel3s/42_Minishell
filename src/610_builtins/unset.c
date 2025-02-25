@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:15:01 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 09:43:26 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/25 16:57:47 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ void	ft_unset(t_shell *shell)
 	while (curr->next)
 	{
 		curr = curr->next;
-		if (ft_is_valid_var_name(curr->value) == ERROR)
+		if (ft_is_valid_var_name(curr->val.value) == ERROR)
 		{
 			ft_print_error(ft_format_error(ERR_UNSET_INVALID_IDENTIFIER,
-				curr->value));
+				curr->val.value));
 			status = EXIT_FAILURE;
 		}
-		else if (ft_get_var_index(curr->value, shell->env_cpy) != -1)
+		else if (ft_get_var_index(curr->val.value, shell->env_cpy) != -1)
 		{
-			if (ft_remove_var_update_env(shell, curr->value) == ERROR)
+			if (ft_remove_var_update_env(shell, curr->val.value) == ERROR)
 				status = EXIT_FAILURE;
 		}
 	}
