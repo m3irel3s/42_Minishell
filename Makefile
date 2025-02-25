@@ -6,7 +6,7 @@
 #    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/24 10:36:15 by meferraz         ###   ########.fr        #
+#    Updated: 2025/02/24 21:28:22 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,12 +72,11 @@ SRCS = \
        ${SRC_PATH}/300_prompt/prompt_utils.c \
        ${SRC_PATH}/400_signals/signals.c \
        ${SRC_PATH}/500_parsing/parsing.c \
-       ${SRC_PATH}/510_tokenization/tokens.c \
-       ${SRC_PATH}/510_tokenization/tokens_handlers.c \
-       ${SRC_PATH}/510_tokenization/tokens_handlers_2.c \
-       ${SRC_PATH}/510_tokenization/tokens_helpers.c \
-       ${SRC_PATH}/510_tokenization/tokens_utils.c \
-       ${SRC_PATH}/510_tokenization/tokens_utils_2.c \
+       ${SRC_PATH}/510_tokenization/tokens_process.c \
+	   ${SRC_PATH}/510_tokenization/tokens_utils.c \
+	   ${SRC_PATH}/510_tokenization/tokens_utils_2.c \
+	   ${SRC_PATH}/510_tokenization/tokens_count.c \
+	   ${SRC_PATH}/510_tokenization/tokens_split.c \
        ${SRC_PATH}/520_errors_handler/syntax_validation.c \
        ${SRC_PATH}/520_errors_handler/print_errors_exit_failure.c \
        ${SRC_PATH}/520_errors_handler/print_errors_heredoc.c \
