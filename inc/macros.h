@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/25 10:25:10 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/25 10:28:23 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@
 #define ERR_FORK_FAIL "minishell: fork failed\n"
 # define ERR_EXPORT_INVALID_IDENTIFIER \
     "export: %s: not a valid identifier\n"
+# define ERR_WORD_COUNT_FAIL "minishell: Failed to count words in input\n"
 
 #endif
 

@@ -4109,3 +4109,512 @@ Note: breakpoint 3 also set at pc 0x405c8c.
 Breakpoint 4 at 0x405c8c: file src/630_redirects/exec_redirection.c, line 26.
 Continuing.
 [Inferior 1 (process 107653) exited normally]
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40182a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040182a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2d8, envp=0x7fffffffe2e8) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40182a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040182a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040182a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2d8, envp=0x7fffffffe2e8) at src/100_main.c:42
+Breakpoint 3 at 0x4031ec: file src/530_expansion/expand.c, line 187.
+Continuing.
+
+Breakpoint 3, ft_expand (shell=0x7fffffffe170) at src/530_expansion/expand.c:187
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+Breakpoint 4 at 0x403328: file src/530_expansion/expand.c, line 125.
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2d8, envp=0x7fffffffe2e8) at src/100_main.c:42
+Continuing.
+
+Breakpoint 3, ft_expand (shell=0x7fffffffe170) at src/530_expansion/expand.c:187
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+
+Breakpoint 4, ft_expand_token (shell=0x7fffffffe170, input=0x427f80 "echo \"$HOME\"", i=0x7fffffffe0f0, quote_state=0x7fffffffe0ec) at src/530_expansion/expand.c:125
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+1: input = 0x427f80 "echo \"$HOME\""
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+----------------------------------------------------
+2: *i = 3
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 3
+----------------------------------------------------
+3: i = (size_t *) 0x7fffffffe0f0
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 3
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 4
+----------------------------------------------------
+4: input[*i] = 32 ' '
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 4
+4: input[*i] = 32 ' '
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 4
+4: input[*i] = 32 ' '
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 4
+4: input[*i] = 32 ' '
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 4
+4: input[*i] = 32 ' '
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 4
+4: input[*i] = 32 ' '
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 5
+4: input[*i] = 34 '"'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 5
+4: input[*i] = 34 '"'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 5
+4: input[*i] = 34 '"'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 5
+4: input[*i] = 34 '"'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 5
+4: input[*i] = 34 '"'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 5
+4: input[*i] = 34 '"'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 6
+4: input[*i] = 36 '$'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 6
+4: input[*i] = 36 '$'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 6
+4: input[*i] = 36 '$'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 6
+4: input[*i] = 36 '$'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 6
+4: input[*i] = 36 '$'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 11
+4: input[*i] = 34 '"'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 11
+4: input[*i] = 34 '"'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 11
+4: input[*i] = 34 '"'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 12
+4: input[*i] = 0 '\000'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 12
+4: input[*i] = 0 '\000'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 12
+4: input[*i] = 0 '\000'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 12
+4: input[*i] = 0 '\000'
+----------------------------------------------------
+Breakpoint 5 at 0x403440: file src/530_expansion/expand.c, line 92.
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2d8, envp=0x7fffffffe2e8) at src/100_main.c:42
+Continuing.
+
+Breakpoint 3, ft_expand (shell=0x7fffffffe170) at src/530_expansion/expand.c:187
+Continuing.
+
+Breakpoint 4, ft_expand_token (shell=0x7fffffffe170, input=0x427f80 "echo \"$HOME\"", i=0x7fffffffe0f0, quote_state=0x7fffffffe0ec) at src/530_expansion/expand.c:125
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 0
+4: input[*i] = 101 'e'
+Continuing.
+
+Breakpoint 5, ft_handle_quotes (input=0x427f80 "echo \"$HOME\"", i=0x7fffffffe0f0, quote_state=0x7fffffffe0ec) at src/530_expansion/expand.c:92
+5: input[*i] = 101 'e'
+6: quote_state = (int *) 0x7fffffffe0ec
+5: input[*i] = 101 'e'
+6: quote_state = (int *) 0x7fffffffe0ec
+----------------------------------------------------
+5: input[*i] = 101 'e'
+6: quote_state = (int *) 0x7fffffffe0ec
+----------------------------------------------------
+ft_expand_token (shell=0x7fffffffe170, input=0x427f80 "echo \"$HOME\"", i=0x7fffffffe0f0, quote_state=0x7fffffffe0ec) at src/530_expansion/expand.c:132
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 0
+4: input[*i] = 101 'e'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 0
+4: input[*i] = 101 'e'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 0
+4: input[*i] = 101 'e'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 1
+4: input[*i] = 99 'c'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 1
+4: input[*i] = 99 'c'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 1
+4: input[*i] = 99 'c'
+----------------------------------------------------
+
+Breakpoint 5, ft_handle_quotes (input=0x427f80 "echo \"$HOME\"", i=0x7fffffffe0f0, quote_state=0x7fffffffe0ec) at src/530_expansion/expand.c:92
+5: input[*i] = 99 'c'
+6: quote_state = (int *) 0x7fffffffe0ec
+----------------------------------------------------
+5: input[*i] = 99 'c'
+6: quote_state = (int *) 0x7fffffffe0ec
+----------------------------------------------------
+5: input[*i] = 99 'c'
+6: quote_state = (int *) 0x7fffffffe0ec
+----------------------------------------------------
+ft_expand_token (shell=0x7fffffffe170, input=0x427f80 "echo \"$HOME\"", i=0x7fffffffe0f0, quote_state=0x7fffffffe0ec) at src/530_expansion/expand.c:132
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 1
+4: input[*i] = 99 'c'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 1
+4: input[*i] = 99 'c'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 1
+4: input[*i] = 99 'c'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 2
+4: input[*i] = 104 'h'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 2
+4: input[*i] = 104 'h'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 2
+4: input[*i] = 104 'h'
+----------------------------------------------------
+
+Breakpoint 5, ft_handle_quotes (input=0x427f80 "echo \"$HOME\"", i=0x7fffffffe0f0, quote_state=0x7fffffffe0ec) at src/530_expansion/expand.c:92
+5: input[*i] = 104 'h'
+6: quote_state = (int *) 0x7fffffffe0ec
+----------------------------------------------------
+5: input[*i] = 104 'h'
+6: quote_state = (int *) 0x7fffffffe0ec
+----------------------------------------------------
+5: input[*i] = 104 'h'
+6: quote_state = (int *) 0x7fffffffe0ec
+----------------------------------------------------
+ft_expand_token (shell=0x7fffffffe170, input=0x427f80 "echo \"$HOME\"", i=0x7fffffffe0f0, quote_state=0x7fffffffe0ec) at src/530_expansion/expand.c:132
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 2
+4: input[*i] = 104 'h'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 2
+4: input[*i] = 104 'h'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 2
+4: input[*i] = 104 'h'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 3
+4: input[*i] = 111 'o'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 3
+4: input[*i] = 111 'o'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 3
+4: input[*i] = 111 'o'
+----------------------------------------------------
+
+Breakpoint 5, ft_handle_quotes (input=0x427f80 "echo \"$HOME\"", i=0x7fffffffe0f0, quote_state=0x7fffffffe0ec) at src/530_expansion/expand.c:92
+5: input[*i] = 111 'o'
+6: quote_state = (int *) 0x7fffffffe0ec
+----------------------------------------------------
+5: input[*i] = 111 'o'
+6: quote_state = (int *) 0x7fffffffe0ec
+----------------------------------------------------
+5: input[*i] = 111 'o'
+6: quote_state = (int *) 0x7fffffffe0ec
+----------------------------------------------------
+ft_expand_token (shell=0x7fffffffe170, input=0x427f80 "echo \"$HOME\"", i=0x7fffffffe0f0, quote_state=0x7fffffffe0ec) at src/530_expansion/expand.c:132
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 3
+4: input[*i] = 111 'o'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 3
+4: input[*i] = 111 'o'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 3
+4: input[*i] = 111 'o'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 4
+4: input[*i] = 32 ' '
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 4
+4: input[*i] = 32 ' '
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 4
+4: input[*i] = 32 ' '
+----------------------------------------------------
+
+Breakpoint 5, ft_handle_quotes (input=0x427f80 "echo \"$HOME\"", i=0x7fffffffe0f0, quote_state=0x7fffffffe0ec) at src/530_expansion/expand.c:92
+5: input[*i] = 32 ' '
+6: quote_state = (int *) 0x7fffffffe0ec
+----------------------------------------------------
+5: input[*i] = 32 ' '
+6: quote_state = (int *) 0x7fffffffe0ec
+----------------------------------------------------
+5: input[*i] = 32 ' '
+6: quote_state = (int *) 0x7fffffffe0ec
+----------------------------------------------------
+ft_expand_token (shell=0x7fffffffe170, input=0x427f80 "echo \"$HOME\"", i=0x7fffffffe0f0, quote_state=0x7fffffffe0ec) at src/530_expansion/expand.c:132
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 4
+4: input[*i] = 32 ' '
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 4
+4: input[*i] = 32 ' '
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 4
+4: input[*i] = 32 ' '
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 5
+4: input[*i] = 34 '"'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 5
+4: input[*i] = 34 '"'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 5
+4: input[*i] = 34 '"'
+----------------------------------------------------
+
+Breakpoint 5, ft_handle_quotes (input=0x427f80 "echo \"$HOME\"", i=0x7fffffffe0f0, quote_state=0x7fffffffe0ec) at src/530_expansion/expand.c:92
+5: input[*i] = 34 '"'
+6: quote_state = (int *) 0x7fffffffe0ec
+----------------------------------------------------
+5: input[*i] = 34 '"'
+6: quote_state = (int *) 0x7fffffffe0ec
+----------------------------------------------------
+5: input[*i] = 34 '"'
+6: quote_state = (int *) 0x7fffffffe0ec
+----------------------------------------------------
+5: input[*i] = 34 '"'
+6: quote_state = (int *) 0x7fffffffe0ec
+----------------------------------------------------
+5: input[*i] = 34 '"'
+6: quote_state = (int *) 0x7fffffffe0ec
+----------------------------------------------------
+7: *quote_state = 2
+5: input[*i] = 34 '"'
+7: *quote_state = 2
+----------------------------------------------------
+ft_expand_token (shell=0x7fffffffe170, input=0x427f80 "echo \"$HOME\"", i=0x7fffffffe0f0, quote_state=0x7fffffffe0ec) at src/530_expansion/expand.c:132
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 5
+4: input[*i] = 34 '"'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 5
+4: input[*i] = 34 '"'
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 5
+4: input[*i] = 34 '"'
+----------------------------------------------------
+8: *quote_state = 2
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 6
+4: input[*i] = 36 '$'
+8: *quote_state = 2
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 6
+4: input[*i] = 36 '$'
+8: *quote_state = 2
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 6
+4: input[*i] = 36 '$'
+8: *quote_state = 2
+----------------------------------------------------
+
+Breakpoint 5, ft_handle_quotes (input=0x427f80 "echo \"$HOME\"", i=0x7fffffffe0f0, quote_state=0x7fffffffe0ec) at src/530_expansion/expand.c:92
+5: input[*i] = 36 '$'
+7: *quote_state = 2
+----------------------------------------------------
+5: input[*i] = 36 '$'
+7: *quote_state = 2
+----------------------------------------------------
+5: input[*i] = 36 '$'
+7: *quote_state = 2
+----------------------------------------------------
+ft_expand_token (shell=0x7fffffffe170, input=0x427f80 "echo \"$HOME\"", i=0x7fffffffe0f0, quote_state=0x7fffffffe0ec) at src/530_expansion/expand.c:132
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 6
+4: input[*i] = 36 '$'
+8: *quote_state = 2
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 6
+4: input[*i] = 36 '$'
+8: *quote_state = 2
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 11
+4: input[*i] = 34 '"'
+8: *quote_state = 2
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 11
+4: input[*i] = 34 '"'
+8: *quote_state = 2
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 11
+4: input[*i] = 34 '"'
+8: *quote_state = 2
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 12
+4: input[*i] = 0 '\000'
+8: *quote_state = 2
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 12
+4: input[*i] = 0 '\000'
+8: *quote_state = 2
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 12
+4: input[*i] = 0 '\000'
+8: *quote_state = 2
+----------------------------------------------------
+1: input = 0x427f80 "echo \"$HOME\""
+2: *i = 12
+4: input[*i] = 0 '\000'
+8: *quote_state = 2
+----------------------------------------------------
+ft_expand (shell=0x7fffffffe170) at src/530_expansion/expand.c:197
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+9: quote_state = 2
