@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 10:36:27 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/24 22:04:02 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,40 +51,27 @@ t_status		ft_parse_input(t_shell *shell);
 //============================================================================//
 //                              TOKENIZATION                                  //
 //============================================================================//
-/* 510_tokenization/tokens.c */
-t_status		ft_tokenize(t_shell *shell);
+/* src/510_tokenization/tokens_count.c */
+int				ft_count_words(char *input);
+t_status		ft_tokens_count(void);
+
+/* src/510_tokenization/tokens_split.c */
+char			**ft_split_input(char *input);
+t_status		ft_tokens_split(void);
+
+/* src/510_tokenization/tokens_process.c */
+t_status		ft_tokenize(t_shell *shell, char **split_input);
+t_status		ft_tokens_process(void);
 
 //============================================================================//
 //                              TOKEN UTILITIES                               //
 //============================================================================//
-/* 510_tokenization/tokens_utils.c */
+/* src/510_tokenization/tokens_utils.c */
 t_token_type	ft_determine_token_type(char *value, size_t len);
-/* 510_tokenization/tokens_utils_2.c */
-int				ft_create_and_add_token(t_shell *shell, size_t start,
-					size_t end, int quoted);
 
-//============================================================================//
-//                       TOKENIZATION - HELPERS FUNCTIONS                     //
-//============================================================================//
-/* 510_tokenization/tokens_helpers.c */
-int				ft_is_export_command(t_shell *shell, size_t i);
-t_status		ft_create_export_token(t_shell *shell, size_t *i,
-					int *is_export);
-
-//============================================================================//
-//                  TOKENIZATION - OPERATORS AND EXPORT ARGUMENTS             //
-//============================================================================//
-/* 510_tokenization/tokens_handlers.c */
-t_status		ft_handle_operator(t_shell *shell, size_t *i, int *is_export);
-/* 510_tokenization/tokens_handlers_2.c */
-t_status		ft_handle_export_arg(t_shell *shell, size_t *i);
-void			ft_reset_quote_info(t_quote_info *quote_info);
-
-//============================================================================//
-//                       TOKENIZATION - WORD PROCESSING                       //
-//============================================================================//
-/* 510_tokenization/tokens_word_handlers.c */
-t_status		ft_handle_word(t_shell *shell, size_t *i);
+/* src/510_tokenization/tokens_utils_2.c */
+t_status		ft_create_and_add_token(t_shell *shell, char *value,
+					size_t len, int quoted);
 
 //============================================================================//
 //                             ERROR HANDLING                                 //
@@ -94,8 +81,7 @@ t_status		ft_validate_syntax(t_token *token);
 
 /* 520_errors_handler/print_errors_exit_failure.c */
 t_status		ft_print_error(char *error_msg);
-t_status		ft_print_error_custom_status(char *error_msg,
-					int exit_status);
+t_status		ft_print_error_custom_status(char *error_msg, int exit_status);
 t_status		ft_print_syntax_error(char *token);
 t_status		ft_print_unmatched_quote_error(void);
 t_status		ft_print_redirect_no_file_error(void);
@@ -111,8 +97,7 @@ t_status		ft_print_error_misuse(char *error_msg);
 t_status		ft_print_error_invalid_exit_arg(char *error_msg);
 
 /* 520_errors_handler/print_errors_fatal_signal.c */
-t_status		ft_print_error_fatal_signal(char *error_msg,
-					int signal_number);
+t_status		ft_print_error_fatal_signal(char *error_msg, int signal_number);
 
 /* 520_errors_handler/print_errors_utils.c */
 char			*ft_format_error(char *err, const char *file);
@@ -123,6 +108,7 @@ char			*ft_format_error(char *err, const char *file);
 /* 530_expansion/expand.c */
 t_status		ft_expand(t_shell *shell);
 char			*ft_process_char(char *expanded_value, char c);
+
 /* 530_expansion/expand_handle_dollar.c */
 char			*ft_handle_dollar(t_shell *shell, char *token, size_t *i);
 
@@ -155,7 +141,8 @@ void			ft_cleanup_pipes(t_pipe *pipes, int num_pipes);
 void			ft_advance_to_next_cmd(t_token **curr_cmd);
 
 /* 640_pipes/exec_pipes_child.c */
-void			ft_execute_child(t_shell *shell, t_token *curr_cmd, int i, t_pipe *pipes, int num_pipes);
+void			ft_execute_child(t_shell *shell, t_token *curr_cmd, int i, \
+					t_pipe *pipes, int num_pipes);
 void			ft_setup_child_redirections(int i, t_pipe *pipes, int num_pipes);
 void			ft_close_child_pipes(t_pipe *pipes, int num_pipes);
 t_token			*ft_copy_tokens(t_token *start, t_token *end);
@@ -164,7 +151,7 @@ t_token			*ft_copy_tokens(t_token *start, t_token *end);
 //                         EXECUTION - REDIRECTIONS                           //
 //============================================================================//
 /* 630_redirects/exec_redirection.c */
-t_status		ft_handle_redirections(t_shell *shell);
+void			ft_handle_redirections(t_shell *shell);
 /* 630_redirects/exec_redirection_utils.c */
 t_status		ft_create_redirection_list(t_shell *shell);
 /* 630_redirects/exec_heredoc.c */
@@ -195,7 +182,7 @@ void			ft_print_export(t_shell *shell);
 void			ft_output_export(char **export);
 char			**ft_sort_export(char **export);
 
-/*611_builtins_utils/cd_and_pwd_utils.c*/
+/* 611_builtins_utils/cd_and_pwd_utils.c*/
 char			*ft_get_current_directory(void);
 
 /* 611_builtins_utils/env_utils.c */
@@ -205,7 +192,6 @@ int				ft_get_env_size(t_shell *shell);
 //============================================================================//
 //                       ENVIRONMENT VARIABLE UTILITIES                       //
 //============================================================================//
-
 /* 700_utils_other/variable_utils.c */
 int				ft_get_str_length(char *str1, char *str2);
 char			*ft_get_var_value(char *var, char **env);
@@ -234,11 +220,10 @@ bool			ft_is_command(char *value, size_t len);
 void			*ft_safe_malloc(size_t size);
 char			*ft_safe_readline(t_shell *shell);
 char			*ft_safe_strdup(char *s);
-char			*ft_safe_strjoin(char *s1, char *s2,
-	int free_s1);
+char			*ft_safe_strjoin(char *s1, char *s2, int free_s1);
 char			*ft_safe_substr(char *s, int start, int len);
-
 void			*ft_safe_realloc(void *old_ptr, size_t new_size);
+char			*ft_safe_strndup(const char *s1, size_t n);
 
 //============================================================================//
 //                                  CLEANUP                                   //
@@ -248,6 +233,7 @@ void			ft_cleanup(t_shell *shell);
 /* 800_clean/free.c */
 void			ft_free(void *ptr);
 void			ft_free_token(t_token *token);
+void			ft_free_tokens(t_token **tokens);
 void			ft_free_arr(char **arr);
 
 #endif

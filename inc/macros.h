@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 09:41:08 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/24 21:43:50 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,8 @@
     "export: `%s': not a valid identifier\n"
 # define ERR_UNSET_INVALID_IDENTIFIER \
     "unset: `%s': not a valid identifier\n"
+	#define ERR_PREPROCESS_FAIL "Preprocess failed"
+# define ERR_WORD_COUNT_FAIL "minishell: Failed to count words in input\n"
 
 
 #endif
