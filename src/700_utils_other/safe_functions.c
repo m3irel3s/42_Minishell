@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   safe_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 12:58:31 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/24 10:20:12 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/24 21:26:33 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
  *
  * @return A pointer to the allocated memory, or NULL if allocation fails.
  */
-
 void	*ft_safe_malloc(size_t size)
 {
 	void	*ptr;

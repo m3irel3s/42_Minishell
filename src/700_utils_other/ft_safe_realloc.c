@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 10:31:57 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/24 10:32:31 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/24 11:45:41 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,36 @@ void	*ft_safe_realloc(void *old_ptr, size_t new_size)
 	new_ptr[i] = '\0';
 	free(old_ptr);
 	return ((void *)new_ptr);
+}
+#include <stddef.h>
+
+size_t ft_strnlen(const char *s, size_t maxlen)
+{
+	size_t len = 0;
+
+	while (len < maxlen && s[len] != '\0')
+	{
+		len++;
+	}
+
+	return len;
+}
+
+char *ft_safe_strndup(const char *s1, size_t n)
+{
+	char *copy;
+	size_t len;
+
+	if (!s1)
+		return NULL;
+
+	len = ft_strnlen(s1, n);
+	copy = ft_safe_malloc(len + 1);
+	if (!copy)
+		return NULL;
+
+	ft_memcpy(copy, s1, len);
+	copy[len] = '\0';
+
+	return copy;
 }
