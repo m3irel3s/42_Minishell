@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_split.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:04:16 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/24 21:47:29 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/25 10:28:28 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

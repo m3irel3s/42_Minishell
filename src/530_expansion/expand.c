@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/25 11:16:32 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:29:33 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,28 +179,30 @@ static char *ft_expand_token(t_shell *shell, char *input, size_t *i, int *quote_
  * @return SUCCESS if the input is expanded successfully, or an error status if
  * there is a memory allocation failure or unmatched quotes.
  */
-t_status	ft_expand(t_shell *shell)
+t_status ft_expand(t_shell *shell)
 {
 	char *expanded_value;
+	char *new_expanded_value;
 	size_t i;
 	int quote_state;
 
+	quote_state = 0;
+	i = 0;
+	expanded_value = NULL;
+	new_expanded_value = NULL;
 	if (!shell || !shell->input)
 		return (ft_print_error(ERR_INVALID_SHELL_OR_INPUT));
-	expanded_value = ft_safe_strdup("");
-	if (!expanded_value)
-		return (ft_print_error(ERR_MALLOC_FAIL));
-	i = 0;
-	quote_state = 0;
 	while (shell->input[i])
 	{
-		expanded_value = ft_expand_token(shell, shell->input, &i, &quote_state);
-		if (!expanded_value)
-			return (ft_print_error(ERR_EXPANSION_FAIL));
+		new_expanded_value = ft_expand_token(shell, shell->input, &i, &quote_state);
+		if (!new_expanded_value)
+			return (ft_free(expanded_value), ft_print_error(ERR_EXPANSION_FAIL));
+		ft_free(expanded_value);
+		expanded_value = new_expanded_value;
 	}
 	if (quote_state != 0)
-		return (ft_print_error(ERR_SYNTAX_UNCLOSED_QUOTE));
-	free(shell->input);
+		return (ft_free(expanded_value), ft_print_error(ERR_SYNTAX_UNCLOSED_QUOTE));
+	ft_free(shell->input);
 	shell->input = expanded_value;
 	return (SUCCESS);
 }
