@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 22:04:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:03:11 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,7 @@ t_token			*ft_copy_tokens(t_token *start, t_token *end);
 /* 630_redirects/exec_redirection.c */
 void			ft_handle_redirections(t_shell *shell);
 /* 630_redirects/exec_redirection_utils.c */
-t_status		ft_create_redirection_list(t_shell *shell);
+void			ft_create_redirection_list(t_shell *shell);
 /* 630_redirects/exec_heredoc.c */
 t_status		ft_redirect_heredoc(t_shell *shell, t_redirect *redirect);
 
