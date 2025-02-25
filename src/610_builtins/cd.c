@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 13:13:59 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 14:08:02 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/24 17:14:17 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	ft_handle_cd_home(t_shell *shell, char *curr_path)
 	}
 	if (chdir(home_path) != 0)
 	{
-		ft_print_error(ERR_CD_FAIL);
+		ft_print_error_w_arg(ERR_CD_FAIL, shell->tokens->value);
 		return (EXIT_FAILURE);
 	}
 	return (ft_update_pwd(shell, curr_path));
@@ -70,7 +70,7 @@ static int	ft_handle_cd_oldpwd(t_shell *shell, char *curr_path)
 	}
 	if (chdir(old_pwd) != 0)
 	{
-		ft_print_error(ERR_CD_FAIL);
+		ft_print_error(ERR_OLDPWD_NOT_SET);
 		return (EXIT_FAILURE);
 	}
 	ft_printf(STDOUT_FILENO, "%s\n", old_pwd);
@@ -84,8 +84,7 @@ static int	ft_handle_cd_to_dir(t_shell *shell, t_token *curr, char *curr_path)
 	path = curr->next->value;
 	if (chdir(path) != 0)
 	{
-		ft_print_error(ERR_CD_FAIL);
-		ft_printf(STDERR_FILENO, "Path not found: %s\n", path);
+		ft_print_error_w_arg(ERR_CD_FAIL, path);
 		return (EXIT_FAILURE);
 	}
 	return (ft_update_pwd(shell, curr_path));

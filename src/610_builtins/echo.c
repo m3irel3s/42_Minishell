@@ -6,13 +6,13 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:22:57 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 10:18:45 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:56:05 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-#include <unistd.h>
 
+static void	ft_echo_handler(t_token *curr, bool add_new_line);
 static bool	ft_echo_handle_flag(char *str);
 
 void	ft_echo(t_shell *shell)
@@ -28,6 +28,11 @@ void	ft_echo(t_shell *shell)
 		g_exit_status = EXIT_SUCCESS;
 		return ;
 	}
+	ft_echo_handler(curr, add_new_line);
+}
+
+static void	ft_echo_handler(t_token *curr, bool add_new_line)
+{
 	while (curr && ft_echo_handle_flag(curr->value))
 	{
 		add_new_line = false;

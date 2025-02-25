@@ -6,32 +6,31 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 16:08:10 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/24 17:02:07 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
+	/* valid names - Must start with a letter or '_', and contain only letters
+	 or numbers 
+	print export ####
+	add new variable
+	if it exists, overwrite, if it is "+=" append
+	if doenst exist, give empty value if nothing has been assigned
+	when just doing export var, if var exists doesnt change its value to empty
+
+	0 no quote
+	1 single quote
+	2 double quote */
 static int	ft_process_export_variable(t_shell *shell, char *arg);
-	// valid names - Must start with a letter or '_', and contain only letters or numbers ######
-	// print export ####
-	// add new variable
-	// if it exists, overwrite, if it is "+=" append
-	// if doenst exist, give empty value if nothing has been assigned
-	//when just doing export var, if var exists doesnt change its value to empty
-
-	// 0 no quote
-	// 1 single quote
-	// 2 double quote
-
 static void	ft_append_to_var(t_shell *shell, char *var, char *new_value);
 static int	ft_process_export_variable(t_shell *shell, char *arg);
-static void		ft_handle_export_oper(t_shell *shell, char *arg, char *eq_sign, char *plus_sign);
-
+static void	ft_handle_export_oper(t_shell *sh, char *arg, char *eq, char *plus);
 
 void	ft_export(t_shell *shell)
 {
-	t_token *curr;
+	t_token	*curr;
 
 	g_exit_status = EXIT_SUCCESS;
 	curr = shell->tokens;
@@ -58,7 +57,8 @@ static int	ft_process_export_variable(t_shell *shell, char *arg)
 	plus_sign = ft_strchr(arg, '+');
 	if (ft_check_var_chars(arg) != SUCCESS)
 	{
-		return (ft_print_error_w_arg(ERR_EXPORT_INVALID_IDENTIFIER, arg), EXIT_FAILURE);
+		return (ft_print_error_w_arg(\
+		ERR_EXPORT_INVALID_IDENTIFIER, arg), EXIT_FAILURE);
 	}
 	ft_handle_export_oper(shell, arg, eq_sign, plus_sign);
 	var = ft_get_var_name(arg);
@@ -67,29 +67,29 @@ static int	ft_process_export_variable(t_shell *shell, char *arg)
 	return (ft_free(var), EXIT_SUCCESS);
 }
 
-static void	ft_handle_export_oper(t_shell *shell, char *arg, char *eq_sign, char *plus_sign)
+static void	ft_handle_export_oper(t_shell *sh, char *arg, char *eq, char *plus)
 {
 	char	*var;
 	char	*value;
 
 	var = NULL;
-	if (plus_sign && eq_sign && plus_sign + 1 == eq_sign)
+	if (plus && eq && plus + 1 == eq)
 	{
-		var = ft_substr(arg, 0, plus_sign - arg);
-		value = eq_sign + 1;
-		ft_append_to_var(shell, var, value);
+		var = ft_substr(arg, 0, plus - arg);
+		value = eq + 1;
+		ft_append_to_var(sh, var, value);
 	}
-	else if (eq_sign)
+	else if (eq)
 	{
-		var = ft_substr(arg, 0, eq_sign - arg);
-		value = eq_sign + 1;
-		ft_update_or_add_var(var, value, shell, 0);
+		var = ft_substr(arg, 0, eq - arg);
+		value = eq + 1;
+		ft_update_or_add_var(var, value, sh, 0);
 	}
-	else if (ft_get_var_index(arg, shell->env_cpy) == -1)
+	else if (ft_get_var_index(arg, sh->env_cpy) == -1)
 	{
 		var = ft_safe_strdup(arg);
 		value = "";
-		ft_update_or_add_var(var, value, shell, -1);
+		ft_update_or_add_var(var, value, sh, -1);
 	}
 	ft_free(var);
 }
@@ -141,5 +141,3 @@ static void	ft_append_to_var(t_shell *shell, char *var, char *new_value)
 	shell->env_cpy[var_index] = new_var;
 	ft_free(full_value);
 }
-
-
