@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 13:13:59 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/25 17:25:19 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:37:08 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ static int	ft_handle_cd_home(t_shell *shell, char *curr_path)
 	char	*home_path;
 
 	home_path = ft_get_var_value("HOME", shell->env_cpy);
-	if (!home_path)
+	if (ft_strcmp(home_path, "") == SUCCESS)
 	{
-		ft_print_error(ERR_HOME_NOT_SET);
+		ft_print_error_w_arg(ERR_HOME_NOT_SET, "HOME");
 		return (EXIT_FAILURE);
 	}
 	if (chdir(home_path) != 0)
 	{
-		ft_print_error(ERR_CD_FAIL);
+		ft_print_error_w_arg(ERR_CD_FAIL, home_path);
 		return (EXIT_FAILURE);
 	}
 	return (ft_update_pwd(shell, curr_path));
@@ -70,7 +70,7 @@ static int	ft_handle_cd_oldpwd(t_shell *shell, char *curr_path)
 	}
 	if (chdir(old_pwd) != 0)
 	{
-		ft_print_error(ERR_CD_FAIL);
+		ft_print_error(ERR_OLDPWD_NOT_SET);
 		return (EXIT_FAILURE);
 	}
 	ft_printf(STDOUT_FILENO, "%s\n", old_pwd);
@@ -84,8 +84,7 @@ static int	ft_handle_cd_to_dir(t_shell *shell, t_token *curr, char *curr_path)
 	path = curr->next->val.value;
 	if (chdir(path) != 0)
 	{
-		ft_print_error(ERR_CD_FAIL);
-		ft_printf(STDERR_FILENO, "Path not found: %s\n", path);
+		ft_print_error_w_arg(ERR_CD_FAIL, path);
 		return (EXIT_FAILURE);
 	}
 	return (ft_update_pwd(shell, curr_path));
@@ -101,8 +100,8 @@ static int	ft_update_pwd(t_shell *shell, char *old_path)
 		ft_print_error(ERR_GET_CWD_FAIL);
 		return (EXIT_FAILURE);
 	}
-	ft_update_or_add_var("OLDPWD", old_path, shell);
-	ft_update_or_add_var("PWD", new_path, shell);
+	ft_update_or_add_var("OLDPWD", old_path, shell, 0);
+	ft_update_or_add_var("PWD", new_path, shell, 0);
 	ft_free(new_path);
 	return (EXIT_SUCCESS);
 }
