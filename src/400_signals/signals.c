@@ -6,14 +6,13 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 09:56:30 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 16:45:55 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/24 16:28:30 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 static void	ft_handle_sigint(int sig);
-static void	ft_handle_sigquit(int sig);
 
 /**
  * @brief Sets up signal handlers for SIGINT and SIGQUIT
@@ -33,7 +32,7 @@ t_status	ft_set_up_signals(void)
 	sa_int.sa_flags = 0;
 	if (sigaction(SIGINT, &sa_int, NULL) == -1)
 		return (ft_print_error(ERR_SIGNAL_SETUP_INT), ERROR);
-	sa_quit.sa_handler = ft_handle_sigquit;
+	sa_quit.sa_handler = SIG_IGN;
 	sigemptyset(&sa_quit.sa_mask);
 	sa_quit.sa_flags = 0;
 	if (sigaction(SIGQUIT, &sa_quit, NULL) == -1)
@@ -60,18 +59,4 @@ static void	ft_handle_sigint(int sig)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
-}
-
-/**
- * Handles the SIGQUIT signal (Ctrl+\) during the shell's execution.
- *
- * This function is called when the SIGQUIT signal is received. It does
- * nothing, effectively ignoring the signal. This prevents the shell from
- * exiting when the user presses Ctrl+\.
- *
- * @param sig The signal number (unused in this function).
- */
-static void	ft_handle_sigquit(int sig)
-{
-	(void)sig;
 }
