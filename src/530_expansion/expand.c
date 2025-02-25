@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/24 17:35:10 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:16:32 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ static char *ft_expand_token(t_shell *shell, char *input, size_t *i, int *quote_
 		{
 			temp = ft_handle_dollar(shell, input, i);
 			expanded_value = ft_join_and_free(expanded_value, temp);
+			continue ;
 		}
 		else
 			expanded_value = ft_process_char(expanded_value, input[*i]);
