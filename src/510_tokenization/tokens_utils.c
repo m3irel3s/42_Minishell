@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 16:50:47 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/24 21:37:22 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,14 @@ static t_token_type	ft_check_single_char(char *value);
 static t_token_type	ft_check_double_char(char *value);
 
 /**
- * @brief Determines the token type for a given string.
+ * @brief Determines the token type for a given token string.
  *
- * Checks if the string corresponds to a single or double character token
- * and returns its type. If the string is invalid, updates the shell's
- * exit_status and returns ERROR_TOKEN.
+ * Checks if the token corresponds to a single or double character operator,
+ * and returns its type. For any other length, it returns WORD.
  *
- * @param shell Pointer to the shell structure for updating exit_status.
- * @param value The string to be checked.
- * @param len The length of the string to be checked.
- *
- * @return The corresponding token type or ERROR_TOKEN on failure.
+ * @param value The token string.
+ * @param len The length of the token string.
+ * @return The corresponding token type, or ERROR_TOKEN on error.
  */
 t_token_type	ft_determine_token_type(char *value, size_t len)
 {
@@ -43,15 +40,10 @@ t_token_type	ft_determine_token_type(char *value, size_t len)
 }
 
 /**
- * @brief Checks a single character and returns its corresponding token type.
+ * @brief Checks a single-character token and returns its type.
  *
- * If the given string is invalid, updates the shell's exit_status and returns
- * ERROR_TOKEN.
- *
- * @param shell Pointer to the shell structure for updating exit_status.
- * @param value String to be checked.
- *
- * @return The corresponding token type or ERROR_TOKEN on failure.
+ * @param value The token string.
+ * @return The token type (PIPE, REDIRECT_IN, REDIRECT_OUT, or WORD).
  */
 static t_token_type	ft_check_single_char(char *value)
 {
@@ -70,15 +62,10 @@ static t_token_type	ft_check_single_char(char *value)
 }
 
 /**
- * @brief Checks a double-character string and returns its token type.
+ * @brief Checks a double-character token and returns its type.
  *
- * If the given string is invalid, updates the shell's exit_status and returns
- * ERROR_TOKEN.
- *
- * @param shell Pointer to the shell structure for updating exit_status.
- * @param value The string to be checked.
- *
- * @return The corresponding token type or ERROR_TOKEN on failure.
+ * @param value The token string.
+ * @return The token type (HEREDOC, REDIRECT_APPEND, or WORD).
  */
 static t_token_type	ft_check_double_char(char *value)
 {
