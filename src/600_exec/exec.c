@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/25 09:29:06 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/25 10:23:35 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,23 @@ void	ft_exec(t_shell *shell)
 	if (!curr || !curr->value)
 		return ;
 	ft_create_redirection_list(shell);
-	t_redirect	*redirects = shell->redirects;
-	while (redirects)
-	{
-		printf("type: %d\n", redirects->type);
-		printf("filename: %s\n", redirects->filename);
-		printf("quoted: %d\n", redirects->quoted);
-		redirects = redirects->next;
-	}
-	ft_printf(1, "--------------------\n");
-	t_token		*tokens = shell->tokens;
-	while (tokens)
-	{
-		printf("value: %s\n", tokens->value);
-		printf("type: %d\n", tokens->type);
-		printf("quoted: %d\n", tokens->quoted);
-		tokens = tokens->next;
-	}
+	// t_redirect	*redirects = shell->redirects;
+	// while (redirects)
+	// {
+	// 	printf("type: %d\n", redirects->type);
+	// 	printf("filename: %s\n", redirects->filename);
+	// 	printf("quoted: %d\n", redirects->quoted);
+	// 	redirects = redirects->next;
+	// }
+	// ft_printf(1, "--------------------\n");
+	// t_token		*tokens = shell->tokens;
+	// while (tokens)
+	// {
+	// 	printf("value: %s\n", tokens->value);
+	// 	printf("type: %d\n", tokens->type);
+	// 	printf("quoted: %d\n", tokens->quoted);
+	// 	tokens = tokens->next;
+	// }
 	if (ft_has_pipes(shell) == SUCCESS)
 	{
 		ft_handle_pipes(shell);
