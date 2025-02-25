@@ -28,16 +28,17 @@ file minishell
 # 	disp curr->type
 # end
 
-define ft_env
-	disp env[i]
-	disp res
-	disp i
-end
+# define ft_env
+# 	disp env[i]
+# 	disp res
+# 	disp i
+# end
+
+
 
 
 # Set breakpoints
 break main
-break ft_env
 fs cmd
 # break ft_export
 # break ft_set_var_value

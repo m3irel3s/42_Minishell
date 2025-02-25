@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 21:43:50 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/25 10:28:23 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,12 +134,8 @@
 #define ERR_INVALID_SHELL "minishell: Invalid shell structure\n"
 #define ERR_FORK_FAIL "minishell: fork failed\n"
 # define ERR_EXPORT_INVALID_IDENTIFIER \
-    "export: `%s': not a valid identifier\n"
-# define ERR_UNSET_INVALID_IDENTIFIER \
-    "unset: `%s': not a valid identifier\n"
-	#define ERR_PREPROCESS_FAIL "Preprocess failed"
+    "export: %s: not a valid identifier\n"
 # define ERR_WORD_COUNT_FAIL "minishell: Failed to count words in input\n"
-
 
 #endif
 
