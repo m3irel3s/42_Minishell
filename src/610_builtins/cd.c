@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 13:13:59 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 17:14:17 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/25 14:39:31 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ static int	ft_handle_cd_home(t_shell *shell, char *curr_path)
 	char	*home_path;
 
 	home_path = ft_get_var_value("HOME", shell->env_cpy);
-	if (!home_path)
+	if (ft_strcmp(home_path, "") == SUCCESS)
 	{
-		ft_print_error(ERR_HOME_NOT_SET);
+		ft_print_error_w_arg(ERR_HOME_NOT_SET, "HOME");
 		return (EXIT_FAILURE);
 	}
 	if (chdir(home_path) != 0)
 	{
-		ft_print_error_w_arg(ERR_CD_FAIL, shell->tokens->value);
+		ft_print_error_w_arg(ERR_CD_FAIL, home_path);
 		return (EXIT_FAILURE);
 	}
 	return (ft_update_pwd(shell, curr_path));

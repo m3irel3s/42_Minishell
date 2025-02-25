@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/25 10:28:23 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/25 12:46:17 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@
 # define EXIT_COMMAND_NOT_FOUND 127
 # define EXIT_INVALID_EXIT_ARG 128
 # define EXIT_FATAL_SIGNAL 128
+
+# define ERR_EXIT_NUM_REQ \
+	"minishell: exit: %s: numeric argument required\n"
+# define ERR_EXIT_TOO_MANY_ARGS \
+	"minishell: exit: too many arguments\n"
 
 //============================================================================//
 //                            SYNTAX ERROR MESSAGES                           //
