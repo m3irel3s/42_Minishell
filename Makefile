@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
+#    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/24 21:28:22 by meferraz         ###   ########.fr        #
+#    Updated: 2025/02/25 16:10:40 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -140,8 +140,9 @@ MAKE_RE			= make --no-print-directory all
 LDFLAGS			= -L${LIBFT_PATH} -lft
 
 ## Valgrind ##
-V_LEAKS			= --leak-check=full --show-leak-kinds=all
-V_TRACKS		= --track-fds=yes --track-origins=yes --trace-children=yes
+# --trace-children=yes
+V_LEAKS			= --leak-check=full --tool=memcheck --show-leak-kinds=all
+V_TRACKS		= --track-origins=yes --track-fds=yes
 V_EXTRAS		= --suppressions=readline.supp
 VGDB_ARGS		= --vgdb-error=0 $(V_LEAKS) $(V_TRACKS) $(V_EXTRAS)
 V_ARGS			= $(V_LEAKS) $(V_TRACKS) $(V_EXTRAS)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_execve.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:34:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 22:20:35 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/25 16:04:53 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
