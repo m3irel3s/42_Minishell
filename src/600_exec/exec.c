@@ -6,44 +6,49 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 20:57:56 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/25 09:29:06 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-static void	ft_handle_exec(t_shell *shell, t_cmd_type cmd);
-static void	ft_cleanup_fds(int original_stdin, int original_stdout, t_shell *shell);
+static void	ft_handle_exec(t_shell *shell, int cmd);
 
 /**
- * @brief Executes the command sequence stored in the shell's token list.
+ * @brief Executes a command in a shell.
  *
- * This function validates the shell and its tokens before proceeding. It
- * checks for redirection list creation, handles piping if necessary, and
- * determines the command type to execute. The function is responsible for
- * error handling related to invalid shell structures, input, or redirection
- * failures.
+ * @details
+ * This function takes a shell structure and executes the command given in the
+ * tokens linked list. If there are pipes, it calls ft_handle_pipes to handle
+ * them. Otherwise, it calls ft_handle_exec to execute the command.
  *
- * @param shell A pointer to the shell structure containing the command tokens.
+ * @param [in] shell The shell structure to execute the command in.
  */
-
 void	ft_exec(t_shell *shell)
 {
 	t_token		*curr;
 	t_cmd_type	cmd;
 
-	if (!shell || !shell->tokens)
-	{
-		ft_print_error(ERR_INVALID_SHELL_OR_INPUT);
-		return ;
-	}
 	curr = shell->tokens;
-	if (!curr->value)
+	if (!curr || !curr->value)
 		return ;
-	if (ft_create_redirection_list(shell) != SUCCESS)
+	ft_create_redirection_list(shell);
+	t_redirect	*redirects = shell->redirects;
+	while (redirects)
 	{
-		ft_print_error(ERR_REDIR_OPEN_FAIL);
-		return ;
+		printf("type: %d\n", redirects->type);
+		printf("filename: %s\n", redirects->filename);
+		printf("quoted: %d\n", redirects->quoted);
+		redirects = redirects->next;
+	}
+	ft_printf(1, "--------------------\n");
+	t_token		*tokens = shell->tokens;
+	while (tokens)
+	{
+		printf("value: %s\n", tokens->value);
+		printf("type: %d\n", tokens->type);
+		printf("quoted: %d\n", tokens->quoted);
+		tokens = tokens->next;
 	}
 	if (ft_has_pipes(shell) == SUCCESS)
 	{
@@ -55,54 +60,46 @@ void	ft_exec(t_shell *shell)
 }
 
 /**
- * Handles the execution of a command by setting up necessary redirections.
+ * @brief Handle the execution of a command and its redirections.
  *
- * This function duplicates the original stdin and stdout file descriptors
- * and attempts to handle any redirections specified in the shell structure.
- * If redirections are successful, it executes the command and then restores
- * the original file descriptors. If any step fails, an appropriate error message
- * is printed and resources are cleaned up.
+ * @param shell The shell structure.
+ * @param cmd The type of command to be executed.
  *
- * @param shell The shell structure containing redirection and command information.
- * @param cmd The type of command to execute.
+ * This function is responsible for executing a command and its redirections.
+ * It duplicates the standard input and output file descriptors, applies the
+ * redirections in the shell redirection list, executes the command, and then
+ * restores the original standard input and output file descriptors.
+ *
+ * It also closes the duplicated and redirected file descriptors.
  */
-
-static void	ft_handle_exec(t_shell *shell, t_cmd_type cmd)
+static void	ft_handle_exec(t_shell *shell, int cmd)
 {
 	int	original_stdout;
 	int	original_stdin;
 
 	original_stdout = dup(STDOUT_FILENO);
 	original_stdin = dup(STDIN_FILENO);
-	if (original_stdout == -1 || original_stdin == -1)
-	{
-		ft_print_error(ERR_DUP_FAIL);
-		return ;
-	}
-	if (ft_handle_redirections(shell) != SUCCESS)
-	{
-		ft_print_error(ERR_INVALID_REDIRECT_TYPE);
-		ft_cleanup_fds(original_stdin, original_stdout, shell);
-		return ;
-	}
-	if (dup2(shell->redirected_stdin, STDIN_FILENO) == -1 ||
-		dup2(shell->redirected_stdout, STDOUT_FILENO) == -1)
-	{
-		ft_print_error(ERR_DUP2_FAIL);
-		ft_cleanup_fds(original_stdin, original_stdout, shell);
-		return ;
-	}
+	ft_handle_redirections(shell);
+	dup2(shell->redirected_stdin, STDIN_FILENO);
+	dup2(shell->redirected_stdout, STDOUT_FILENO);
 	ft_execute_command(shell, cmd);
-	ft_cleanup_fds(original_stdin, original_stdout, shell);
+	dup2(original_stdin, STDIN_FILENO);
+	dup2(original_stdout, STDOUT_FILENO);
+	close(original_stdin);
+	close(original_stdout);
+	close(shell->redirected_stdin);
+	close(shell->redirected_stdout);
 }
 
 /**
- * @brief Executes a command
+ * @brief Execute the given command.
  *
- * Executes a command based on the cmd argument.
+ * @param shell The shell structure.
+ * @param cmd The type of command to be executed.
  *
- * @param shell The shell object
- * @param cmd The command to execute
+ * This function takes a command type as argument and execute the corresponding
+ * command. If the command is CMD_EXEC, it will execute the command given as
+ * argument. For other commands, it will call the corresponding function.
  */
 void	ft_execute_command(t_shell *shell, t_cmd_type cmd)
 {
@@ -124,20 +121,17 @@ void	ft_execute_command(t_shell *shell, t_cmd_type cmd)
 		ft_exit(shell);
 	else if (cmd == CMD_UNSET)
 		ft_unset(shell);
-	else
-		ft_print_error(ERR_CMD_NOT_FOUND);
 }
 
 /**
- * Determines the command type from a given command string.
+ * @brief Determine the type of the command.
  *
- * @param cmd The command string to evaluate.
- * @return The corresponding command type as an enum value of t_cmd_type.
- *         Returns CMD_UNKNOWN if the command is NULL or doesn't match any
- *         recognized command. If the command matches known shell built-in
- *         commands or "exec", it returns the appropriate t_cmd_type value.
+ * @param cmd The command to identify.
+ * @return The type of the command.
+ *
+ * This function takes a command as a string and returns the corresponding
+ * enum value. If the command is not a valid command, CMD_UNKNOWN is returned.
  */
-
 t_cmd_type	ft_get_cmd_type(char *cmd)
 {
 	if (!cmd)
@@ -159,24 +153,4 @@ t_cmd_type	ft_get_cmd_type(char *cmd)
 	if (ft_strcmp(cmd, "exit") == SUCCESS)
 		return (CMD_EXIT);
 	return (CMD_EXEC);
-}
-
-/**
- * Restores the original file descriptors for stdin and stdout, and closes
- * the duplicated file descriptors as well as any redirected stdin and stdout
- * within the shell structure.
- *
- * @param original_stdin The original file descriptor for standard input.
- * @param original_stdout The original file descriptor for standard output.
- * @param shell The shell structure containing redirected stdin and stdout.
- */
-
-static void	ft_cleanup_fds(int original_stdin, int original_stdout, t_shell *shell)
-{
-	dup2(original_stdin, STDIN_FILENO);
-	dup2(original_stdout, STDOUT_FILENO);
-	close(original_stdin);
-	close(original_stdout);
-	close(shell->redirected_stdin);
-	close(shell->redirected_stdout);
 }

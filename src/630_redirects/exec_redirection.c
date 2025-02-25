@@ -6,33 +6,30 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:45:07 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/24 10:32:53 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/24 22:03:00 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static t_status	ft_apply_redirection(t_shell *shell, t_redirect *redirect);
-static t_status	ft_redirect_in(t_redirect *redirect);
-static t_status	ft_redirect_out(t_redirect *redirect);
-static t_status	ft_redirect_append(t_redirect *redirect);
+static void	ft_apply_redirection(t_shell *shell, t_redirect *redirect);
+static void	ft_redirect_in(t_redirect *redirect);
+static void	ft_redirect_out(t_redirect *redirect);
+static void	ft_redirect_append(t_redirect *redirect);
 
 /**
- * @brief Handles the redirections specified in the shell structure.
+ * @brief Handles redirections for the shell.
  *
- * This function saves the current standard input and output file descriptors,
- * then iterates through the linked list of redirections in the shell structure,
- * applying each redirection in sequence. After applying the redirections, it
- * updates the shell's redirected stdin and stdout to reflect the current state
- * of the standard input and output. Finally, it restores the original standard
- * input and output before returning.
+ * This function takes a shell structure and applies all redirections in the
+ * shell's redirection list. It saves the original standard input and output
+ * file descriptors, applies each redirection in the list, and then restores
+ * the original standard input and output file descriptors. The redirections
+ * are applied in the order in which they appear in the redirection list.
  *
- * @param shell A pointer to the shell structure containing the redirections.
- * @return t_status SUCCESS if all redirections were successfully handled, ERROR
- * otherwise.
+ * @param shell A pointer to the shell structure containing the redirection
+ *              list.
  */
-
-t_status	ft_handle_redirections(t_shell *shell)
+void	ft_handle_redirections(t_shell *shell)
 {
 	t_redirect	*redirect;
 	int			saved_stdin;
@@ -40,173 +37,126 @@ t_status	ft_handle_redirections(t_shell *shell)
 
 	saved_stdin = dup(STDIN_FILENO);
 	saved_stdout = dup(STDOUT_FILENO);
-	if (saved_stdin == -1 || saved_stdout == -1)
-		return (ft_print_error(ERR_DUP_FAIL));
 	redirect = shell->redirects;
 	while (redirect)
 	{
-		if (ft_apply_redirection(shell, redirect) != SUCCESS)
-			return (ERROR);
+		ft_apply_redirection(shell, redirect);
 		redirect = redirect->next;
 	}
 	shell->redirected_stdin = dup(STDIN_FILENO);
 	shell->redirected_stdout = dup(STDOUT_FILENO);
-	if (shell->redirected_stdin == -1 || shell->redirected_stdout == -1)
-		return (ft_print_error(ERR_DUP_FAIL));
-	if (dup2(saved_stdin, STDIN_FILENO) == -1 || dup2(saved_stdout,
-			STDOUT_FILENO) == -1)
-		return (ft_print_error(ERR_DUP2_FAIL));
+	dup2(saved_stdin, STDIN_FILENO);
+	dup2(saved_stdout, STDOUT_FILENO);
 	close(saved_stdin);
 	close(saved_stdout);
-	return (SUCCESS);
 }
 
 /**
- * @brief Applies a redirection to the shell's standard input or output.
+ * @brief Applies a redirection to the shell's standard input and/or output.
  *
- * This function takes a redirection structure and applies it to the shell's
- * standard input or output by calling the appropriate redirection function.
- * If the redirection type is not recognized, it prints an error message and
- * returns ERROR.
+ * This function takes a redirection structure and applies the redirection
+ * to the shell's standard input and/or output. The type of redirection is
+ * determined by the redirect->type field. If the type is REDIRECT_IN,
+ * the redirection is applied using ft_redirect_in. If the type is
+ * REDIRECT_OUT, the redirection is applied using ft_redirect_out. If the
+ * type is REDIRECT_APPEND, the redirection is applied using
+ * ft_redirect_append. If the type is HEREDOC, the redirection is applied
+ * using ft_redirect_heredoc.
  *
- * @param shell A pointer to the shell structure containing the redirection.
- * @param redirect A pointer to the redirection structure to be applied.
- * @return t_status SUCCESS if the redirection was successfully applied,
- * ERROR otherwise.
+ * @param shell A pointer to the shell structure to which the redirection is
+ *              to be applied.
+ * @param redirect A pointer to the redirection structure containing the
+ *                 redirection to be applied.
  */
-static t_status	ft_apply_redirection(t_shell *shell, t_redirect *redirect)
+static void	ft_apply_redirection(t_shell *shell, t_redirect *redirect)
 {
 	if (redirect->type == REDIRECT_IN)
-		return (ft_redirect_in(redirect));
+		ft_redirect_in(redirect);
 	else if (redirect->type == REDIRECT_OUT)
-		return (ft_redirect_out(redirect));
+		ft_redirect_out(redirect);
 	else if (redirect->type == REDIRECT_APPEND)
-		return (ft_redirect_append(redirect));
+		ft_redirect_append(redirect);
 	else if (redirect->type == HEREDOC)
-		return (ft_redirect_heredoc(shell, redirect));
-	return (ft_print_error(ERR_INVALID_REDIRECT_TYPE));
+		ft_redirect_heredoc(shell, redirect);
 }
 
 /**
- * @brief Redirects the standard input to a file.
+ * @brief Opens a file for reading and redirects the standard input to it.
  *
- * This function opens the file associated with the given redirection structure
- * and sets it as the standard input of the shell. If the file does not exist,
- * it prints an error message and returns ERROR. If the file cannot be opened,
- * it prints an appropriate error message and returns ERROR. If the file is
- * successfully opened, it duplicates the file descriptor and sets it as the
- * standard input, and then closes the original file descriptor. If the
- * duplication fails, it prints an error message and returns ERROR.
+ * This function attempts to open the file specified by the `redirect`
+ * structure's filename in read-only mode. If the file is successfully opened,
+ * it redirects the standard input (STDIN) to this file. In case of a failure
+ * to open the file, an error message is printed to the standard error.
  *
  * @param redirect A pointer to the redirection structure containing the
- * filename associated with the redirection.
- * @return t_status SUCCESS if the redirection was successfully applied,
- * ERROR otherwise.
+ *                 filename for the input redirection.
  */
-static t_status	ft_redirect_in(t_redirect *redirect)
+
+static void	ft_redirect_in(t_redirect *redirect)
 {
 	int	fd;
 
 	fd = open(redirect->filename, O_RDONLY);
 	if (fd == -1)
 	{
-		if (errno == ENOENT)
-			return (ft_print_error(ft_format_error(ERR_REDIR_NO_FILE,
-						redirect->filename)));
-		else if (errno == EACCES)
-			return (ft_print_error(ft_format_error(ERR_REDIR_PERM_DENIED,
-						redirect->filename)));
-		else
-			return (ft_print_error(ft_format_error(ERR_REDIR_OPEN_FAIL,
-						redirect->filename)));
+		ft_printf(STDERR_FILENO, ERR_REDIR_NO_FILE, redirect->filename);
+		return ;
 	}
-	if (dup2(fd, STDIN_FILENO) == -1)
-	{
-		close(fd);
-		return (ft_print_error(ERR_DUP2_FAIL));
-	}
+	dup2(fd, STDIN_FILENO);
 	close(fd);
-	return (SUCCESS);
 }
 
 /**
- * Opens the file associated with the given redirection structure and sets it
- * as the standard output of the shell. If the file does not exist, it is
- * created. If the file cannot be opened, it prints an appropriate error
- * message and returns ERROR. If the file is successfully opened, it
- * duplicates the file descriptor and sets it as the standard output, and then
- * closes the original file descriptor. If the duplication fails, it prints an
- * error message and returns ERROR.
+ * @brief Opens a file in overwrite mode and redirects the standard output to it.
+ *
+ * This function attempts to open the file specified by the `redirect`
+ * structure's filename in write-only and overwrite mode. If the file does not
+ * exist, it is created with the permissions set to 0644. If the file is
+ * successfully opened, it redirects the standard output (STDOUT) to this file.
+ * In case of a failure to open the file, an error message is printed to
+ * the standard error.
  *
  * @param redirect A pointer to the redirection structure containing the
- * filename associated with the redirection.
- * @return t_status SUCCESS if the redirection was successfully applied,
- * ERROR otherwise.
+ *                 filename for the overwrite operation.
  */
-static t_status	ft_redirect_out(t_redirect *redirect)
+static void	ft_redirect_out(t_redirect *redirect)
 {
 	int	fd;
 
 	fd = open(redirect->filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 	{
-		if (errno == EACCES)
-			return (ft_print_error(ft_format_error(ERR_REDIR_PERM_DENIED,
-						redirect->filename)));
-		else if (errno == EISDIR)
-			return (ft_print_error(ft_format_error(ERR_REDIR_IS_DIR,
-						redirect->filename)));
-		else
-			return (ft_print_error(ft_format_error(ERR_REDIR_OPEN_FAIL,
-						redirect->filename)));
+		ft_printf(STDERR_FILENO, ERR_REDIR_NO_FILE, redirect->filename);
+		return ;
 	}
-	if (dup2(fd, STDOUT_FILENO) == -1)
-	{
-		close(fd);
-		return (ft_print_error(ERR_DUP2_FAIL));
-	}
+	dup2(fd, STDOUT_FILENO);
 	close(fd);
-	return (SUCCESS);
 }
 
 /**
- * @brief Redirects the standard output to a file in append mode.
+ * @brief Opens a file in append mode and redirects the standard output to it.
  *
- * This function opens the file associated with the given redirection structure
- * in append mode and sets it as the standard output of the shell. If the file
- * does not exist, it is created. If the file cannot be opened, it prints an
- * appropriate error message and returns ERROR. If the file is successfully
- * opened, it duplicates the file descriptor and sets it as the standard output,
- * and then closes the original file descriptor. If the duplication fails, it
- * prints an error message and returns ERROR.
+ * This function attempts to open the file specified by the `redirect`
+ * structure's filename in write-only and append mode. If the file does not
+ * exist, it is created with the permissions set to 0644. If the file is
+ * successfully opened, it redirects the standard output (STDOUT) to this file.
+ * In case of a failure to open the file, an error message is printed to
+ * the standard error.
  *
  * @param redirect A pointer to the redirection structure containing the
- * filename associated with the redirection.
- * @return t_status SUCCESS if the redirection was successfully applied,
- * ERROR otherwise.
+ *                 filename for the append operation.
  */
-static t_status	ft_redirect_append(t_redirect *redirect)
+
+static void	ft_redirect_append(t_redirect *redirect)
 {
 	int	fd;
 
 	fd = open(redirect->filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (fd == -1)
 	{
-		if (errno == EACCES)
-			return (ft_print_error(ft_format_error(ERR_REDIR_PERM_DENIED,
-						redirect->filename)));
-		else if (errno == EISDIR)
-			return (ft_print_error(ft_format_error(ERR_REDIR_IS_DIR,
-						redirect->filename)));
-		else
-			return (ft_print_error(ft_format_error(ERR_REDIR_OPEN_FAIL,
-						redirect->filename)));
+		ft_printf(STDERR_FILENO, ERR_REDIR_NO_FILE, redirect->filename);
+		return ;
 	}
-	if (dup2(fd, STDOUT_FILENO) == -1)
-	{
-		close(fd);
-		return (ft_print_error(ERR_DUP2_FAIL));
-	}
+	dup2(fd, STDOUT_FILENO);
 	close(fd);
-	return (SUCCESS);
 }
