@@ -1,0 +1,207 @@
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:42
+Breakpoint 3 at 0x403a9c: file src/600_exec/exec.c, line 32.
+Continuing.
+
+Breakpoint 3, ft_exec (shell=0x7fffffffe140) at src/600_exec/exec.c:32
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+[Detaching after fork from child process 204650]
+[Detaching after fork from child process 204651]
+[Detaching after fork from child process 204652]
+----------------------------------------------------
+----------------------------------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:42
+Breakpoint 3 at 0x40430c: file src/610_builtins/echo.c, line 23.
+Continuing.
+[Detaching after fork from child process 208249]
+[Detaching after fork from child process 208250]
+[Detaching after fork from child process 208252]
+[Detaching after fork from child process 208255]
+[Detaching after fork from child process 208256]
+[Detaching after fork from child process 208257]
+[Inferior 1 (process 208132) exited normally]
+No stack.
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:42
+Breakpoint 4 at 0x40678c: file src/640_pipes/exec_pipes.c, line 38.
+Continuing.
+
+Breakpoint 4, ft_handle_pipes (shell=0x7fffffffe140) at src/640_pipes/exec_pipes.c:38
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+[Detaching after fork from child process 208275]
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+1: curr_cmd = (t_token *) 0x446f30
+2: curr_cmd->vaue = <error: There is no member named vaue.>
+3: curr_cmd->value = <error: There is no member named value.>
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+[Detaching after fork from child process 208286]
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+[Detaching after fork from child process 208288]
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:42
+Continuing.
+
+Breakpoint 4, ft_handle_pipes (shell=0x7fffffffe140) at src/640_pipes/exec_pipes.c:38
+4: pid = 0
+4: pid = 0
+----------------------------------------------------
+4: pid = 0
+----------------------------------------------------
+4: pid = 0
+----------------------------------------------------
+4: pid = 0
+----------------------------------------------------
+4: pid = 0
+----------------------------------------------------
+4: pid = 0
+----------------------------------------------------
+[Detaching after fork from child process 208296]
+4: pid = 208296
+----------------------------------------------------
+4: pid = 208296
+----------------------------------------------------
+4: pid = 208296
+----------------------------------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:42
+Breakpoint 3 at 0x405540: file src/620_execve/exec_execve.c, line 26.
+Continuing.
+[Detaching after fork from child process 210691]
+[Detaching after fork from child process 210692]
+[Detaching after fork from child process 210694]
+[Inferior 1 (process 210679) exited normally]
+Deleted breakpoints 1 2 
+
+quit
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:42
+Continuing.
+
+Program received signal SIGINT, Interrupt.
+pselect64_syscall (sigmask=0x7ffff7fa4140 <_rl_orig_sigset>, timeout=<optimized out>, exceptfds=0x0, writefds=0x0, readfds=0x7fffffffdfd0, nfds=1) at ../sysdeps/unix/sysv/linux/pselect.c:34

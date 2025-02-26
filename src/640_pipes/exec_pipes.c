@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:43:03 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/21 21:56:31 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/26 17:02:46 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,35 +27,40 @@ static void ft_wait_for_children(int num_children);
  *
  * @param shell A pointer to the shell structure containing the command tokens.
  */
-void	ft_handle_pipes(t_shell *shell)
+void ft_handle_pipes(t_shell *shell)
 {
-	int		num_pipes;
-	t_pipe	*pipes;
-	t_token	*curr_cmd;
-	pid_t	pid;
-	int		i;
+	int num_pipes;
+	t_pipe *pipes;
+	t_token *curr_cmd;
+	pid_t pid;
+	int i;
 
 	num_pipes = ft_count_pipes(shell->tokens);
 	pipes = ft_allocate_and_create_pipes(shell->tokens);
 	if (!pipes)
 	{
 		ft_print_error(ERR_PIPE_FAIL);
-		return ;
+		return;
 	}
-		curr_cmd = shell->tokens;
-		i = 0;
-		while (i < num_pipes + 1)
+	curr_cmd = shell->tokens;
+	i = 0;
+	while (i < num_pipes + 1)
+	{
+		pid = fork();
+		if (pid == 0)
 		{
-			pid = fork();
-			if (pid == 0)
-				ft_execute_child(shell, curr_cmd, i, pipes, num_pipes);
-			else if (pid < 0)
-			{
-				ft_print_error(ERR_FORK_FAIL);
-				return ;
-			}
-			ft_advance_to_next_cmd(&curr_cmd);
-			i++;
+			ft_execute_child(shell, curr_cmd, i, pipes, num_pipes);
+			exit(g_exit_status);
+		}
+		else if (pid < 0)
+		{
+			ft_print_error(ERR_FORK_FAIL);
+			ft_cleanup_pipes(pipes, num_pipes);
+			free(pipes);
+			return;
+		}
+		ft_advance_to_next_cmd(&curr_cmd);
+		i++;
 	}
 	ft_cleanup_pipes(pipes, num_pipes);
 	ft_wait_for_children(num_pipes + 1);

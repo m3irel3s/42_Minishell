@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_redirection_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:11:23 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/25 16:57:47 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/26 15:57:42 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ static int	ft_is_redirect_token(int type)
 		|| type == REDIRECT_APPEND);
 }
 
-/*************  ✨ Codeium Command ⭐  *************/
 /**
  * @brief Updates the token list and frees the given token and next token.
  *

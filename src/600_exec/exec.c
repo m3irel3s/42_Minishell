@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/26 15:30:17 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:33:27 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,33 @@ static void	ft_handle_exec(t_shell *shell, int cmd);
  *
  * @param [in] shell The shell structure to execute the command in.
  */
-void	ft_exec(t_shell *shell)
+void ft_exec(t_shell *shell)
 {
-	t_token		*curr;
-	t_cmd_type	cmd;
+	t_token *curr;
 
 	curr = shell->tokens;
 	if (!curr)
-		return ;
+		return;
 	if (!curr->val.value)
 	{
-		if (!ft_strncmp(curr->val.og_value, "\"\"", ft_strlen(curr->val.og_value)) || !ft_strncmp(curr->val.og_value, "\'\'", ft_strlen(curr->val.og_value)))
+		if (!ft_strncmp(curr->val.og_value, "\"\"", ft_strlen(curr->val.og_value)) ||
+			!ft_strncmp(curr->val.og_value, "\'\'", ft_strlen(curr->val.og_value)))
 			ft_print_command_not_found_error("");
-		return ;
+		return;
 	}
+	if (ft_has_pipes(shell) == SUCCESS)
+	{
+		ft_handle_pipes(shell);
+		return;
+	}
+	else
+	{
+		ft_create_redirection_list(shell);
+		ft_handle_redirections(shell);
+		ft_handle_exec(shell, ft_get_cmd_type(curr->val.value));
+	}
+}
+
 	// t_token		*tokens = shell->tokens;
 	// while (tokens)
 	// {
@@ -46,7 +59,6 @@ void	ft_exec(t_shell *shell)
 	// 	printf("quoted: %d\n", tokens->quoted);
 	// 	tokens = tokens->next;
 	// }
-	ft_create_redirection_list(shell);
 	// t_redirect	*redirects = shell->redirects;
 	// while (redirects)
 	// {
@@ -56,17 +68,6 @@ void	ft_exec(t_shell *shell)
 	// 	redirects = redirects->next;
 	// }
 	// ft_printf(1, "--------------------\n");
-	if (ft_has_pipes(shell) == SUCCESS)
-	{
-		ft_handle_pipes(shell);
-		return ;
-	}
-	else
-	{
-		cmd = ft_get_cmd_type(curr->val.value);
-		ft_handle_exec(shell, cmd);
-	}
-}
 
 /**
  * @brief Handle the execution of a command and its redirections.

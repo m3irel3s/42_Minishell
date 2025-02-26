@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes_child.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:00:00 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/26 15:20:27 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:37:39 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void	ft_free_redirects(t_redirect *redirects)
  * @param i The index of the current command in the pipeline
  * @param pipes The array of pipes for the pipeline
  * @param num_pipes The number of pipes in the pipeline
- */
-void	ft_execute_child(t_shell *shell, t_token *curr_cmd, int i, t_pipe *pipes, int num_pipes)
+	*/
+void ft_execute_child(t_shell *shell, t_token *curr_cmd, int i, t_pipe *pipes, int num_pipes)
 {
-	t_token	*cmd_end;
-	t_token	*cmd_copy;
+	t_token *cmd_end;
+	t_token *cmd_copy;
 
 	ft_setup_child_redirections(i, pipes, num_pipes);
 	ft_close_child_pipes(pipes, num_pipes);
@@ -51,6 +51,8 @@ void	ft_execute_child(t_shell *shell, t_token *curr_cmd, int i, t_pipe *pipes, i
 	cmd_copy = ft_copy_tokens(curr_cmd, cmd_end);
 	if (!cmd_copy)
 		exit(EXIT_FAILURE);
+	shell->tokens = cmd_copy;
+	ft_create_redirection_list(shell);
 	ft_handle_redirections(shell);
 	if (shell->redirected_stdin != -1)
 	{
@@ -62,13 +64,10 @@ void	ft_execute_child(t_shell *shell, t_token *curr_cmd, int i, t_pipe *pipes, i
 		dup2(shell->redirected_stdout, STDOUT_FILENO);
 		close(shell->redirected_stdout);
 	}
-	shell->tokens = cmd_copy;
-	ft_free_redirects(shell->redirects);
-	shell->redirects = NULL;
-	ft_create_redirection_list(shell);
-	ft_handle_redirections(shell);
 	ft_execute_command(shell, ft_get_cmd_type(shell->tokens->val.value));
 	ft_free_token(cmd_copy);
+	ft_free_redirects(shell->redirects);
+	shell->redirects = NULL;
 	exit(g_exit_status);
 }
 
