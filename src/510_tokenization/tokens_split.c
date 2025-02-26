@@ -3,168 +3,149 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_split.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:04:16 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/25 10:28:28 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/26 10:07:08 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+#include <stdio.h> // For debug statements
 
-static t_status	ft_process_word(char *input, size_t *i, char **result,
-			size_t *k);
-static void		ft_split_word(char *input, size_t *i, int *in_quotes,
-			char *q_char);
-static char		**ft_alloc_result(char *input);
-static t_status	ft_add_token(char **result, char *input, size_t j, size_t i);
+static t_status ft_process_word(char *input, size_t *i, char **result, size_t *k);
+static void ft_split_word(char *input, size_t *i, int *in_quotes, char *q_char);
+static char **ft_alloc_result(char *input);
+static t_status ft_add_token(char **result, char *input, size_t j, size_t i);
 
-/**
- * @brief Splits the input string into an array of strings (words).
- *
- * This function splits the input string into an array of strings, respecting
- * quotes to ensure that quoted substrings are not split. It handles both
- * single and double quotes.
- *
- * @param input The input string to be split.
- * @return An array of strings (words) or NULL if memory allocation fails.
- */
-char	**ft_split_input(char *input)
+char **ft_split_input(char *input)
 {
-	char	**result;
-	size_t	i;
-	size_t	k;
+	printf("[DEBUG] Entering ft_split_input with input: '%s'\n", input);
+	char **result;
+	size_t i = 0;
+	size_t k = 0;
 
 	if (!input)
 		return (NULL);
 	result = ft_alloc_result(input);
 	if (!result)
 		return (NULL);
-	i = 0;
-	k = 0;
+
 	while (input[i])
 	{
 		while (input[i] && ft_is_space(input[i]))
 			i++;
 		if (!input[i])
-			break ;
+			break;
+
+		printf("[DEBUG] Processing input at index %zu: '%c'\n", i, input[i]);
+
+		if (ft_is_operator(input[i]))
+		{
+			printf("[DEBUG] Found operator at index %zu\n", i);
+			size_t start = i;
+			if (ft_is_double_operator(&input[i]))
+				i += 2;
+			else
+				i++;
+
+			if (ft_add_token(&result[k++], input, start, i) != SUCCESS)
+			{
+				printf("[ERROR] Failed to add operator token.\n");
+				ft_free_arr(result);
+				return (NULL);
+			}
+			continue;
+		}
+
 		if (ft_process_word(input, &i, result, &k) != SUCCESS)
+		{
+			printf("[ERROR] Failed to process word at index %zu.\n", i);
+			ft_free_arr(result);
 			return (NULL);
+		}
 	}
 	result[k] = NULL;
+	printf("[DEBUG] Exiting ft_split_input with %zu tokens.\n", k);
 	return (result);
 }
 
-/**
- * @brief Processes a single word in the input string.
- *
- * This function handles the processing of a single word, including
- * quote handling and token creation.
- *
- * @param input The input string.
- * @param i Pointer to the current index in the input string.
- * @param result The array to store the resulting tokens.
- * @param k Pointer to the current index in the result array.
- * @return SUCCESS if processing succeeds, ERROR otherwise.
- */
-static t_status	ft_process_word(char *input, size_t *i, char **result,
-	size_t *k)
+static t_status ft_process_word(char *input, size_t *i, char **result, size_t *k)
 {
-	size_t	j;
-	int		in_quotes;
-	char	quote_char;
+	printf("[DEBUG] Entering ft_process_word at index %zu\n", *i);
+	size_t j = *i;
+	int in_quotes = 0;
+	char quote_char;
 
-	j = *i;
-	in_quotes = 0;
 	ft_split_word(input, i, &in_quotes, &quote_char);
+	printf("[DEBUG] Processed word from index %zu to %zu\n", j, *i);
+
 	if (ft_add_token(&result[(*k)++], input, j, *i) != SUCCESS)
 	{
+		printf("[ERROR] Token creation failed for substring [%zu:%zu].\n", j, *i);
 		ft_print_error(ERR_TOKEN_CREATION_FAIL);
 		return (ERROR);
 	}
 	return (SUCCESS);
 }
 
-/**
- * @brief Splits a single word from the input string.
- *
- * This function processes a single word in the input string, handling quoted
- * sections and updating the current position accordingly.
- *
- * @param input The input string being processed.
- * @param i Pointer to the current index in the input string.
- * @param in_quotes Pointer to the flag indicating if currently in quotes.
- * @param q_char Pointer to store the current quote character.
- */
-static void	ft_split_word(char *input, size_t *i, int *in_quotes, char *q_char)
+static void ft_split_word(char *input, size_t *i, int *in_quotes, char *q_char)
 {
-	while (input[*i] && (*in_quotes || !ft_is_space(input[*i])))
+	printf("[DEBUG] Entering ft_split_word at index %zu\n", *i);
+	while (input[*i] && (*in_quotes || (!ft_is_space(input[*i]) && !ft_is_operator(input[*i]))))
 	{
-		if ((input[*i] == '\'' || input[*i] == '\"') && !*in_quotes)
+		if ((input[*i] == '\'' || input[*i] == '"') && !*in_quotes)
 		{
 			*in_quotes = 1;
 			*q_char = input[*i];
+			printf("[DEBUG] Entering quotes with char '%c' at index %zu\n", *q_char, *i);
 		}
 		else if (*in_quotes && input[*i] == *q_char)
+		{
 			*in_quotes = 0;
+			printf("[DEBUG] Exiting quotes with char '%c' at index %zu\n", *q_char, *i);
+		}
 		(*i)++;
 	}
+	printf("[DEBUG] Exiting ft_split_word at index %zu\n", *i);
 }
 
-/**
- * @brief Allocates memory for the result array.
- *
- * This function allocates memory for an array of strings to hold the split
- * input. The size of the array is determined by the number of words in the
- * input string plus one for the NULL terminator.
- *
- * @param input The input string to be split.
- * @return A pointer to the allocated array or NULL if allocation fails.
- */
-static char	**ft_alloc_result(char *input)
+static char **ft_alloc_result(char *input)
 {
-	char	**result;
-	int		word_count;
+	printf("[DEBUG] Allocating result array for input: '%s'\n", input);
+	char **result;
+	int word_count = ft_count_words(input);
 
-	word_count = ft_count_words(input);
 	if (word_count < 0)
 	{
+		printf("[ERROR] Word count failed.\n");
 		ft_print_error(ERR_WORD_COUNT_FAIL);
 		return (NULL);
 	}
 	result = ft_safe_malloc(sizeof(char *) * (word_count + 1));
 	if (!result)
 	{
+		printf("[ERROR] Memory allocation failed for result array.\n");
 		ft_print_error(ERR_MALLOC_FAIL);
 		return (NULL);
 	}
+	printf("[DEBUG] Successfully allocated memory for %d words.\n", word_count);
 	return (result);
 }
 
-/**
- * @brief Adds a token to the result array.
- *
- * This function creates a substring from the input string and adds it as a
- * token to the result array. If memory allocation fails, it frees the result
- * array and returns an error.
- *
- * @param result The result array to add the token to.
- * @param input The input string to extract the token from.
- * @param j The start index of the token in the input string.
- * @param i The end index of the token in the input string.
- * @return SUCCESS if the token is added successfully, ERROR otherwise.
- */
-static t_status	ft_add_token(char **result, char *input, size_t j, size_t i)
+static t_status ft_add_token(char **result, char *input, size_t j, size_t i)
 {
-	char	*token;
+	printf("[DEBUG] Adding token from index %zu to %zu\n", j, i);
+	char *token = ft_safe_substr(input, j, i - j);
 
-	token = ft_safe_substr(input, j, i - j);
 	if (!token)
 	{
+		printf("[ERROR] Substring creation failed for token [%zu:%zu].\n", j, i);
 		ft_free_arr(result);
 		ft_print_error(ERR_SUBSTR_FAIL);
 		return (ERROR);
 	}
+	printf("[DEBUG] Successfully added token: '%s'\n", token);
 	*result = token;
 	return (SUCCESS);
 }
