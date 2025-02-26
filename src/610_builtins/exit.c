@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:22:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/25 17:18:55 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/26 15:04:00 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,24 @@ void	ft_exit(t_shell *shell)
 	t_token	*curr;
 
 	curr = shell->tokens;
-	if (curr->next)
+	write(STDOUT_FILENO, "exit\n", 5);
+	if (!curr || !curr->next)
+		exit(g_exit_status);
+	if (ft_valid_number(curr->next->value) == ERROR)
 	{
-		if (!curr->next->next && ft_valid_number(curr->next->value) == SUCCESS)
-			g_exit_status = ft_atoi(curr->next->value);
-		else if (curr->next->next)
-			ft_print_error(ERR_EXIT_TOO_MANY_ARGS);
+		ft_print_error_w_arg(ERR_EXIT_NUM_REQ, curr->next->value);
+		g_exit_status = 2;
+		exit(g_exit_status);
 	}
+	if (curr->next->next)
+	{
+		ft_print_error(ERR_EXIT_TOO_MANY_ARGS);
+		g_exit_status = 1;
+		return ;
+	}
+	g_exit_status = ft_atoi(curr->next->value);
 	if (g_exit_status > 255 || g_exit_status < 0)
 		g_exit_status %= 256;
-	if (!curr->next)
-		ft_handle_eof(shell);
 	ft_cleanup(shell);
 	rl_clear_history();
 	exit(g_exit_status);
@@ -67,12 +74,10 @@ static int	ft_valid_number(char *str)
 	i = 0;
 	if (str[i] == '+' || str[i] == '-')
 		i++;
-	if (!str[i])
-		return (ft_print_error_w_arg(ERR_EXIT_NUM_REQ, str), ERROR);
 	while (str[i])
 	{
 		if (ft_isdigit(str[i]) == 0)
-			return (ft_print_error_w_arg(ERR_EXIT_NUM_REQ, str), ERROR);
+			return (ERROR);
 		i++;
 	}
 	return (SUCCESS);
