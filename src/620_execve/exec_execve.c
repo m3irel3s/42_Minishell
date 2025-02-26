@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:34:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/25 16:57:47 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/26 09:59:11 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,25 +76,25 @@ char	*ft_get_path_to_execute(t_shell *shell, char *cmd)
 
 char	*ft_add_cmd_to_path(char **arr, char *cmd)
 {
-	char	**cmd_arr;
 	char	*full_path;
 	int		i;
 
 	i = 0;
 	full_path = NULL;
-	cmd_arr = ft_split(cmd, ' ');
-	if (!cmd_arr)
-		return (ft_free_arr(arr), NULL);
 	while (arr[i])
 	{
 		arr[i] = ft_safe_strjoin(arr[i], "/", 1);
-		full_path = ft_safe_strjoin(arr[i], cmd_arr[0], 0);
+		full_path = ft_safe_strjoin(arr[i], cmd, 0);
 		if (access(full_path, X_OK) == SUCCESS)
-			return (ft_free_arr(arr), ft_free_arr(cmd_arr), full_path);
+		{
+			ft_free_arr(arr);
+			return (full_path);
+		}
 		ft_free(full_path);
 		i++;
 	}
-	return (ft_free_arr(arr), ft_free_arr(cmd_arr), NULL);
+	ft_free_arr(arr);
+	return (NULL);
 }
 
 char	**ft_create_arr_cmd(t_token *start_pos)
