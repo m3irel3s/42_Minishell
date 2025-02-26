@@ -6,12 +6,24 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:00:00 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/25 16:57:47 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/26 15:20:27 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
+void	ft_free_redirects(t_redirect *redirects)
+{
+	t_redirect	*tmp;
+
+	while (redirects)
+	{
+		tmp = redirects;
+		redirects = redirects->next;
+		free(tmp->filename);
+		free(tmp);
+	}
+}
 /**
  * @brief Executes a command in a child process in a pipeline.
  *
@@ -39,7 +51,22 @@ void	ft_execute_child(t_shell *shell, t_token *curr_cmd, int i, t_pipe *pipes, i
 	cmd_copy = ft_copy_tokens(curr_cmd, cmd_end);
 	if (!cmd_copy)
 		exit(EXIT_FAILURE);
+	ft_handle_redirections(shell);
+	if (shell->redirected_stdin != -1)
+	{
+		dup2(shell->redirected_stdin, STDIN_FILENO);
+		close(shell->redirected_stdin);
+	}
+	if (shell->redirected_stdout != -1)
+	{
+		dup2(shell->redirected_stdout, STDOUT_FILENO);
+		close(shell->redirected_stdout);
+	}
 	shell->tokens = cmd_copy;
+	ft_free_redirects(shell->redirects);
+	shell->redirects = NULL;
+	ft_create_redirection_list(shell);
+	ft_handle_redirections(shell);
 	ft_execute_command(shell, ft_get_cmd_type(shell->tokens->val.value));
 	ft_free_token(cmd_copy);
 	exit(g_exit_status);

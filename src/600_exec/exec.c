@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/26 10:02:45 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/26 15:21:04 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ void	ft_exec(t_shell *shell)
 			ft_print_command_not_found_error("");
 		return ;
 	}
-	t_token		*tokens = shell->tokens;
-	while (tokens)
-	{
-		printf("value: %s\n", tokens->val.value);
-		printf("type: %d\n", tokens->type);
-		printf("quoted: %d\n", tokens->quoted);
-		tokens = tokens->next;
-	}
+	// t_token		*tokens = shell->tokens;
+	// while (tokens)
+	// {
+	// 	printf("value: %s\n", tokens->val.value);
+	// 	printf("type: %d\n", tokens->type);
+	// 	printf("quoted: %d\n", tokens->quoted);
+	// 	tokens = tokens->next;
+	// }
 	ft_create_redirection_list(shell);
 	// t_redirect	*redirects = shell->redirects;
 	// while (redirects)
@@ -56,14 +56,16 @@ void	ft_exec(t_shell *shell)
 	// 	redirects = redirects->next;
 	// }
 	// ft_printf(1, "--------------------\n");
-
 	if (ft_has_pipes(shell) == SUCCESS)
 	{
 		ft_handle_pipes(shell);
 		return ;
 	}
-	cmd = ft_get_cmd_type(curr->val.value);
-	ft_handle_exec(shell, cmd);
+	else
+	{
+		cmd = ft_get_cmd_type(curr->val.value);
+		ft_handle_exec(shell, cmd);
+	}
 }
 
 /**
