@@ -6,13 +6,14 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:26:26 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/24 21:37:21 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:24:56 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 static void	ft_add_token_to_shell(t_shell *shell, t_token *new_token);
+static void	ft_remove_quotes(char *str);
 
 /**
  * @brief Creates a new token from a given value and adds it to the token list.
@@ -37,13 +38,21 @@ t_status	ft_create_and_add_token(t_shell *shell, char *value, size_t len, int qu
 	new_token = ft_safe_malloc(sizeof(t_token));
 	if (!new_token)
 		return (ft_print_error(ERR_TOKEN_CREATION_FAIL));
-	new_token->value = ft_safe_strndup(value, len);
-	if (!new_token->value)
+	new_token->val.og_value = ft_safe_strndup(value, len);
+	if (!new_token->val.og_value)
 	{
 		ft_free(new_token);
 		return (ft_print_error(ERR_TOKEN_CREATION_FAIL));
 	}
-	new_token->type = ft_determine_token_type(new_token->value, len);
+	new_token->val.value = ft_safe_strdup(new_token->val.og_value);
+	ft_remove_quotes(new_token->val.value);
+	if (!new_token->val.value)
+	{
+		ft_free(new_token->val.value);
+		ft_free(new_token);
+		return (ft_print_error(ERR_TOKEN_CREATION_FAIL));
+	}
+	new_token->type = ft_determine_token_type(new_token->val.og_value, new_token->val.value, len);
 	new_token->quoted = quoted;
 	new_token->next = NULL;
 	new_token->prev = NULL;
@@ -75,4 +84,43 @@ static void	ft_add_token_to_shell(t_shell *shell, t_token *new_token)
 		last_token->next = new_token;
 		new_token->prev = last_token;
 	}
+}
+
+/**
+ * @brief Removes quotes from a given string in place.
+ *
+ * This function iterates through the input string and removes any single or
+ * double quotes, while preserving the rest of the characters. It handles both
+ * single and double quotes, ensuring that quoted sections are processed
+ * correctly. The string is modified in place, and only the non-quoted
+ * characters are retained.
+ *
+ * @param str The string from which quotes are to be removed.
+ */
+static void	ft_remove_quotes(char *str)
+{
+	int		read;
+	int		write;
+	int		in_quotes;
+	char	quote_char;
+
+	read = 0;
+	write = 0;
+	in_quotes = 0;
+	while (str[read])
+	{
+		if ((str[read] == '\'' || str[read] == '\"') && !in_quotes)
+		{
+			in_quotes = 1;
+			quote_char = str[read++];
+		}
+		else if (in_quotes && str[read] == quote_char)
+		{
+			in_quotes = 0;
+			read++;
+		}
+		else
+			str[write++] = str[read++];
+	}
+	str[write] = '\0';
 }

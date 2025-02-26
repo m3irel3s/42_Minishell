@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/25 16:10:40 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/26 15:25:07 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -161,7 +161,7 @@ all: deps ${NAME}
 
 ${NAME}: ${BUILD_PATH} ${OBJS} ${LIBFT_ARC}
 	@printf "${CYAN}${DIM}Compiling source files for minishell...${RESET}\n"
-	@${CC} ${CCFLAGS} ${OBJS} -o ${NAME} ${LDFLAGS} ${READL_FLAG}
+	@${CC} ${CCFLAGS} ${OBJS} -o ${NAME} ${LDFLAGS} ${READL_FLAG} ${SANITIZE}
 	@printf "${GREEN}${BOLD}${CHECK} minishell executable compiled successfully!${RESET}\n"
 
 ${BUILD_PATH}:

@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 13:13:59 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/25 14:39:31 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/26 15:25:11 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	ft_cd(t_shell *shell)
 		g_exit_status = EXIT_FAILURE;
 		return ;
 	}
-	if (!curr->next || ft_strncmp(curr->next->value, "~", 2) == SUCCESS)
+	if (!curr->next || ft_strncmp(curr->next->val.value, "~", 2) == SUCCESS)
 		g_exit_status = ft_handle_cd_home(shell, curr_path);
-	else if (ft_strncmp(curr->next->value, "-", 2) == SUCCESS)
+	else if (ft_strncmp(curr->next->val.value, "-", 2) == SUCCESS)
 		g_exit_status = ft_handle_cd_oldpwd(shell, curr_path);
 	else
 		g_exit_status = ft_handle_cd_to_dir(shell, curr, curr_path);
@@ -81,7 +81,7 @@ static int	ft_handle_cd_to_dir(t_shell *shell, t_token *curr, char *curr_path)
 {
 	char	*path;
 
-	path = curr->next->value;
+	path = curr->next->val.value;
 	if (chdir(path) != 0)
 	{
 		ft_print_error_w_arg(ERR_CD_FAIL, path);

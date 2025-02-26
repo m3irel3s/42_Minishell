@@ -6,14 +6,13 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/24 21:47:27 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/25 16:55:38 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 static t_status	ft_process_token(t_shell *shell, char *token_str);
-static void		ft_remove_quotes(char *str);
 
 /**
  * @brief Tokenizes the input string in the shell structure.
@@ -45,45 +44,6 @@ t_status	ft_tokenize(t_shell *shell, char **split_input)
 }
 
 /**
- * @brief Removes quotes from a given string in place.
- *
- * This function iterates through the input string and removes any single or
- * double quotes, while preserving the rest of the characters. It handles both
- * single and double quotes, ensuring that quoted sections are processed
- * correctly. The string is modified in place, and only the non-quoted
- * characters are retained.
- *
- * @param str The string from which quotes are to be removed.
- */
-static void	ft_remove_quotes(char *str)
-{
-	int		read;
-	int		write;
-	int		in_quotes;
-	char	quote_char;
-
-	read = 0;
-	write = 0;
-	in_quotes = 0;
-	while (str[read])
-	{
-		if ((str[read] == '\'' || str[read] == '\"') && !in_quotes)
-		{
-			in_quotes = 1;
-			quote_char = str[read++];
-		}
-		else if (in_quotes && str[read] == quote_char)
-		{
-			in_quotes = 0;
-			read++;
-		}
-		else
-			str[write++] = str[read++];
-	}
-	str[write] = '\0';
-}
-
-/**
  * @brief Processes a single token.
  *
  * This function determines if the token is quoted and, if it is, removes the
@@ -110,7 +70,6 @@ static t_status	ft_process_token(t_shell *shell, char *token_str)
 		else if (token_str[0] == '"' && token_str[len - 1] == '"')
 			quoted = 2;
 	}
-	ft_remove_quotes(token_str);
 	return (ft_create_and_add_token(shell, token_str, ft_strlen(token_str),
 			quoted));
 }

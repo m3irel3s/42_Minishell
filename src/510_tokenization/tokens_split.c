@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_split.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:04:16 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/25 10:28:28 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/26 11:41:12 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,25 @@ char	**ft_split_input(char *input)
 			i++;
 		if (!input[i])
 			break ;
+		if (ft_is_operator(input[i]))
+		{
+			size_t	start = i;
+			if (ft_is_double_operator(&input[i]))
+				i += 2;
+			else
+				i++;
+			if (ft_add_token(&result[k++], input, start, i) != SUCCESS)
+			{
+				ft_free_arr(result);
+				return (NULL);
+			}
+			continue ;
+		}
 		if (ft_process_word(input, &i, result, &k) != SUCCESS)
+		{
+			ft_free_arr(result);
 			return (NULL);
+		}
 	}
 	result[k] = NULL;
 	return (result);
@@ -98,7 +115,7 @@ static t_status	ft_process_word(char *input, size_t *i, char **result,
  */
 static void	ft_split_word(char *input, size_t *i, int *in_quotes, char *q_char)
 {
-	while (input[*i] && (*in_quotes || !ft_is_space(input[*i])))
+	while (input[*i] && (*in_quotes || (!ft_is_space(input[*i]) && !ft_is_operator(input[*i]))))
 	{
 		if ((input[*i] == '\'' || input[*i] == '\"') && !*in_quotes)
 		{

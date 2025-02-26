@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:15:01 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 16:32:13 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:28:43 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,14 @@ void	ft_unset(t_shell *shell)
 	while (curr->next)
 	{
 		curr = curr->next;
-		if (ft_is_valid_var_name(curr->value) == ERROR)
+		if (ft_is_valid_var_name(curr->val.value) == ERROR)
 		{
+			//lacking error message
 			status = EXIT_FAILURE;
 		}
-		else if (ft_get_var_index(curr->value, shell->env_cpy) != -1)
+		else if (ft_get_var_index(curr->val.value, shell->env_cpy) != -1)
 		{
-			if (ft_remove_var_update_env(shell, curr->value) == ERROR)
+			if (ft_remove_var_update_env(shell, curr->val.value) == ERROR)
 				status = EXIT_FAILURE;
 		}
 	}

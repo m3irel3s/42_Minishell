@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 17:02:07 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:34:35 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
 	/* valid names - Must start with a letter or '_', and contain only letters
-	 or numbers 
+	 or numbers
 	print export ####
 	add new variable
 	if it exists, overwrite, if it is "+=" append
@@ -42,7 +42,7 @@ void	ft_export(t_shell *shell)
 	while (curr->next)
 	{
 		curr = curr->next;
-		if (ft_process_export_variable(shell, curr->value) == EXIT_FAILURE)
+		if (ft_process_export_variable(shell, curr->val.value) == EXIT_FAILURE)
 			g_exit_status = EXIT_FAILURE;
 	}
 }
