@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/26 15:21:04 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/26 15:30:17 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,21 +145,21 @@ t_cmd_type	ft_get_cmd_type(char *cmd)
 {
 	if (ft_strlen(cmd) == 0 || !cmd)
 		return (CMD_EXEC);
-	if (ft_strncmp(cmd, "authors", ft_strlen(cmd)) == SUCCESS)
+	if (ft_strcmp(cmd, "authors") == SUCCESS)
 		return (CMD_AUTHORS);
-	if (ft_strncmp(cmd, "echo", ft_strlen(cmd)) == SUCCESS)
+	if (ft_strcmp(cmd, "echo") == SUCCESS)
 		return (CMD_ECHO);
-	if (ft_strncmp(cmd, "cd", ft_strlen(cmd)) == SUCCESS)
+	if (ft_strcmp(cmd, "cd") == SUCCESS)
 		return (CMD_CD);
-	if (ft_strncmp(cmd, "pwd", ft_strlen(cmd)) == SUCCESS)
+	if (ft_strcmp(cmd, "pwd") == SUCCESS)
 		return (CMD_PWD);
-	if (ft_strncmp(cmd, "export", ft_strlen(cmd)) == SUCCESS)
+	if (ft_strcmp(cmd, "export") == SUCCESS)
 		return (CMD_EXPORT);
-	if (ft_strncmp(cmd, "unset", ft_strlen(cmd)) == SUCCESS)
+	if (ft_strcmp(cmd, "unset") == SUCCESS)
 		return (CMD_UNSET);
-	if (ft_strncmp(cmd, "env", ft_strlen(cmd)) == SUCCESS)
+	if (ft_strcmp(cmd, "env") == SUCCESS)
 		return (CMD_ENV);
-	if (ft_strncmp(cmd, "exit", ft_strlen(cmd)) == SUCCESS)
+	if (ft_strcmp(cmd, "exit") == SUCCESS)
 		return (CMD_EXIT);
 	return (CMD_EXEC);
 }
