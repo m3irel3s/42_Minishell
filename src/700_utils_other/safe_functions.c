@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 12:58:31 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/24 21:26:33 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/26 09:07:50 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,8 @@ char	*ft_safe_substr(char *s, int start, int len)
 	}
 	s_len = ft_strlen(s);
 	if (start >= s_len)
+		return (ft_safe_strdup(""));
+	if (len == 0)
 		return (ft_safe_strdup(""));
 	if (len > s_len - start)
 		len = s_len - start;
