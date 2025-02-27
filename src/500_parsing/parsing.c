@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:29:46 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 10:04:21 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/27 10:55:39 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ t_status	ft_parse_input(t_shell *shell)
 		return (ft_print_error(ERR_INVALID_SHELL_OR_INPUT));
 	if (ft_validate_syntax(shell->input) != SUCCESS)
 		return (ERROR);
-	if (ft_expand(shell) != SUCCESS)
-		return (ft_print_error(ERR_EXPANSION_FAIL));
 	split_input = ft_split_input(shell->input);
 	if (!split_input)
 		return (ft_print_error(ERR_TOKENIZATION_FAIL));

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/27 10:13:27 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/27 11:04:23 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ t_status		ft_print_error_w_arg(char *error_msg, char *arg);
 //                             VARIABLE EXPANSION                             //
 //============================================================================//
 /* 530_expansion/expand.c */
-t_status		ft_expand(t_shell *shell);
+char			*ft_expand(t_shell *shell, char *token);
 char			*ft_process_char(char *expanded_value, char c);
 
 /* 530_expansion/expand_handle_dollar.c */

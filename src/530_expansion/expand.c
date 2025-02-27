@@ -6,31 +6,15 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 09:56:50 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/27 11:11:33 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-//static char	*ft_handle_expansion_error(void);
 static char	*ft_join_and_free(char *expanded_value, char *temp);
-//static char	*ft_handle_null_expansion(char *expanded_value);
+static void	ft_handle_quotes(char *input, size_t *i, int *quote_state);
 
-
-/**
- * @brief Handles an expansion error, setting the shell's exit status to failure.
- *
- * This function is used when an error occurs during token expansion. It sets the
- * shell's exit status to failure and returns NULL.
- *
- * @param shell A pointer to the shell structure containing environment info.
- * @return NULL to indicate that an error occurred.
- */
-// static char	*ft_handle_expansion_error(void)
-// {
-// 	g_exit_status = EXIT_FAILURE;
-// 	return (NULL);
-// }
 
 /**
  * @brief Processes a single character in a token during expansion.
@@ -87,7 +71,7 @@ static char	*ft_join_and_free(char *expanded_value, char *temp)
  * @param i A pointer to the current index in the input string.
  * @param quote_state A pointer to the current quote state.
  */
-static void ft_handle_quotes(char *input, size_t *i, int *quote_state)
+static void	ft_handle_quotes(char *input, size_t *i, int *quote_state)
 {
 	if (input[*i] == '\'' && *quote_state != 2)
 	{
@@ -106,101 +90,45 @@ static void ft_handle_quotes(char *input, size_t *i, int *quote_state)
 }
 
 /**
- * @brief Expands a token in the input string.
+ * @brief Expands a token by processing special characters and variables.
  *
- * This function handles the expansion of a token in the input string,
- * including handling quotes and dollar signs.
+ * This function iterates through the given token, handling quotes and
+ * expanding variables prefixed by the '$' character. It maintains the
+ * current quote state to correctly handle quoted sections. The expanded
+ * token is constructed by appending characters or expanded variables to
+ * the resulting string, which is returned upon completion.
  *
- * @param shell A pointer to the shell structure containing the input string.
- * @param input The input string to be expanded.
- * @param i A pointer to the current index in the input string.
- * @param quote_state A pointer to the current quote state.
- * @return The expanded token string.
+ * @param shell A pointer to the shell structure containing environment info.
+ * @param token The token string to be expanded.
+ * @return The expanded token as a string, or NULL if memory allocation fails.
  */
-static char *ft_expand_token(t_shell *shell, char *input, size_t *i, int *quote_state)
-{
-	char *expanded_value;
-	char *temp;
 
+char	*ft_expand(t_shell *shell, char *token)
+{
+	char	*expanded_value;
+	char	*temp;
+	size_t	i;
+	int		quote_state;
+
+	quote_state = 0;
+	i = 0;
 	expanded_value = ft_safe_strdup("");
 	if (!expanded_value)
 		return (NULL);
-
-	while (input[*i])
+	while (token[i])
 	{
-		ft_handle_quotes(input, i, quote_state);
-		if (input[*i] == '$' && *quote_state != 1)
+		ft_handle_quotes(token, &i, &quote_state);
+		if (token[i] == '$' && quote_state != 1)
 		{
-			temp = ft_handle_dollar(shell, input, i);
+			temp = ft_handle_dollar(shell, token, &i);
 			expanded_value = ft_join_and_free(expanded_value, temp);
 			continue ;
 		}
 		else
-			expanded_value = ft_process_char(expanded_value, input[*i]);
-		(*i)++;
+			expanded_value = ft_process_char(expanded_value, token[i]);
+		i++;
 		if (!expanded_value)
 			return (NULL);
 	}
-	return (expanded_value);
-}
-
-/**
- * @brief Handles the scenario where a variable expansion results in NULL.
- *
- * This function safely joins the current expanded value with an empty string,
- * ensuring that the expansion process can continue without issues. If memory
- * allocation fails during the operation, it calls the error handling function
- * and returns NULL.
- *
- * @param shell A pointer to the shell structure containing environment info.
- * @param expanded_value The current expanded value to which the empty string
- * will be appended.
- * @return The updated expanded value with an empty string appended, or NULL
- * if a memory allocation error occurs.
- */
-// static char	*ft_handle_null_expansion(char *expanded_value)
-// {
-// 	char	*result;
-
-// 	result = ft_safe_strjoin(expanded_value, "", 1);
-// 	if (!result)
-// 		return (ft_handle_expansion_error());
-// 	return (result);
-// }
-
-/**
- * @brief Expands the input string in the shell structure.
- *
- * This function expands the input string by replacing any '$' characters with
- * their expanded values. It also handles quoted strings and ensures that quotes
- * are properly matched.
- *
- * @param shell A pointer to the shell structure containing the input string.
- * @return SUCCESS if the input is expanded successfully, or an error status if
- * there is a memory allocation failure or unmatched quotes.
- */
-t_status ft_expand(t_shell *shell)
-{
-	char *expanded_value;
-	char *new_expanded_value;
-	size_t i;
-	int quote_state;
-
-	quote_state = 0;
-	i = 0;
-	expanded_value = NULL;
-	new_expanded_value = NULL;
-	if (!shell || !shell->input)
-		return (ft_print_error(ERR_INVALID_SHELL_OR_INPUT));
-	while (shell->input[i])
-	{
-		new_expanded_value = ft_expand_token(shell, shell->input, &i, &quote_state);
-		if (!new_expanded_value)
-			return (ft_free(expanded_value), ft_print_error(ERR_EXPANSION_FAIL));
-		ft_free(expanded_value);
-		expanded_value = new_expanded_value;
-	}
-	ft_free(shell->input);
-	shell->input = expanded_value;
-	return (SUCCESS);
+	return (ft_free(token), expanded_value);
 }
