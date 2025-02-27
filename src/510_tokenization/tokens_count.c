@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_count.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 20:04:16 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/26 11:40:11 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/27 14:58:42 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../inc/minishell.h"
 
 static void	ft_skip_spaces(char *input, size_t *i);
 static void	ft_handle_operator(char *input, size_t *i, int *count);

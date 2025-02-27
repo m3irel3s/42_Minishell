@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   print_errors_fatal_signal.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 12:46:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 17:00:40 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/27 14:58:42 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../inc/minishell.h"
 
 /**
  * @brief Prints an error message for a fatal signal and sets the shell's

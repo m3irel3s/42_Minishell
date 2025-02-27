@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cd_and_pwd_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 09:43:33 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 17:10:46 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/27 14:58:42 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../..//inc/minishell.h"
+#include "../inc/minishell.h"
 
 /**
  * @brief Retrieves the current working directory.
