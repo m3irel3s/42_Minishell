@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 16:13:51 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/27 17:11:16 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,19 @@
 static char	*ft_expanded_line(t_shell *shell, char *line);
 static char	*ft_create_temp_file(t_shell *shell);
 static void	ft_add_temp_file(t_shell *shell, char *tempfile);
-static void	ft_process_delimiter(t_token *current, t_token *delim, char *tempfile);
-void		ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted, int fd);
+static void	ft_process_delimiter(t_token *current, t_token *delim,
+				char *tempfile);
+void		ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted,
+				int fd);
 
+/**
+ * @brief Process all heredoc tokens in the token list.
+ *
+ * Process all heredoc tokens in the token list, creating temporary files
+ * for each one and reading user input until the delimiter is found.
+ *
+ * @param shell The shell structure containing the token list.
+ */
 void	ft_process_heredocs(t_shell *shell)
 {
 	t_token	*current;
@@ -34,7 +44,7 @@ void	ft_process_heredocs(t_shell *shell)
 			if (!delim || (delim->type != WORD && !delim->quoted))
 			{
 				ft_print_syntax_error("newline");
-				g_exit_status = 2;
+				g_exit_status = EXIT_FAILURE;
 				return ;
 			}
 			tempfile = ft_create_temp_file(shell);
@@ -76,19 +86,37 @@ void	ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted, int fd)
 	}
 }
 
+/**
+ * @brief Generates a unique temporary filename for heredoc.
+ *
+ * Generates a unique temporary filename for heredoc, in the form of
+ * "/tmp/minishell_heredoc_<number>".
+ *
+ * @return The generated temporary filename.
+ */
 static char	*ft_generate_temp_filename(void)
 {
-	char	*tempfile;
-	time_t	now;
-	pid_t	pid;
+	static int	counter = 0;
+	char		*prefix;
+	char		*counter_str;
+	char		*tempfile;
+	size_t		len;
 
-	tempfile = ft_safe_malloc(strlen("/tmp/minishell_heredoc_") + 20 + 5);
-	if (!tempfile)
+	prefix = "/tmp/minishell_heredoc_";
+	counter_str = ft_itoa(counter);
+	if (!counter_str)
 		return (NULL);
-	time(&now);
-	pid = getpid();
-	snprintf(tempfile, strlen("/tmp/minishell_heredoc_") + 20 + 5,
-		"/tmp/minishell_heredoc_%ld_%d", now, pid);
+	len = ft_strlen(prefix) + ft_strlen(counter_str) + 1;
+	tempfile = ft_safe_malloc(len);
+	if (!tempfile)
+	{
+		free(counter_str);
+		return (NULL);
+	}
+	ft_strlcpy(tempfile, prefix, len);
+	ft_strlcat(tempfile, counter_str, len);
+	free(counter_str);
+	counter++;
 	return (tempfile);
 }
 
