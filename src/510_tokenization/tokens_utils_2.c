@@ -6,14 +6,15 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:26:26 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/25 17:24:56 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/27 12:00:15 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-static void	ft_add_token_to_shell(t_shell *shell, t_token *new_token);
-static void	ft_remove_quotes(char *str);
+static void		ft_add_token_to_shell(t_shell *shell, t_token *new_token);
+static void		ft_remove_quotes(char *str);
+static t_status	ft_is_last_token_heredoc(t_shell *shell);
 
 /**
  * @brief Creates a new token from a given value and adds it to the token list.
@@ -45,6 +46,15 @@ t_status	ft_create_and_add_token(t_shell *shell, char *value, size_t len, int qu
 		return (ft_print_error(ERR_TOKEN_CREATION_FAIL));
 	}
 	new_token->val.value = ft_safe_strdup(new_token->val.og_value);
+	if (ft_is_last_token_heredoc(shell) != SUCCESS)
+		new_token->val.value = ft_expand(shell, new_token->val.value);
+	if (!new_token->val.value || ft_strlen(new_token->val.value) == 0)
+	{
+		ft_free(new_token->val.value);
+		ft_free(new_token->val.og_value);
+		ft_free(new_token);
+		return (SUCCESS);
+	}
 	ft_remove_quotes(new_token->val.value);
 	if (!new_token->val.value)
 	{
@@ -61,10 +71,34 @@ t_status	ft_create_and_add_token(t_shell *shell, char *value, size_t len, int qu
 }
 
 /**
+ * @brief Checks if the last token in the shell's token list is a heredoc token.
+ *
+ * Iterates through the token list until the last token is reached and checks
+ * its type. If it is a heredoc token, the function returns SUCCESS. Otherwise,
+ * it returns ERROR.
+ *
+ * @param shell The shell structure containing the token list.
+ * @return SUCCESS if the last token is a heredoc token, ERROR otherwise.
+ */
+static t_status ft_is_last_token_heredoc(t_shell *shell)
+{
+	t_token	*token;
+
+	token = shell->tokens;
+	if (!token)
+		return (ERROR);
+	while (token->next)
+		token = token->next;
+	if (token->type == HEREDOC)
+		return (SUCCESS);
+	return (ERROR);
+}
+
+/**
  * @brief Appends a new token to the end of the shell's token list.
  *
  * If the token list is empty, the new token becomes the first token.
- * Otherwise, the function iterates to the end of the list and appends thw
+ * Otherwise, the function iterates to the end of the list and appends the
  * new token.
  *
  * @param shell The shell structure containing the token list.

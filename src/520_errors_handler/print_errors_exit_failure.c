@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:27:21 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 16:59:05 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/27 10:06:33 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,7 @@ t_status	ft_print_syntax_error(char *token)
 {
 	if (!token)
 		return (ft_print_error(ERR_INVALID_PARAMS));
-	ft_putstr_fd(ERR_SYNTAX_UNEXPECTED_TOKEN, STDERR_FILENO);
-	ft_putstr_fd(token, STDERR_FILENO);
-	ft_putstr_fd("\n", STDERR_FILENO);
+	ft_printf(STDERR_FILENO, ERR_SYNTAX_UNEXPECTED_TOKEN, token);
 	g_exit_status = EXIT_FAILURE;
 	return (ERROR);
 }

@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/27 13:44:01 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/27 14:10:08 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,55 +51,55 @@ t_status		ft_parse_input(t_shell *shell);
 //============================================================================//
 //                              TOKENIZATION                                  //
 //============================================================================//
-/* src/510_tokenization/tokens_count.c */
+/* src/520_tokenization/tokens_count.c */
 int				ft_count_words(char *input);
 t_status		ft_tokens_count(void);
 
-/* src/510_tokenization/tokens_split.c */
+/* src/520_tokenization/tokens_split.c */
 char			**ft_split_input(char *input);
 t_status		ft_tokens_split(void);
 
-/* src/510_tokenization/tokens_process.c */
+/* src/520_tokenization/tokens_process.c */
 t_status		ft_tokenize(t_shell *shell, char **split_input);
 t_status		ft_tokens_process(void);
 
 //============================================================================//
 //                              TOKEN UTILITIES                               //
 //============================================================================//
-/* src/510_tokenization/tokens_utils.c */
+/* src/520_tokenization/tokens_utils.c */
 t_token_type	ft_determine_token_type(char *og_value, char *value, size_t len);
 
-/* src/510_tokenization/tokens_utils_2.c */
+/* src/520_tokenization/tokens_utils_2.c */
 t_status		ft_create_and_add_token(t_shell *shell, char *value,
 					size_t len, int quoted);
 
 //============================================================================//
 //                             ERROR HANDLING                                 //
 //============================================================================//
-/* 520_errors_handler/syntax_validation.c */
-t_status		ft_validate_syntax(t_token *token);
+/* 510_errors_handler/syntax_validation.c */
+t_status	ft_validate_syntax(char *input);
 
-/* 520_errors_handler/print_errors_exit_failure.c */
+/* 510_errors_handler/print_errors_exit_failure.c */
 t_status		ft_print_error(char *error_msg);
 t_status		ft_print_error_custom_status(char *error_msg, int exit_status);
 t_status		ft_print_syntax_error(char *token);
 t_status		ft_print_unmatched_quote_error(void);
 t_status		ft_print_redirect_no_file_error(void);
 
-/* 520_errors_handler/print_errors_heredoc.c */
+/* 510_errors_handler/print_errors_heredoc.c */
 t_status		ft_print_heredoc_delim_error(void);
 
-/* 520_errors_handler/print_errors_command_not_found.c */
+/* 510_errors_handler/print_errors_command_not_found.c */
 t_status		ft_print_command_not_found_error(char *cmd);
 
-/* 520_errors_handler/print_errors_misuse.c */
+/* 510_errors_handler/print_errors_misuse.c */
 t_status		ft_print_error_misuse(char *error_msg);
 t_status		ft_print_error_invalid_exit_arg(char *error_msg);
 
-/* 520_errors_handler/print_errors_fatal_signal.c */
+/* 510_errors_handler/print_errors_fatal_signal.c */
 t_status		ft_print_error_fatal_signal(char *error_msg, int signal_number);
 
-/* 520_errors_handler/print_errors_utils.c */
+/* 510_errors_handler/print_errors_utils.c */
 // char			*ft_format_error(char *err, const char *file);
 t_status		ft_print_error_w_arg(char *error_msg, char *arg);
 
@@ -107,7 +107,7 @@ t_status		ft_print_error_w_arg(char *error_msg, char *arg);
 //                             VARIABLE EXPANSION                             //
 //============================================================================//
 /* 530_expansion/expand.c */
-t_status		ft_expand(t_shell *shell);
+char			*ft_expand(t_shell *shell, char *token);
 char			*ft_process_char(char *expanded_value, char c);
 
 /* 530_expansion/expand_handle_dollar.c */
