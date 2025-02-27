@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/27 14:53:04 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/27 16:05:32 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,11 +72,6 @@ SRCS = \
        ${SRC_PATH}/300_prompt/prompt_utils.c \
        ${SRC_PATH}/400_signals/signals.c \
        ${SRC_PATH}/500_parsing/parsing.c \
-       ${SRC_PATH}/520_tokenization/tokens_process.c \
-	   ${SRC_PATH}/520_tokenization/tokens_utils.c \
-	   ${SRC_PATH}/520_tokenization/tokens_utils_2.c \
-	   ${SRC_PATH}/520_tokenization/tokens_count.c \
-	   ${SRC_PATH}/520_tokenization/tokens_split.c \
        ${SRC_PATH}/510_errors_handler/syntax_validation.c \
        ${SRC_PATH}/510_errors_handler/print_errors_exit_failure.c \
        ${SRC_PATH}/510_errors_handler/print_errors_heredoc.c \
@@ -84,6 +79,11 @@ SRCS = \
        ${SRC_PATH}/510_errors_handler/print_errors_misuse.c \
        ${SRC_PATH}/510_errors_handler/print_errors_fatal_signal.c \
        ${SRC_PATH}/510_errors_handler/print_errors_utils.c \
+       ${SRC_PATH}/520_tokenization/tokens_process.c \
+	   ${SRC_PATH}/520_tokenization/tokens_utils.c \
+	   ${SRC_PATH}/520_tokenization/tokens_utils_2.c \
+	   ${SRC_PATH}/520_tokenization/tokens_count.c \
+	   ${SRC_PATH}/520_tokenization/tokens_split.c \
        ${SRC_PATH}/530_expansion/expand.c \
        ${SRC_PATH}/530_expansion/expand_handle_dollar.c \
        ${SRC_PATH}/600_exec/exec.c \

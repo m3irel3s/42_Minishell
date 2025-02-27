@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/27 14:10:08 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:26:27 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ t_status		ft_parse_input(t_shell *shell);
 //============================================================================//
 /* src/520_tokenization/tokens_count.c */
 int				ft_count_words(char *input);
-t_status		ft_tokens_count(void);
 
 /* src/520_tokenization/tokens_split.c */
 char			**ft_split_input(char *input);
@@ -61,13 +60,13 @@ t_status		ft_tokens_split(void);
 
 /* src/520_tokenization/tokens_process.c */
 t_status		ft_tokenize(t_shell *shell, char **split_input);
-t_status		ft_tokens_process(void);
 
 //============================================================================//
 //                              TOKEN UTILITIES                               //
 //============================================================================//
 /* src/520_tokenization/tokens_utils.c */
-t_token_type	ft_determine_token_type(char *og_value, char *value, size_t len);
+t_token_type	ft_determine_token_type(char *og_value, char \
+					*value, size_t len);
 
 /* src/520_tokenization/tokens_utils_2.c */
 t_status		ft_create_and_add_token(t_shell *shell, char *value,
@@ -77,7 +76,7 @@ t_status		ft_create_and_add_token(t_shell *shell, char *value,
 //                             ERROR HANDLING                                 //
 //============================================================================//
 /* 510_errors_handler/syntax_validation.c */
-t_status	ft_validate_syntax(char *input);
+t_status		ft_validate_syntax(char *input);
 
 /* 510_errors_handler/print_errors_exit_failure.c */
 t_status		ft_print_error(char *error_msg);
@@ -144,7 +143,8 @@ void			ft_advance_to_next_cmd(t_token **curr_cmd);
 /* 640_pipes/exec_pipes_child.c */
 void			ft_execute_child(t_shell *shell, t_token *curr_cmd, int i, \
 					t_pipe *pipes, int num_pipes);
-void			ft_setup_child_redirections(int i, t_pipe *pipes, int num_pipes);
+void			ft_setup_child_redirections(int i, t_pipe *pipes,
+					int num_pipes);
 void			ft_close_child_pipes(t_pipe *pipes, int num_pipes);
 t_token			*ft_copy_tokens(t_token *start, t_token *end);
 
@@ -171,7 +171,8 @@ void			ft_env(t_shell *shell);
 void			ft_pwd(void);
 /* 610_builtins/export.c */
 void			ft_export(t_shell *shell);
-void			ft_add_var_to_env(t_shell *shell, char *var, char *value, int sign);
+void			ft_add_var_to_env(t_shell *shell, char *var,
+					char *value, int sign);
 /* 610_builtins/exit.c */
 void			ft_exit(t_shell *shell);
 void			ft_handle_eof(t_shell *shell);
@@ -191,7 +192,6 @@ char			**ft_duplicate_env(char **envp);
 int				ft_get_env_size(t_shell *shell);
 void			ft_update_env(t_shell *shell);
 
-
 //============================================================================//
 //                       ENVIRONMENT VARIABLE UTILITIES                       //
 //============================================================================//
@@ -202,7 +202,8 @@ int				ft_get_var_index(char *var, char **env);
 char			*ft_get_var_name(char *str);
 /* 700_utils_other/variable_utils_2.c */
 char			*ft_update_var(char *var, char *value, int sign);
-void			ft_update_or_add_var(char *var, char *value, t_shell *shell, int sign);
+void			ft_update_or_add_var(char *var, char *value,
+					t_shell *shell, int sign);
 /* 611_builtins_utils/export_utils.c */
 int				ft_check_var_chars(char *var);
 
