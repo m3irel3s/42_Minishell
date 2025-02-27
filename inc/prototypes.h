@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/25 17:35:59 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/27 10:01:44 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_status		ft_create_and_add_token(t_shell *shell, char *value,
 //                             ERROR HANDLING                                 //
 //============================================================================//
 /* 520_errors_handler/syntax_validation.c */
-t_status		ft_validate_syntax(t_token *token);
+t_status	ft_validate_syntax(char *input);
 
 /* 520_errors_handler/print_errors_exit_failure.c */
 t_status		ft_print_error(char *error_msg);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/25 11:29:33 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/27 09:56:50 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,8 +200,6 @@ t_status ft_expand(t_shell *shell)
 		ft_free(expanded_value);
 		expanded_value = new_expanded_value;
 	}
-	if (quote_state != 0)
-		return (ft_free(expanded_value), ft_print_error(ERR_SYNTAX_UNCLOSED_QUOTE));
 	ft_free(shell->input);
 	shell->input = expanded_value;
 	return (SUCCESS);
