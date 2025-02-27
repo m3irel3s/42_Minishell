@@ -205,3 +205,889 @@ Continuing.
 
 Program received signal SIGINT, Interrupt.
 pselect64_syscall (sigmask=0x7ffff7fa4140 <_rl_orig_sigset>, timeout=<optimized out>, exceptfds=0x0, writefds=0x0, readfds=0x7fffffffdfd0, nfds=1) at ../sysdeps/unix/sysv/linux/pselect.c:34
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:42
+Breakpoint 3 at 0x40678c: file src/640_pipes/exec_pipes.c, line 38.
+Continuing.
+
+Breakpoint 3, ft_handle_pipes (shell=0x7fffffffe140) at src/640_pipes/exec_pipes.c:38
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+No symbol "pd" in current context.
+1: pid = 0
+1: pid = 0
+----------------------------------------------------
+1: pid = 0
+----------------------------------------------------
+[Attaching after Thread 0x7ffff7ccd380 (LWP 213709) fork to child process 213737]
+[New inferior 2 (process 213737)]
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff7ccd380 (LWP 213737)]
+ft_handle_pipes (shell=0x7fffffffe140) at src/640_pipes/exec_pipes.c:50
+----------------------------------------------------
+----------------------------------------------------
+ft_execute_child (shell=0x7fffffffe140, curr_cmd=0x446f30, i=0, pipes=0x4470e0, num_pipes=2) at src/640_pipes/exec_pipes_child.c:46
+----------------------------------------------------
+2: cmd_end = (t_token *) 0x401820 <main>
+2: cmd_end = (t_token *) 0x401820 <main>
+----------------------------------------------------
+2: cmd_end = (t_token *) 0x446f30
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+3: cmd_end->type = REDIRECT_OUT
+4: cmd_end->value = <error: There is no member named value.>
+5: cmd_end->value.value = <error: There is no member named value.>
+$1 = 0x4472b0 ">"
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+
+Thread 2.1 "minishell" hit Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:42
+Continuing.
+
+Thread 2.1 "minishell" hit Breakpoint 3, ft_handle_pipes (shell=0x7fffffffe140) at src/640_pipes/exec_pipes.c:38
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 213859) fork to child process 213863]
+[New inferior 3 (process 213863)]
+Reading symbols from /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Thread 3.1 "minishell" received signal SIGSEGV, Segmentation fault.
+[Switching to Thread 0x7ffff7ccd380 (LWP 213863)]
+0x0000000000408d1f in ft_print_str ()
+Continuing.
+
+Program terminated with signal SIGSEGV, Segmentation fault.
+The program no longer exists.
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Thread 3.1 "minishell" hit Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:42
+Continuing.
+
+Thread 3.1 "minishell" hit Breakpoint 3, ft_handle_pipes (shell=0x7fffffffe140) at src/640_pipes/exec_pipes.c:38
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+[Attaching after Thread 0x7ffff7ccd380 (LWP 213866) fork to child process 213870]
+[New inferior 4 (process 213870)]
+Reading symbols from /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff7ccd380 (LWP 213870)]
+ft_handle_pipes (shell=0x7fffffffe140) at src/640_pipes/exec_pipes.c:50
+----------------------------------------------------
+----------------------------------------------------
+ft_execute_child (shell=0x7fffffffe140, curr_cmd=0x446f30, i=0, pipes=0x4470e0, num_pipes=2) at src/640_pipes/exec_pipes_child.c:46
+6: cmd_end->val.value = 0x50ec8348e5894855 <error: Cannot access memory at address 0x50ec8348e5894855>
+6: cmd_end->val.value = 0x50ec8348e5894855 <error: Cannot access memory at address 0x50ec8348e5894855>
+----------------------------------------------------
+6: cmd_end->val.value = 0x50ec8348e5894855 <error: Cannot access memory at address 0x50ec8348e5894855>
+----------------------------------------------------
+6: cmd_end->val.value = 0x447200 "echo"
+----------------------------------------------------
+6: cmd_end->val.value = 0x447200 "echo"
+----------------------------------------------------
+6: cmd_end->val.value = 0x447240 "ola"
+----------------------------------------------------
+6: cmd_end->val.value = 0x447240 "ola"
+----------------------------------------------------
+6: cmd_end->val.value = 0x4472b0 ">"
+----------------------------------------------------
+6: cmd_end->val.value = 0x4472b0 ">"
+----------------------------------------------------
+6: cmd_end->val.value = 0x447320 "test"
+----------------------------------------------------
+6: cmd_end->val.value = 0x447320 "test"
+----------------------------------------------------
+6: cmd_end->val.value = 0x447390 "|"
+----------------------------------------------------
+6: cmd_end->val.value = 0x447390 "|"
+----------------------------------------------------
+6: cmd_end->val.value = 0x447390 "|"
+----------------------------------------------------
+6: cmd_end->val.value = 0x447390 "|"
+----------------------------------------------------
+$2 = (t_token *) 0x446f30
+$3 = 0x447200 "echo"
+6: cmd_end->val.value = 0x447390 "|"
+----------------------------------------------------
+6: cmd_end->val.value = 0x447390 "|"
+----------------------------------------------------
+6: cmd_end->val.value = 0x447390 "|"
+----------------------------------------------------
+6: cmd_end->val.value = 0x447390 "|"
+----------------------------------------------------
+6: cmd_end->val.value = 0x447390 "|"
+----------------------------------------------------
+6: cmd_end->val.value = 0x447390 "|"
+----------------------------------------------------
+6: cmd_end->val.value = 0x447390 "|"
+----------------------------------------------------
+6: cmd_end->val.value = 0x447390 "|"
+----------------------------------------------------
+6: cmd_end->val.value = 0x447390 "|"
+----------------------------------------------------
+7: shell->tokens->val.value = 0x447200 "echo"
+
+Thread 4.1 "minishell" received signal SIGSEGV, Segmentation fault.
+0x0000000000408d1f in ft_print_str ()
+----------------------------------------------------
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+
+Thread 4.1 "minishell" hit Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:42
+Continuing.
+
+Thread 4.1 "minishell" hit Breakpoint 3, ft_handle_pipes (shell=0x7fffffffe140) at src/640_pipes/exec_pipes.c:38
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+[Attaching after Thread 0x7ffff7ccd380 (LWP 213926) fork to child process 213929]
+[New inferior 5 (process 213929)]
+Reading symbols from /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff7ccd380 (LWP 213929)]
+ft_handle_pipes (shell=0x7fffffffe140) at src/640_pipes/exec_pipes.c:50
+----------------------------------------------------
+----------------------------------------------------
+ft_execute_child (shell=0x7fffffffe140, curr_cmd=0x446f30, i=0, pipes=0x4470e0, num_pipes=2) at src/640_pipes/exec_pipes_child.c:46
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+ft_get_cmd_type (cmd=0x447200 "echo") at src/600_exec/exec.c:147
+8: cmd = 0x447200 "echo"
+8: cmd = 0x447200 "echo"
+----------------------------------------------------
+8: cmd = 0x447200 "echo"
+----------------------------------------------------
+8: cmd = 0x447200 "echo"
+----------------------------------------------------
+8: cmd = 0x447200 "echo"
+----------------------------------------------------
+
+Thread 5.1 "minishell" received signal SIGSEGV, Segmentation fault.
+0x0000000000408d1f in ft_print_str ()
+----------------------------------------------------
+Not confirmed.
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+
+Thread 5.1 "minishell" hit Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:42
+Continuing.
+
+Thread 5.1 "minishell" hit Breakpoint 3, ft_handle_pipes (shell=0x7fffffffe140) at src/640_pipes/exec_pipes.c:38
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+[Attaching after Thread 0x7ffff7ccd380 (LWP 213938) fork to child process 213941]
+[New inferior 6 (process 213941)]
+Reading symbols from /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff7ccd380 (LWP 213941)]
+ft_handle_pipes (shell=0x7fffffffe140) at src/640_pipes/exec_pipes.c:50
+----------------------------------------------------
+----------------------------------------------------
+ft_execute_child (shell=0x7fffffffe140, curr_cmd=0x446f30, i=0, pipes=0x4470e0, num_pipes=2) at src/640_pipes/exec_pipes_child.c:46
+Breakpoint 4 at 0x405530: ft_execute_cmd. (6 locations)
+Continuing.
+
+Thread 6.1 "minishell" received signal SIGSEGV, Segmentation fault.
+0x0000000000408d1f in ft_print_str ()
+Program not restarted.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:42
+Breakpoint 3 at 0x40678c: file src/640_pipes/exec_pipes.c, line 38.
+Continuing.
+
+Breakpoint 3, ft_handle_pipes (shell=0x7fffffffe140) at src/640_pipes/exec_pipes.c:38
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+[Attaching after Thread 0x7ffff7ccd380 (LWP 214403) fork to child process 214408]
+[New inferior 2 (process 214408)]
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff7ccd380 (LWP 214408)]
+ft_handle_pipes (shell=0x7fffffffe140) at src/640_pipes/exec_pipes.c:50
+----------------------------------------------------
+----------------------------------------------------
+ft_execute_child (shell=0x7fffffffe140, curr_cmd=0x446f30, i=0, pipes=0x4470e0, num_pipes=2) at src/640_pipes/exec_pipes_child.c:46
+ft_setup_child_redirections (i=0, pipes=0x4470e0, num_pipes=2) at src/640_pipes/exec_pipes_child.c:88
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+ft_execute_child (shell=0x7fffffffe140, curr_cmd=0x446f30, i=0, pipes=0x4470e0, num_pipes=2) at src/640_pipes/exec_pipes_child.c:47
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+ft_get_cmd_type (cmd=0x447200 "echo") at src/600_exec/exec.c:147
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+Breakpoint 4 at 0x40430c: ft_echo. (2 locations)
+Continuing.
+
+Thread 2.1 "minishell" hit Breakpoint 4, ft_echo (shell=0x7fffffffe140) at src/610_builtins/echo.c:23
+1: curr->val.value = 0x6f686365 <error: Cannot access memory at address 0x6f686365>
+1: curr->val.value = 0x6f686365 <error: Cannot access memory at address 0x6f686365>
+----------------------------------------------------
+1: curr->val.value = 0x447240 "ola"
+----------------------------------------------------
+1: curr->val.value = 0x447240 "ola"
+----------------------------------------------------
+1: curr->val.value = 0x447240 "ola"
+----------------------------------------------------
+1: curr->val.value = 0x447240 "ola"
+----------------------------------------------------
+1: curr->val.value = 0x447240 "ola"
+----------------------------------------------------
+1: curr->val.value = 0x447 <error: Cannot access memory at address 0x447>
+----------------------------------------------------
+1: curr->val.value = 0x447 <error: Cannot access memory at address 0x447>
+----------------------------------------------------
+1: curr->val.value = 0x447 <error: Cannot access memory at address 0x447>
+----------------------------------------------------
+1: curr->val.value = 0x447 <error: Cannot access memory at address 0x447>
+----------------------------------------------------
+
+Thread 2.1 "minishell" received signal SIGSEGV, Segmentation fault.
+0x0000000000408d1f in ft_print_str ()
+----------------------------------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Breakpoint 3 at 0x40678c: file src/640_pipes/exec_pipes.c, line 38.
+Continuing.
+
+Breakpoint 3, ft_handle_pipes (shell=0x7fffffffe190) at src/640_pipes/exec_pipes.c:38
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+[Attaching after Thread 0x7ffff7ccd380 (LWP 164361) fork to child process 164371]
+[New inferior 2 (process 164371)]
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff7ccd380 (LWP 164371)]
+ft_handle_pipes (shell=0x7fffffffe190) at src/640_pipes/exec_pipes.c:50
+----------------------------------------------------
+----------------------------------------------------
+ft_execute_child (shell=0x7fffffffe190, curr_cmd=0x446010, i=0, pipes=0x447420, num_pipes=2) at src/640_pipes/exec_pipes_child.c:46
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+1: cmd_end->val.value = 0x447580 ">"
+1: cmd_end->val.value = 0x447580 ">"
+----------------------------------------------------
+1: cmd_end->val.value = 0x4475c0 "test"
+----------------------------------------------------
+1: cmd_end->val.value = 0x4475c0 "test"
+----------------------------------------------------
+1: cmd_end->val.value = 0x447600 "|"
+----------------------------------------------------
+1: cmd_end->val.value = 0x447600 "|"
+----------------------------------------------------
+1: cmd_end->val.value = 0x447600 "|"
+----------------------------------------------------
+1: cmd_end->val.value = 0x447600 "|"
+----------------------------------------------------
+1: cmd_end->val.value = 0x447600 "|"
+----------------------------------------------------
+1: cmd_end->val.value = 0x447600 "|"
+----------------------------------------------------
+1: cmd_end->val.value = 0x447600 "|"
+----------------------------------------------------
+1: cmd_end->val.value = 0x447600 "|"
+----------------------------------------------------
+1: cmd_end->val.value = 0x447600 "|"
+----------------------------------------------------
+1: cmd_end->val.value = 0x447600 "|"
+----------------------------------------------------
+1: cmd_end->val.value = 0x447600 "|"
+----------------------------------------------------
+1: cmd_end->val.value = 0x447600 "|"
+----------------------------------------------------
+1: cmd_end->val.value = 0x447600 "|"
+----------------------------------------------------
+ft_get_cmd_type (cmd=0x447500 "echo") at src/600_exec/exec.c:147
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+
+Thread 2.1 "minishell" received signal SIGSEGV, Segmentation fault.
+0x0000000000408d1f in ft_print_str ()
+----------------------------------------------------
+#0  0x0000000000408d1f in ft_print_str ()
+#1  0x00000000004087b7 in ft_print_format ()
+#2  0x0000000000408c5d in ft_printf ()
+#3  0x00000000004043c7 in ft_echo (shell=0x7fffffffe190) at src/610_builtins/echo.c:38
+#4  0x0000000000403e39 in ft_execute_command (shell=0x7fffffffe190, cmd=CMD_ECHO)
+    at src/600_exec/exec.c:121
+#5  0x0000000000406357 in ft_execute_child (shell=0x7fffffffe190, curr_cmd=0x446010, i=0, 
+    pipes=0x447420, num_pipes=2) at src/640_pipes/exec_pipes_child.c:67
+#6  0x000000000040681a in ft_handle_pipes (shell=0x7fffffffe190) at src/640_pipes/exec_pipes.c:52
+#7  0x0000000000403b65 in ft_exec (shell=0x7fffffffe190) at src/600_exec/exec.c:43
+#8  0x0000000000401945 in ft_process_input (shell=0x7fffffffe190) at src/100_main.c:81
+#9  0x00000000004018da in main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:56
+Breakpoint 4 at 0x40430c: ft_echo. (2 locations)
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+
+Thread 2.1 "minishell" hit Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Continuing.
+
+Thread 2.1 "minishell" hit Breakpoint 3, ft_handle_pipes (shell=0x7fffffffe190) at src/640_pipes/exec_pipes.c:38
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 164384) fork to child process 164386]
+[New inferior 3 (process 164386)]
+Reading symbols from /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff7ccd380 (LWP 164386)]
+
+Thread 3.1 "minishell" hit Breakpoint 4, ft_echo (shell=0x7fffffffe190) at src/610_builtins/echo.c:23
+No symbol "str" in current context.
+2: curr->value.val = <error: There is no member named value.>
+2: curr->value.val = <error: There is no member named value.>
+----------------------------------------------------
+2: curr->value.val = <error: There is no member named value.>
+----------------------------------------------------
+3: curr->val.value = 0x447290 "ola"
+3: curr->val.value = 0x447290 "ola"
+----------------------------------------------------
+3: curr->val.value = 0x447290 "ola"
+----------------------------------------------------
+3: curr->val.value = 0x447290 "ola"
+----------------------------------------------------
+3: curr->val.value = 0x447290 "ola"
+----------------------------------------------------
+3: curr->val.value = 0x447 <error: Cannot access memory at address 0x447>
+----------------------------------------------------
+3: curr->val.value = 0x447 <error: Cannot access memory at address 0x447>
+----------------------------------------------------
+3: curr->val.value = 0x447 <error: Cannot access memory at address 0x447>
+----------------------------------------------------
+3: curr->val.value = 0x447 <error: Cannot access memory at address 0x447>
+----------------------------------------------------
+
+Thread 3.1 "minishell" received signal SIGSEGV, Segmentation fault.
+0x0000000000408d1f in ft_print_str ()
+----------------------------------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Breakpoint 3 at 0x40430c: file src/610_builtins/echo.c, line 23.
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 164987) fork to child process 164990]
+[New inferior 2 (process 164990)]
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff7ccd380 (LWP 164990)]
+
+Thread 2.1 "minishell" hit Breakpoint 3, ft_echo (shell=0x7fffffffe190) at src/610_builtins/echo.c:23
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+1: curr->val.value = 0x447290 "ola"
+1: curr->val.value = 0x447290 "ola"
+----------------------------------------------------
+1: curr->val.value = 0x447290 "ola"
+----------------------------------------------------
+1: curr->val.value = 0x447290 "ola"
+----------------------------------------------------
+1: curr->val.value = 0x447 <error: Cannot access memory at address 0x447>
+----------------------------------------------------
+2: curr = (t_token *) 0x447850
+3: curr->type = REDIRECT_OUT
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Breakpoint 3 at 0x40430c: file src/610_builtins/echo.c, line 23.
+
+quit
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Breakpoint 3 at 0x40430c: file src/610_builtins/echo.c, line 23.
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 167010) fork to child process 167013]
+[New inferior 2 (process 167013)]
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff7ccd380 (LWP 167013)]
+
+Thread 2.1 "minishell" hit Breakpoint 3, ft_echo (shell=0x7fffffffe190) at src/610_builtins/echo.c:23
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+1: curr->val.value = 0x447250 "ola"
+2: curr->type = WORD
+1: curr->val.value = 0x447250 "ola"
+2: curr->type = WORD
+----------------------------------------------------
+1: curr->val.value = 0x447 <error: Cannot access memory at address 0x447>
+2: curr->type = REDIRECT_OUT
+----------------------------------------------------
+1: curr->val.value = 0x447 <error: Cannot access memory at address 0x447>
+2: curr->type = REDIRECT_OUT
+----------------------------------------------------
+1: curr->val.value = 0x447 <error: Cannot access memory at address 0x447>
+2: curr->type = REDIRECT_OUT
+----------------------------------------------------
+
+Thread 2.1 "minishell" received signal SIGSEGV, Segmentation fault.
+0x0000000000408d2f in ft_print_str ()
+----------------------------------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Breakpoint 3 at 0x40623b: file src/640_pipes/exec_pipes_child.c, line 46.
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 168864) fork to child process 168875]
+[New inferior 2 (process 168875)]
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff7ccd380 (LWP 168875)]
+
+Thread 2.1 "minishell" hit Breakpoint 3, ft_execute_child (shell=0x7fffffffe190, curr_cmd=0x429f20, i=0, pipes=0x447210, num_pipes=2) at src/640_pipes/exec_pipes_child.c:46
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+ft_create_redirection_list (shell=0x7fffffffe190) at src/630_redirects/exec_redirection_utils.c:43
+----------------------------------------------------
+----------------------------------------------------
+1: token->val.value = 0x4472f0 "echo"
+2: token->type = WORD
+1: token->val.value = 0x4472f0 "echo"
+2: token->type = WORD
+----------------------------------------------------
+1: token->val.value = 0x4472f0 "echo"
+2: token->type = WORD
+----------------------------------------------------
+1: token->val.value = 0x4472f0 "echo"
+2: token->type = WORD
+----------------------------------------------------
+1: token->val.value = 0x4472f0 "echo"
+2: token->type = WORD
+----------------------------------------------------
+1: token->val.value = 0x447330 "ola"
+2: token->type = WORD
+----------------------------------------------------
+1: token->val.value = 0x447330 "ola"
+2: token->type = WORD
+----------------------------------------------------
+1: token->val.value = 0x447330 "ola"
+2: token->type = WORD
+----------------------------------------------------
+1: token->val.value = 0x447330 "ola"
+2: token->type = WORD
+----------------------------------------------------
+1: token->val.value = 0x447330 "ola"
+2: token->type = WORD
+----------------------------------------------------
+1: token->val.value = 0x447370 ">"
+2: token->type = REDIRECT_OUT
+----------------------------------------------------
+1: token->val.value = 0x447370 ">"
+2: token->type = REDIRECT_OUT
+----------------------------------------------------
+1: token->val.value = 0x447370 ">"
+2: token->type = REDIRECT_OUT
+----------------------------------------------------
+1: token->val.value = 0x447370 ">"
+2: token->type = REDIRECT_OUT
+----------------------------------------------------
+1: token->val.value = 0x447370 ">"
+2: token->type = REDIRECT_OUT
+----------------------------------------------------
+1: token->val.value = 0x447370 ">"
+2: token->type = REDIRECT_OUT
+----------------------------------------------------
+1: token->val.value = 0x447370 ">"
+2: token->type = REDIRECT_OUT
+----------------------------------------------------
+1: token->val.value = <error: Cannot access memory at address 0x0>
+2: token->type = <error: Cannot access memory at address 0x10>
+----------------------------------------------------
+1: token->val.value = <error: Cannot access memory at address 0x0>
+2: token->type = <error: Cannot access memory at address 0x10>
+----------------------------------------------------
+1: token->val.value = <error: Cannot access memory at address 0x0>
+2: token->type = <error: Cannot access memory at address 0x10>
+----------------------------------------------------
+ft_execute_child (shell=0x7fffffffe190, curr_cmd=0x429f20, i=0, pipes=0x447210, num_pipes=2) at src/640_pipes/exec_pipes_child.c:56
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+
+Thread 2.1 "minishell" received signal SIGSEGV, Segmentation fault.
+0x0000000000408d1f in ft_print_str ()
+----------------------------------------------------
+Breakpoint 4 at 0x40430c: ft_echo. (2 locations)
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+
+Thread 2.1 "minishell" hit Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 168914) fork to child process 168916]
+[New inferior 3 (process 168916)]
+Reading symbols from /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff7ccd380 (LWP 168916)]
+
+Thread 3.1 "minishell" hit Breakpoint 3, ft_execute_child (shell=0x7fffffffe190, curr_cmd=0x446f10, i=0, pipes=0x4470c0, num_pipes=2) at src/640_pipes/exec_pipes_child.c:46
+Continuing.
+
+Thread 3.1 "minishell" hit Breakpoint 4, ft_echo (shell=0x7fffffffe190) at src/610_builtins/echo.c:23
+3: curr = (t_token *) 0x4471e0
+4: curr->val.value = 0x6f686365 <error: Cannot access memory at address 0x6f686365>
+4: curr->val.value = 0x6f686365 <error: Cannot access memory at address 0x6f686365>
+----------------------------------------------------
+4: curr->val.value = 0x447220 "ola"
+----------------------------------------------------
+4: curr->val.value = 0x447220 "ola"
+----------------------------------------------------
+4: curr->val.value = 0x447220 "ola"
+----------------------------------------------------
+4: curr->val.value = 0x447220 "ola"
+----------------------------------------------------
+4: curr->val.value = 0x447220 "ola"
+----------------------------------------------------
+4: curr->val.value = 0x447 <error: Cannot access memory at address 0x447>
+----------------------------------------------------
+5: curr->type = REDIRECT_OUT
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40183a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Breakpoint 3 at 0x40430c: file src/610_builtins/echo.c, line 23.
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 169485) fork to child process 169489]
+[New inferior 2 (process 169489)]
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff7ccd380 (LWP 169489)]
+
+Thread 2.1 "minishell" hit Breakpoint 3, ft_echo (shell=0x7fffffffe190) at src/610_builtins/echo.c:23
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+1: curr->val.value = 0x447 <error: Cannot access memory at address 0x447>
+1: curr->val.value = 0x447 <error: Cannot access memory at address 0x447>
+----------------------------------------------------
+1: curr->val.value = 0x447 <error: Cannot access memory at address 0x447>
+----------------------------------------------------
+Please answer y or n.

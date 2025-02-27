@@ -17,6 +17,11 @@ set logging overwrite on
 set logging redirect on
 set logging file gdb.txt
 
+
+#Debug pipes
+set follow-fork-mode child
+set detach-on-fork off
+
 # Load the program
 file minishell
 
@@ -33,8 +38,6 @@ file minishell
 # 	disp res
 # 	disp i
 # end
-
-
 
 
 # Set breakpoints

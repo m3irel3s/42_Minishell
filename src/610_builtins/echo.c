@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:22:57 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/26 17:14:37 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/27 11:04:37 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ void	ft_echo(t_shell *shell)
 	{
 		ft_printf(STDOUT_FILENO, "%s", curr->val.value);
 		curr = curr->next;
-		if (curr)
+		if (curr && curr->type == WORD)
 			ft_printf(STDOUT_FILENO, " ");
+		else
+			break;
 	}
 	if (add_new_line)
 		ft_printf(STDOUT_FILENO, "\n");
