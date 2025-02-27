@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:26:26 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 11:40:12 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/27 12:00:15 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,13 @@ t_status	ft_create_and_add_token(t_shell *shell, char *value, size_t len, int qu
 	new_token->val.value = ft_safe_strdup(new_token->val.og_value);
 	if (ft_is_last_token_heredoc(shell) != SUCCESS)
 		new_token->val.value = ft_expand(shell, new_token->val.value);
+	if (!new_token->val.value || ft_strlen(new_token->val.value) == 0)
+	{
+		ft_free(new_token->val.value);
+		ft_free(new_token->val.og_value);
+		ft_free(new_token);
+		return (SUCCESS);
+	}
 	ft_remove_quotes(new_token->val.value);
 	if (!new_token->val.value)
 	{
