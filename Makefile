@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
+#    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/26 15:28:12 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/02/27 10:13:27 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,18 +72,18 @@ SRCS = \
        ${SRC_PATH}/300_prompt/prompt_utils.c \
        ${SRC_PATH}/400_signals/signals.c \
        ${SRC_PATH}/500_parsing/parsing.c \
-       ${SRC_PATH}/510_tokenization/tokens_process.c \
-	   ${SRC_PATH}/510_tokenization/tokens_utils.c \
-	   ${SRC_PATH}/510_tokenization/tokens_utils_2.c \
-	   ${SRC_PATH}/510_tokenization/tokens_count.c \
-	   ${SRC_PATH}/510_tokenization/tokens_split.c \
-       ${SRC_PATH}/520_errors_handler/syntax_validation.c \
-       ${SRC_PATH}/520_errors_handler/print_errors_exit_failure.c \
-       ${SRC_PATH}/520_errors_handler/print_errors_heredoc.c \
-       ${SRC_PATH}/520_errors_handler/print_errors_command_not_found.c \
-       ${SRC_PATH}/520_errors_handler/print_errors_misuse.c \
-       ${SRC_PATH}/520_errors_handler/print_errors_fatal_signal.c \
-       ${SRC_PATH}/520_errors_handler/print_errors_utils.c \
+       ${SRC_PATH}/520_tokenization/tokens_process.c \
+	   ${SRC_PATH}/520_tokenization/tokens_utils.c \
+	   ${SRC_PATH}/520_tokenization/tokens_utils_2.c \
+	   ${SRC_PATH}/520_tokenization/tokens_count.c \
+	   ${SRC_PATH}/520_tokenization/tokens_split.c \
+       ${SRC_PATH}/510_errors_handler/syntax_validation.c \
+       ${SRC_PATH}/510_errors_handler/print_errors_exit_failure.c \
+       ${SRC_PATH}/510_errors_handler/print_errors_heredoc.c \
+       ${SRC_PATH}/510_errors_handler/print_errors_command_not_found.c \
+       ${SRC_PATH}/510_errors_handler/print_errors_misuse.c \
+       ${SRC_PATH}/510_errors_handler/print_errors_fatal_signal.c \
+       ${SRC_PATH}/510_errors_handler/print_errors_utils.c \
        ${SRC_PATH}/530_expansion/expand.c \
        ${SRC_PATH}/530_expansion/expand_handle_dollar.c \
        ${SRC_PATH}/600_exec/exec.c \
