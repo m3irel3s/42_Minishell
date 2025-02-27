@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
+#    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/27 10:13:27 by meferraz         ###   ########.fr        #
+#    Updated: 2025/02/27 14:53:04 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,7 +99,8 @@ SRCS = \
        ${SRC_PATH}/611_builtins_utils/export_utils.c \
        ${SRC_PATH}/611_builtins_utils/export_print.c \
        ${SRC_PATH}/611_builtins_utils/cd_and_pwd_utils.c \
-       ${SRC_PATH}/620_execve/exec_execve.c \
+       ${SRC_PATH}/620_execve/execve.c \
+       ${SRC_PATH}/620_execve/execve_utils.c \
        ${SRC_PATH}/630_redirects/exec_heredoc.c \
        ${SRC_PATH}/630_redirects/exec_redirection.c \
        ${SRC_PATH}/630_redirects/exec_redirection_utils.c \
