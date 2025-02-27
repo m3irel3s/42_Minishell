@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:45:07 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 14:58:42 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:24:21 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,14 @@ void	ft_handle_redirections(t_shell *shell)
  */
 static void	ft_apply_redirection(t_shell *shell, t_redirect *redirect)
 {
+	(void)shell;
+
 	if (redirect->type == REDIRECT_IN)
 		ft_redirect_in(redirect);
 	else if (redirect->type == REDIRECT_OUT)
 		ft_redirect_out(redirect);
 	else if (redirect->type == REDIRECT_APPEND)
 		ft_redirect_append(redirect);
-	else if (redirect->type == HEREDOC)
-		ft_redirect_heredoc(shell, redirect);
 }
 
 /**

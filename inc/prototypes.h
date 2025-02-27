@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/27 15:26:27 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:23:54 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ void			ft_handle_redirections(t_shell *shell);
 /* 630_redirects/exec_redirection_utils.c */
 void			ft_create_redirection_list(t_shell *shell);
 /* 630_redirects/exec_heredoc.c */
-t_status		ft_redirect_heredoc(t_shell *shell, t_redirect *redirect);
+void			ft_process_heredocs(t_shell *shell);
 
 //============================================================================//
 //                               BUILT-IN COMMANDS                            //

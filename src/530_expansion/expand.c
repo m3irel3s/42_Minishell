@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 14:58:42 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:24:06 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ char	*ft_expand(t_shell *shell, char *token)
 	while (token[i])
 	{
 		ft_handle_quotes(token, &i, &quote_state);
-		if (token[i] == '$' && quote_state != 1)
+		if (token[i] == '$' && quote_state != 1 && token[i + 1])
 		{
 			temp = ft_handle_dollar(shell, token, &i);
 			expanded_value = ft_join_and_free(expanded_value, temp);
