@@ -6,11 +6,13 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 13:50:07 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 10:20:07 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:49:19 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+static int	ft_count_equals(char **n_env);
 
 /**
  * @brief Duplicates the environment array.
@@ -64,4 +66,40 @@ int	ft_get_env_size(t_shell *shell)
 	while (env[i])
 		i++;
 	return (i);
+}
+
+void	ft_update_env(t_shell *shell)
+{
+	char	**n_env;
+	int		count;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	count = ft_count_equals(shell->env_cpy);
+	n_env = ft_safe_malloc(sizeof(char *) * (count + 1));
+	while (shell->env_cpy[i])
+	{
+		if (ft_strchr(shell->env_cpy[i], '='))
+			n_env[j++] = ft_safe_strdup(shell->env_cpy[i]);
+		i++;
+	}
+	ft_free_arr(shell->env_cpy);
+	shell->env_cpy = n_env;
+}
+
+static int	ft_count_equals(char **n_env)
+{
+	int	count;
+
+	count = 0;
+	while (n_env[count])
+	{
+		if (ft_strchr(n_env[count], '='))
+			count++;
+		else
+			count++;
+	}
+	return (count);
 }

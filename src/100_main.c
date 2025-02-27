@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   100_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/24 17:37:43 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:44:17 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	main(int argc, char **argv, char **envp)
 		return (ft_print_error(ERR_SIGNAL_SETUP_FAIL), EXIT_FAILURE);
 	if (ft_init_shell(&shell, envp) == ERROR)
 		return (ft_print_error(ERR_SHELL_INIT_FAIL), EXIT_FAILURE);
+	ft_update_env(&shell);
 	while (1)
 	{
 		shell.prompt = ft_set_prompt(&shell);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/25 17:35:59 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/27 13:44:01 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,8 @@ char			*ft_get_current_directory(void);
 /* 611_builtins_utils/env_utils.c */
 char			**ft_duplicate_env(char **envp);
 int				ft_get_env_size(t_shell *shell);
+void			ft_update_env(t_shell *shell);
+
 
 //============================================================================//
 //                       ENVIRONMENT VARIABLE UTILITIES                       //
