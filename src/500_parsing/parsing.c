@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:29:46 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/24 21:37:15 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/27 09:06:34 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ t_status	ft_parse_input(t_shell *shell)
 	char	**split_input;
 
 	if (!shell || !shell->input)
-		return (ft_print_error(ERR_TOKENIZATION_FAIL));
+		return (ft_print_error(ERR_INVALID_SHELL_OR_INPUT));
+	if (ft_validate_syntax(shell) != SUCCESS)
+		return (ft_print_error(ERR_SYNTAX_VALIDATION_FAIL));
 	if (ft_expand(shell) != SUCCESS)
 		return (ft_print_error(ERR_EXPANSION_FAIL));
 	split_input = ft_split_input(shell->input);
@@ -41,11 +43,6 @@ t_status	ft_parse_input(t_shell *shell)
 		return (ft_print_error(ERR_TOKENIZATION_FAIL));
 	}
 	ft_free_arr(split_input);
-	if (ft_validate_all_tokens(shell) != SUCCESS)
-	{
-		ft_free_tokens(&shell->tokens);
-		return (ft_print_error(ERR_SYNTAX_VALIDATION_FAIL));
-	}
 	g_exit_status = EXIT_SUCCESS;
 	return (SUCCESS);
 }
