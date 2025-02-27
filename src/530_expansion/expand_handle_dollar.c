@@ -6,13 +6,14 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 14:14:30 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 17:09:45 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:47:48 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
 static char	*ft_expand_exit_status(size_t *i);
+static char	*ft_expand_number(char *token, size_t *i);
 static char	*ft_expand_variable(t_shell *shell, char *token, size_t *i,
 				size_t start);
 static char	*ft_set_error_and_return_null(void);
@@ -53,6 +54,8 @@ char	*ft_handle_dollar(t_shell *shell, char *token, size_t *i)
 	(*i)++;
 	if (token[*i] == '?')
 		res = ft_expand_exit_status(i);
+	if (ft_isdigit(token[*i]))
+		res = ft_expand_number(token, i);
 	else
 	{
 		start = *i;
@@ -65,6 +68,35 @@ char	*ft_handle_dollar(t_shell *shell, char *token, size_t *i)
 	return (res);
 }
 
+/**
+ * @brief Expands a number found in the token string.
+ *
+ * This function expands a sequence of digits in the token string to the
+ * corresponding string value. The start index of the sequence is given by
+ * the value of \p i, and the end index is determined by finding the next
+ * non-digit character. If memory allocation fails, the function sets the
+ * shell's exit status to failure and returns NULL.
+ *
+ * @param shell A pointer to the shell structure.
+ * @param token The token string containing the number to be expanded.
+ * @param i A pointer to the current index of the token string.
+ * @return The expanded value of the number as a string, or NULL if memory
+ * allocation fails.
+ */
+static char*	ft_expand_number(char *token, size_t *i)
+{
+	char	*res;
+	size_t	start;
+
+	(*i)++;
+	start = *i;
+	if (ft_isalnum(token[*i]))
+		(*i)++;
+	res = ft_safe_substr(token, start, *i - start);
+	if (!res)
+		return (ft_set_error_and_return_null());
+	return (res);
+}
 /**
  * @brief Expands the "$?" special variable.
  *
