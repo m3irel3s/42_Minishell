@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:43:44 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 10:03:29 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/27 10:15:35 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ static t_status	ft_skip_quotes(char *input, int *i, char quote);
 static t_status ft_validate_pipes(char *input);
 static t_status	ft_validate_redirects(char *input);
 
+/**
+ * @brief Removes leading and trailing spaces from a string.
+ * @param str The string to have its spaces removed.
+ * @note This function is not thread-safe.
+ */
 static void	ft_remove_spaces(char *str)
 {
 	int	i;
@@ -44,6 +49,11 @@ static void	ft_remove_spaces(char *str)
 	str[i] = '\0';
 }
 
+/**
+ * @brief Checks if all quotes are properly closed in the input string.
+ * @param input The input string to be checked.
+ * @return SUCCESS if all quotes are properly closed, ERROR otherwise.
+ */
 static t_status	ft_check_quotes(char *input)
 {
 	size_t	i;
@@ -68,6 +78,15 @@ static t_status	ft_check_quotes(char *input)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Skips over a quoted section in the input string.
+ *
+ * @param input The input string containing the quoted section to be skipped.
+ * @param i A pointer to the current index in the input string.
+ * @param quote The quote character to be looked for.
+ * @return SUCCESS if the quote is matched, or an error status if there
+ * is an unmatched quote.
+ */
 static t_status	ft_skip_quotes(char *input, int *i, char quote)
 {
 	(*i)++;
@@ -79,6 +98,15 @@ static t_status	ft_skip_quotes(char *input, int *i, char quote)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Validates the use of pipes in the input string.
+ *
+ * This function checks the input string for invalid use of pipes, such as
+ * starting or ending with a pipe, or having consecutive pipes.
+ *
+ * @param input The input string to be validated.
+ * @return SUCCESS if the input string is valid, or an error status otherwise.
+ */
 static t_status ft_validate_pipes(char *input)
 {
 	int	i;
@@ -101,6 +129,15 @@ static t_status ft_validate_pipes(char *input)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Validates the use of redirects in the input string.
+ *
+ * This function checks the input string for invalid use of redirects, such as
+ * having consecutive redirects or having a redirect at the end of the string.
+ *
+ * @param input The input string to be validated.
+ * @return SUCCESS if the input string is valid, or an error status otherwise.
+ */
 static t_status	ft_validate_redirects(char *input)
 {
 	int	i;
@@ -138,6 +175,15 @@ static t_status	ft_validate_redirects(char *input)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Validates the syntax of a given input string.
+ *
+ * This function validates the syntax of the given input string by checking for
+ * invalid use of quotes, consecutive pipes, and invalid use of redirects.
+ *
+ * @param input The input string to be validated.
+ * @return SUCCESS if the input string is valid, or an error status otherwise.
+ */
 t_status	ft_validate_syntax(char *input)
 {
 	char	*input_cpy;
