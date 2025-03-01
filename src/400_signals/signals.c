@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 09:56:30 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 12:26:13 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/01 10:45:19 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,5 @@ static void	ft_handle_sigint(int sig)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
+	g_exit_status = EXIT_SIGINT;
 }
