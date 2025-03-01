@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/01 10:45:14 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/01 12:21:56 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,26 +123,26 @@
 # define ERR_SIGNAL_SETUP_FAIL \
     "minishell: Failed to set up signal handlers\n"
 
-#define ERR_OPEN_FAIL "minishell: Error opening file\n"
-#define ERR_STRDUP_FAIL "minishell: Failed to duplicate string\n"
+# define ERR_OPEN_FAIL "minishell: Error opening file\n"
+# define ERR_STRDUP_FAIL "minishell: Failed to duplicate string\n"
 
-#define ERR_TOKENIZATION_FAIL "minishell: Failed to tokenize input\n"
-#define ERR_EXPANSION_FAIL "minishell: Failed to expand variables\n"
+# define ERR_TOKENIZATION_FAIL "minishell: Failed to tokenize input\n"
+# define ERR_EXPANSION_FAIL "minishell: Failed to expand variables\n"
 
-#define ERR_OPERATOR_HANDLING_FAIL "minishell: Failed to handle operator\n"
-#define ERR_EXPORT_TOKEN_FAIL "minishell: Failed to create export token\n"
-#define ERR_EXPORT_ARG_HANDLING_FAIL "minishell: Failed to handle export argument\n"
-#define ERR_WORD_HANDLING_FAIL "minishell: Failed to handle word\n"
-#define ERR_TOKEN_CREATION_FAIL "minishell: Failed to create token\n"
-#define ERR_NULL_TOKEN_VALUE "minishell: Error: Null token value\n"
-#define ERR_SUBSTR_FAIL "minishell: Substring creation failed\n"
-#define ERR_PIPE_FAIL "minishell: error creating heredoc pipe\n"
-#define ERR_WRITE_FAIL "minishell: error writing to heredoc pipe\n"
-#define ERR_INVALID_SHELL "minishell: Invalid shell structure\n"
-#define ERR_FORK_FAIL "minishell: fork failed\n"
+# define ERR_OPERATOR_HANDLING_FAIL "minishell: Failed to handle operator\n"
+# define ERR_EXPORT_TOKEN_FAIL "minishell: Failed to create export token\n"
+# define ERR_EXPORT_ARG_HANDLING_FAIL "minishell: Failed to handle \
+    export argument\n"
+# define ERR_WORD_HANDLING_FAIL "minishell: Failed to handle word\n"
+# define ERR_TOKEN_CREATION_FAIL "minishell: Failed to create token\n"
+# define ERR_NULL_TOKEN_VALUE "minishell: Error: Null token value\n"
+# define ERR_SUBSTR_FAIL "minishell: Substring creation failed\n"
+# define ERR_PIPE_FAIL "minishell: error creating heredoc pipe\n"
+# define ERR_WRITE_FAIL "minishell: error writing to heredoc pipe\n"
+# define ERR_INVALID_SHELL "minishell: Invalid shell structure\n"
+# define ERR_FORK_FAIL "minishell: fork failed\n"
 # define ERR_EXPORT_INVALID_IDENTIFIER \
     "export: %s: not a valid identifier\n"
 # define ERR_WORD_COUNT_FAIL "minishell: Failed to count words in input\n"
 
 #endif
-

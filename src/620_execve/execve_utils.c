@@ -1,59 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec_execve.c                                      :+:      :+:    :+:   */
+/*   execve_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/18 12:34:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/26 15:25:16 by jmeirele         ###   ########.fr       */
+/*   Created: 2025/02/27 14:54:34 by jmeirele          #+#    #+#             */
+/*   Updated: 2025/02/27 17:27:47 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-static int		ft_count_type_words(t_token *start_pos);
-static void		ft_cleanup_cmd_execution(char *path, char **arr);
-static t_status	ft_exec_child(t_shell *shell, char *path, char **arr);
-
-void	ft_execute_cmd(t_shell *shell, char *cmd)
-{
-	char	*path;
-	char	**arr;
-	pid_t	pid;
-	int		status;
-
-	if (!cmd || !shell)
-	{
-		ft_print_error(ERR_INVALID_PARAMS);
-		return ;
-	}
-	path = ft_get_path_to_execute(shell, cmd);
-	if (!path)
-	{
-		ft_print_command_not_found_error(cmd);
-		return ;
-	}
-	arr = ft_create_arr_cmd(shell->tokens);
-	if (!arr)
-	{
-		ft_free(path);
-		ft_print_error(ERR_MALLOC_FAIL);
-		return ;
-	}
-	pid = fork();
-	if (pid == -1)
-		return (ft_print_error(ERR_FORK_FAIL), ft_cleanup_cmd_execution(path, arr));
-	if (pid == 0)
-		ft_exec_child(shell, path, arr);
-	else
-	{
-		waitpid(pid, &status, 0);
-		if (WIFEXITED(status))
-			g_exit_status = WEXITSTATUS(status);
-	}
-	ft_cleanup_cmd_execution(path, arr);
-}
+static int	ft_count_type_words(t_token *start_pos);
 
 char	*ft_get_path_to_execute(t_shell *shell, char *cmd)
 {
@@ -133,21 +92,4 @@ static int	ft_count_type_words(t_token *start_pos)
 		start_pos = start_pos->next;
 	}
 	return (counter);
-}
-
-static void	ft_cleanup_cmd_execution(char *path, char **arr)
-{
-	ft_free(path);
-	ft_free_arr(arr);
-}
-
-static t_status	ft_exec_child(t_shell *shell, char *path, char **arr)
-{
-	if (execve(path, arr, shell->env_cpy) == -1)
-	{
-		ft_print_command_not_found_error(shell->tokens->val.value);
-		ft_cleanup_cmd_execution(path, arr);
-		exit(EXIT_FAILURE);
-	}
-	return (SUCCESS);
 }

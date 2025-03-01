@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exec_redirection_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:11:23 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 15:04:21 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:24:17 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../inc/minishell.h"
 
 static t_token	*ft_get_after_next(t_token *next_token);
 static int		ft_is_redirect_token(int type);

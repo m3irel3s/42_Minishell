@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/01 12:01:10 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/01 12:22:17 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void ft_exec(t_shell *shell)
 	{
 		if (!ft_strncmp(curr->val.og_value, "\"\"", ft_strlen(curr->val.og_value)) ||
 			!ft_strncmp(curr->val.og_value, "\'\'", ft_strlen(curr->val.og_value)))
-			ft_print_command_not_found_error("");
+			ft_print_error_w_arg(ERR_CMD_NOT_FOUND, "");
 		return;
 	}
 	ft_process_heredocs(shell);
@@ -51,24 +51,6 @@ void ft_exec(t_shell *shell)
 		ft_handle_exec(shell, ft_get_cmd_type(curr->val.value));
 	}
 }
-
-	// t_token		*tokens = shell->tokens;
-	// while (tokens)
-	// {
-	// 	printf("value: %s\n", tokens->val.value);
-	// 	printf("type: %d\n", tokens->type);
-	// 	printf("quoted: %d\n", tokens->quoted);
-	// 	tokens = tokens->next;
-	// }
-	// t_redirect	*redirects = shell->redirects;
-	// while (redirects)
-	// {
-	// 	printf("type: %d\n", redirects->type);
-	// 	printf("filename: %s\n", redirects->filename);
-	// 	printf("quoted: %d\n", redirects->quoted);
-	// 	redirects = redirects->next;
-	// }
-	// ft_printf(1, "--------------------\n");
 
 /**
  * @brief Handle the execution of a command and its redirections.

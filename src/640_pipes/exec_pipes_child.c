@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:00:00 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/27 10:46:08 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/01 12:12:58 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_free_redirects(t_redirect *redirects)
  * @param i The index of the current command in the pipeline
  * @param pipes The array of pipes for the pipeline
  * @param num_pipes The number of pipes in the pipeline
-	*/
+*/
 void ft_execute_child(t_shell *shell, t_token *curr_cmd, int i, t_pipe *pipes, int num_pipes)
 {
 	t_token *cmd_end;
