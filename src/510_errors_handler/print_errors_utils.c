@@ -12,27 +12,49 @@
 
 #include "../inc/minishell.h"
 
-/* char	*ft_format_error(char *err, const char *file)
-{
-	char	*formatted;
-	size_t	total_len;
+// t_status	ft_print_error_w_arg(char *error_msg, char *arg)
+// {
+	// ft_printf(STDERR_FILENO, error_msg, arg);
+	// g_exit_status = EXIT_FAILURE;
+	// return (ERROR);
+// }
 
-	if (!err || !file)
-		return (NULL);
-	total_len = ft_strlen(err) + ft_strlen(file) + 2 + 1;
-	formatted = ft_safe_malloc(sizeof(char) * total_len);
-	if (!formatted)
-		return (NULL);
-	formatted[0] = '\0';
-	ft_strlcat(formatted, err, total_len);
-	ft_strlcat(formatted, ": ", total_len);
-	ft_strlcat(formatted, file, total_len);
-	return (formatted);
-} */
+static int ft_snprintf(char *buffer, size_t size, char *format, char *arg);
 
-t_status	ft_print_error_w_arg(char *error_msg, char *arg)
+t_status ft_print_error_w_arg(char *error_msg, char *arg)
 {
-	ft_printf(STDERR_FILENO, error_msg, arg);
+	char buffer[256];
+	int len;
+
+	len = ft_snprintf(buffer, sizeof(buffer), error_msg, arg);
+	write(STDERR_FILENO, buffer, len);
 	g_exit_status = EXIT_FAILURE;
 	return (ERROR);
+}
+
+static int ft_snprintf(char *buffer, size_t size, char *format, char *arg)
+{
+	char *dst;
+	dst = buffer;
+
+	while (*format && size > 1)
+	{
+		if (format[0] == '%' && format[1] == 's')
+		{
+			while (*arg && size > 1)
+			{
+				*dst++ = *arg++;
+				size--;
+			}
+			format += 2;
+		}
+		else
+		{
+			*dst++ = *format++;
+			size--;
+		}
+	}
+	if (size > 0)
+		*dst = '\0';
+	return (dst - buffer);
 }

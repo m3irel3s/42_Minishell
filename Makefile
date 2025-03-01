@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/02/27 16:17:35 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/03/01 11:38:23 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,6 @@ SRCS = \
        ${SRC_PATH}/510_errors_handler/syntax_validation.c \
        ${SRC_PATH}/510_errors_handler/print_errors_exit_failure.c \
        ${SRC_PATH}/510_errors_handler/print_errors_heredoc.c \
-       ${SRC_PATH}/510_errors_handler/print_errors_command_not_found.c \
        ${SRC_PATH}/510_errors_handler/print_errors_misuse.c \
        ${SRC_PATH}/510_errors_handler/print_errors_fatal_signal.c \
        ${SRC_PATH}/510_errors_handler/print_errors_utils.c \

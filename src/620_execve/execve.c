@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:34:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/27 15:53:34 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/01 11:49:35 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_execute_cmd(t_shell *shell, char *cmd)
 	path = ft_get_path_to_execute(shell, cmd);
 	if (!path)
 	{
-		ft_print_command_not_found_error(cmd);
+		ft_print_error_w_arg(ERR_CMD_NOT_FOUND, cmd);
 		return ;
 	}
 	arr = ft_create_arr_cmd(shell->tokens);
@@ -75,7 +75,7 @@ static t_status	ft_exec_child(t_shell *shell, char *path, char **arr)
 {
 	if (execve(path, arr, shell->env_cpy) == -1)
 	{
-		ft_print_command_not_found_error(shell->tokens->val.value);
+		ft_print_error_w_arg(ERR_CMD_NOT_FOUND, shell->tokens->val.value);
 		ft_cleanup_cmd_execution(path, arr);
 		exit(EXIT_FAILURE);
 	}

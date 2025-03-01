@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/27 16:23:54 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/01 11:38:19 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,6 @@ t_status		ft_print_redirect_no_file_error(void);
 
 /* 510_errors_handler/print_errors_heredoc.c */
 t_status		ft_print_heredoc_delim_error(void);
-
-/* 510_errors_handler/print_errors_command_not_found.c */
-t_status		ft_print_command_not_found_error(char *cmd);
 
 /* 510_errors_handler/print_errors_misuse.c */
 t_status		ft_print_error_misuse(char *error_msg);
