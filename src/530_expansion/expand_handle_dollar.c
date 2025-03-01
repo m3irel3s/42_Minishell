@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 14:14:30 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 15:47:48 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/01 10:30:02 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*ft_handle_dollar(t_shell *shell, char *token, size_t *i)
 	(*i)++;
 	if (token[*i] == '?')
 		res = ft_expand_exit_status(i);
-	if (ft_isdigit(token[*i]))
+	else if (ft_isdigit(token[*i]))
 		res = ft_expand_number(token, i);
 	else
 	{
