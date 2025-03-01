@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 17:11:16 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/01 12:14:04 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,21 +59,54 @@ void	ft_process_heredocs(t_shell *shell)
 			}
 			ft_read_heredoc_input(shell, delim->val.value, delim->quoted, fd);
 			close(fd);
+			if (g_exit_status == EXIT_SIGINT)
+			{
+				unlink(tempfile);
+				free(tempfile);
+				return ;
+			}
 			ft_process_delimiter(current, delim, tempfile);
 			ft_add_temp_file(shell, tempfile);
 		}
 		current = current->next;
 	}
 }
+static void	ft_handle_heredoc_sigint(int sig)
+{
+	(void)sig;
+	g_exit_status = EXIT_SIGINT;
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	rl_done = 1;
+	write(STDOUT_FILENO, "\n", 1);
+}
 
 void	ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted, int fd)
 {
 	char	*line;
+	struct sigaction	sa_og;
+	struct sigaction	sa_heredoc;
 
+	sa_heredoc.sa_handler = ft_handle_heredoc_sigint;
+	sigemptyset(&sa_heredoc.sa_mask);
+	sa_heredoc.sa_flags = 0;
+	sigaction(SIGINT, &sa_heredoc, &sa_og);
 	while (1)
 	{
 		line = readline("> ");
-		if (!line || ft_strcmp(line, delimiter) == 0)
+		if (g_exit_status == EXIT_SIGINT)
+		{
+			free(line);
+			break ;
+		}
+		if (!line)
+		{
+			ft_printf(STDERR_FILENO,
+				"minishell: warning: here-document delimited by end-of-file (wanted `%s\')\n",
+				delimiter);
+			break ;
+		}
+		if (ft_strcmp(line, delimiter) == 0)
 		{
 			free(line);
 			break ;
@@ -84,6 +117,9 @@ void	ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted, int fd)
 		write(fd, "\n", 1);
 		free(line);
 	}
+	sigaction(SIGINT, &sa_og, NULL);
+	if (g_exit_status == EXIT_SIGINT)
+		rl_redisplay();
 }
 
 /**
@@ -109,10 +145,7 @@ static char	*ft_generate_temp_filename(void)
 	len = ft_strlen(prefix) + ft_strlen(counter_str) + 1;
 	tempfile = ft_safe_malloc(len);
 	if (!tempfile)
-	{
-		free(counter_str);
-		return (NULL);
-	}
+		return (free(counter_str), NULL);
 	ft_strlcpy(tempfile, prefix, len);
 	ft_strlcat(tempfile, counter_str, len);
 	free(counter_str);
@@ -135,10 +168,7 @@ static char	*ft_create_temp_file(t_shell *shell)
 			return (NULL);
 		fd = open(tempfile, O_WRONLY | O_CREAT | O_EXCL, 0600);
 		if (fd != -1)
-		{
-			close(fd);
-			return (tempfile);
-		}
+			return (close(fd), tempfile);
 		free(tempfile);
 		if (errno != EEXIST)
 		{

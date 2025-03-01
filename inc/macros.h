@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/25 17:08:01 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/01 10:45:14 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # define EXIT_COMMAND_NOT_FOUND 127
 # define EXIT_INVALID_EXIT_ARG 128
 # define EXIT_FATAL_SIGNAL 128
+# define EXIT_SIGINT 130
+# define EXIT_SIGQUIT 131
 
 # define ERR_EXIT_NUM_REQ \
 	"minishell: exit: %s: numeric argument required\n"
