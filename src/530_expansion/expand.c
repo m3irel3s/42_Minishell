@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 16:24:06 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:14:01 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static char	*ft_join_and_free(char *expanded_value, char *temp);
 static void	ft_handle_quotes(char *input, size_t *i, int *quote_state);
-
 
 /**
  * @brief Processes a single character in a token during expansion.

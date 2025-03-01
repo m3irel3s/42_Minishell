@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:43:03 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/27 17:12:29 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:03:42 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,13 @@
 
 static void ft_wait_for_children(int num_children);
 
-/**
- * @brief Handles the execution of commands with pipes in the shell.
- *
- * This function manages the creation and management of pipes between
- * commands in a command sequence. It allocates the necessary pipes,
- * forks child processes for each command, and executes them with the
- * appropriate pipe redirections. It also handles errors related to pipe
- * creation and forking. After the commands are executed, it waits for
- * all child processes to complete, cleans up the pipes, and frees
- * allocated resources.
- *
- * @param shell A pointer to the shell structure containing the command tokens.
- */
 void ft_handle_pipes(t_shell *shell)
 {
-	int num_pipes;
-	t_pipe *pipes;
-	t_token *curr_cmd;
-	pid_t pid;
-	int i;
+	t_pipe	*pipes;
+	t_token	*curr_cmd;
+	pid_t	pid;
+	int		num_pipes;
+	int		i;
 
 	num_pipes = ft_count_pipes(shell->tokens);
 	pipes = ft_allocate_and_create_pipes(shell->tokens);
@@ -67,18 +54,6 @@ void ft_handle_pipes(t_shell *shell)
 	free(pipes);
 }
 
-/**
- * @brief Waits for all child processes to complete.
- *
- * This function waits for all the child processes created by ft_handle_pipes to
- * complete. It uses the wait system call to wait for each child process to
- * finish, and then stores the exit status of the last child process in the
- * global variable g_exit_status. If any of the child processes finish with an
- * exit status of 0, it sets g_exit_status to EXIT_SUCCESS. Otherwise, it sets
- * g_exit_status to EXIT_FAILURE.
- *
- * @param num_children The number of child processes to wait for.
- */
 static void	ft_wait_for_children(int num_children)
 {
 	int	i;

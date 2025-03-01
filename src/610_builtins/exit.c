@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:22:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/27 14:58:42 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/01 14:07:03 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	ft_exit(t_shell *shell)
 		ft_print_error_w_arg(ERR_EXIT_NUM_REQ, curr->next->val.value);
 		g_exit_status = 2;
 		exit(g_exit_status);
-		
 	}
 	if (curr->next->next)
 	{

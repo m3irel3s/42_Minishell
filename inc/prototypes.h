@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/01 11:38:19 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:16:03 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,7 +223,8 @@ char			*ft_safe_readline(t_shell *shell);
 char			*ft_safe_strdup(char *s);
 char			*ft_safe_strjoin(char *s1, char *s2, int free_s1);
 char			*ft_safe_substr(char *s, int start, int len);
-void			*ft_safe_realloc(void *old_ptr, size_t new_size);
+
+/* 700_utils_other/safe_functions_2.c */
 char			*ft_safe_strndup(const char *s1, size_t n);
 
 //============================================================================//

@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:43:44 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 14:58:42 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:07:55 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void		ft_remove_spaces(char *str);
 static t_status	ft_check_quotes(char *input);
 static t_status	ft_skip_quotes(char *input, int *i, char quote);
-static t_status ft_validate_pipes(char *input);
+static t_status	ft_validate_pipes(char *input);
 static t_status	ft_validate_redirects(char *input);
 
 /**
@@ -107,7 +107,7 @@ static t_status	ft_skip_quotes(char *input, int *i, char quote)
  * @param input The input string to be validated.
  * @return SUCCESS if the input string is valid, or an error status otherwise.
  */
-static t_status ft_validate_pipes(char *input)
+static t_status	ft_validate_pipes(char *input)
 {
 	int	i;
 

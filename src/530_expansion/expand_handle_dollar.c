@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 14:14:30 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/01 12:22:13 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:14:45 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	*ft_handle_dollar(t_shell *shell, char *token, size_t *i)
  * @return The expanded value of the number as a string, or NULL if memory
  * allocation fails.
  */
-static char*	ft_expand_number(char *token, size_t *i)
+static char	*ft_expand_number(char *token, size_t *i)
 {
 	char	*res;
 	size_t	start;
@@ -110,6 +110,7 @@ static char*	ft_expand_number(char *token, size_t *i)
  * @return A string containing the exit status of the last command, or NULL if
  * memory allocation fails.
  */
+
 static char	*ft_expand_exit_status(size_t *i)
 {
 	char	*res;
@@ -167,7 +168,7 @@ static char	*ft_expand_variable(t_shell *shell, char *token, size_t *i,
  *
  * @return NULL to indicate that an error occurred.
  */
-static char	*ft_set_error_and_return_null()
+static char	*ft_set_error_and_return_null(void)
 {
 	g_exit_status = EXIT_FAILURE;
 	return (NULL);

@@ -6,11 +6,13 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:56:02 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/27 14:58:42 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/01 14:44:46 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+static void	ft_swap(char **export, int i);
 
 void	ft_print_export(t_shell *shell)
 {
@@ -28,9 +30,6 @@ char	**ft_sort_export(char **export)
 {
 	int		i;
 	int		j;
-	char	*temp;
-	char	*var_name1;
-	char	*var_name2;
 
 	j = 0;
 	while (export[j])
@@ -38,21 +37,30 @@ char	**ft_sort_export(char **export)
 		i = 0;
 		while (export[i + 1])
 		{
-			var_name1 = ft_get_var_name(export[i]);
-			var_name2 = ft_get_var_name(export[i + 1]);
-			if (ft_strcmp(var_name1, var_name2) > 0)
-			{
-				temp = export[i];
-				export[i] = export[i + 1];
-				export[i + 1] = temp;
-			}
-			ft_free(var_name1);
-			ft_free(var_name2);
+			ft_swap(export, i);
 			i++;
 		}
 		j++;
 	}
 	return (export);
+}
+
+static void	ft_swap(char **export, int i)
+{
+	char	*temp;
+	char	*var_name1;
+	char	*var_name2;
+
+	var_name1 = ft_get_var_name(export[i]);
+	var_name2 = ft_get_var_name(export[i + 1]);
+	if (ft_strcmp(var_name1, var_name2) > 0)
+	{
+		temp = export[i];
+		export[i] = export[i + 1];
+		export[i + 1] = temp;
+	}
+	ft_free(var_name1);
+	ft_free(var_name2);
 }
 
 void	ft_output_export(char **export)

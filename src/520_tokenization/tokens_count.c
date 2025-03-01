@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 20:04:16 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 14:58:42 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:11:11 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	ft_skip_spaces(char *input, size_t *i);
 static void	ft_handle_operator(char *input, size_t *i, int *count);
-static void	ft_handle_quotes(char *input, size_t *i, int *in_quotes, char *q_char);
+static void	ft_handle_quotes(char *input, size_t *i, int *in_quo, char *q_char);
 static void	ft_count_word(char *input, size_t *i, int *in_quotes, char *q_char);
 
 /**
@@ -84,18 +84,19 @@ static void	ft_handle_operator(char *input, size_t *i, int *count)
  * @param in_quotes Pointer to the flag indicating if currently in quotes.
  * @param q_char Pointer to the current quote character.
  */
-static void	ft_handle_quotes(char *input, size_t *i, int *in_quotes, char *q_char)
+static void	ft_handle_quotes(char *input, size_t *i, int *in_quot, char *q_char)
 {
-	if ((input[*i] == '\'' || input[*i] == '"') && (!*in_quotes || input[*i] == *q_char))
+	if ((input[*i] == '\'' || input[*i] == '"')
+		&& (!*in_quot || input[*i] == *q_char))
 	{
-		if (*in_quotes)
+		if (*in_quot)
 		{
-			*in_quotes = 0;
+			*in_quot = 0;
 			*q_char = 0;
 		}
 		else
 		{
-			*in_quotes = 1;
+			*in_quot = 1;
 			*q_char = input[*i];
 		}
 	}
@@ -111,6 +112,7 @@ static void	ft_handle_quotes(char *input, size_t *i, int *in_quotes, char *q_cha
  */
 static void	ft_count_word(char *input, size_t *i, int *in_quotes, char *q_char)
 {
-	while (input[*i] && (*in_quotes || (!ft_is_space(input[*i]) && !ft_is_operator(input[*i]))))
+	while (input[*i] && (*in_quotes || (!ft_is_space(input[*i])
+				&& !ft_is_operator(input[*i]))))
 		ft_handle_quotes(input, i, in_quotes, q_char);
 }

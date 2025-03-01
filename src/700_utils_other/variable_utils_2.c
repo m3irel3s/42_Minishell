@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:35:08 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/27 15:40:41 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/01 14:45:36 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_update_var(char *var, char *value, int sign)
 			res[i++] = value[j++];
 		res[i] = '\0';
 	}
-	return res;
+	return (res);
 }
 
 void	ft_update_or_add_var(char *var, char *value, t_shell *shell, int sign)

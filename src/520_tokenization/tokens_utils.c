@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 15:03:29 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 14:58:42 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:13:14 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_token_type	ft_check_double_char(char *value);
  * @param len The length of the token string.
  * @return The corresponding token type, or ERROR_TOKEN on error.
  */
-t_token_type	ft_determine_token_type(char* og_value, char *value, size_t len)
+t_token_type	ft_determine_token_type(char *og_value, char *value, size_t len)
 {
 	if (!value)
 	{

@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:00:00 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/01 12:12:58 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/01 15:03:40 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,7 @@ void	ft_free_redirects(t_redirect *redirects)
 		free(tmp);
 	}
 }
-/**
- * @brief Executes a command in a child process in a pipeline.
- *
- * This function sets up redirections for the child process, closes the
- * necessary pipes, and executes the command. After execution is complete,
- * it frees the tokens and exits the child process with the exit status
- * of the command.
- *
- * @param shell The shell object
- * @param curr_cmd The current command token
- * @param i The index of the current command in the pipeline
- * @param pipes The array of pipes for the pipeline
- * @param num_pipes The number of pipes in the pipeline
-*/
+
 void ft_execute_child(t_shell *shell, t_token *curr_cmd, int i, t_pipe *pipes, int num_pipes)
 {
 	t_token *cmd_end;
@@ -71,18 +58,6 @@ void ft_execute_child(t_shell *shell, t_token *curr_cmd, int i, t_pipe *pipes, i
 	exit(g_exit_status);
 }
 
-/**
- * @brief Sets up redirections for a child process in a pipe chain.
- *
- * This function duplicates the read file descriptor of the previous pipe
- * (if this is not the first command in the chain) and the write file descriptor
- * of the current pipe (if this is not the last command in the chain) to
- * the standard input and output, respectively.
- *
- * @param i The position of the current command in the pipe chain.
- * @param pipes The array of pipes containing read and write file descriptors.
- * @param num_pipes The number of pipes in the pipe chain.
- */
 void	ft_setup_child_redirections(int i, t_pipe *pipes, int num_pipes)
 {
 	if (i > 0)
@@ -93,17 +68,6 @@ void	ft_setup_child_redirections(int i, t_pipe *pipes, int num_pipes)
 			ft_print_error(ERR_DUP2_FAIL);
 }
 
-/**
- * @brief Closes all pipe file descriptors for a child process.
- *
- * This function iterates through the array of pipe structures, closing
- * both the read and write file descriptors for each pipe. It is used
- * in child processes to properly close unused pipe ends after setting
- * up redirections.
- *
- * @param pipes An array of pipe structures containing file descriptors.
- * @param num_pipes The number of pipes in the array.
- */
 
 void	ft_close_child_pipes(t_pipe *pipes, int num_pipes)
 {
@@ -118,15 +82,6 @@ void	ft_close_child_pipes(t_pipe *pipes, int num_pipes)
 	}
 }
 
-/**
- * Creates a deep copy of the linked list of tokens from @a start to @a end.
- *
- * @param start The first token to copy.
- * @param end The last token to copy (exclusive).
- *
- * @return A pointer to the first token of the copied list, or NULL if memory
- * allocation fails.
- */
 t_token	*ft_copy_tokens(t_token *start, t_token *end)
 {
 	t_token	*new_list;

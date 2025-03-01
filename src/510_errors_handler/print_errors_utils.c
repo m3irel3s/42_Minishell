@@ -1,42 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_format_error.c                                  :+:      :+:    :+:   */
+/*   print_errors_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>       +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/21 15:30:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/21 15:30:00 by meferraz         ###   ########.fr       */
+/*   Created: 2025/03/01 15:04:30 by jmeirele          #+#    #+#             */
+/*   Updated: 2025/03/01 15:06:23 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-// t_status	ft_print_error_w_arg(char *error_msg, char *arg)
-// {
-	// ft_printf(STDERR_FILENO, error_msg, arg);
-	// g_exit_status = EXIT_FAILURE;
-	// return (ERROR);
-// }
+static int	ft_snprintf(char *buffer, size_t size, char *format, char *arg);
 
-static int ft_snprintf(char *buffer, size_t size, char *format, char *arg);
-
-t_status ft_print_error_w_arg(char *error_msg, char *arg)
+t_status	ft_print_error_w_arg(char *error_msg, char *arg)
 {
-	char buffer[256];
-	int len;
+	char	buffer[256];
+	int		len;
 
-	len = ft_snprintf(buffer, sizeof(buffer), error_msg, arg);
+	len = ft_snprintf (buffer, sizeof(buffer), error_msg, arg);
 	write(STDERR_FILENO, buffer, len);
 	g_exit_status = EXIT_FAILURE;
 	return (ERROR);
 }
 
-static int ft_snprintf(char *buffer, size_t size, char *format, char *arg)
+static int	ft_snprintf(char *buffer, size_t size, char *format, char *arg)
 {
-	char *dst;
-	dst = buffer;
+	char	*dst;
 
+	dst = buffer;
 	while (*format && size > 1)
 	{
 		if (format[0] == '%' && format[1] == 's')
