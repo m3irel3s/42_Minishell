@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:26:26 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 14:58:42 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/01 17:36:25 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static t_status	ft_is_last_token_heredoc(t_shell *shell);
  * @return SUCCESS if the token is created and added successfully, or an
  * error code.
  */
+
 t_status	ft_create_and_add_token(t_shell *shell, char *value, size_t len, int quoted)
 {
 	t_token	*new_token;
@@ -80,7 +81,7 @@ t_status	ft_create_and_add_token(t_shell *shell, char *value, size_t len, int qu
  * @param shell The shell structure containing the token list.
  * @return SUCCESS if the last token is a heredoc token, ERROR otherwise.
  */
-static t_status ft_is_last_token_heredoc(t_shell *shell)
+static t_status	ft_is_last_token_heredoc(t_shell *shell)
 {
 	t_token	*token;
 

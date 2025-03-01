@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 21:43:44 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/01 15:07:55 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/01 17:23:24 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 static void		ft_remove_spaces(char *str);
 static t_status	ft_check_quotes(char *input);
-static t_status	ft_skip_quotes(char *input, int *i, char quote);
 static t_status	ft_validate_pipes(char *input);
-static t_status	ft_validate_redirects(char *input);
 
 /**
  * @brief Removes leading and trailing spaces from a string.
@@ -87,7 +85,7 @@ static t_status	ft_check_quotes(char *input)
  * @return SUCCESS if the quote is matched, or an error status if there
  * is an unmatched quote.
  */
-static t_status	ft_skip_quotes(char *input, int *i, char quote)
+t_status	ft_skip_quotes(char *input, int *i, char quote)
 {
 	(*i)++;
 	while (input[*i] && input[*i] != quote)
@@ -125,52 +123,6 @@ static t_status	ft_validate_pipes(char *input)
 		if (input[i] == '|' && (input[i + 1] == '|' || input[i + 1] == '\0'))
 			return (ERROR);
 		i++;
-	}
-	return (SUCCESS);
-}
-
-/**
- * @brief Validates the use of redirects in the input string.
- *
- * This function checks the input string for invalid use of redirects, such as
- * having consecutive redirects or having a redirect at the end of the string.
- *
- * @param input The input string to be validated.
- * @return SUCCESS if the input string is valid, or an error status otherwise.
- */
-static t_status	ft_validate_redirects(char *input)
-{
-	int	i;
-	int	operator_len;
-
-	i = 0;
-	while (input[i])
-	{
-		if (input[i] == '"' || input[i] == '\'')
-		{
-			if (ft_skip_quotes(input, &i, input[i]) == ERROR)
-				return (ERROR);
-			continue ;
-		}
-		else if (input[i] == '<' || input[i] == '>')
-		{
-			operator_len = 1;
-			if (input[i + 1] == input[i])
-				operator_len = 2;
-			i += operator_len;
-			while (input[i] && ft_is_space(input[i]))
-				i++;
-			if (!input[i] || ft_strchr("<>|", input[i]))
-			{
-				if (!input[i])
-					ft_print_syntax_error("newline");
-				else
-					ft_print_syntax_error(&input[i]);
-				return (ERROR);
-			}
-		}
-		else
-			i++;
 	}
 	return (SUCCESS);
 }

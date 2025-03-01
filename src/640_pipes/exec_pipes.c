@@ -6,52 +6,56 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:43:03 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/01 15:03:42 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/01 17:12:55 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-static void ft_wait_for_children(int num_children);
+static void	ft_wait_for_children(int num_children);
+static void	ft_fork_exec(t_shell *sh, t_token *curr_cmd, t_pipe *pipes, int i);
 
-void ft_handle_pipes(t_shell *shell)
+void	ft_handle_pipes(t_shell *shell)
 {
 	t_pipe	*pipes;
 	t_token	*curr_cmd;
-	pid_t	pid;
-	int		num_pipes;
 	int		i;
 
-	num_pipes = ft_count_pipes(shell->tokens);
 	pipes = ft_allocate_and_create_pipes(shell->tokens);
 	if (!pipes)
-	{
 		ft_print_error(ERR_PIPE_FAIL);
-		return;
-	}
+	if (!pipes)
+		return ;
 	curr_cmd = shell->tokens;
 	i = 0;
-	while (i < num_pipes + 1)
+	while (i < ft_count_pipes(shell->tokens) + 1)
 	{
-		pid = fork();
-		if (pid == 0)
-		{
-			ft_execute_child(shell, curr_cmd, i, pipes, num_pipes);
-			exit(g_exit_status);
-		}
-		else if (pid < 0)
-		{
-			ft_print_error(ERR_FORK_FAIL);
-			ft_cleanup_pipes(pipes, num_pipes);
-			free(pipes);
-			return;
-		}
+		ft_fork_exec(shell, curr_cmd, pipes, i);
 		ft_advance_to_next_cmd(&curr_cmd);
 		i++;
 	}
-	ft_cleanup_pipes(pipes, num_pipes);
-	ft_wait_for_children(num_pipes + 1);
+	ft_cleanup_pipes(pipes, ft_count_pipes(shell->tokens));
+	ft_wait_for_children(ft_count_pipes(shell->tokens) + 1);
 	free(pipes);
+}
+
+static void	ft_fork_exec(t_shell *sh, t_token *curr_cmd, t_pipe *pipes, int i)
+{
+	pid_t	pid;
+
+	pid = fork();
+	if (pid == 0)
+	{
+		ft_execute_child(sh, curr_cmd, i, pipes);
+		exit(g_exit_status);
+	}
+	else if (pid < 0)
+	{
+		ft_print_error(ERR_FORK_FAIL);
+		ft_cleanup_pipes(pipes, ft_count_pipes(sh->tokens));
+		free(pipes);
+		exit(EXIT_FAILURE);
+	}
 }
 
 static void	ft_wait_for_children(int num_children)

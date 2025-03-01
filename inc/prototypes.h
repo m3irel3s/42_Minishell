@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/01 15:16:03 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/01 17:23:58 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,12 @@ t_status		ft_print_error_fatal_signal(char *error_msg, int signal_number);
 // char			*ft_format_error(char *err, const char *file);
 t_status		ft_print_error_w_arg(char *error_msg, char *arg);
 
+/* 510_errors_handler/syntax_validation.c */
+t_status	ft_skip_quotes(char *input, int *i, char quote);
+
+/* 510_errors_handler/syntax_validation_2.c */
+t_status	ft_validate_redirects(char *input);
+
 //============================================================================//
 //                             VARIABLE EXPANSION                             //
 //============================================================================//
@@ -134,16 +140,16 @@ void			ft_handle_pipes(t_shell *shell);
 /* 640_pipes/exec_pipes_utils.c */
 t_pipe			*ft_allocate_and_create_pipes(t_token *tokens);
 int				ft_count_pipes(t_token *tokens);
-void			ft_cleanup_pipes(t_pipe *pipes, int num_pipes);
 void			ft_advance_to_next_cmd(t_token **curr_cmd);
 
-/* 640_pipes/exec_pipes_child.c */
-void			ft_execute_child(t_shell *shell, t_token *curr_cmd, int i, \
-					t_pipe *pipes, int num_pipes);
-void			ft_setup_child_redirections(int i, t_pipe *pipes,
-					int num_pipes);
+/* 640_pipes/exec_pipes_utils_2.c */
+void			ft_cleanup_pipes(t_pipe *pipes, int num_pipes);
 void			ft_close_child_pipes(t_pipe *pipes, int num_pipes);
-t_token			*ft_copy_tokens(t_token *start, t_token *end);
+void			ft_free_redirects(t_redirect *redirects);
+
+/* 640_pipes/exec_pipes_child.c */
+void			ft_execute_child(t_shell *sh, t_token *curr_cmd,
+					int i, t_pipe *pipes);
 
 //============================================================================//
 //                         EXECUTION - REDIRECTIONS                           //

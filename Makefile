@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/03/01 14:47:48 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/03/01 17:24:17 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,7 @@ SRCS = \
        ${SRC_PATH}/400_signals/signals.c \
        ${SRC_PATH}/500_parsing/parsing.c \
        ${SRC_PATH}/510_errors_handler/syntax_validation.c \
+       ${SRC_PATH}/510_errors_handler/syntax_validation_2.c \
        ${SRC_PATH}/510_errors_handler/print_errors_exit_failure.c \
        ${SRC_PATH}/510_errors_handler/print_errors_heredoc.c \
        ${SRC_PATH}/510_errors_handler/print_errors_misuse.c \
@@ -106,6 +107,7 @@ SRCS = \
 	   ${SRC_PATH}/640_pipes/exec_pipes_child.c \
 	   ${SRC_PATH}/640_pipes/exec_pipes_utils.c \
 	   ${SRC_PATH}/640_pipes/exec_pipes.c \
+	   ${SRC_PATH}/640_pipes/exec_pipes_utils_2.c \
        ${SRC_PATH}/700_utils_other/variable_utils.c \
        ${SRC_PATH}/700_utils_other/variable_utils_2.c \
        ${SRC_PATH}/700_utils_other/check_type_functions.c \

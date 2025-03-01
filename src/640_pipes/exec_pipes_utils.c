@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:00:00 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/01 15:03:37 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/01 16:54:01 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ t_pipe	*ft_allocate_and_create_pipes(t_token *tokens)
 	pipes = ft_safe_malloc(sizeof(t_pipe) * num_pipes);
 	if (!pipes)
 		return (NULL);
-
 	i = 0;
 	while (i < num_pipes)
 	{
@@ -52,19 +51,6 @@ int	ft_count_pipes(t_token *tokens)
 		tokens = tokens->next;
 	}
 	return (counter);
-}
-
-void	ft_cleanup_pipes(t_pipe *pipes, int num_pipes)
-{
-	int	i;
-
-	i = 0;
-	while (i < num_pipes)
-	{
-		close(pipes[i].read_fd);
-		close(pipes[i].write_fd);
-		i++;
-	}
 }
 
 void	ft_advance_to_next_cmd(t_token **curr_cmd)
