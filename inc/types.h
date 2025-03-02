@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/27 15:53:15 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/02 21:11:32 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,6 @@ typedef struct s_shell
 //============================================================================//
 
 extern int			g_exit_status;
+volatile sig_atomic_t	g_signal;
 
 #endif

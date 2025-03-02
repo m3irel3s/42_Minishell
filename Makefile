@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
+#    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/03/01 11:38:23 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/03/01 15:00:22 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

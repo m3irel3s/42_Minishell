@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/01 12:22:17 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/01 13:55:42 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ void ft_exec(t_shell *shell)
 		return;
 	}
 	ft_process_heredocs(shell);
+	if (g_exit_status == EXIT_SIGINT)
+	{
+		g_exit_status = EXIT_SIGINT;
+		return ;
+	}
 	if (ft_has_pipes(shell) == SUCCESS)
 	{
 		ft_handle_pipes(shell);

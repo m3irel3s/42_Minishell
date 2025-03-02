@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/01 12:21:56 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/02 21:58:44 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,5 +144,7 @@
 # define ERR_EXPORT_INVALID_IDENTIFIER \
     "export: %s: not a valid identifier\n"
 # define ERR_WORD_COUNT_FAIL "minishell: Failed to count words in input\n"
+
+# define ERR_EOF_HEREDOC "minishell: warning: here-document delimited by end-of-file (wanted `%s\')\n"
 
 #endif
