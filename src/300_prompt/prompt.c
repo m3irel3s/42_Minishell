@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:04:18 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 14:58:42 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/02 22:53:18 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,45 +44,45 @@ char	*ft_set_prompt(t_shell *shell)
 	if (!user)
 		user = "user";
 	prompt = ft_build_prompt(user, cwd);
-	free(cwd);
+	ft_free(cwd);
 	return (prompt);
 }
 
 /**
- * @brief Constructs the shell prompt string.
+ * @brief Constructs a custom, visually enhanced shell prompt.
  *
- * This function builds the shell prompt using the user's name, the current
- * working directory (shortened if possible), and the current Git branch if
- * applicable. The prompt is formatted with specific colors and symbols for
- * improved readability.
+ * This function builds a colorful prompt showing the user's name, a shortened
+ * current working directory, and (if applicable) the current Git branch. The
+ * prompt now uses stylish symbols and background colors (via macros like BBGRN2)
+ * to create an eye‐catching one‑line display.
  *
- * @param shell A pointer to the shell structure.
  * @param user The name of the user to display in the prompt.
  * @param cwd The current working directory to display in the prompt.
  * @return A dynamically allocated string containing the formatted prompt.
- *         Returns NULL if memory allocation fails for any component.
- */
-static char	*ft_build_prompt(char *user, char *cwd)
+ *         Returns NULL if any memory allocation fails.
+*/
+static char *ft_build_prompt(char *user, char *cwd)
 {
-	char	*prompt;
-	char	*short_cwd;
-	char	*git_branch;
+	char *prompt;
+	char *short_cwd;
+	char *git_branch;
 
 	short_cwd = ft_shorten_path(cwd);
 	git_branch = ft_get_git_branch();
-	if (!short_cwd)
-		return (NULL);
-	prompt = ft_safe_strjoin(BCYN2"┌─["BGRN2, user, 0);
-	prompt = ft_safe_strjoin(prompt, BCYN2"]─["BYEL2, 1);
+	prompt = ft_safe_strjoin(BG_G "❖ " MGT, user, 0);
+	prompt = ft_safe_strjoin(prompt, RS " ", 1);
+	prompt = ft_safe_strjoin(prompt, BG_B "⌂ " YLW, 1);
 	prompt = ft_safe_strjoin(prompt, short_cwd, 1);
-	prompt = ft_safe_strjoin(prompt, BCYN2"]", 1);
-	free(short_cwd);
+	prompt = ft_safe_strjoin(prompt, RS " ", 1);
 	if (git_branch)
 	{
-		prompt = ft_safe_strjoin(prompt, "─["BRED2, 1);
+		prompt = ft_safe_strjoin(prompt, BG_M " ❦ " GRN2, 1);
 		prompt = ft_safe_strjoin(prompt, git_branch, 1);
-		prompt = ft_safe_strjoin(prompt, BCYN2"]", 1);
-		free(git_branch);
+		prompt = ft_safe_strjoin(prompt, RS " ", 1);
+		ft_free(git_branch);
 	}
-	return (ft_safe_strjoin(prompt, "\n"BCYN2"└─$ "WHT2, 1));
+	prompt = ft_safe_strjoin(prompt, WHT2 "❯ ", 1);
+	ft_free(short_cwd);
+	return (prompt);
 }
+
