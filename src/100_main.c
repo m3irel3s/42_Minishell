@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/03 14:11:37 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 14:14:16 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,6 @@ int	main(int argc, char **argv, char **envp)
 	rl_clear_history();
 	return (g_exit_status);
 }
-
-
 
 /**
  * @brief Process the input string from the user.
