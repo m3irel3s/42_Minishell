@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:11:23 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 16:24:17 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:14:47 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ static void	ft_create_and_add_redirect(t_token *token, t_shell *shell,
 	t_redirect	*redirect;
 	char		*del;
 
-	redirect = ft_safe_malloc(sizeof(t_redirect));
+	redirect = ft_safe_calloc(sizeof(t_redirect));
 	if (!redirect)
 		return ;
 	redirect->type = token->type;

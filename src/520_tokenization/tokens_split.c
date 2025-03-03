@@ -6,16 +6,16 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:04:16 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 14:58:42 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:14:47 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
 static t_status	ft_process_word(char *input, size_t *i, char **result,
-			size_t *k);
+					size_t *k);
 static void		ft_split_word(char *input, size_t *i, int *in_quotes,
-			char *q_char);
+					char *q_char);
 static char		**ft_alloc_result(char *input);
 static t_status	ft_add_token(char **result, char *input, size_t j, size_t i);
 
@@ -115,7 +115,8 @@ static t_status	ft_process_word(char *input, size_t *i, char **result,
  */
 static void	ft_split_word(char *input, size_t *i, int *in_quotes, char *q_char)
 {
-	while (input[*i] && (*in_quotes || (!ft_is_space(input[*i]) && !ft_is_operator(input[*i]))))
+	while (input[*i] && (*in_quotes || (!ft_is_space(input[*i])
+				&& !ft_is_operator(input[*i]))))
 	{
 		if ((input[*i] == '\'' || input[*i] == '\"') && !*in_quotes)
 		{
@@ -149,7 +150,7 @@ static char	**ft_alloc_result(char *input)
 		ft_print_error(ERR_WORD_COUNT_FAIL);
 		return (NULL);
 	}
-	result = ft_safe_malloc(sizeof(char *) * (word_count + 1));
+	result = ft_safe_calloc(sizeof(char *) * (word_count + 1));
 	if (!result)
 	{
 		ft_print_error(ERR_MALLOC_FAIL);

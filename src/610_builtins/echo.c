@@ -6,14 +6,14 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:22:57 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/27 14:58:42 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/01 14:06:34 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-#include <unistd.h>
 
 static bool	ft_echo_handle_flag(char *str);
+static void	ft_echo_print_args(t_token *curr);
 
 void	ft_echo(t_shell *shell)
 {
@@ -33,6 +33,14 @@ void	ft_echo(t_shell *shell)
 		add_new_line = false;
 		curr = curr->next;
 	}
+	ft_echo_print_args(curr);
+	if (add_new_line)
+		ft_printf(STDOUT_FILENO, "\n");
+	g_exit_status = EXIT_SUCCESS;
+}
+
+static void	ft_echo_print_args(t_token *curr)
+{
 	while (curr)
 	{
 		ft_printf(STDOUT_FILENO, "%s", curr->val.value);
@@ -40,11 +48,8 @@ void	ft_echo(t_shell *shell)
 		if (curr && curr->type == WORD)
 			ft_printf(STDOUT_FILENO, " ");
 		else
-			break;
+			break ;
 	}
-	if (add_new_line)
-		ft_printf(STDOUT_FILENO, "\n");
-	g_exit_status = EXIT_SUCCESS;
 }
 
 static bool	ft_echo_handle_flag(char *str)

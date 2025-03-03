@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/03 16:31:21 by jmeirele         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2025/03/03 16:38:36 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef TYPES_H
 # define TYPES_H
@@ -106,6 +107,5 @@ typedef struct s_shell
 //============================================================================//
 
 extern int			g_exit_status;
-// volatile sig_atomic_t	g_signal;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 12:58:31 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/01 12:22:28 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:14:48 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
  *
  * @return A pointer to the allocated memory, or NULL if allocation fails.
  */
-void	*ft_safe_malloc(size_t size)
+void	*ft_safe_calloc(size_t size)
 {
 	void	*ptr;
 
@@ -37,7 +37,7 @@ void	*ft_safe_malloc(size_t size)
 		g_exit_status = EXIT_FAILURE;
 		return (NULL);
 	}
-	ptr = malloc(size);
+	ptr = ft_calloc(1, size);
 	if (!ptr)
 	{
 		ft_print_error(ERR_MALLOC_FAIL);
@@ -55,7 +55,9 @@ void	*ft_safe_malloc(size_t size)
  * an error message is printed, the shell's exit status is set to EXIT_FAILURE,
  * and NULL is returned.
  *
- * @param shell A pointer to the shell structure containing the prompt information.
+ * @param shell A pointer to the shell structure containing the prompt 
+ * information.
+ * 
  *
  * @return A dynamically allocated string containing the user's input, or NULL
  * if the shell's prompt is invalid.
@@ -79,7 +81,8 @@ char	*ft_safe_readline(t_shell *shell)
  * @brief A safe version of the ft_strdup function.
  *
  * This function is identical to ft_strdup, but it will print an error message
- * and set the shell's exit status to EXIT_FAILURE if the memory allocation fails.
+ * and set the shell's exit status to EXIT_FAILURE if the memory 
+ * allocation fails.
  *
  * @param shell A pointer to the shell structure containing environment info.
  * @param s The string to be duplicated.
@@ -97,7 +100,7 @@ char	*ft_safe_strdup(char *s)
 		return (NULL);
 	}
 	len = ft_strlen(s) + 1;
-	dup = ft_safe_malloc(len);
+	dup = ft_safe_calloc(len);
 	if (!dup)
 		return (NULL);
 	ft_memcpy(dup, s, len);
@@ -107,8 +110,9 @@ char	*ft_safe_strdup(char *s)
 /**
  * @brief A safe version of the ft_strjoin function.
  *
- * This function is identical to ft_strjoin, but it will print an error message
- * and set the shell's exit status to EXIT_FAILURE if the memory allocation fails.
+ * This function is identical to ft_strjoin, but it will print an error
+ * message and set the shell's exit status to EXIT_FAILURE if the
+ * memory allocation fails.
  *
  * @param shell A pointer to the shell structure containing environment info.
  * @param s1 The first string to be joined.
@@ -135,9 +139,12 @@ char	*ft_safe_strjoin(char *s1, char *s2, int free_s1)
 
 /**
  * Safely allocates a substring from the given string `s` and returns it.
- * The substring will start at index `start` and will have a maximum length of `len`.
- * If `start` is greater than or equal to the length of `s`, an empty string is returned.
- * If `len` is greater than the number of remaining characters in `s`, the substring will
+ * The substring will start at index `start` and will have a maximum
+ * length of `len`.
+ * If `start` is greater than or equal to the length of `s`, an empty string
+ * is returned.
+ * If `len` is greater than the number of remaining characters in `s`, the
+ * substring will
  * be truncated to the remaining characters.
  * If there is an error allocating the substring, an error message is printed and
  * `NULL` is returned.
@@ -160,7 +167,7 @@ char	*ft_safe_substr(char *s, int start, int len)
 		return (ft_safe_strdup(""));
 	if (len > s_len - start)
 		len = s_len - start;
-	substr = (char *)ft_safe_malloc(len + 1);
+	substr = (char *)ft_safe_calloc(len + 1);
 	if (!substr)
 		return (NULL);
 	ft_strlcpy(substr, s + start, len + 1);

@@ -2476,3 +2476,514 @@ ft_execute_child (shell=0x7fffffffe178, curr_cmd=0x4104d0, i=0, pipes=0x42a3f0, 
 [Inferior 3 (process 52622) exited with code 0177]
 ----------------------------------------------------
 The program is not being run.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40186a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040186a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40186a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040186a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040186a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Breakpoint 3 at 0x402fd7: file src/520_tokenization/tokens_utils_2.c, line 38.
+Continuing.
+
+Breakpoint 3, ft_create_and_add_token (shell=0x7fffffffe188, value=0x42b240 "$PWD", len=4, quoted=0) at src/520_tokenization/tokens_utils_2.c:38
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+ft_process_token (shell=0x7fffffffe188, token_str=0x42b240 "$PWD") at src/520_tokenization/tokens_process.c:75
+----------------------------------------------------
+ft_tokenize (shell=0x7fffffffe188, split_input=0x42b220) at src/520_tokenization/tokens_process.c:41
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+ft_parse_input (shell=0x7fffffffe188) at src/500_parsing/parsing.c:41
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+ft_process_input (shell=0x7fffffffe188) at src/100_main.c:82
+----------------------------------------------------
+[Attaching after Thread 0x7ffff7ccd380 (LWP 184270) fork to child process 184279]
+[New inferior 2 (process 184279)]
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 2 (process 184279) exited with code 01]
+----------------------------------------------------
+The program is not being run.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40186a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040186a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40186a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040186a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040186a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 188863) fork to child process 188867]
+[New inferior 2 (process 188867)]
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 2 (process 188867) exited with code 01]
+The program is not being run.
+Breakpoint 3 at 0x40424c: ft_exec. (2 locations)
+The program is not being run.
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Thread 2.1 "minishell" hit Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Continuing.
+
+Thread 2.1 "minishell" hit Breakpoint 3, ft_exec (shell=0x7fffffffe188) at src/600_exec/exec.c:32
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+[Attaching after Thread 0x7ffff7ccd380 (LWP 188869) fork to child process 188874]
+[New inferior 3 (process 188874)]
+Reading symbols from /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 3 (process 188874) exited with code 01]
+----------------------------------------------------
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Thread 3.1 "minishell" hit Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Continuing.
+
+Thread 3.1 "minishell" hit Breakpoint 3, ft_exec (shell=0x7fffffffe188) at src/600_exec/exec.c:32
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+[Attaching after Thread 0x7ffff7ccd380 (LWP 188876) fork to child process 188880]
+[New inferior 4 (process 188880)]
+Reading symbols from /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 4 (process 188880) exited with code 01]
+----------------------------------------------------
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Thread 4.1 "minishell" hit Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Continuing.
+
+Thread 4.1 "minishell" hit Breakpoint 3, ft_exec (shell=0x7fffffffe188) at src/600_exec/exec.c:32
+----------------------------------------------------
+----------------------------------------------------
+Undefined command: "Q".  Try "help".
+Undefined command: "Y".  Try "help".
+Undefined command: "Q".  Try "help".
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40186a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040186a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40186a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040186a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40186a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040186a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040186a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+To open a remote debug connection, you need to specify what
+serial device is attached to the remote system
+(e.g. /dev/ttyS0, /dev/ttya, COM1, etc.).
+vgdb: No such file or directory.
+The program is not being run.
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Breakpoint 3 at 0x40424c: file src/600_exec/exec.c, line 32.
+Continuing.
+
+Breakpoint 3, ft_exec (shell=0x7fffffffe188) at src/600_exec/exec.c:32
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+[Attaching after Thread 0x7ffff7ccd380 (LWP 189942) fork to child process 189948]
+[New inferior 2 (process 189948)]
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 2 (process 189948) exited with code 01]
+----------------------------------------------------
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Thread 2.1 "minishell" hit Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+vgdb --pid=189846: No such file or directory.
+Remote debugging using | vgdb
+no --pid= arg given and multiple valgrind pids found:
+use --pid=189846 for /usr/bin/valgrind.bin --vgdb=yes --vgdb-error=0 ./minishell 
+use --pid=188707 for /usr/bin/valgrind.bin --leak-check=full --tool=memcheck --show-leak-kinds=all --track-origins=yes --track-fds=yes --suppressions=readline.supp ./minishell 
+Remote communication error.  Target disconnected.: Connection reset by peer.
+Remote debugging using | vgdb --pid=189846
+relaying data between gdb and process 189846
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+0x0000000004020290 in _start () from /lib64/ld-linux-x86-64.so.2
+The "remote" target does not support "run".  Try "help target" or "continue".
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40186a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040186a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40186a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040186a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040186a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+----------------------------------------------------
+----------------------------------------------------
+Breakpoint 3 at 0x40424c: file src/600_exec/exec.c, line 32.
+Note: breakpoint 3 also set at pc 0x40424c.
+Breakpoint 4 at 0x40424c: file src/600_exec/exec.c, line 32.
+List of info subcommands:
+
+info address -- Describe where symbol SYM is stored.
+info all-registers -- List of all registers and their contents, for selected stack frame.
+info args -- All argument variables of current stack frame or those matching REGEXPs.
+info auto-load -- Print current status of auto-loaded files.
+info auxv -- Display the inferior's auxiliary vector.
+info bookmarks -- Status of user-settable bookmarks.
+info breakpoints, 
+   info b -- Status of specified breakpoints (all user-settable breakpoints if no argument).
+info checkpoints -- IDs of currently known checkpoints.
+info classes -- All Objective-C classes, or those matching REGEXP.
+info common -- Print out the values contained in a Fortran COMMON block.
+info connections -- Target connections in use.
+info copying -- Conditions for redistributing copies of GDB.
+info dcache -- Print information on the dcache performance.
+info display -- Expressions to display when program stops, with code numbers.
+info exceptions -- List all Ada exception names.
+info extensions -- All filename extensions associated with a source language.
+info files -- Names of targets and files being debugged.
+info float -- Print the status of the floating point unit.
+info frame, info f -- All about the selected stack frame.
+info frame-filter -- List all registered Python frame-filters.
+info functions -- All function names or those matching REGEXPs.
+info guile, info gu -- Prefix command for Guile info displays.
+info inferiors -- Print a list of inferiors being managed.
+info line -- Core addresses of the code for a source line.
+info locals -- All local variables of current stack frame or those matching REGEXPs.
+info macro -- Show the definition of MACRO, and it's source location.
+info macros -- Show the definitions of all macros at LINESPEC, or the current source location.
+info mem -- Memory region attributes.
+info module -- Print information about modules.
+info modules -- All module names, or those matching REGEXP.
+info os -- Show OS data ARG.
+info pretty-printer -- GDB command to list all registered pretty-printers.
+info probes -- Show available static probes.
+info proc -- Show additional information about a process.
+info program -- Execution status of the program.
+info record, info rec -- Info record options.
+info registers, info r -- List of integer registers and their contents, for selected stack frame.
+info scope -- List the variables local to a scope.
+info selectors -- All Objective-C selectors, or those matching REGEXP.
+info sharedlibrary, info dll -- Status of loaded shared object libraries.
+info signals, info handle -- What debugger does when program gets various signals.
+info skip -- Display the status of skips.
+info source -- Information about the current source file.
+info sources -- All source files in the program or those matching REGEXP.
+info stack, info s -- Backtrace of the stack, or innermost COUNT frames.
+Quit
+Undefined command: "breakpoints".  Try "help".
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040186a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040186a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+3       breakpoint     keep y   0x000000000040424c in ft_exec at src/600_exec/exec.c:32
+4       breakpoint     keep y   0x000000000040424c in ft_exec at src/600_exec/exec.c:32
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040186a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040186a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+3       breakpoint     keep y   0x000000000040424c in ft_exec at src/600_exec/exec.c:32
+4       breakpoint     keep y   0x000000000040424c in ft_exec at src/600_exec/exec.c:32
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040186a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+4       breakpoint     keep y   0x000000000040424c in ft_exec at src/600_exec/exec.c:32
+Continuing.
+
+Breakpoint 4, ft_exec (shell=0x7fffffffe188) at src/600_exec/exec.c:32
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+[Attaching after Thread 0x7ffff7ccd380 (LWP 190309) fork to child process 190457]
+[New inferior 2 (process 190457)]
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 2 (process 190457) exited with code 01]
+----------------------------------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40186a: file src/100_main.c, line 42.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40186a: file src/100_main.c, line 42.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40186a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040186a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40186a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040186a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040186a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 192056) fork to child process 192059]
+[New inferior 2 (process 192059)]
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 2 (process 192059) exited with code 01]
+No stack.
+No default breakpoint address now.
+No stack.
+The program is not being run.
+The program is not being run.
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Thread 2.1 "minishell" hit Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Breakpoint 3 at 0x40424c: ft_exec. (2 locations)
+Note: breakpoint 3 also set at pc 0x40424c.
+Note: breakpoint 3 also set at pc 0x40424c.
+Breakpoint 4 at 0x40424c: ft_exec. (2 locations)
+Continuing.
+
+Thread 2.1 "minishell" hit Breakpoint 3, ft_exec (shell=0x7fffffffe188) at src/600_exec/exec.c:32
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+[Attaching after Thread 0x7ffff7ccd380 (LWP 192142) fork to child process 192159]
+[New inferior 3 (process 192159)]
+Reading symbols from /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 3 (process 192159) exited with code 01]
+----------------------------------------------------
+The program is not being run.
+No stack.
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Thread 3.1 "minishell" hit Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+#0  main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+#0  main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Continuing.
+
+Thread 3.1 "minishell" hit Breakpoint 3, ft_exec (shell=0x7fffffffe188) at src/600_exec/exec.c:32
+#0  ft_exec (shell=0x7fffffffe188) at src/600_exec/exec.c:32
+#1  0x0000000000401985 in ft_process_input (shell=0x7fffffffe188) at src/100_main.c:82
+#2  0x000000000040190e in main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:57
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 192162) fork to child process 192201]
+[New inferior 4 (process 192201)]
+Reading symbols from /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 4 (process 192201) exited with code 01]
+No stack.
+No stack.
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Thread 4.1 "minishell" hit Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+ft_process_input (shell=0x7fffffffe188) at src/100_main.c:78
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+
+Thread 4.1 "minishell" hit Breakpoint 3, ft_exec (shell=0x7fffffffe188) at src/600_exec/exec.c:32
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+[Attaching after Thread 0x7ffff7ccd380 (LWP 192206) fork to child process 192231]
+[New inferior 5 (process 192231)]
+Reading symbols from /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 5 (process 192231) exited with code 01]
+----------------------------------------------------

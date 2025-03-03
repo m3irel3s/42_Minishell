@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/02 21:14:11 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:39:32 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,12 @@ static void	ft_cleanup_tokens(t_shell *shell)
 	{
 		next = current->next;
 		if (current->val.value)
+		{
 			ft_free(current->val.value);
+			ft_free(current->val.og_value);
+		}
 		ft_free(current);
+		current = NULL;
 		current = next;
 	}
 	shell->tokens = NULL;

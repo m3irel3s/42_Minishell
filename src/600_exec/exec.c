@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/01 13:55:42 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:38:56 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
 static void	ft_handle_exec(t_shell *shell, int cmd);
+static void	ft_handle_simple_and_double_quotes(t_token *curr);
 
 /**
  * @brief Executes a command in a shell.
@@ -24,20 +25,14 @@ static void	ft_handle_exec(t_shell *shell, int cmd);
  *
  * @param [in] shell The shell structure to execute the command in.
  */
-void ft_exec(t_shell *shell)
+void	ft_exec(t_shell *shell)
 {
-	t_token *curr;
+	t_token	*curr;
 
 	curr = shell->tokens;
 	if (!curr)
-		return;
-	if (!curr->val.value)
-	{
-		if (!ft_strncmp(curr->val.og_value, "\"\"", ft_strlen(curr->val.og_value)) ||
-			!ft_strncmp(curr->val.og_value, "\'\'", ft_strlen(curr->val.og_value)))
-			ft_print_error_w_arg(ERR_CMD_NOT_FOUND, "");
-		return;
-	}
+		return ;
+	ft_handle_simple_and_double_quotes(curr);
 	ft_process_heredocs(shell);
 	if (g_exit_status == EXIT_SIGINT)
 	{
@@ -47,13 +42,27 @@ void ft_exec(t_shell *shell)
 	if (ft_has_pipes(shell) == SUCCESS)
 	{
 		ft_handle_pipes(shell);
-		return;
+		return ;
 	}
 	else
 	{
 		ft_create_redirection_list(shell);
 		ft_handle_redirections(shell);
 		ft_handle_exec(shell, ft_get_cmd_type(curr->val.value));
+	}
+}
+
+static void	ft_handle_simple_and_double_quotes(t_token *curr)
+{
+	int		len;
+
+	if (!curr->val.value)
+	{
+		len = ft_strlen(curr->val.og_value);
+		if (!ft_strncmp(curr->val.og_value, "\"\"", len)
+			|| !ft_strncmp(curr->val.og_value, "\'\'", len))
+			ft_print_error_w_arg(ERR_CMD_NOT_FOUND, "");
+		return ;
 	}
 }
 
@@ -77,6 +86,8 @@ static void	ft_handle_exec(t_shell *shell, int cmd)
 
 	original_stdout = dup(STDOUT_FILENO);
 	original_stdin = dup(STDIN_FILENO);
+	close(original_stdout);
+	close(original_stdin);
 	dup2(shell->redirected_stdin, STDIN_FILENO);
 	dup2(shell->redirected_stdout, STDOUT_FILENO);
 	ft_execute_command(shell, cmd);

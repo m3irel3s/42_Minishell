@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/02 22:20:03 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:39:26 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ static char	*ft_generate_temp_filename(void)
 	if (!counter_str)
 		return (NULL);
 	len = ft_strlen(prefix) + ft_strlen(counter_str) + 1;
-	tempfile = ft_safe_malloc(len);
+	tempfile = ft_safe_calloc(len);
 	if (!tempfile)
 		return (free(counter_str), NULL);
 	ft_strlcpy(tempfile, prefix, len);

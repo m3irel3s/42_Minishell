@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   000_intro.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 08:37:43 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/02 23:10:14 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:38:42 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ static void	ft_display_infos(void)
 int	ft_authors(void)
 {
 	char	*authors[14];
-	int			i;
+	int		i;
 
 	authors[0] = BYEL "\n+-------------------------------------------+" RESET;
 	authors[1] = BMAG "|                AUTHORS                    |" RESET;

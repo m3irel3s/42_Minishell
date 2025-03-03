@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:45:07 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 16:24:21 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:49:23 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	ft_handle_redirections(t_shell *shell)
 
 	saved_stdin = dup(STDIN_FILENO);
 	saved_stdout = dup(STDOUT_FILENO);
+	close(saved_stdin);
+	close(saved_stdout);
 	redirect = shell->redirects;
 	while (redirect)
 	{
@@ -45,6 +47,8 @@ void	ft_handle_redirections(t_shell *shell)
 	}
 	shell->redirected_stdin = dup(STDIN_FILENO);
 	shell->redirected_stdout = dup(STDOUT_FILENO);
+	close(shell->redirected_stdin);
+	close(shell->redirected_stdout);
 	dup2(saved_stdin, STDIN_FILENO);
 	dup2(saved_stdout, STDOUT_FILENO);
 	close(saved_stdin);
@@ -71,7 +75,6 @@ void	ft_handle_redirections(t_shell *shell)
 static void	ft_apply_redirection(t_shell *shell, t_redirect *redirect)
 {
 	(void)shell;
-
 	if (redirect->type == REDIRECT_IN)
 		ft_redirect_in(redirect);
 	else if (redirect->type == REDIRECT_OUT)

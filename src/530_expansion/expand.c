@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 16:24:06 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/01 17:12:59 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,46 @@
 
 static char	*ft_join_and_free(char *expanded_value, char *temp);
 static void	ft_handle_quotes(char *input, size_t *i, int *quote_state);
+static char	*ft_expand_loop(t_shell *shell, char *token, char *expanded_value);
 
+char	*ft_expand(t_shell *shell, char *token)
+{
+	char	*expanded_value;
+
+	expanded_value = ft_safe_strdup("");
+	if (!expanded_value)
+		return (NULL);
+	expanded_value = ft_expand_loop(shell, token, expanded_value);
+	if (!expanded_value)
+		return (NULL);
+	ft_free(token);
+	return (expanded_value);
+}
+
+static char	*ft_expand_loop(t_shell *shell, char *token, char *expanded_value)
+{
+	char	*temp;
+	size_t	i;
+	int		quote_state;
+
+	i = 0;
+	quote_state = 0;
+	while (token[i])
+	{
+		ft_handle_quotes(token, &i, &quote_state);
+		if (token[i] == '$' && quote_state != 1 && token[i + 1])
+		{
+			temp = ft_handle_dollar(shell, token, &i);
+			expanded_value = ft_join_and_free(expanded_value, temp);
+			continue ;
+		}
+		expanded_value = ft_process_char(expanded_value, token[i]);
+		i++;
+		if (!expanded_value)
+			return (NULL);
+	}
+	return (expanded_value);
+}
 
 /**
  * @brief Processes a single character in a token during expansion.
@@ -87,48 +126,4 @@ static void	ft_handle_quotes(char *input, size_t *i, int *quote_state)
 		else
 			*quote_state = 2;
 	}
-}
-
-/**
- * @brief Expands a token by processing special characters and variables.
- *
- * This function iterates through the given token, handling quotes and
- * expanding variables prefixed by the '$' character. It maintains the
- * current quote state to correctly handle quoted sections. The expanded
- * token is constructed by appending characters or expanded variables to
- * the resulting string, which is returned upon completion.
- *
- * @param shell A pointer to the shell structure containing environment info.
- * @param token The token string to be expanded.
- * @return The expanded token as a string, or NULL if memory allocation fails.
- */
-
-char	*ft_expand(t_shell *shell, char *token)
-{
-	char	*expanded_value;
-	char	*temp;
-	size_t	i;
-	int		quote_state;
-
-	quote_state = 0;
-	i = 0;
-	expanded_value = ft_safe_strdup("");
-	if (!expanded_value)
-		return (NULL);
-	while (token[i])
-	{
-		ft_handle_quotes(token, &i, &quote_state);
-		if (token[i] == '$' && quote_state != 1 && token[i + 1])
-		{
-			temp = ft_handle_dollar(shell, token, &i);
-			expanded_value = ft_join_and_free(expanded_value, temp);
-			continue ;
-		}
-		else
-			expanded_value = ft_process_char(expanded_value, token[i]);
-		i++;
-		if (!expanded_value)
-			return (NULL);
-	}
-	return (ft_free(token), expanded_value);
 }

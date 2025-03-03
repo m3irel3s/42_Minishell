@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
+#    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/03/01 15:00:22 by meferraz         ###   ########.fr        #
+#    Updated: 2025/03/03 16:38:06 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,7 @@ SRCS = \
        ${SRC_PATH}/400_signals/signals.c \
        ${SRC_PATH}/500_parsing/parsing.c \
        ${SRC_PATH}/510_errors_handler/syntax_validation.c \
+       ${SRC_PATH}/510_errors_handler/syntax_validation_2.c \
        ${SRC_PATH}/510_errors_handler/print_errors_exit_failure.c \
        ${SRC_PATH}/510_errors_handler/print_errors_heredoc.c \
        ${SRC_PATH}/510_errors_handler/print_errors_misuse.c \
@@ -106,11 +107,12 @@ SRCS = \
 	   ${SRC_PATH}/640_pipes/exec_pipes_child.c \
 	   ${SRC_PATH}/640_pipes/exec_pipes_utils.c \
 	   ${SRC_PATH}/640_pipes/exec_pipes.c \
+	   ${SRC_PATH}/640_pipes/exec_pipes_utils_2.c \
        ${SRC_PATH}/700_utils_other/variable_utils.c \
        ${SRC_PATH}/700_utils_other/variable_utils_2.c \
        ${SRC_PATH}/700_utils_other/check_type_functions.c \
        ${SRC_PATH}/700_utils_other/safe_functions.c \
-	   ${SRC_PATH}/700_utils_other/ft_safe_realloc.c \
+	   ${SRC_PATH}/700_utils_other/safe_functions_2.c \
        ${SRC_PATH}/800_clean/clean.c \
        ${SRC_PATH}/800_clean/free.c
 

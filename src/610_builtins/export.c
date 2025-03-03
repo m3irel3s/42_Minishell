@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/27 14:58:42 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:14:47 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	ft_add_var_to_env(t_shell *shell, char *var, char *value, int sign)
 
 	i = 0;
 	new_size = ft_get_env_size(shell) + 1;
-	new_env = ft_safe_malloc(sizeof(char *) * (new_size + 1));
+	new_env = ft_safe_calloc(sizeof(char *) * (new_size + 1));
 	if (!new_env)
 		return ;
 	while (shell->env_cpy[i])
