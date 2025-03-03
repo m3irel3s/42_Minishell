@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 14:58:42 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 12:21:49 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static t_status	ft_process_token(t_shell *shell, char *token_str)
 {
 	size_t	len;
 	int		quoted;
+	t_status	status;
 
 	if (!token_str)
 		return (ft_print_error(ERR_NULL_TOKEN_VALUE));
@@ -70,6 +71,9 @@ static t_status	ft_process_token(t_shell *shell, char *token_str)
 		else if (token_str[0] == '"' && token_str[len - 1] == '"')
 			quoted = 2;
 	}
-	return (ft_create_and_add_token(shell, token_str, ft_strlen(token_str),
-			quoted));
+	status = ft_create_and_add_token(shell, token_str, ft_strlen(token_str), quoted);
+	// return (ft_create_and_add_token(shell, token_str, ft_strlen(token_str),
+	// 		quoted));
+	return status;
+	
 }

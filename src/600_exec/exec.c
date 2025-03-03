@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/01 14:01:59 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:49:25 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ static void	ft_handle_exec(t_shell *shell, int cmd)
 
 	original_stdout = dup(STDOUT_FILENO);
 	original_stdin = dup(STDIN_FILENO);
+	close(original_stdout);
+	close(original_stdin);
 	dup2(shell->redirected_stdin, STDIN_FILENO);
 	dup2(shell->redirected_stdout, STDOUT_FILENO);
 	ft_execute_command(shell, cmd);
