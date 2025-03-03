@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/03/03 16:38:36 by jmeirele         ###   ########.fr       */
+/*   Created: 2025/03/03 16:46:54 by jmeirele          #+#    #+#             */
+/*   Updated: 2025/03/03 16:47:00 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef TYPES_H
 # define TYPES_H

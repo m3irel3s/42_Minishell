@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/03 16:39:32 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 17:22:42 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,24 +46,23 @@ void	ft_cleanup(t_shell *shell)
  */
 static void	ft_cleanup_tokens(t_shell *shell)
 {
-	t_token	*current;
+	t_token	*curr;
 	t_token	*next;
 
-	current = shell->tokens;
-	while (current)
+	curr = shell->tokens;
+	while (curr)
 	{
-		next = current->next;
-		if (current->val.value)
-		{
-			ft_free(current->val.value);
-			ft_free(current->val.og_value);
-		}
-		ft_free(current);
-		current = NULL;
-		current = next;
+		next = curr->next;
+		if (curr->val.og_value)
+			ft_free(curr->val.og_value);
+		if (curr->val.value)
+			ft_free(curr->val.value);
+		ft_free(curr);
+		curr = next;
 	}
 	shell->tokens = NULL;
 }
+
 
 /**
  * Frees all dynamically allocated memory associated with the redirects linked

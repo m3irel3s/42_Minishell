@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ansi.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 12:47:17 by passunca          #+#    #+#             */
-/*   Updated: 2025/03/02 23:00:18 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:47:42 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@
 # define WHT "\e[0;37m"	// RGB(255, 255, 255)
 
 //Especial case for prompt
-#define BG_G "\001\033[102m\002"
-#define BG_B "\001\033[104m\002"
-#define BG_C "\001\033[106m\002"
-#define BG_M "\001\033[105m\002"
-#define MGT  "\001\033[35m\002"
-#define YLW  "\001\033[33m\002"
-#define RED2 "\001\033[31m\002"
-#define WHT2 "\001\033[37m\002"
-#define GRN2 "\001\033[32m\002"
-#define RS   "\001\033[0m\002"
+# define BG_G "\001\033[102m\002"
+# define BG_B "\001\033[104m\002"
+# define BG_C "\001\033[106m\002"
+# define BG_M "\001\033[105m\002"
+# define MGT  "\001\033[35m\002"
+# define YLW  "\001\033[33m\002"
+# define RED2 "\001\033[31m\002"
+# define WHT2 "\001\033[37m\002"
+# define GRN2 "\001\033[32m\002"
+# define RS   "\001\033[0m\002"
 
 //Regular bold text
 # define BBLK "\e[1;30m"

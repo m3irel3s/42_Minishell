@@ -2987,3 +2987,406 @@ Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f901
 Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
 [Inferior 5 (process 192231) exited with code 01]
 ----------------------------------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2e8, envp=0x7fffffffe2f8) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2e8, envp=0x7fffffffe2f8) at src/100_main.c:42
+Breakpoint 3 at 0x401903: file src/100_main.c, line 59.
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 244147) fork to child process 244157]
+[New inferior 2 (process 244157)]
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Attaching after Thread 0x7ffff7ccd380 (LWP 244157) fork to child process 244158]
+[New inferior 3 (process 244158)]
+Reading symbols from /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+process 244158 is executing new program: /usr/bin/ls
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 3 (process 244158) exited normally]
+Not confirmed.
+Undefined command: "y".  Try "help".
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2e8, envp=0x7fffffffe2f8) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2e8, envp=0x7fffffffe2f8) at src/100_main.c:42
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+[Attaching after Thread 0x7ffff7ccd380 (LWP 244272) fork to child process 244397]
+[New inferior 2 (process 244397)]
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Attaching after Thread 0x7ffff7ccd380 (LWP 244397) fork to child process 244398]
+[New inferior 3 (process 244398)]
+Reading symbols from /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+process 244398 is executing new program: /usr/bin/ls
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 3 (process 244398) exited normally]
+----------------------------------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2e8, envp=0x7fffffffe2f8) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2e8, envp=0x7fffffffe2f8) at src/100_main.c:42
+Breakpoint 3 at 0x4086ac: file src/800_clean/clean.c, line 28.
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 244577) fork to child process 244586]
+[New inferior 2 (process 244586)]
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Attaching after Thread 0x7ffff7ccd380 (LWP 244586) fork to child process 244587]
+[New inferior 3 (process 244587)]
+Reading symbols from /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+process 244587 is executing new program: /usr/bin/ls
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+Reading symbols from /usr/lib/debug/.build-id/cd/410b710f0f094c6832edd95931006d883af48e.debug...
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 3 (process 244587) exited normally]
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2e8, envp=0x7fffffffe2f8) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2e8, envp=0x7fffffffe2f8) at src/100_main.c:42
+Breakpoint 3 at 0x4086ac: file src/800_clean/clean.c, line 28.
+Continuing.
+[Detaching after fork from child process 244904]
+
+Breakpoint 3, ft_cleanup (shell=0x7fffffffe178) at src/800_clean/clean.c:28
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+ft_cleanup_tokens (shell=0x7fffffffe178) at src/800_clean/clean.c:52
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+1: curr = (t_token *) 0x0
+2: shell->tokens = (t_token *) 0x412150
+1: curr = (t_token *) 0x0
+2: shell->tokens = (t_token *) 0x0
+----------------------------------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2e8, envp=0x7fffffffe2f8) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+Quit
+Undefined command: "y".  Try "help".
+Quit
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+Breakpoint 3 at 0x4086ac: file src/800_clean/clean.c, line 28.
+Continuing.
+[Detaching after fork from child process 245398]
+
+Breakpoint 3, ft_cleanup (shell=0x7fffffffe178) at src/800_clean/clean.c:28
+warning: Source file is more recent than executable.
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+ft_cleanup_tokens (shell=0x7fffffffe178) at src/800_clean/clean.c:52
+1: curr->val.value = 0x7ffff7ffe2e0 ""
+1: curr->val.value = 0x448310 "ls"
+----------------------------------------------------
+1: curr->val.value = 0x448310 "ls"
+----------------------------------------------------
+1: curr->val.value = 0x448310 "ls"
+----------------------------------------------------
+1: curr->val.value = 0x448310 "ls"
+----------------------------------------------------
+1: curr->val.value = 0x448310 "H\004"
+----------------------------------------------------
+1: curr->val.value = 0x448310 "H\004"
+----------------------------------------------------
+1: curr->val.value = 0x4110f2 ""
+----------------------------------------------------
+1: curr->val.value = <error: Cannot access memory at address 0x0>
+----------------------------------------------------
+2: curr->val.og_value = <error: Cannot access memory at address 0x8>
+1: curr->val.value = 0x448370 "-al"
+2: curr->val.og_value = 0x4482f0 "-al"
+----------------------------------------------------
+1: curr->val.value = 0x448370 "-al"
+2: curr->val.og_value = 0x4482f0 "-al"
+----------------------------------------------------
+1: curr->val.value = 0x448370 "-al"
+2: curr->val.og_value = 0x4482f0 "-al"
+----------------------------------------------------
+1: curr->val.value = 0x448370 "-al"
+2: curr->val.og_value = 0x4482f0 "-al"
+----------------------------------------------------
+1: curr->val.value = 0x448370 "\210\206D"
+2: curr->val.og_value = 0x4482f0 "-al"
+----------------------------------------------------
+1: curr->val.value = 0x448370 "\210\206D"
+2: curr->val.og_value = 0x4482f0 "(\207D"
+----------------------------------------------------
+1: curr->val.value = 0x412541 "r/lib/snapd/desktop"
+2: curr->val.og_value = 0x6c02495b899fc7cb <error: Cannot access memory at address 0x6c02495b899fc7cb>
+----------------------------------------------------
+1: curr->val.value = <error: Cannot access memory at address 0x0>
+2: curr->val.og_value = <error: Cannot access memory at address 0x8>
+----------------------------------------------------
+1: curr->val.value = 0x4483b0 "|"
+2: curr->val.og_value = 0x448330 "|"
+----------------------------------------------------
+1: curr->val.value = 0x4483b0 "|"
+2: curr->val.og_value = 0x448330 "|"
+----------------------------------------------------
+1: curr->val.value = 0x4483b0 "|"
+2: curr->val.og_value = 0x448330 "|"
+----------------------------------------------------
+1: curr->val.value = 0x4483b0 "|"
+2: curr->val.og_value = 0x448330 "|"
+----------------------------------------------------
+1: curr->val.value = 0x4483b0 "\250\206D"
+2: curr->val.og_value = 0x448330 "|"
+----------------------------------------------------
+1: curr->val.value = 0x4483b0 "\250\206D"
+2: curr->val.og_value = 0x448330 "\350\207D"
+----------------------------------------------------
+1: curr->val.value = 0x4113a1 "\206B"
+2: curr->val.og_value = 0x6c02495b899fc7cb <error: Cannot access memory at address 0x6c02495b899fc7cb>
+----------------------------------------------------
+1: curr->val.value = <error: Cannot access memory at address 0x0>
+2: curr->val.og_value = <error: Cannot access memory at address 0x8>
+----------------------------------------------------
+1: curr->val.value = 0x4483d0 "wc"
+2: curr->val.og_value = 0x448350 "wc"
+----------------------------------------------------
+1: curr->val.value = 0x4483d0 "wc"
+2: curr->val.og_value = 0x448350 "wc"
+----------------------------------------------------
+1: curr->val.value = 0x4483d0 "wc"
+2: curr->val.og_value = 0x448350 "wc"
+----------------------------------------------------
+1: curr->val.value = 0x4483d0 "wc"
+2: curr->val.og_value = 0x448350 "wc"
+----------------------------------------------------
+1: curr->val.value = 0x4483d0 "h\207D"
+2: curr->val.og_value = 0x448350 "wc"
+----------------------------------------------------
+1: curr->val.value = 0x4483d0 "h\207D"
+2: curr->val.og_value = 0x448350 "\210\207D"
+----------------------------------------------------
+1: curr->val.value = 0x411cb1 "hell"
+2: curr->val.og_value = 0x6c02495b899fc7cb <error: Cannot access memory at address 0x6c02495b899fc7cb>
+----------------------------------------------------
+1: curr->val.value = <error: Cannot access memory at address 0x0>
+2: curr->val.og_value = <error: Cannot access memory at address 0x8>
+----------------------------------------------------
+1: curr->val.value = 0x448410 "-l"
+2: curr->val.og_value = 0x448390 "-l"
+----------------------------------------------------
+1: curr->val.value = 0x448410 "-l"
+2: curr->val.og_value = 0x448390 "-l"
+----------------------------------------------------
+1: curr->val.value = 0x448410 "-l"
+2: curr->val.og_value = 0x448390 "-l"
+----------------------------------------------------
+1: curr->val.value = 0x448410 "-l"
+2: curr->val.og_value = 0x448390 "-l"
+----------------------------------------------------
+1: curr->val.value = 0x448410 "\b\207D"
+2: curr->val.og_value = 0x448390 "-l"
+----------------------------------------------------
+1: curr->val.value = 0x448410 "\b\207D"
+2: curr->val.og_value = 0x448390 "H\200D"
+----------------------------------------------------
+1: curr->val.value = 0x411351 "\205B"
+2: curr->val.og_value = 0x6c02495b899fc7cb <error: Cannot access memory at address 0x6c02495b899fc7cb>
+----------------------------------------------------
+1: curr->val.value = <error: Cannot access memory at address 0x0>
+2: curr->val.og_value = <error: Cannot access memory at address 0x8>
+----------------------------------------------------
+1: curr->val.value = <error: Cannot access memory at address 0x0>
+2: curr->val.og_value = <error: Cannot access memory at address 0x8>
+----------------------------------------------------
+1: curr->val.value = <error: Cannot access memory at address 0x0>
+2: curr->val.og_value = <error: Cannot access memory at address 0x8>
+----------------------------------------------------
+A syntax error in expression, near `'.
+3: shell->tokens->next = (struct s_token *) 0x4117b0
+4: shell->tokens->prev = (struct s_token *) 0x0
+5: shell->tokens->next = (struct s_token *) 0x4117b0
+6: shell->tokens->next->next = (struct s_token *) 0x4118a0
+7: shell->tokens->next->next->next = (struct s_token *) 0x411740
+8: shell->tokens->next->next->next->next = (struct s_token *) 0x411510
+1: curr->val.value = <error: Cannot access memory at address 0x0>
+2: curr->val.og_value = <error: Cannot access memory at address 0x8>
+3: shell->tokens->next = <error: Cannot access memory at address 0x18>
+4: shell->tokens->prev = <error: Cannot access memory at address 0x20>
+5: shell->tokens->next = <error: Cannot access memory at address 0x18>
+6: shell->tokens->next->next = <error: Cannot access memory at address 0x18>
+7: shell->tokens->next->next->next = <error: Cannot access memory at address 0x18>
+8: shell->tokens->next->next->next->next = <error: Cannot access memory at address 0x18>
+----------------------------------------------------
