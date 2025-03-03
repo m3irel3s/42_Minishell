@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/02 21:11:32 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:31:21 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,6 @@ typedef struct s_shell
 //============================================================================//
 
 extern int			g_exit_status;
-volatile sig_atomic_t	g_signal;
+// volatile sig_atomic_t	g_signal;
 
 #endif
