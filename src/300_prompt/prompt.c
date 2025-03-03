@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:04:18 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/02 22:53:18 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/02 23:01:59 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*ft_set_prompt(t_shell *shell)
  * @return A dynamically allocated string containing the formatted prompt.
  *         Returns NULL if any memory allocation fails.
 */
-static char *ft_build_prompt(char *user, char *cwd)
+static char	*ft_build_prompt(char *user, char *cwd)
 {
 	char *prompt;
 	char *short_cwd;
@@ -81,7 +81,7 @@ static char *ft_build_prompt(char *user, char *cwd)
 		prompt = ft_safe_strjoin(prompt, RS " ", 1);
 		ft_free(git_branch);
 	}
-	prompt = ft_safe_strjoin(prompt, WHT2 "❯ ", 1);
+	prompt = ft_safe_strjoin(prompt, WHT2 "❯ " RS, 1);
 	ft_free(short_cwd);
 	return (prompt);
 }
