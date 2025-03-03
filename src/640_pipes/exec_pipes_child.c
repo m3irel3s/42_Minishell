@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:00:00 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/03 16:21:31 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:35:15 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void		ft_handle_redirections_in_child(t_shell *shell);
 static void		ft_setup_child_redirects(int i, t_pipe *pipes, int num_pipes);
 static t_token	*ft_copy_tokens(t_token *start, t_token *end);
 static t_token	*ft_prepare_child_tokens(t_token *curr_cmd);
-
 
 void	ft_execute_child(t_shell *sh, t_token *curr_cmd, int i, t_pipe *pipes)
 {
@@ -36,7 +35,7 @@ void	ft_execute_child(t_shell *sh, t_token *curr_cmd, int i, t_pipe *pipes)
 	ft_execute_command(sh, ft_get_cmd_type(sh->tokens->val.value));
 	ft_cleanup(sh);
 	if (sh->env_cpy)
-			ft_free_arr(sh->env_cpy);
+		ft_free_arr(sh->env_cpy);
 	exit(g_exit_status);
 }
 
