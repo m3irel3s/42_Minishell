@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 10:31:57 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/01 14:54:33 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:14:47 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_safe_strndup(const char *s1, size_t n)
 	if (!s1)
 		return (NULL);
 	len = ft_strnlen(s1, n);
-	copy = ft_safe_malloc(len + 1);
+	copy = ft_safe_calloc(len + 1);
 	if (!copy)
 		return (NULL);
 	ft_memcpy(copy, s1, len);

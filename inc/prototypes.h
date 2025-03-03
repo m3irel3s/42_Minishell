@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/01 17:23:58 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:20:44 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,10 @@ t_status		ft_print_error_fatal_signal(char *error_msg, int signal_number);
 t_status		ft_print_error_w_arg(char *error_msg, char *arg);
 
 /* 510_errors_handler/syntax_validation.c */
-t_status	ft_skip_quotes(char *input, int *i, char quote);
+t_status		ft_skip_quotes(char *input, int *i, char quote);
 
 /* 510_errors_handler/syntax_validation_2.c */
-t_status	ft_validate_redirects(char *input);
+t_status		ft_validate_redirects(char *input);
 
 //============================================================================//
 //                             VARIABLE EXPANSION                             //
@@ -224,7 +224,7 @@ bool			ft_is_command(char *value, size_t len);
 //                          SAFE MEMORY AND IO OPERATIONS                     //
 //============================================================================//
 /* 700_utils_other/safe_functions.c */
-void			*ft_safe_malloc(size_t size);
+void			*ft_safe_calloc(size_t size);
 char			*ft_safe_readline(t_shell *shell);
 char			*ft_safe_strdup(char *s);
 char			*ft_safe_strjoin(char *s1, char *s2, int free_s1);

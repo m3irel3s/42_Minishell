@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:00:00 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/01 17:11:59 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:14:47 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static t_token	*ft_copy_tokens(t_token *start, t_token *end)
 	tail = NULL;
 	while (start != end && start)
 	{
-		new_node = ft_safe_malloc(sizeof(t_token));
+		new_node = ft_safe_calloc(sizeof(t_token));
 		if (!new_node)
 			return (NULL);
 		*new_node = *start;

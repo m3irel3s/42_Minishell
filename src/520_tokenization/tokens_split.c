@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 21:04:16 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/01 17:36:25 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:14:47 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ static char	**ft_alloc_result(char *input)
 		ft_print_error(ERR_WORD_COUNT_FAIL);
 		return (NULL);
 	}
-	result = ft_safe_malloc(sizeof(char *) * (word_count + 1));
+	result = ft_safe_calloc(sizeof(char *) * (word_count + 1));
 	if (!result)
 	{
 		ft_print_error(ERR_MALLOC_FAIL);

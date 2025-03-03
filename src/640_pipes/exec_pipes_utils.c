@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:00:00 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/01 16:54:01 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:14:47 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_pipe	*ft_allocate_and_create_pipes(t_token *tokens)
 	t_pipe	*pipes;
 
 	num_pipes = ft_count_pipes(tokens);
-	pipes = ft_safe_malloc(sizeof(t_pipe) * num_pipes);
+	pipes = ft_safe_calloc(sizeof(t_pipe) * num_pipes);
 	if (!pipes)
 		return (NULL);
 	i = 0;

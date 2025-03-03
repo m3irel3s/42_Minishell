@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:15:01 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/01 14:44:11 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:14:47 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static t_status	ft_remove_var_update_env(t_shell *shell, char *var)
 	int		var_index;
 
 	var_index = ft_get_var_index(var, shell->env_cpy);
-	new_env = ft_safe_malloc(sizeof(char *) * (ft_get_env_size(shell)));
+	new_env = ft_safe_calloc(sizeof(char *) * (ft_get_env_size(shell)));
 	if (!new_env)
 		return (ERROR);
 	ft_remove_var(shell, new_env, var_index);

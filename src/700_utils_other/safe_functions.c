@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 12:58:31 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/01 14:54:01 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:14:48 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
  *
  * @return A pointer to the allocated memory, or NULL if allocation fails.
  */
-void	*ft_safe_malloc(size_t size)
+void	*ft_safe_calloc(size_t size)
 {
 	void	*ptr;
 
@@ -37,7 +37,7 @@ void	*ft_safe_malloc(size_t size)
 		g_exit_status = EXIT_FAILURE;
 		return (NULL);
 	}
-	ptr = malloc(size);
+	ptr = ft_calloc(1, size);
 	if (!ptr)
 	{
 		ft_print_error(ERR_MALLOC_FAIL);
@@ -100,7 +100,7 @@ char	*ft_safe_strdup(char *s)
 		return (NULL);
 	}
 	len = ft_strlen(s) + 1;
-	dup = ft_safe_malloc(len);
+	dup = ft_safe_calloc(len);
 	if (!dup)
 		return (NULL);
 	ft_memcpy(dup, s, len);
@@ -167,7 +167,7 @@ char	*ft_safe_substr(char *s, int start, int len)
 		return (ft_safe_strdup(""));
 	if (len > s_len - start)
 		len = s_len - start;
-	substr = (char *)ft_safe_malloc(len + 1);
+	substr = (char *)ft_safe_calloc(len + 1);
 	if (!substr)
 		return (NULL);
 	ft_strlcpy(substr, s + start, len + 1);

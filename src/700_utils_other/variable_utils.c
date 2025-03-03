@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 16:40:57 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/27 15:40:37 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:14:47 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*ft_get_var_name(char *str)
 	i = 0;
 	while (str[i] != '=' && str[i])
 		i++;
-	res = ft_safe_malloc(sizeof(char) * i + 1);
+	res = ft_safe_calloc(sizeof(char) * i + 1);
 	i = 0;
 	while (str[i] != '=' && str[i])
 	{

@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/01 12:22:21 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:14:47 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ static char	*ft_generate_temp_filename(void)
 	if (!counter_str)
 		return (NULL);
 	len = ft_strlen(prefix) + ft_strlen(counter_str) + 1;
-	tempfile = ft_safe_malloc(len);
+	tempfile = ft_safe_calloc(len);
 	if (!tempfile)
 		return (free(counter_str), NULL);
 	ft_strlcpy(tempfile, prefix, len);
@@ -189,7 +189,7 @@ static void	ft_add_temp_file(t_shell *shell, char *tempfile)
 	i = 0;
 	while (shell->temp_files && shell->temp_files[i])
 		i++;
-	new_temp_files = ft_safe_malloc(sizeof(char *) * (i + 2));
+	new_temp_files = ft_safe_calloc(sizeof(char *) * (i + 2));
 	i = 0;
 	while (shell->temp_files && shell->temp_files[i])
 	{
@@ -211,7 +211,7 @@ static void	ft_process_delimiter(t_token *current, t_token *delim, char *tempfil
 	current->val.value = ft_safe_strdup("");
 	free(current->val.og_value);
 	current->val.og_value = ft_safe_strdup("");
-	filename_token = ft_safe_malloc(sizeof(t_token));
+	filename_token = ft_safe_calloc(sizeof(t_token));
 	if (!filename_token)
 		return ;
 	filename_token->type = WORD;

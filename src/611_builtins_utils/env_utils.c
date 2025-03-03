@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 13:50:07 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/27 14:58:42 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:14:47 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	**ft_duplicate_env(char **envp)
 	i = 0;
 	while (envp[i])
 		i++;
-	env_cpy = ft_safe_malloc(sizeof(char *) * (i + 1));
+	env_cpy = ft_safe_calloc(sizeof(char *) * (i + 1));
 	if (!env_cpy)
 		return (NULL);
 	i = 0;
@@ -78,7 +78,7 @@ void	ft_update_env(t_shell *shell)
 	i = 0;
 	j = 0;
 	count = ft_count_equals(shell->env_cpy);
-	n_env = ft_safe_malloc(sizeof(char *) * (count + 1));
+	n_env = ft_safe_calloc(sizeof(char *) * (count + 1));
 	while (shell->env_cpy[i])
 	{
 		if (ft_strchr(shell->env_cpy[i], '='))

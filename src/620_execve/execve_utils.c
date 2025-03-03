@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:54:34 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/02/27 17:27:47 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:14:47 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	**ft_create_arr_cmd(t_token *start_pos)
 	if (!start_pos)
 		return (NULL);
 	i = ft_count_type_words(start_pos);
-	arr = ft_safe_malloc(sizeof(char *) * (i + 1));
+	arr = ft_safe_calloc(sizeof(char *) * (i + 1));
 	if (!arr)
 		return (NULL);
 	i = 0;
