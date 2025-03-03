@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/03 12:21:49 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:10:55 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ t_status	ft_tokenize(t_shell *shell, char **split_input)
  */
 static t_status	ft_process_token(t_shell *shell, char *token_str)
 {
-	size_t	len;
-	int		quoted;
+	size_t		len;
+	int			quoted;
 	t_status	status;
 
 	if (!token_str)
@@ -73,7 +73,7 @@ static t_status	ft_process_token(t_shell *shell, char *token_str)
 	}
 	status = ft_create_and_add_token(shell, token_str, ft_strlen(token_str), quoted);
 	// return (ft_create_and_add_token(shell, token_str, ft_strlen(token_str),
-	// 		quoted));
+			// quoted));
 	return status;
 	
 }

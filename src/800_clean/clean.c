@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/03 14:12:22 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:27:22 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static void	ft_cleanup_tokens(t_shell *shell)
 			ft_free(current->val.og_value);
 		}
 		ft_free(current);
+		current = NULL;
 		current = next;
 	}
 	shell->tokens = NULL;

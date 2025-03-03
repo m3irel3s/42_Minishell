@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:26:26 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/03 12:18:48 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:25:30 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,11 @@ t_status	ft_create_and_add_token(t_shell *shell, char *value, size_t len, int qu
 		return (ft_print_error(ERR_TOKEN_CREATION_FAIL));
 	}
 	new_token->val.value = ft_safe_strdup(new_token->val.og_value);
+	if (!new_token->val.value)
+	{
+		ft_free(new_token);
+		return (ft_print_error(ERR_TOKEN_CREATION_FAIL));
+	}
 	if (ft_is_last_token_heredoc(shell) != SUCCESS)
 		new_token->val.value = ft_expand(shell, new_token->val.value);
 	if (!new_token->val.value || ft_strlen(new_token->val.value) == 0)
