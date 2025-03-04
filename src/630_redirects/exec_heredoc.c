@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/04 15:32:41 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/04 16:00:38 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ static char	*ft_expanded_line(t_shell *shell, char *line)
  *
  * @return The generated temporary filename.
  */
-static char	*ft_generate_temp_filename(void)
+static char	*ft_generate_temp_filename(t_shell *shell)
 {
 	static int	counter;
 	char		*prefix;
@@ -168,7 +168,7 @@ static char	*ft_generate_temp_filename(void)
 	char		*tempfile;
 	size_t		len;
 
-	counter = 0;
+	counter = shell->random_number;
 	prefix = "/tmp/minishell_heredoc_";
 	counter_str = ft_itoa(counter);
 	if (!counter_str)
@@ -181,6 +181,7 @@ static char	*ft_generate_temp_filename(void)
 	ft_strlcat(tempfile, counter_str, len);
 	ft_free(counter_str);
 	counter++;
+	shell->random_number = counter;
 	return (tempfile);
 }
 
@@ -193,7 +194,7 @@ static char	*ft_create_temp_file(t_shell *shell)
 	i = 0;
 	while (i < 1000)
 	{
-		tempfile = ft_generate_temp_filename();
+		tempfile = ft_generate_temp_filename(shell);
 		if (!tempfile)
 			return (NULL);
 		if (access(tempfile, F_OK) != 0)

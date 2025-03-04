@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:59:06 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/02 21:12:06 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:59:36 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_status	ft_init_shell(t_shell *shell, char **envp)
 	shell->redirected_stdin = -1;
 	shell->redirected_stdout = -1;
 	shell->in_export = 0;
+	shell->random_number = 0;
 	g_exit_status = EXIT_SUCCESS;
 	return (SUCCESS);
 }
