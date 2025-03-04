@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:04:18 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/02 23:01:59 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:09:50 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static char	*ft_build_prompt(char *user, char *cwd)
 
 	short_cwd = ft_shorten_path(cwd);
 	git_branch = ft_get_git_branch();
-	prompt = ft_safe_strjoin(BG_G "❖ " MGT, user, 0);
+	prompt = ft_safe_strjoin(RS BG_G "❖ " MGT, user, 0);
 	prompt = ft_safe_strjoin(prompt, RS " ", 1);
 	prompt = ft_safe_strjoin(prompt, BG_B "⌂ " YLW, 1);
 	prompt = ft_safe_strjoin(prompt, short_cwd, 1);
