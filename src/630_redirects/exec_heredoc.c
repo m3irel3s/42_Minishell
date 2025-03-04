@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/04 15:19:35 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:32:41 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_process_heredocs(t_shell *shell)
 			if (pid == -1)
 			{
 				perror("minishell: fork");
-				free(tempfile);
+				ft_free(tempfile);
 				return ;
 			}
 			else if (pid == 0)
@@ -57,14 +57,14 @@ void	ft_process_heredocs(t_shell *shell)
 				if (WIFEXITED(status) && WEXITSTATUS(status) != EXIT_SUCCESS)
 				{
 					unlink(tempfile);
-					free(tempfile);
+					ft_free(tempfile);
 					g_exit_status = WEXITSTATUS(status);
 					return ;
 				}
 				else if (WIFSIGNALED(status) && WTERMSIG(status) == SIGINT)
 				{
 					unlink(tempfile);
-					free(tempfile);
+					ft_free(tempfile);
 					g_exit_status = EXIT_FAILURE;
 					write(STDOUT_FILENO, "\n", 1);
 					return ;
@@ -90,7 +90,7 @@ static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
 	if (fd == -1)
 	{
 		perror("minishell");
-		free(tempfile);
+		ft_free(tempfile);
 		exit(EXIT_FAILURE);
 	}
 	ft_read_heredoc_input(shell, delim->val.value, delim->quoted, fd);
@@ -115,7 +115,7 @@ void	ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted, int fd)
 		}
 		if (ft_strcmp(line, delimiter) == 0)
 		{
-			free(line);
+			ft_free(line);
 			break ;
 		}
 		expanded_line = line;
@@ -123,7 +123,7 @@ void	ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted, int fd)
 			expanded_line = ft_expanded_line(shell, line);
 		write(fd, expanded_line, ft_strlen(expanded_line));
 		write(fd, "\n", 1);
-		free(expanded_line);
+		ft_free(expanded_line);
 	}
 }
 
@@ -149,7 +149,7 @@ static char	*ft_expanded_line(t_shell *shell, char *line)
 		else
 			expanded = ft_process_char(expanded, line[i++]);
 	}
-	free(line);
+	ft_free(line);
 	return (expanded);
 }
 /**
@@ -162,12 +162,13 @@ static char	*ft_expanded_line(t_shell *shell, char *line)
  */
 static char	*ft_generate_temp_filename(void)
 {
-	static int	counter = 0;
+	static int	counter;
 	char		*prefix;
 	char		*counter_str;
 	char		*tempfile;
 	size_t		len;
 
+	counter = 0;
 	prefix = "/tmp/minishell_heredoc_";
 	counter_str = ft_itoa(counter);
 	if (!counter_str)
@@ -175,10 +176,10 @@ static char	*ft_generate_temp_filename(void)
 	len = ft_strlen(prefix) + ft_strlen(counter_str) + 1;
 	tempfile = ft_safe_calloc(len);
 	if (!tempfile)
-		return (free(counter_str), NULL);
+		return (ft_free(counter_str), NULL);
 	ft_strlcpy(tempfile, prefix, len);
 	ft_strlcat(tempfile, counter_str, len);
-	free(counter_str);
+	ft_free(counter_str);
 	counter++;
 	return (tempfile);
 }
@@ -197,7 +198,7 @@ static char	*ft_create_temp_file(t_shell *shell)
 			return (NULL);
 		if (access(tempfile, F_OK) != 0)
 			return (tempfile);
-		free(tempfile);
+		ft_free(tempfile);
 		i++;
 	}
 	ft_printf(STDERR_FILENO, "minishell: could not create temp file\n");
@@ -209,16 +210,16 @@ static void	ft_process_delimiter(t_token *current, t_token *delim, char *tempfil
 	t_token	*filename_token;
 
 	current->type = REDIRECT_IN;
-	free(current->val.value);
-	current->val.value = ft_strdup("");
-	free(current->val.og_value);
-	current->val.og_value = ft_strdup("");
-	filename_token = ft_calloc(1, sizeof(t_token));
+	ft_free(current->val.value);
+	current->val.value = ft_safe_strdup("");
+	ft_free(current->val.og_value);
+	current->val.og_value = ft_safe_strdup("");
+	filename_token = ft_safe_calloc(sizeof(t_token));
 	if (!filename_token)
 		return ;
 	filename_token->type = WORD;
-	filename_token->val.value = ft_strdup(tempfile);
-	filename_token->val.og_value = ft_strdup(tempfile);
+	filename_token->val.value = ft_safe_strdup(tempfile);
+	filename_token->val.og_value = ft_safe_strdup(tempfile);
 	filename_token->quoted = 0;
 	filename_token->prev = current;
 	filename_token->next = delim->next;
@@ -227,6 +228,18 @@ static void	ft_process_delimiter(t_token *current, t_token *delim, char *tempfil
 		delim->next->prev = filename_token;
 	ft_free_token(delim);
 }
+
+/**
+ * Adds a temporary file to the shell's list of temporary files.
+ *
+ * Allocates memory to store an additional temporary file in the shell's
+ * `temp_files` array. Copies existing temporary file paths to the new
+ * array, appends the new temporary file, and updates the shell's
+ * `temp_files` pointer to the new array.
+ *
+ * @param shell The shell structure to update with a new temporary file.
+ * @param tempfile The path of the temporary file to add to the shell's list.
+ */
 
 static void	ft_add_temp_file(t_shell *shell, char *tempfile)
 {
@@ -246,6 +259,6 @@ static void	ft_add_temp_file(t_shell *shell, char *tempfile)
 		i++;
 	}
 	new_temp_files[i] = tempfile;
-	free(shell->temp_files);
+	ft_free(shell->temp_files);
 	shell->temp_files = new_temp_files;
 }
