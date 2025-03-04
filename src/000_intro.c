@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   000_intro.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 08:37:43 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/03 16:38:42 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:06:11 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,27 @@ void	ft_display_startup_banner(void)
 {
 	char	*banner[17];
 
-	banner[0] = BBLU " /******************************************/ " RESET;
-	banner[1] = BMAG " /                                          / " RESET;
-	banner[2] = BGRN " /       ███╗   ███╗██╗███╗   ██╗██╗        / " RESET;
-	banner[3] = HYEL " /       ████╗ ████║██║████╗  ██║██║        / " RESET;
-	banner[4] = HCYN " /       ██╔████╔██║██║██╔██╗ ██║██║        / " RESET;
-	banner[5] = HRED " /       ██║╚██╔╝██║██║██║╚██╗██║██║        / " RESET;
-	banner[6] = HMAG " /       ██║ ╚═╝ ██║██║██║ ╚████║██║        / " RESET;
-	banner[7] = BYEL " /                                          / " RESET;
-	banner[8] = HMAG " /   ███████╗██╗  ██╗███████╗██╗    ██╗     / " RESET;
-	banner[9] = HRED " /   ██╔════╝██║  ██║██╔════╝██║    ██║     / " RESET;
-	banner[10] = HCYN " /   ███████╗███████║█████╗  ██║    ██║     / " RESET;
-	banner[11] = HYEL " /   ╚════██║██╔══██║██╔══╝  ██║    ██║     / " RESET;
-	banner[12] = BGRN " /   ███████║██║  ██║███████╗██████╗██████╗ / " RESET;
-	banner[13] = BMAG " /   ╚══════╝╚═╝  ╚═╝╚══════╝╚═════╝╚═════╝ / " RESET;
-	banner[14] = HYEL " /                                          / " RESET;
-	banner[15] = BBLU " /******************************************/ " RESET;
+	banner[0] = BBLU " /******************************************/ "RS;
+	banner[1] = BMAG " /                                          / "RS;
+	banner[2] = BGRN " /       ███╗   ███╗██╗███╗   ██╗██╗        / "RS;
+	banner[3] = HYEL " /       ████╗ ████║██║████╗  ██║██║        / "RS;
+	banner[4] = HCYN " /       ██╔████╔██║██║██╔██╗ ██║██║        / "RS;
+	banner[5] = HRED " /       ██║╚██╔╝██║██║██║╚██╗██║██║        / "RS;
+	banner[6] = HMAG " /       ██║ ╚═╝ ██║██║██║ ╚████║██║        / "RS;
+	banner[7] = BYEL " /                                          / "RS;
+	banner[8] = HMAG " /   ███████╗██╗  ██╗███████╗██╗    ██╗     / "RS;
+	banner[9] = HRED " /   ██╔════╝██║  ██║██╔════╝██║    ██║     / "RS;
+	banner[10] = HCYN " /   ███████╗███████║█████╗  ██║    ██║     / "RS;
+	banner[11] = HYEL " /   ╚════██║██╔══██║██╔══╝  ██║    ██║     / "RS;
+	banner[12] = BGRN " /   ███████║██║  ██║███████╗██████╗██████╗ / "RS;
+	banner[13] = BMAG " /   ╚══════╝╚═╝  ╚═╝╚══════╝╚═════╝╚═════╝ / "RS;
+	banner[14] = HYEL " /                                          / "RS;
+	banner[15] = BBLU " /******************************************/ "RS;
 	banner[16] = NULL;
 	ft_print_banner_line(banner);
-	ft_printf(1, "\n\n%s[ Welcome to Minishell! ]%s\n", BGRN, RESET);
+	ft_printf(1, "\n\n%s[ Welcome to Minishell! ]%s\n", BGRN,RS);
 	ft_printf(1, "%sA minimalistic shell implementation for 42 School.%s\n\n",
-		HYEL, RESET);
+		HYEL,RS);
 	ft_display_infos();
 }
 
@@ -71,22 +71,22 @@ static void	ft_print_banner_line(char *banner[])
  */
 static void	ft_display_infos(void)
 {
-	ft_printf(1, "\n%s+-----------------------------+%s\n", BYEL, RESET);
-	ft_printf(1, "%s|        MINISHELL INFO       |%s\n", BMAG, RESET);
-	ft_printf(1, "%s+-----------------------------+%s\n\n", BYEL, RESET);
-	ft_printf(1, "%sFeatures:%s\n", BBLU, RESET);
+	ft_printf(1, "\n%s+-----------------------------+%s\n", BYEL,RS);
+	ft_printf(1, "%s|        MINISHELL INFO       |%s\n", BMAG,RS);
+	ft_printf(1, "%s+-----------------------------+%s\n\n", BYEL,RS);
+	ft_printf(1, "%sFeatures:%s\n", BBLU,RS);
 	ft_printf(1, " %s- Basic commands:%s ls, cd, echo, pwd, etc.\n",
-		HGRN, RESET);
+		HGRN,RS);
 	ft_printf(1, " - %sEnvironment variables:%s export, unset, env.\n",
-		HGRN, RESET);
-	ft_printf(1, " - %sRedirections:%s <, >, >>.\n", HGRN, RESET);
-	ft_printf(1, " - %sPipes:%s |.\n\n", HGRN, RESET);
-	ft_printf(1, "%sExamples:%s\n", BBLU, RESET);
-	ft_printf(1, " %s- echo $HOME%s\n", HYEL, RESET);
-	ft_printf(1, " - %scat < file.txt > output.txt%s\n", HYEL, RESET);
-	ft_printf(1, " - %sls -l | grep .c%s\n\n", HYEL, RESET);
-	ft_printf(1, "%sType 'authors' for credits.%s\n", HCYN, RESET);
-	ft_printf(1, "%sType 'exit' or press Ctrl+D to quit.%s\n\n", HCYN, RESET);
+		HGRN,RS);
+	ft_printf(1, " - %sRedirections:%s <, >, >>.\n", HGRN,RS);
+	ft_printf(1, " - %sPipes:%s |.\n\n", HGRN,RS);
+	ft_printf(1, "%sExamples:%s\n", BBLU,RS);
+	ft_printf(1, " %s- echo $HOME%s\n", HYEL,RS);
+	ft_printf(1, " - %scat < file.txt > output.txt%s\n", HYEL,RS);
+	ft_printf(1, " - %sls -l | grep .c%s\n\n", HYEL,RS);
+	ft_printf(1, "%sType 'authors' for credits.%s\n", HCYN,RS);
+	ft_printf(1, "%sType 'exit' or press Ctrl+D to quit.%s\n\n", HCYN, RS);
 }
 
 /**
@@ -97,19 +97,19 @@ int	ft_authors(void)
 	char	*authors[14];
 	int		i;
 
-	authors[0] = BYEL "\n+-------------------------------------------+" RESET;
-	authors[1] = BMAG "|                AUTHORS                    |" RESET;
-	authors[2] = BYEL "+-------------------------------------------+" RESET;
-	authors[3] = BGRN "| Minishell - 42 School Project             |" RESET;
-	authors[4] = BYEL "|                                           |" RESET;
-	authors[5] = HCYN "| Created by:                               |" RESET;
-	authors[6] = BMAG "| > Miguel Meireles                         |" RESET;
-	authors[7] = HRED "| <jmeirele@student.42porto.com>            |" RESET;
-	authors[8] = BMAG "| > Melanie Reis                            |" RESET;
-	authors[9] = HRED "| <meferraz@student.42porto.com>            |" RESET;
-	authors[10] = BYEL "|                                           |" RESET;
-	authors[11] = HYEL "| February 2025                             |" RESET;
-	authors[12] = BYEL "+-------------------------------------------+\n" RESET;
+	authors[0] = BYEL "\n+-------------------------------------------+"RS;
+	authors[1] = BMAG "|                AUTHORS                    |"RS;
+	authors[2] = BYEL "+-------------------------------------------+"RS;
+	authors[3] = BGRN "| Minishell - 42 School Project             |"RS;
+	authors[4] = BYEL "|                                           |"RS;
+	authors[5] = HCYN "| Created by:                               |"RS;
+	authors[6] = BMAG "| > Miguel Meireles                         |"RS;
+	authors[7] = HRED "| <jmeirele@student.42porto.com>            |"RS;
+	authors[8] = BMAG "| > Melanie Reis                            |"RS;
+	authors[9] = HRED "| <meferraz@student.42porto.com>            |"RS;
+	authors[10] = BGRN "|                                           |"RS;
+	authors[11] = HYEL "| March 2025                                |"RS;
+	authors[12] = BYEL "+-------------------------------------------+\n"RS;
 	authors[13] = NULL;
 	i = 0;
 	while (authors[i] != NULL)

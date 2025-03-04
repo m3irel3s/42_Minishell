@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/03 16:39:26 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:07:21 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ static char	*ft_create_temp_file(t_shell *shell)
 
 	(void)shell;
 	i = 0;
-	while (i < 100)
+	while (i < 1000)
 	{
 		tempfile = ft_generate_temp_filename();
 		if (!tempfile)
