@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/04 15:07:21 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:19:35 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,21 +248,4 @@ static void	ft_add_temp_file(t_shell *shell, char *tempfile)
 	new_temp_files[i] = tempfile;
 	free(shell->temp_files);
 	shell->temp_files = new_temp_files;
-}
-
-void	ft_cleanup_temp_files(t_shell *shell)
-{
-	int	i;
-
-	i = 0;
-	if (!shell->temp_files)
-		return ;
-	while (shell->temp_files[i])
-	{
-		unlink(shell->temp_files[i]);
-		free(shell->temp_files[i]);
-		i++;
-	}
-	free(shell->temp_files);
-	shell->temp_files = NULL;
 }

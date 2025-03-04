@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   100_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/03 16:38:47 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:20:58 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	ft_display_startup_banner();
-	if (ft_set_up_signals() == ERROR)
-		return (ft_print_error(ERR_SIGNAL_SETUP_FAIL), EXIT_FAILURE);
 	if (ft_init_shell(&shell, envp) == ERROR)
-		return (ft_print_error(ERR_SHELL_INIT_FAIL), EXIT_FAILURE);
+		return (ft_print_error(ERR_SHELL_INIT_FAIL), g_exit_status);
 	ft_update_env(&shell);
 	while (1)
 	{
+		if (ft_set_up_signals() == ERROR)
+			return (ft_print_error(ERR_SIGNAL_SETUP_FAIL), g_exit_status);
 		shell.prompt = ft_set_prompt(&shell);
 		shell.input = ft_safe_readline(&shell);
 		if (shell.input == NULL)
@@ -83,5 +83,6 @@ static void	ft_process_input(t_shell *shell)
 		else
 			g_exit_status = EXIT_FAILURE;
 	}
+	ft_cleanup_temp_files(shell);
 	ft_cleanup(shell);
 }

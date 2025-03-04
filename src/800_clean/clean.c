@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/03 16:39:32 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/04 15:19:50 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,30 @@ static void	ft_cleanup_redirects(t_shell *shell)
 		redirect = next_redirect;
 	}
 	shell->redirects = NULL;
+}
+
+/**
+ * Frees all dynamically allocated memory associated with the temporary files
+ * linked list in the shell structure. This includes the memory allocated for
+ * each temporary file's filename string, and the memory allocated for the
+ * array of strings itself.
+ *
+ * @param shell The shell structure containing the temporary files linked list
+ *              to free.
+ */
+void	ft_cleanup_temp_files(t_shell *shell)
+{
+	int	i;
+
+	i = 0;
+	if (!shell->temp_files)
+		return ;
+	while (shell->temp_files[i])
+	{
+		unlink(shell->temp_files[i]);
+		ft_free(shell->temp_files[i]);
+		i++;
+	}
+	ft_free(shell->temp_files);
+	shell->temp_files = NULL;
 }
