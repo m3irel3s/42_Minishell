@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:00:00 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/05 13:38:21 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:04:46 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,6 @@ static t_token	*ft_copy_tokens(t_token *start, t_token *end)
 			return (NULL);
 		new_node->val.og_value = ft_safe_strdup(start->val.og_value);
 		new_node->val.value = ft_safe_strdup(start->val.value);
-		if (!new_node->val.og_value || !new_node->val.value)
-		{
-			ft_free(new_node->val.og_value);
-			ft_free(new_node->val.value);
-			ft_free(new_node);
-			return (NULL);
-		}
 		new_node->type = start->type;
 		new_node->quoted = start->quoted;
 		new_node->next = NULL;
