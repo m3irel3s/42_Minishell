@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/03 16:38:56 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:41:04 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	ft_exec(t_shell *shell)
 	if (!curr)
 		return ;
 	ft_handle_simple_and_double_quotes(curr);
-	ft_process_heredocs(shell);
 	if (g_exit_status == EXIT_SIGINT)
 	{
 		g_exit_status = EXIT_SIGINT;
@@ -86,8 +85,6 @@ static void	ft_handle_exec(t_shell *shell, int cmd)
 
 	original_stdout = dup(STDOUT_FILENO);
 	original_stdin = dup(STDIN_FILENO);
-	close(original_stdout);
-	close(original_stdin);
 	dup2(shell->redirected_stdin, STDIN_FILENO);
 	dup2(shell->redirected_stdout, STDOUT_FILENO);
 	ft_execute_command(shell, cmd);

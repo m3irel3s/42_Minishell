@@ -6,14 +6,14 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/04 16:00:38 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:54:07 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
 static char	*ft_expanded_line(t_shell *shell, char *line);
-static char	*ft_create_temp_file(t_shell *shell);
+static t_status	ft_create_temp_file(t_shell *shell, char **tempfile);
 static void	ft_add_temp_file(t_shell *shell, char *tempfile);
 static void	ft_process_delimiter(t_token *current, t_token *delim,
 				char *tempfile);
@@ -21,60 +21,84 @@ void		ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted,
 				int fd);
 static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile);
 
-void	ft_process_heredocs(t_shell *shell)
+static int	ft_check_heredoc_syntax(t_token *current)
 {
-	t_token	*current;
+	if (!current->next || (current->next->type != WORD && !current->next->quoted))
+	{
+		ft_print_syntax_error("newline");
+		g_exit_status = EXIT_FAILURE;
+		return (1);
+	}
+	return (0);
+}
+
+static int	ft_handle_child_exit(int status, char *tempfile)
+{
+	if (WIFEXITED(status) && WEXITSTATUS(status) != EXIT_SUCCESS)
+	{
+		unlink(tempfile);
+		ft_free(tempfile);
+		g_exit_status = WEXITSTATUS(status);
+		return (1);
+	}
+	return (0);
+}
+
+static int	ft_handle_child_signal(int status, char *tempfile)
+{
+	if (WIFSIGNALED(status) && WTERMSIG(status) == SIGINT)
+	{
+		unlink(tempfile);
+		ft_free(tempfile);
+		g_exit_status = EXIT_FAILURE;
+		write(STDOUT_FILENO, "\n", 1);
+		return (1);
+	}
+	return (0);
+}
+
+static t_status	ft_handle_single_heredoc(t_shell *shell, t_token *current)
+{
 	char	*tempfile;
 	pid_t	pid;
 	int		status;
+
+	if (ft_check_heredoc_syntax(current))
+		return (ERROR);
+	if (ft_create_temp_file(shell, &tempfile) == ERROR)
+		return (ERROR);
+	pid = fork();
+	if (pid == -1)
+		return (perror(ERR_FORK_FAIL), ft_free(tempfile), ERROR);
+	else if (pid == 0)
+		ft_child_heredoc(shell, current->next, tempfile);
+	else
+	{
+		waitpid(pid, &status, 0);
+		if (ft_handle_child_exit(status, tempfile)
+			|| ft_handle_child_signal(status, tempfile))
+			return (ERROR);
+		ft_process_delimiter(current, current->next, tempfile);
+		ft_add_temp_file(shell, tempfile);
+	}
+	return (SUCCESS);
+}
+
+void	ft_process_heredocs(t_shell *shell)
+{
+	t_token	*current;
 
 	current = shell->tokens;
 	while (current)
 	{
 		if (current->type == HEREDOC)
 		{
-			if (!current->next || (current->next->type != WORD && !current->next->quoted))
-			{
-				ft_print_syntax_error("newline");
-				g_exit_status = EXIT_FAILURE;
+			if (ft_handle_single_heredoc(shell, current) == ERROR)
 				return ;
-			}
-			tempfile = ft_create_temp_file(shell);
-			if (!tempfile)
-				return ;
-			pid = fork();
-			if (pid == -1)
-			{
-				perror("minishell: fork");
-				ft_free(tempfile);
-				return ;
-			}
-			else if (pid == 0)
-				ft_child_heredoc(shell, current->next, tempfile);
-			else
-			{
-				waitpid(pid, &status, 0);
-				if (WIFEXITED(status) && WEXITSTATUS(status) != EXIT_SUCCESS)
-				{
-					unlink(tempfile);
-					ft_free(tempfile);
-					g_exit_status = WEXITSTATUS(status);
-					return ;
-				}
-				else if (WIFSIGNALED(status) && WTERMSIG(status) == SIGINT)
-				{
-					unlink(tempfile);
-					ft_free(tempfile);
-					g_exit_status = EXIT_FAILURE;
-					write(STDOUT_FILENO, "\n", 1);
-					return ;
-				}
-				ft_process_delimiter(current, current->next, tempfile);
-				ft_add_temp_file(shell, tempfile);
-			}
 		}
 		current = current->next;
 	}
+	return ;
 }
 
 static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
@@ -89,7 +113,7 @@ static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
 	fd = open(tempfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 	{
-		perror("minishell");
+		perror(ERR_OPEN_FAIL);
 		ft_free(tempfile);
 		exit(EXIT_FAILURE);
 	}
@@ -108,9 +132,7 @@ void	ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted, int fd)
 		line = readline("> ");
 		if (!line)
 		{
-			ft_printf(STDERR_FILENO,
-				"minishell: warning: here-document delimited by end-of-file (wanted `%s\')\n",
-				delimiter);
+			ft_printf(STDERR_FILENO, ERR_EOF_HEREDOC, delimiter);
 			break ;
 		}
 		if (ft_strcmp(line, delimiter) == 0)
@@ -160,50 +182,47 @@ static char	*ft_expanded_line(t_shell *shell, char *line)
  *
  * @return The generated temporary filename.
  */
-static char	*ft_generate_temp_filename(t_shell *shell)
+static t_status	ft_generate_temp_filename(t_shell *shell, char **tempfile)
 {
 	static int	counter;
 	char		*prefix;
 	char		*counter_str;
-	char		*tempfile;
 	size_t		len;
 
 	counter = shell->random_number;
 	prefix = "/tmp/minishell_heredoc_";
 	counter_str = ft_itoa(counter);
 	if (!counter_str)
-		return (NULL);
+		return (ERROR);
 	len = ft_strlen(prefix) + ft_strlen(counter_str) + 1;
-	tempfile = ft_safe_calloc(len);
-	if (!tempfile)
-		return (ft_free(counter_str), NULL);
-	ft_strlcpy(tempfile, prefix, len);
-	ft_strlcat(tempfile, counter_str, len);
+	*tempfile = ft_safe_calloc(len);
+	if (!*tempfile)
+		return (ft_free(counter_str), ERROR);
+	ft_strlcpy(*tempfile, prefix, len);
+	ft_strlcat(*tempfile, counter_str, len);
 	ft_free(counter_str);
 	counter++;
 	shell->random_number = counter;
-	return (tempfile);
+	return (SUCCESS);
 }
 
-static char	*ft_create_temp_file(t_shell *shell)
+static t_status	ft_create_temp_file(t_shell *shell, char **tempfile)
 {
-	char	*tempfile;
-	int		i;
+	int	i;
 
-	(void)shell;
 	i = 0;
 	while (i < 1000)
 	{
-		tempfile = ft_generate_temp_filename(shell);
-		if (!tempfile)
-			return (NULL);
-		if (access(tempfile, F_OK) != 0)
-			return (tempfile);
-		ft_free(tempfile);
+		if (ft_generate_temp_filename(shell, tempfile) == ERROR)
+			return (ERROR);
+		if (access(*tempfile, F_OK) != 0)
+			return (SUCCESS);
+		ft_free(*tempfile);
+		*tempfile = NULL;
 		i++;
 	}
-	ft_printf(STDERR_FILENO, "minishell: could not create temp file\n");
-	return (NULL);
+	ft_printf(STDERR_FILENO, ERR_TEMP_FILE);
+	return (ERROR);
 }
 
 static void	ft_process_delimiter(t_token *current, t_token *delim, char *tempfile)

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/04 15:20:58 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:27:52 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,10 @@ static void	ft_process_input(t_shell *shell)
 	{
 		add_history(shell->input);
 		if (ft_parse_input(shell) == SUCCESS)
+		{
+			ft_process_heredocs(shell);
 			ft_exec(shell);
+		}
 		else
 			g_exit_status = EXIT_FAILURE;
 	}
