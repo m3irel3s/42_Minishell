@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/05 11:05:25 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/05 11:14:51 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ static void	ft_cleanup_tokens(t_shell *shell)
 	}
 	shell->tokens = NULL;
 }
-
 
 /**
  * Frees all dynamically allocated memory associated with the redirects linked

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   000_intro.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 08:37:43 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/04 15:06:11 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/05 11:09:48 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ void	ft_display_startup_banner(void)
 	banner[15] = BBLU " /******************************************/ "RS;
 	banner[16] = NULL;
 	ft_print_banner_line(banner);
-	ft_printf(1, "\n\n%s[ Welcome to Minishell! ]%s\n", BGRN,RS);
+	ft_printf(1, "\n\n%s[ Welcome to Minishell! ]%s\n", BGRN, RS);
 	ft_printf(1, "%sA minimalistic shell implementation for 42 School.%s\n\n",
-		HYEL,RS);
+		HYEL, RS);
 	ft_display_infos();
 }
 
@@ -71,21 +71,21 @@ static void	ft_print_banner_line(char *banner[])
  */
 static void	ft_display_infos(void)
 {
-	ft_printf(1, "\n%s+-----------------------------+%s\n", BYEL,RS);
-	ft_printf(1, "%s|        MINISHELL INFO       |%s\n", BMAG,RS);
-	ft_printf(1, "%s+-----------------------------+%s\n\n", BYEL,RS);
-	ft_printf(1, "%sFeatures:%s\n", BBLU,RS);
+	ft_printf(1, "\n%s+-----------------------------+%s\n", BYEL, RS);
+	ft_printf(1, "%s|        MINISHELL INFO       |%s\n", BMAG, RS);
+	ft_printf(1, "%s+-----------------------------+%s\n\n", BYEL, RS);
+	ft_printf(1, "%sFeatures:%s\n", BBLU, RS);
 	ft_printf(1, " %s- Basic commands:%s ls, cd, echo, pwd, etc.\n",
-		HGRN,RS);
+		HGRN, RS);
 	ft_printf(1, " - %sEnvironment variables:%s export, unset, env.\n",
-		HGRN,RS);
-	ft_printf(1, " - %sRedirections:%s <, >, >>.\n", HGRN,RS);
-	ft_printf(1, " - %sPipes:%s |.\n\n", HGRN,RS);
-	ft_printf(1, "%sExamples:%s\n", BBLU,RS);
-	ft_printf(1, " %s- echo $HOME%s\n", HYEL,RS);
-	ft_printf(1, " - %scat < file.txt > output.txt%s\n", HYEL,RS);
-	ft_printf(1, " - %sls -l | grep .c%s\n\n", HYEL,RS);
-	ft_printf(1, "%sType 'authors' for credits.%s\n", HCYN,RS);
+		HGRN, RS);
+	ft_printf(1, " - %sRedirections:%s <, >, >>.\n", HGRN, RS);
+	ft_printf(1, " - %sPipes:%s |.\n\n", HGRN, RS);
+	ft_printf(1, "%sExamples:%s\n", BBLU, RS);
+	ft_printf(1, " %s- echo $HOME%s\n", HYEL, RS);
+	ft_printf(1, " - %scat < file.txt > output.txt%s\n", HYEL, RS);
+	ft_printf(1, " - %sls -l | grep .c%s\n\n", HYEL, RS);
+	ft_printf(1, "%sType 'authors' for credits.%s\n", HCYN, RS);
 	ft_printf(1, "%sType 'exit' or press Ctrl+D to quit.%s\n\n", HCYN, RS);
 }
 

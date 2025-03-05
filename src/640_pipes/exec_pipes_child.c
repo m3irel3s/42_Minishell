@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:00:00 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/03 17:26:32 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/05 11:10:42 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	ft_execute_child(t_shell *sh, t_token *curr_cmd, int i, t_pipe *pipes)
 	ft_handle_redirections_in_child(sh);
 	ft_execute_command(sh, ft_get_cmd_type(sh->tokens->val.value));
 	ft_cleanup(sh);
-		if (sh->env_cpy)
-			ft_free_arr(sh->env_cpy);
+	if (sh->env_cpy)
+		ft_free_arr(sh->env_cpy);
 	exit(g_exit_status);
 }
 
