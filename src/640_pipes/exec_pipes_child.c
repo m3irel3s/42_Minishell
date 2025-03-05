@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:00:00 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/05 11:10:42 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/05 13:38:21 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_execute_child(t_shell *sh, t_token *curr_cmd, int i, t_pipe *pipes)
 	cmd_copy = ft_prepare_child_tokens(curr_cmd);
 	if (!cmd_copy)
 		exit(EXIT_FAILURE);
+	ft_cleanup_tokens(sh);
 	sh->tokens = cmd_copy;
 	ft_create_redirection_list(sh);
 	ft_handle_redirections(sh);
@@ -36,6 +37,7 @@ void	ft_execute_child(t_shell *sh, t_token *curr_cmd, int i, t_pipe *pipes)
 	ft_cleanup(sh);
 	if (sh->env_cpy)
 		ft_free_arr(sh->env_cpy);
+	ft_free(pipes);
 	exit(g_exit_status);
 }
 
@@ -88,13 +90,24 @@ static t_token	*ft_copy_tokens(t_token *start, t_token *end)
 		new_node = ft_safe_calloc(sizeof(t_token));
 		if (!new_node)
 			return (NULL);
-		*new_node = *start;
+		new_node->val.og_value = ft_safe_strdup(start->val.og_value);
+		new_node->val.value = ft_safe_strdup(start->val.value);
+		if (!new_node->val.og_value || !new_node->val.value)
+		{
+			ft_free(new_node->val.og_value);
+			ft_free(new_node->val.value);
+			ft_free(new_node);
+			return (NULL);
+		}
+		new_node->type = start->type;
+		new_node->quoted = start->quoted;
 		new_node->next = NULL;
 		if (!new_list)
 			new_list = new_node;
 		else
 			tail->next = new_node;
 		tail = new_node;
+
 		start = start->next;
 	}
 	return (new_list);

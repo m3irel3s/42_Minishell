@@ -3390,3 +3390,710 @@ A syntax error in expression, near `'.
 7: shell->tokens->next->next->next = <error: Cannot access memory at address 0x18>
 8: shell->tokens->next->next->next->next = <error: Cannot access memory at address 0x18>
 ----------------------------------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe318, envp=0x7fffffffe328) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe318, envp=0x7fffffffe328) at src/100_main.c:42
+Breakpoint 3 at 0x40428c: file src/600_exec/exec.c, line 32.
+Continuing.
+
+Breakpoint 3, ft_exec (shell=0x7fffffffe1a0) at src/600_exec/exec.c:32
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+[Detaching after fork from child process 245211]
+----------------------------------------------------
+----------------------------------------------------
+ft_process_input (shell=0x7fffffffe1a0) at src/100_main.c:85
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+main (argc=1, argv=0x7fffffffe318, envp=0x7fffffffe328) at src/100_main.c:46
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+
+Breakpoint 3, ft_exec (shell=0x7fffffffe1a0) at src/600_exec/exec.c:32
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+[Detaching after fork from child process 245216]
+----------------------------------------------------
+----------------------------------------------------
+ft_process_input (shell=0x7fffffffe1a0) at src/100_main.c:85
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+main (argc=1, argv=0x7fffffffe318, envp=0x7fffffffe328) at src/100_main.c:46
+----------------------------------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe318, envp=0x7fffffffe328) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe318, envp=0x7fffffffe328) at src/100_main.c:42
+Continuing.
+[Detaching after fork from child process 245542]
+[Detaching after fork from child process 245545]
+[Inferior 1 (process 245539) exited normally]
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe318, envp=0x7fffffffe328) at src/100_main.c:42
+Breakpoint 3 at 0x40428c: file src/600_exec/exec.c, line 32.
+Continuing.
+
+Breakpoint 3, ft_exec (shell=0x7fffffffe1a0) at src/600_exec/exec.c:32
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+[Detaching after fork from child process 245557]
+----------------------------------------------------
+----------------------------------------------------
+ft_process_input (shell=0x7fffffffe1a0) at src/100_main.c:85
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+main (argc=1, argv=0x7fffffffe318, envp=0x7fffffffe328) at src/100_main.c:46
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe318, envp=0x7fffffffe328) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe318, envp=0x7fffffffe328) at src/100_main.c:42
+Remote debugging using | vgdb --pid=245500
+relaying data between gdb and process 245500
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+Reading symbols from /lib64/ld-linux-x86-64.so.2...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+0x0000000004020290 in _start () from /lib64/ld-linux-x86-64.so.2
+Breakpoint 3 at 0x40428c: file src/600_exec/exec.c, line 32.
+Continuing.
+
+Breakpoint 1, main (argc=1, argv=0x1fff000318, envp=0x1fff000328) at src/100_main.c:42
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+
+Breakpoint 3, ft_exec (shell=0x1fff0001a0) at src/600_exec/exec.c:32
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+
+Program received signal SIGTRAP, Trace/breakpoint trap.
+0x0000000000407732 in ft_advance_to_next_cmd (curr_cmd=0x1fff000128) at src/640_pipes/exec_pipes_utils.c:58
+----------------------------------------------------
+#0  0x0000000000407732 in ft_advance_to_next_cmd (curr_cmd=0x1fff000128)
+    at src/640_pipes/exec_pipes_utils.c:58
+#1  0x000000000040782a in ft_handle_pipes (shell=0x1fff0001a0) at src/640_pipes/exec_pipes.c:34
+#2  0x00000000004042f6 in ft_exec (shell=0x1fff0001a0) at src/600_exec/exec.c:44
+#3  0x0000000000401975 in ft_process_input (shell=0x1fff0001a0) at src/100_main.c:82
+#4  0x0000000000401904 in main (argc=1, argv=0x1fff000318, envp=0x1fff000328) at src/100_main.c:57
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+ft_handle_pipes (shell=0x1fff0001a0) at src/640_pipes/exec_pipes.c:35
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+The "remote" target does not support "run".  Try "help target" or "continue".
+The "remote" target does not support "run".  Try "help target" or "continue".
+Continuing.
+
+Breakpoint 3, ft_exec (shell=0x1fff0001a0) at src/600_exec/exec.c:32
+Continuing.
+
+Breakpoint 3, ft_exec (shell=0x1fff0001a0) at src/600_exec/exec.c:32
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+ft_handle_pipes (shell=0x1fff0001a0) at src/640_pipes/exec_pipes.c:24
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+Breakpoint 4 at 0x407897: file src/640_pipes/exec_pipes.c, line 46.
+The "remote" target does not support "run".  Try "help target" or "continue".
+Continuing.
+
+Breakpoint 3, ft_exec (shell=0x1fff0001a0) at src/600_exec/exec.c:32
+Continuing.
+
+Breakpoint 3, ft_exec (shell=0x1fff0001a0) at src/600_exec/exec.c:32
+Continuing.
+
+Breakpoint 4, ft_fork_exec (sh=0x1fff0001a0, curr_cmd=0x4b9c3d0, pipes=0x4b9c930, i=0) at src/640_pipes/exec_pipes.c:46
+ft_handle_pipes (shell=0x1fff0001a0) at src/640_pipes/exec_pipes.c:35
+----------------------------------------------------
+Breakpoint 5 at 0x4072b7: file src/640_pipes/exec_pipes_child.c, line 25.
+Continuing.
+
+Breakpoint 3, ft_exec (shell=0x1fff0001a0) at src/600_exec/exec.c:32
+Continuing.
+
+Breakpoint 4, ft_fork_exec (sh=0x1fff0001a0, curr_cmd=0x4b9e660, pipes=0x4b9ebc0, i=0) at src/640_pipes/exec_pipes.c:46
+ft_handle_pipes (shell=0x1fff0001a0) at src/640_pipes/exec_pipes.c:35
+----------------------------------------------------
+Continuing.
+
+Breakpoint 3, ft_exec (shell=0x1fff0001a0) at src/600_exec/exec.c:32
+Continuing.
+
+Breakpoint 4, ft_fork_exec (sh=0x1fff0001a0, curr_cmd=0x4ba08f0, pipes=0x4ba0e50, i=0) at src/640_pipes/exec_pipes.c:46
+ft_handle_pipes (shell=0x1fff0001a0) at src/640_pipes/exec_pipes.c:35
+----------------------------------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe318, envp=0x7fffffffe328) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe318, envp=0x7fffffffe328) at src/100_main.c:42
+Remote debugging using | vgdb --pid=246609
+relaying data between gdb and process 246609
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+Reading symbols from /lib64/ld-linux-x86-64.so.2...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+0x0000000004020290 in _start () from /lib64/ld-linux-x86-64.so.2
+Continuing.
+
+Breakpoint 1, main (argc=1, argv=0x1fff000318, envp=0x1fff000328) at src/100_main.c:42
+The "remote" target does not support "run".  Try "help target" or "continue".
+Breakpoint 3 at 0x40428c: file src/600_exec/exec.c, line 32.
+Breakpoint 4 at 0x4072b7: file src/640_pipes/exec_pipes_child.c, line 25.
+Continuing.
+
+Breakpoint 3, ft_exec (shell=0x1fff0001a0) at src/600_exec/exec.c:32
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+
+Program received signal SIGTRAP, Trace/breakpoint trap.
+0x0000000000407732 in ft_advance_to_next_cmd (curr_cmd=0x1fff000128) at src/640_pipes/exec_pipes_utils.c:58
+----------------------------------------------------
+The "remote" target does not support "run".  Try "help target" or "continue".
+Continuing.
+
+Program received signal SIGTRAP, Trace/breakpoint trap.
+0x0000000000407753 in ft_advance_to_next_cmd (curr_cmd=0x1fff000128) at src/640_pipes/exec_pipes_utils.c:59
+Continuing.
+
+Program received signal SIGTRAP, Trace/breakpoint trap.
+0x0000000000407778 in ft_advance_to_next_cmd (curr_cmd=0x1fff000128) at src/640_pipes/exec_pipes_utils.c:61
+Continuing.
+
+Breakpoint 3, ft_exec (shell=0x1fff0001a0) at src/600_exec/exec.c:32
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+ft_handle_pipes (shell=0x1fff0001a0) at src/640_pipes/exec_pipes.c:24
+ft_process_input (shell=0x1fff0001a0) at src/100_main.c:82
+----------------------------------------------------
+Continuing.
+
+Breakpoint 3, ft_exec (shell=0x1fff0001a0) at src/600_exec/exec.c:32
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+ft_handle_pipes (shell=0x1fff0001a0) at src/640_pipes/exec_pipes.c:24
+Breakpoint 5 at 0x407897: file src/640_pipes/exec_pipes.c, line 46.
+----------------------------------------------------
+----------------------------------------------------
+
+Breakpoint 5, ft_fork_exec (sh=0x1fff0001a0, curr_cmd=0x4b96130, pipes=0x4b96690, i=0) at src/640_pipes/exec_pipes.c:46
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+	breakpoint already hit 2 times
+2       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+	breakpoint already hit 2 times
+3       breakpoint     keep y   0x000000000040428c in ft_exec at src/600_exec/exec.c:32
+	breakpoint already hit 3 times
+4       breakpoint     keep y   0x00000000004072b7 in ft_execute_child 
+                                                   at src/640_pipes/exec_pipes_child.c:25
+5       breakpoint     keep y   0x0000000000407897 in ft_fork_exec at src/640_pipes/exec_pipes.c:46
+	breakpoint already hit 1 time
+----------------------------------------------------
+ft_process_input (shell=0x1fff0001a0) at src/100_main.c:82
+----------------------------------------------------
+Continuing.
+
+Breakpoint 3, ft_exec (shell=0x1fff0001a0) at src/600_exec/exec.c:32
+Continuing.
+
+Breakpoint 5, ft_fork_exec (sh=0x1fff0001a0, curr_cmd=0x4b983c0, pipes=0x4b98920, i=0) at src/640_pipes/exec_pipes.c:46
+Note: breakpoint 4 also set at pc 0x4072b7.
+Breakpoint 6 at 0x4072b7: file src/640_pipes/exec_pipes_child.c, line 25.
+Continuing.
+
+Breakpoint 3, ft_exec (shell=0x1fff0001a0) at src/600_exec/exec.c:32
+Continuing.
+
+Breakpoint 5, ft_fork_exec (sh=0x1fff0001a0, curr_cmd=0x4b9a650, pipes=0x4b9abb0, i=0) at src/640_pipes/exec_pipes.c:46
+Continuing.
+
+Breakpoint 3, ft_exec (shell=0x1fff0001a0) at src/600_exec/exec.c:32
+----------------------------------------------------
+Continuing.
+
+Breakpoint 5, ft_fork_exec (sh=0x1fff0001a0, curr_cmd=0x4b9c9f0, pipes=0x4b9cf50, i=0) at src/640_pipes/exec_pipes.c:46
+----------------------------------------------------
+ft_process_input (shell=0x1fff0001a0) at src/100_main.c:82
+----------------------------------------------------
+Continuing.
+
+Breakpoint 3, ft_exec (shell=0x1fff0001a0) at src/600_exec/exec.c:32
+Continuing.
+
+Breakpoint 5, ft_fork_exec (sh=0x1fff0001a0, curr_cmd=0x4b9ec80, pipes=0x4b9f1e0, i=0) at src/640_pipes/exec_pipes.c:46
+----------------------------------------------------
+Undefined command: "ppid".  Try "help".
+$1 = 246989
+0x00000000048a81d8 in rl_rubout () from /lib/x86_64-linux-gnu/libreadline.so.8
+Continuing.
+
+Breakpoint 3, ft_exec (shell=0x1fff0001a0) at src/600_exec/exec.c:32
+Continuing.
+
+Breakpoint 5, ft_fork_exec (sh=0x1fff0001a0, curr_cmd=0x4ba17c0, pipes=0x4ba1d20, i=0) at src/640_pipes/exec_pipes.c:46
+The "remote" target does not support "run".  Try "help target" or "continue".
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+	breakpoint already hit 2 times
+2       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+	breakpoint already hit 2 times
+3       breakpoint     keep y   0x000000000040428c in ft_exec at src/600_exec/exec.c:32
+	breakpoint already hit 8 times
+4       breakpoint     keep y   0x00000000004072b7 in ft_execute_child 
+                                                   at src/640_pipes/exec_pipes_child.c:25
+5       breakpoint     keep y   0x0000000000407897 in ft_fork_exec at src/640_pipes/exec_pipes.c:46
+	breakpoint already hit 6 times
+6       breakpoint     keep y   0x00000000004072b7 in ft_execute_child 
+                                                   at src/640_pipes/exec_pipes_child.c:25
+No breakpoints or watchpoints.
+Breakpoint 7 at 0x4072b7: file src/640_pipes/exec_pipes_child.c, line 25.
+Continuing.
+
+Program received signal SIGTRAP, Trace/breakpoint trap.
+pselect64_syscall (sigmask=<error reading variable: Cannot access memory at address 0x1002005510>, timeout=<optimized out>, exceptfds=0x0, writefds=0x0, readfds=0x1fff000030, nfds=1) at ../sysdeps/unix/sysv/linux/pselect.c:34
+Breakpoint 8 at 0x40779c: file src/640_pipes/exec_pipes.c, line 24.
+Num     Type           Disp Enb Address            What
+7       breakpoint     keep y   0x00000000004072b7 in ft_execute_child 
+                                                   at src/640_pipes/exec_pipes_child.c:25
+8       breakpoint     keep y   0x000000000040779c in ft_handle_pipes at src/640_pipes/exec_pipes.c:24
+The "remote" target does not support "run".  Try "help target" or "continue".
+Continuing.
+
+Breakpoint 8, ft_handle_pipes (shell=0x1fff0001a0) at src/640_pipes/exec_pipes.c:24
+----------------------------------------------------
+0x00000000004011f0 in fork@plt ()
+----------------------------------------------------
+Single stepping until exit from function fork@plt,
+which has no line number information.
+__libc_fork () at ./posix/fork.c:41
+----------------------------------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe318, envp=0x7fffffffe328) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe318, envp=0x7fffffffe328) at src/100_main.c:42
+Breakpoint 3 at 0x40779c: file src/640_pipes/exec_pipes.c, line 24.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe318, envp=0x7fffffffe328) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe318, envp=0x7fffffffe328) at src/100_main.c:42
+Breakpoint 3 at 0x40779c: file src/640_pipes/exec_pipes.c, line 24.
+Continuing.
+
+Breakpoint 3, ft_handle_pipes (shell=0x7fffffffe1a0) at src/640_pipes/exec_pipes.c:24
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+ft_fork_exec (sh=0x7fffffffe1a0, curr_cmd=0x411780, pipes=0x42b540, i=0) at src/640_pipes/exec_pipes.c:46
+[Attaching after Thread 0x7ffff7ccd380 (LWP 247583) fork to child process 247587]
+[New inferior 2 (process 247587)]
+[Detaching after fork from parent process 247583]
+[Inferior 1 (process 247583) detached]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff7ccd380 (LWP 247587)]
+ft_fork_exec (sh=0x7fffffffe1a0, curr_cmd=0x411780, pipes=0x42b540, i=0) at src/640_pipes/exec_pipes.c:47
+----------------------------------------------------
+----------------------------------------------------
+ft_execute_child (sh=0x7fffffffe1a0, curr_cmd=0x411780, i=0, pipes=0x42b540) at src/640_pipes/exec_pipes_child.c:25
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe318, envp=0x7fffffffe328) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe318, envp=0x7fffffffe328) at src/100_main.c:42
+Remote debugging using | vgdb --pid=247279
+relaying data between gdb and process 247279
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+Reading symbols from /lib64/ld-linux-x86-64.so.2...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+0x0000000004020290 in _start () from /lib64/ld-linux-x86-64.so.2
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+Breakpoint 3 at 0x40779c: file src/640_pipes/exec_pipes.c, line 24.
+Continuing.
+
+Breakpoint 1, main (argc=1, argv=0x1fff000318, envp=0x1fff000328) at src/100_main.c:42
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+
+Breakpoint 3, ft_handle_pipes (shell=0x1fff0001a0) at src/640_pipes/exec_pipes.c:24
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+ft_fork_exec (sh=0x1fff0001a0, curr_cmd=0x4b919a0, pipes=0x4b91f00, i=0) at src/640_pipes/exec_pipes.c:46
+Breakpoint 4 at 0x4072b7: file src/640_pipes/exec_pipes_child.c, line 25.
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+ft_handle_pipes (shell=0x1fff0001a0) at src/640_pipes/exec_pipes.c:34
+----------------------------------------------------
+
+Program received signal SIGTRAP, Trace/breakpoint trap.
+0x0000000000407732 in ft_advance_to_next_cmd (curr_cmd=0x1fff000128) at src/640_pipes/exec_pipes_utils.c:58
+----------------------------------------------------
+----------------------------------------------------
+Continuing.
+
+Program received signal SIGTRAP, Trace/breakpoint trap.
+0x0000000000407753 in ft_advance_to_next_cmd (curr_cmd=0x1fff000128) at src/640_pipes/exec_pipes_utils.c:59
+Continuing.
+
+Program received signal SIGTRAP, Trace/breakpoint trap.
+0x0000000000407778 in ft_advance_to_next_cmd (curr_cmd=0x1fff000128) at src/640_pipes/exec_pipes_utils.c:61
+Continuing.
+
+Breakpoint 3, ft_handle_pipes (shell=0x1fff0001a0) at src/640_pipes/exec_pipes.c:24
+Continuing.
+
+Breakpoint 3, ft_handle_pipes (shell=0x1fff0001a0) at src/640_pipes/exec_pipes.c:24
+Continuing.
+
+Breakpoint 3, ft_handle_pipes (shell=0x1fff0001a0) at src/640_pipes/exec_pipes.c:24
+----------------------------------------------------
+----------------------------------------------------
+0x00000000004011f0 in fork@plt ()
+----------------------------------------------------
+Continuing.
+
+Breakpoint 3, ft_handle_pipes (shell=0x1fff0001a0) at src/640_pipes/exec_pipes.c:24
+Continuing.
+
+Breakpoint 3, ft_handle_pipes (shell=0x1fff0001a0) at src/640_pipes/exec_pipes.c:24
+Continuing.
+
+Breakpoint 3, ft_handle_pipes (shell=0x1fff0001a0) at src/640_pipes/exec_pipes.c:24
+----------------------------------------------------
+----------------------------------------------------
+0x00000000004011f0 in fork@plt ()
+----------------------------------------------------
+
+quit
+EOF [assumed Y]
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe318, envp=0x7fffffffe328) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40185a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040185a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe318, envp=0x7fffffffe328) at src/100_main.c:42
+Please answer y or n.
+Remote debugging using | vgdb --pid=251122
+relaying data between gdb and process 251122
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+Reading symbols from /lib64/ld-linux-x86-64.so.2...
+Reading symbols from /usr/lib/debug/.build-id/e4/de036b19e4768e7591b596c4be9f9015f2d28a.debug...
+0x0000000004020290 in _start () from /lib64/ld-linux-x86-64.so.2
+Continuing.
+
+Breakpoint 1, main (argc=1, argv=0x1fff000318, envp=0x1fff000328) at src/100_main.c:42
+Breakpoint 3 at 0x40779c: file src/640_pipes/exec_pipes.c, line 24.
+Continuing.
+
+Breakpoint 3, ft_handle_pipes (shell=0x1fff0001a0) at src/640_pipes/exec_pipes.c:24
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+Breakpoint 4 at 0x407897: file src/640_pipes/exec_pipes.c, line 46.
+----------------------------------------------------
+----------------------------------------------------
+
+Breakpoint 4, ft_fork_exec (sh=0x1fff0001a0, curr_cmd=0x4b919a0, pipes=0x4b91f00, i=0) at src/640_pipes/exec_pipes.c:46
+Breakpoint 5 at 0x4072b7: file src/640_pipes/exec_pipes_child.c, line 25.
+----------------------------------------------------
+----------------------------------------------------
+$1 = 251175
+----------------------------------------------------
+ft_handle_pipes (shell=0x1fff0001a0) at src/640_pipes/exec_pipes.c:34
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+
+Breakpoint 4, ft_fork_exec (sh=0x1fff0001a0, curr_cmd=0x4b91d50, pipes=0x4b91f00, i=1) at src/640_pipes/exec_pipes.c:46
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+ft_handle_pipes (shell=0x1fff0001a0) at src/640_pipes/exec_pipes.c:34
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+ft_exec (shell=0x1fff0001a0) at src/600_exec/exec.c:45
+----------------------------------------------------
+----------------------------------------------------
+ft_process_input (shell=0x1fff0001a0) at src/100_main.c:85
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+main (argc=1, argv=0x1fff000318, envp=0x1fff000328) at src/100_main.c:46
+----------------------------------------------------
+----------------------------------------------------
+0x000000000488719a in rl_set_prompt () from /lib/x86_64-linux-gnu/libreadline.so.8
+----------------------------------------------------
+Single stepping until exit from function rl_set_prompt,
+which has no line number information.
+0x0000000004892cd0 in readline () from /lib/x86_64-linux-gnu/libreadline.so.8
+----------------------------------------------------
+Single stepping until exit from function readline,
+which has no line number information.
+0x00000000048866fd in rl_tty_unset_default_bindings () from /lib/x86_64-linux-gnu/libreadline.so.8
+----------------------------------------------------
+Continuing.
+[Inferior 1 (Remote target) exited normally]

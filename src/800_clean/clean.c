@@ -6,14 +6,11 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/05 11:14:51 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/05 13:28:59 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-
-static void	ft_cleanup_tokens(t_shell *shell);
-static void	ft_cleanup_redirects(t_shell *shell);
 
 /**
  * Frees all dynamically allocated memory in the shell structure.
@@ -44,7 +41,7 @@ void	ft_cleanup(t_shell *shell)
  *
  * @param shell The shell structure containing the tokens linked list to free.
  */
-static void	ft_cleanup_tokens(t_shell *shell)
+void	ft_cleanup_tokens(t_shell *shell)
 {
 	t_token	*curr;
 	t_token	*next;
@@ -72,7 +69,7 @@ static void	ft_cleanup_tokens(t_shell *shell)
  *
  * @param shell The shell structure containing the redirects linked list to free.
  */
-static void	ft_cleanup_redirects(t_shell *shell)
+void	ft_cleanup_redirects(t_shell *shell)
 {
 	t_redirect	*redirect;
 	t_redirect	*next_redirect;
