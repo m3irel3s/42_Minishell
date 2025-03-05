@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/03 16:38:10 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:48:25 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@
     "export: %s: not a valid identifier\n"
 # define ERR_WORD_COUNT_FAIL "minishell: Failed to count words in input\n"
 
-# define ERR_EOF_HEREDOC "minishell: warning: here-document delimited by end-of-file (wanted `%s\')\n"
+# define ERR_EOF_HEREDOC "minishell: warning: here-document delimited \
+    by end-of-file (wanted `%s\')\n"
 
 #endif

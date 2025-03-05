@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:34:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/03 15:05:16 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/03 17:30:09 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ static t_status	ft_exec_child(t_shell *shell, char *path, char **arr)
 			ft_free_arr(shell->env_cpy);
 		exit(EXIT_FAILURE);
 	}
+	else
 	return (SUCCESS);
 }
