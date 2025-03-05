@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/05 13:28:59 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:42:00 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ void	ft_cleanup(t_shell *shell)
 	shell->input = NULL;
 	ft_cleanup_tokens(shell);
 	ft_cleanup_redirects(shell);
+}
+
+void	ft_cleanup_w_env(t_shell *shell)
+{
+	ft_cleanup(shell);
+	if (shell->env_cpy)
+		ft_free_arr(shell->env_cpy);
 }
 
 /**
