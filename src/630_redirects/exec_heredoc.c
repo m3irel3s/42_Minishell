@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/05 15:33:07 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:54:07 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void		ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted,
 				int fd);
 static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile);
 
-/* --- Helper functions --- */
 static int	ft_check_heredoc_syntax(t_token *current)
 {
 	if (!current->next || (current->next->type != WORD && !current->next->quoted))
@@ -58,41 +57,44 @@ static int	ft_handle_child_signal(int status, char *tempfile)
 	return (0);
 }
 
-/* --- Main function --- */
-void	ft_process_heredocs(t_shell *shell)
+static t_status	ft_handle_single_heredoc(t_shell *shell, t_token *current)
 {
-	t_token	*current;
 	char	*tempfile;
 	pid_t	pid;
 	int		status;
+
+	if (ft_check_heredoc_syntax(current))
+		return (ERROR);
+	if (ft_create_temp_file(shell, &tempfile) == ERROR)
+		return (ERROR);
+	pid = fork();
+	if (pid == -1)
+		return (perror(ERR_FORK_FAIL), ft_free(tempfile), ERROR);
+	else if (pid == 0)
+		ft_child_heredoc(shell, current->next, tempfile);
+	else
+	{
+		waitpid(pid, &status, 0);
+		if (ft_handle_child_exit(status, tempfile)
+			|| ft_handle_child_signal(status, tempfile))
+			return (ERROR);
+		ft_process_delimiter(current, current->next, tempfile);
+		ft_add_temp_file(shell, tempfile);
+	}
+	return (SUCCESS);
+}
+
+void	ft_process_heredocs(t_shell *shell)
+{
+	t_token	*current;
 
 	current = shell->tokens;
 	while (current)
 	{
 		if (current->type == HEREDOC)
 		{
-			if (ft_check_heredoc_syntax(current))
+			if (ft_handle_single_heredoc(shell, current) == ERROR)
 				return ;
-			if (ft_create_temp_file(shell, &tempfile) == ERROR)
-				return ;
-			pid = fork();
-			if (pid == -1)
-			{
-				perror("minishell: fork");
-				ft_free(tempfile);
-				return ;
-			}
-			else if (pid == 0)
-				ft_child_heredoc(shell, current->next, tempfile);
-			else
-			{
-				waitpid(pid, &status, 0);
-				if (ft_handle_child_exit(status, tempfile)
-					|| ft_handle_child_signal(status, tempfile))
-					return ;
-				ft_process_delimiter(current, current->next, tempfile);
-				ft_add_temp_file(shell, tempfile);
-			}
 		}
 		current = current->next;
 	}
@@ -111,7 +113,7 @@ static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
 	fd = open(tempfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 	{
-		perror("minishell");
+		perror(ERR_OPEN_FAIL);
 		ft_free(tempfile);
 		exit(EXIT_FAILURE);
 	}
@@ -219,7 +221,7 @@ static t_status	ft_create_temp_file(t_shell *shell, char **tempfile)
 		*tempfile = NULL;
 		i++;
 	}
-	ft_printf(STDERR_FILENO, "minishell: could not create temp file\n");
+	ft_printf(STDERR_FILENO, ERR_TEMP_FILE);
 	return (ERROR);
 }
 

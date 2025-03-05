@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/03 16:38:10 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:52:42 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,5 +146,6 @@
 # define ERR_WORD_COUNT_FAIL "minishell: Failed to count words in input\n"
 
 # define ERR_EOF_HEREDOC "minishell: warning: here-document delimited by end-of-file (wanted `%s\')\n"
+# define ERR_TEMP_FILE "minishell: could not create temp file\n"
 
 #endif
