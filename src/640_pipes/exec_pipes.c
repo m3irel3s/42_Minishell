@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:43:03 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/03 17:26:19 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:49:01 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_handle_pipes(t_shell *shell)
 	}
 	ft_cleanup_pipes(pipes, ft_count_pipes(shell->tokens));
 	ft_wait_for_children(ft_count_pipes(shell->tokens) + 1);
-	free(pipes);
+	ft_free(pipes);
 }
 
 static void	ft_fork_exec(t_shell *sh, t_token *curr_cmd, t_pipe *pipes, int i)

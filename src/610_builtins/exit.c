@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:22:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/03 14:46:16 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:44:40 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_exit(t_shell *shell)
 	g_exit_status = ft_atoi(curr->next->val.value);
 	if (g_exit_status > 255 || g_exit_status < 0)
 		g_exit_status %= 256;
-	ft_cleanup(shell);
+	ft_cleanup_w_env(shell);
 	rl_clear_history();
 	exit(g_exit_status);
 }
@@ -61,6 +61,7 @@ void	ft_exit(t_shell *shell)
  */
 void	ft_handle_eof(t_shell *shell)
 {
+	(void)shell;
 	write(STDOUT_FILENO, "exit\n", 5);
 	if (shell->env_cpy)
 		ft_free_arr(shell->env_cpy);

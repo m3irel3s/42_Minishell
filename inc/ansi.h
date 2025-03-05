@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 12:47:17 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/05 11:05:16 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/05 11:07:35 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@
 # define WHT "\001\033[0;37m\002"	// RGB(255, 255, 255)
 
 //Especial case for the project
-#define BG_G "\001\033[102m\002"
-#define BG_B "\001\033[104m\002"
-#define BG_C "\001\033[106m\002"
-#define BG_M "\001\033[105m\002"
-#define MGT  "\001\033[91m\002"
-#define YLW  "\001\033[93m\002"
-#define RED2  "\001\033[91m\002"
-#define GRN2  "\001\033[92m\002"
-#define WHT2 "\001\033[37m\002"
-#define RS   "\001\033[0m\002"
+# define BG_G "\001\033[102m\002"
+# define BG_B "\001\033[104m\002"
+# define BG_C "\001\033[106m\002"
+# define BG_M "\001\033[105m\002"
+# define MGT  "\001\033[91m\002"
+# define YLW  "\001\033[93m\002"
+# define RED2  "\001\033[91m\002"
+# define GRN2  "\001\033[92m\002"
+# define WHT2 "\001\033[37m\002"
+# define RS   "\001\033[0m\002"
 
 //Regular bold text
 # define BBLK "\001\033[1;30m\002"

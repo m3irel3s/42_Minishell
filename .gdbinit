@@ -19,7 +19,7 @@ set logging file gdb.txt
 
 
 #Debug pipes
-# set follow-fork-mode child
+set follow-fork-mode child
 # set detach-on-fork off
 
 # Load the program

@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/03/03 17:10:06 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/03/05 12:06:22 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -196,6 +196,9 @@ get_libft:
 
 val: deps $(NAME)
 	valgrind $(V_ARGS) ./$(NAME)
+
+vgdb: deps $(NAME)
+	valgrind --vgdb-error=0 $(V_ARGS) ./$(NAME)
 
 ##  Debugging Rules ##
 

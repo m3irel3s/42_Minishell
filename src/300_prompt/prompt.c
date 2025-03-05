@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:04:18 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/04 15:09:50 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/05 11:09:31 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ char	*ft_set_prompt(t_shell *shell)
 */
 static char	*ft_build_prompt(char *user, char *cwd)
 {
-	char *prompt;
-	char *short_cwd;
-	char *git_branch;
+	char	*prompt;
+	char	*short_cwd;
+	char	*git_branch;
 
 	short_cwd = ft_shorten_path(cwd);
 	git_branch = ft_get_git_branch();
@@ -85,4 +85,3 @@ static char	*ft_build_prompt(char *user, char *cwd)
 	ft_free(short_cwd);
 	return (prompt);
 }
-

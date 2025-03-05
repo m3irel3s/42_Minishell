@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/04 15:18:15 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:42:11 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,6 +239,10 @@ char			*ft_safe_strndup(const char *s1, size_t n);
 /* 800_clean/clean.c */
 void			ft_cleanup(t_shell *shell);
 void			ft_cleanup_temp_files(t_shell *shell);
+void			ft_cleanup_redirects(t_shell *shell);
+void			ft_cleanup_tokens(t_shell *shell);
+void			ft_cleanup_w_env(t_shell *shell);
+
 /* 800_clean/free.c */
 void			ft_free(void *ptr);
 void			ft_free_token(t_token *token);

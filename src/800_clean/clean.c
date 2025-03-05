@@ -6,14 +6,11 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/05 11:05:25 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:42:00 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-
-static void	ft_cleanup_tokens(t_shell *shell);
-static void	ft_cleanup_redirects(t_shell *shell);
 
 /**
  * Frees all dynamically allocated memory in the shell structure.
@@ -35,6 +32,13 @@ void	ft_cleanup(t_shell *shell)
 	ft_cleanup_redirects(shell);
 }
 
+void	ft_cleanup_w_env(t_shell *shell)
+{
+	ft_cleanup(shell);
+	if (shell->env_cpy)
+		ft_free_arr(shell->env_cpy);
+}
+
 /**
  * Frees all dynamically allocated memory associated with the tokens linked
  * list in the shell structure.
@@ -44,7 +48,7 @@ void	ft_cleanup(t_shell *shell)
  *
  * @param shell The shell structure containing the tokens linked list to free.
  */
-static void	ft_cleanup_tokens(t_shell *shell)
+void	ft_cleanup_tokens(t_shell *shell)
 {
 	t_token	*curr;
 	t_token	*next;
@@ -63,7 +67,6 @@ static void	ft_cleanup_tokens(t_shell *shell)
 	shell->tokens = NULL;
 }
 
-
 /**
  * Frees all dynamically allocated memory associated with the redirects linked
  * list in the shell structure.
@@ -73,7 +76,7 @@ static void	ft_cleanup_tokens(t_shell *shell)
  *
  * @param shell The shell structure containing the redirects linked list to free.
  */
-static void	ft_cleanup_redirects(t_shell *shell)
+void	ft_cleanup_redirects(t_shell *shell)
 {
 	t_redirect	*redirect;
 	t_redirect	*next_redirect;
