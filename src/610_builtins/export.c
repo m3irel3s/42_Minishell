@@ -6,23 +6,12 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/03 11:14:47 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/05 17:29:39 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-	/* valid names - Must start with a letter or '_', and contain only letters
-	 or numbers
-	print export ####
-	add new variable
-	if it exists, overwrite, if it is "+=" append
-	if doenst exist, give empty value if nothing has been assigned
-	when just doing export var, if var exists doesnt change its value to empty
-
-	0 no quote
-	1 single quote
-	2 double quote */
 static int	ft_process_export_variable(t_shell *shell, char *arg);
 static void	ft_append_to_var(t_shell *shell, char *var, char *new_value);
 static int	ft_process_export_variable(t_shell *shell, char *arg);
