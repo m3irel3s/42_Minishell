@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:15:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/05 13:38:20 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/05 14:12:22 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,6 @@ typedef enum e_cmd_type
 //============================================================================//
 //                                STRUCTURES                                  //
 //============================================================================//
-
-typedef struct s_child
-{
-	t_shell	*shell;
-	t_token	*cmd_start;
-	t_token	*cmd_end;
-	t_pipe	*pipes;
-}	t_child;
 
 typedef struct s_pipe
 {
