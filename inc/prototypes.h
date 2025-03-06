@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/05 15:42:11 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:28:04 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,14 @@ t_token_type	ft_determine_token_type(char *og_value, char \
 /* src/520_tokenization/tokens_utils_2.c */
 t_status		ft_create_and_add_token(t_shell *shell, char *value,
 					size_t len, int quoted);
+
+/* src/520_tokenization/tokens_split.c */
+int				ft_build_tokens(char *input, char **res, size_t *i, size_t *k);
+
+/* src/520_tokenization/tokens_split_2.c */
+int				ft_handle_t_operator(char *input, size_t *i, \
+					char **res, size_t *k);
+t_status		ft_process_word(char *input, size_t *i, char **res, size_t *k);
 
 //============================================================================//
 //                             ERROR HANDLING                                 //

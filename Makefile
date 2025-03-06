@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/03/05 12:06:22 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/03/06 16:28:43 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,6 +84,7 @@ SRCS = \
 	   ${SRC_PATH}/520_tokenization/tokens_utils_2.c \
 	   ${SRC_PATH}/520_tokenization/tokens_count.c \
 	   ${SRC_PATH}/520_tokenization/tokens_split.c \
+	   ${SRC_PATH}/520_tokenization/tokens_split_2.c \
        ${SRC_PATH}/530_expansion/expand.c \
        ${SRC_PATH}/530_expansion/expand_handle_dollar.c \
        ${SRC_PATH}/600_exec/exec.c \
