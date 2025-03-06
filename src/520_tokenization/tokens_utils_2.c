@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:26:26 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/06 17:19:48 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/06 17:29:51 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static void		ft_add_token_to_shell(t_shell *shell, t_token *new_token);
 static void		ft_remove_quotes(char *str);
 static t_status	ft_is_last_token_heredoc(t_shell *shell);
-static int		ft_init_token_values(t_shell *shell, t_token *token, \
+static int		ft_init_token_values(t_shell *shell, t_token *token,
 					char *value, size_t len);
 
-t_status	ft_create_and_add_token(t_shell *shell, char *value, \
+t_status	ft_create_and_add_token(t_shell *shell, char *value,
 	size_t len, int quoted)
 {
 	t_token	*new_token;
@@ -43,7 +43,7 @@ t_status	ft_create_and_add_token(t_shell *shell, char *value, \
 	return (SUCCESS);
 }
 
-static int	ft_init_token_values(t_shell *shell, t_token *token, \
+static int	ft_init_token_values(t_shell *shell, t_token *token,
 		char *value, size_t len)
 {
 	token->val.og_value = ft_safe_strndup(value, len);
