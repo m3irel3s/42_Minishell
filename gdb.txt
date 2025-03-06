@@ -4097,3 +4097,274 @@ which has no line number information.
 ----------------------------------------------------
 Continuing.
 [Inferior 1 (Remote target) exited normally]
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40184a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040184a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe368, envp=0x7fffffffe378) at src/100_main.c:42
+Temporary breakpoint 2 at 0x40184a: file src/100_main.c, line 42.
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe368, envp=0x7fffffffe378) at src/100_main.c:42
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+Quit
+Quit
+No breakpoint at this line.
+Please answer y or n.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40184a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040184a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40184a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040184a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040184a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Breakpoint 3 at 0x405bbc: file src/611_builtins_utils/export_print.c, line 21.
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 245031) fork to child process 245039]
+[New inferior 2 (process 245039)]
+[Detaching after fork from parent process 245031]
+[Inferior 1 (process 245031) detached]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff7ccd380 (LWP 245039)]
+
+Thread 2.1 "minishell" hit Breakpoint 3, ft_print_export (shell=0x7fffffffe180) at src/611_builtins_utils/export_print.c:21
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+
+Thread 2.1 "minishell" received signal SIGPIPE, Broken pipe.
+0x00007ffff7de2887 in __GI___libc_write (fd=1, buf=0x40c0e0, nbytes=1) at ../sysdeps/unix/sysv/linux/write.c:26
+----------------------------------------------------
+#0  0x00007ffff7de2887 in __GI___libc_write (fd=1, buf=0x40c0e0, nbytes=1)
+    at ../sysdeps/unix/sysv/linux/write.c:26
+#1  0x000000000040a139 in ft_printf ()
+#2  0x0000000000405d8d in ft_output_export (export=0x4112a0)
+    at src/611_builtins_utils/export_print.c:86
+#3  0x0000000000405bea in ft_print_export (shell=0x7fffffffe180)
+    at src/611_builtins_utils/export_print.c:24
+#4  0x0000000000404e5b in ft_export (shell=0x7fffffffe180) at src/610_builtins/export.c:28
+#5  0x000000000040468d in ft_execute_command (shell=0x7fffffffe180, cmd=CMD_EXPORT)
+    at src/600_exec/exec.c:122
+#6  0x0000000000407460 in ft_execute_child (sh=0x7fffffffe180, curr_cmd=0x4117b0, i=0, pipes=0x42b390)
+    at src/640_pipes/exec_pipes_child.c:37
+#7  0x00000000004079ed in ft_fork_exec (sh=0x7fffffffe180, curr_cmd=0x4117b0, pipes=0x42b390, i=0)
+    at src/640_pipes/exec_pipes.c:49
+#8  0x0000000000407951 in ft_handle_pipes (shell=0x7fffffffe180) at src/640_pipes/exec_pipes.c:33
+#9  0x00000000004042dd in ft_exec (shell=0x7fffffffe180) at src/600_exec/exec.c:43
+#10 0x000000000040196e in ft_process_input (shell=0x7fffffffe180) at src/100_main.c:84
+#11 0x00000000004018f4 in main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:57
+#0  0x00007ffff7de2887 in __GI___libc_write (fd=1, buf=0x40c0e0, nbytes=1)
+    at ../sysdeps/unix/sysv/linux/write.c:26
+#1  0x000000000040a139 in ft_printf ()
+#2  0x0000000000405d8d in ft_output_export (export=0x4112a0)
+    at src/611_builtins_utils/export_print.c:86
+#3  0x0000000000405bea in ft_print_export (shell=0x7fffffffe180)
+    at src/611_builtins_utils/export_print.c:24
+#4  0x0000000000404e5b in ft_export (shell=0x7fffffffe180) at src/610_builtins/export.c:28
+#5  0x000000000040468d in ft_execute_command (shell=0x7fffffffe180, cmd=CMD_EXPORT)
+    at src/600_exec/exec.c:122
+#6  0x0000000000407460 in ft_execute_child (sh=0x7fffffffe180, curr_cmd=0x4117b0, i=0, pipes=0x42b390)
+    at src/640_pipes/exec_pipes_child.c:37
+#7  0x00000000004079ed in ft_fork_exec (sh=0x7fffffffe180, curr_cmd=0x4117b0, pipes=0x42b390, i=0)
+    at src/640_pipes/exec_pipes.c:49
+#8  0x0000000000407951 in ft_handle_pipes (shell=0x7fffffffe180) at src/640_pipes/exec_pipes.c:33
+#9  0x00000000004042dd in ft_exec (shell=0x7fffffffe180) at src/600_exec/exec.c:43
+#10 0x000000000040196e in ft_process_input (shell=0x7fffffffe180) at src/100_main.c:84
+#11 0x00000000004018f4 in main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:57
+Breakpoint 4 at 0x405c8c: ft_output_export. (2 locations)
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 245062) fork to child process 245065]
+[New inferior 3 (process 245065)]
+[Detaching after fork from parent process 245062]
+[Inferior 2 (process 245062) detached]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff7ccd380 (LWP 245065)]
+
+Thread 3.1 "minishell" hit Breakpoint 3, ft_print_export (shell=0x7fffffffe180) at src/611_builtins_utils/export_print.c:21
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+
+Thread 3.1 "minishell" hit Breakpoint 4, ft_output_export (export=0x4112a0) at src/611_builtins_utils/export_print.c:74
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+Not confirmed.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40184a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040184a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40184a: file src/100_main.c, line 42.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040184a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040184a in main at src/100_main.c:42
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040184a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040184a in main at src/100_main.c:42
+	breakpoint already hit 1 time
+Breakpoint 3 at 0x405bbc: file src/611_builtins_utils/export_print.c, line 21.
+Breakpoint 4 at 0x405c8c: file src/611_builtins_utils/export_print.c, line 74.
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 245399) fork to child process 245405]
+[New inferior 2 (process 245405)]
+[Detaching after fork from parent process 245399]
+[Inferior 1 (process 245399) detached]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff7ccd380 (LWP 245405)]
+
+Thread 2.1 "minishell" hit Breakpoint 3, ft_print_export (shell=0x7fffffffe180) at src/611_builtins_utils/export_print.c:21
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+
+Thread 2.1 "minishell" hit Breakpoint 4, ft_output_export (export=0x4112a0) at src/611_builtins_utils/export_print.c:74
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+
+Thread 2.1 "minishell" received signal SIGPIPE, Broken pipe.
+0x00007ffff7de2887 in __GI___libc_write (fd=1, buf=0x40c0e0, nbytes=1) at ../sysdeps/unix/sysv/linux/write.c:26
+----------------------------------------------------
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 245423) fork to child process 245452]
+[New inferior 3 (process 245452)]
+[Detaching after fork from parent process 245423]
+[Inferior 2 (process 245423) detached]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff7ccd380 (LWP 245452)]
+
+Thread 3.1 "minishell" hit Breakpoint 3, ft_print_export (shell=0x7fffffffe180) at src/611_builtins_utils/export_print.c:21
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+
+Thread 3.1 "minishell" hit Breakpoint 4, ft_output_export (export=0x4112a0) at src/611_builtins_utils/export_print.c:74
+----------------------------------------------------
+1: export[i] = 0x448950 "ZSHRC=/home/jmeirele/.zshrc"
+1: export[i] = 0x448a50 "COLORTERM=truecolor"
+----------------------------------------------------
+1: export[i] = 0x448a50 "COLORTERM=truecolor"
+----------------------------------------------------
+1: export[i] = 0x448a50 "COLORTERM=truecolor"
+----------------------------------------------------
+1: export[i] = 0x448a50 "COLORTERM=truecolor"
+----------------------------------------------------
+1: export[i] = 0x448a50 "COLORTERM=truecolor"
+----------------------------------------------------
+2: res = 0x448a50 "COLORTERM=truecolor"
+3: var = 0x448c90 "COLORTERM"
+4: value = 0x448a5a "truecolor"
+1: export[i] = 0x448a50 "COLORTERM=truecolor"
+2: res = 0x448a50 "COLORTERM=truecolor"
+3: var = 0x448c90 "COLORTERM"
+4: value = 0x448a5a "truecolor"
+----------------------------------------------------
+1: export[i] = 0x448a50 "COLORTERM=truecolor"
+2: res = 0x448a50 "COLORTERM=truecolor"
+3: var = 0x448c90 "COLORTERM"
+4: value = 0x448a5a "truecolor"
+----------------------------------------------------
+1: export[i] = 0x448a50 "COLORTERM=truecolor"
+2: res = 0x448a50 "COLORTERM=truecolor"
+3: var = 0x448c90 "COLORTERM"
+4: value = 0x448a5a "truecolor"
+----------------------------------------------------
+1: export[i] = 0x448a50 "COLORTERM=truecolor"
+2: res = 0x448a50 "COLORTERM=truecolor"
+3: var = 0x448c90 "COLORTERM"
+4: value = 0x448a5a "truecolor"
+----------------------------------------------------
+
+Thread 3.1 "minishell" received signal SIGPIPE, Broken pipe.
+0x00007ffff7de2887 in __GI___libc_write (fd=1, buf=0x40c0e0, nbytes=1) at ../sysdeps/unix/sysv/linux/write.c:26
+----------------------------------------------------
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:42
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 245583) fork to child process 245588]
+[New inferior 4 (process 245588)]
+[Detaching after fork from parent process 245583]
+[Inferior 3 (process 245583) detached]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff7ccd380 (LWP 245588)]
+
+Thread 4.1 "minishell" hit Breakpoint 3, ft_print_export (shell=0x7fffffffe180) at src/611_builtins_utils/export_print.c:21
