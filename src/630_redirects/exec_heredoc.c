@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/06 14:59:38 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:32:12 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,18 +87,25 @@ static t_status	ft_handle_single_heredoc(t_shell *shell, t_token *current)
 void	ft_process_heredocs(t_shell *shell)
 {
 	t_token	*current;
+	int		saved_stdin;
 
+	saved_stdin = dup(STDIN_FILENO);
 	current = shell->tokens;
 	while (current)
 	{
 		if (current->type == HEREDOC)
 		{
 			if (ft_handle_single_heredoc(shell, current) == ERROR)
+			{
+				dup2(saved_stdin, STDIN_FILENO);
+				close(saved_stdin);
 				return ;
+			}
 		}
 		current = current->next;
 	}
-	return ;
+	dup2(saved_stdin, STDIN_FILENO);
+	close(saved_stdin);
 }
 
 static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
@@ -110,6 +117,7 @@ static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
 	sigaction(SIGINT, &sa, NULL);
+	sigaction(SIGQUIT, &sa, NULL);
 	fd = open(tempfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 	{
