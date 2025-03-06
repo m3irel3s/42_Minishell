@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_redirection.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:45:07 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/05 15:46:10 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:11:57 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

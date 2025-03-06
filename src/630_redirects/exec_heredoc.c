@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/05 15:54:07 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/06 14:59:38 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,10 +133,12 @@ void	ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted, int fd)
 		if (!line)
 		{
 			ft_printf(STDERR_FILENO, ERR_EOF_HEREDOC, delimiter);
+			ft_cleanup_w_env(shell);
 			break ;
 		}
 		if (ft_strcmp(line, delimiter) == 0)
 		{
+			ft_cleanup_w_env(shell);
 			ft_free(line);
 			break ;
 		}
