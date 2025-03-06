@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:59:06 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/04 15:59:36 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/06 14:16:15 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_status	ft_init_shell(t_shell *shell, char **envp)
 	ft_update_shlvl(shell);
 	if (!shell->env_cpy)
 		return (ft_print_error(ERR_ENV_DUP_FAIL));
+	shell->last_cwd = NULL;
 	shell->prompt = NULL;
 	shell->input = NULL;
 	shell->tokens = NULL;

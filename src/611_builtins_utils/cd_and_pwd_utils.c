@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 09:43:33 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 14:58:42 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/06 14:35:58 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ char	*ft_get_current_directory(void)
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
 	{
-		ft_printf(STDERR_FILENO, ERR_GET_CWD_FAIL);
 		g_exit_status = EXIT_FAILURE;
 		return (NULL);
 	}

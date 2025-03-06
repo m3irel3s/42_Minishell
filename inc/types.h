@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:15:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/05 16:53:44 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/06 14:15:19 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct s_redirect
 typedef struct s_shell
 {
 	char			**env_cpy;
+	char			*last_cwd;
 	char			*prompt;
 	char			*input;
 	t_token			*tokens;

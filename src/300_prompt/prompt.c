@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:04:18 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/05 11:09:31 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/06 14:37:52 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ char	*ft_set_prompt(t_shell *shell)
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
 	{
-		ft_print_error(ERR_GET_CWD_FAIL);
-		return (NULL);
+		if (shell->last_cwd)
+			cwd = ft_strdup(shell->last_cwd);
+		if (!cwd)
+			return (ft_print_error(ERR_GET_CWD_FAIL), NULL);
 	}
 	user = getenv("USER");
 	if (!user)
