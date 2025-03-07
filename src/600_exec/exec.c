@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/06 11:15:18 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:10:58 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	ft_handle_simple_and_double_quotes(t_token *curr)
 		len = ft_strlen(curr->val.og_value);
 		if (!ft_strncmp(curr->val.og_value, "\"\"", len)
 			|| !ft_strncmp(curr->val.og_value, "\'\'", len))
-			ft_print_error_w_arg(ERR_CMD_NOT_FOUND, "");
+			ft_print_error_w_arg(ERR_CMD_NOT_FOUND, "", EXIT_CMD_NOT_FOUND);
 		return ;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 15:04:30 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/01 15:06:23 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:10:19 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static int	ft_snprintf(char *buffer, size_t size, char *format, char *arg);
 
-t_status	ft_print_error_w_arg(char *error_msg, char *arg)
+t_status	ft_print_error_w_arg(char *error_msg, char *arg, int status)
 {
 	char	buffer[256];
 	int		len;
 
 	len = ft_snprintf (buffer, sizeof(buffer), error_msg, arg);
 	write(STDERR_FILENO, buffer, len);
-	g_exit_status = EXIT_FAILURE;
+	g_exit_status = status;
 	return (ERROR);
 }
 

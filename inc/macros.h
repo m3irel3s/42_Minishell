@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/06 14:45:27 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:10:56 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # define EXIT_FAILURE 1
 # define EXIT_MISUSE 2
 # define EXIT_CANNOT_EXECUTE 126
-# define EXIT_COMMAND_NOT_FOUND 127
+# define EXIT_CMD_NOT_FOUND 127
 # define EXIT_INVALID_EXIT_ARG 128
 # define EXIT_FATAL_SIGNAL 128
 # define EXIT_SIGINT 130

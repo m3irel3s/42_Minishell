@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:22:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/06 12:17:00 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:16:42 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ void	ft_exit(t_shell *shell)
 		return (ft_cleanup_w_env(shell), exit(g_exit_status));
 	if (ft_valid_number(curr->next->val.value) == ERROR)
 	{
-		ft_print_error_w_arg(ERR_EXIT_NUM_REQ, curr->next->val.value);
-		g_exit_status = 2;
+		ft_print_error_w_arg(ERR_EXIT_NUM_REQ, curr->next->val.value, EXIT_MISUSE);
 		exit(g_exit_status);
 	}
 	if (curr->next->next)

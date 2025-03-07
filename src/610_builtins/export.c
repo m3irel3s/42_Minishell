@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/06 12:44:07 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:13:36 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	ft_process_export_variable(t_shell *shell, char *arg)
 	if (ft_check_var_chars(arg) != SUCCESS)
 	{
 		return (ft_print_error_w_arg(\
-		ERR_EXPORT_INVALID_IDENTIFIER, arg), EXIT_FAILURE);
+		ERR_EXPORT_INVALID_IDENTIFIER, arg, EXIT_FAILURE), EXIT_FAILURE);
 	}
 	ft_handle_export_oper(shell, arg, eq_sign, plus_sign);
 	var = ft_get_var_name(arg);
