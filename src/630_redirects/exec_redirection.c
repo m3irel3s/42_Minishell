@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:45:07 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/08 11:26:09 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:49:00 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,10 @@ void	ft_handle_redirections(t_shell *shell)
 	}
 	shell->redirected_stdin = dup(STDIN_FILENO);
 	shell->redirected_stdout = dup(STDOUT_FILENO);
-	dup2(saved_stdin, STDIN_FILENO);
-	dup2(saved_stdout, STDOUT_FILENO);
+	if (dup2(saved_stdin, STDIN_FILENO) == -1)
+		ft_print_error(ERR_DUP2_FAIL);
+	if (dup2(saved_stdout, STDOUT_FILENO) == -1)
+		ft_print_error(ERR_DUP2_FAIL);
 	close(saved_stdin);
 	close(saved_stdout);
 }
@@ -97,7 +99,8 @@ static void	ft_redirect_in(t_redirect *redirect)
 	fd = open(redirect->filename, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_printf(STDERR_FILENO, ERR_REDIR_NO_FILE, redirect->filename);
+		ft_print_error_w_arg(ERR_REDIR_NO_FILE, redirect->filename,
+			EXIT_FAILURE);
 		return ;
 	}
 	if (dup2(fd, STDIN_FILENO) == -1)
@@ -125,7 +128,8 @@ static void	ft_redirect_out(t_redirect *redirect)
 	fd = open(redirect->filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 	{
-		ft_printf(STDERR_FILENO, ERR_REDIR_NO_FILE, redirect->filename);
+		ft_print_error_w_arg(ERR_REDIR_NO_FILE, redirect->filename,
+			EXIT_FAILURE);
 		return ;
 	}
 	if (dup2(fd, STDOUT_FILENO) == -1)
@@ -154,7 +158,8 @@ static void	ft_redirect_append(t_redirect *redirect)
 	fd = open(redirect->filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (fd == -1)
 	{
-		ft_printf(STDERR_FILENO, ERR_REDIR_NO_FILE, redirect->filename);
+		ft_print_error_w_arg(ERR_REDIR_NO_FILE, redirect->filename,
+			EXIT_FAILURE);
 		return ;
 	}
 	if (dup2(fd, STDOUT_FILENO) == -1)

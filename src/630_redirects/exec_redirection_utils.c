@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_redirection_utils.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:11:23 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/03 17:23:46 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:51:22 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,11 +138,18 @@ static void	ft_create_and_add_redirect(t_token *token, t_shell *shell,
 
 	redirect = ft_safe_calloc(sizeof(t_redirect));
 	if (!redirect)
+	{
+		ft_print_error(ERR_MALLOC_FAIL);
 		return ;
+	}
 	redirect->type = token->type;
 	del = ft_safe_strdup(token->next->val.value);
 	if (!del)
-		return (ft_free(redirect));
+	{
+		ft_print_error(ERR_MALLOC_FAIL);
+		ft_free(redirect);
+		return ;
+	}
 	redirect->filename = del;
 	redirect->quoted = token->next->quoted;
 	redirect->next = NULL;
