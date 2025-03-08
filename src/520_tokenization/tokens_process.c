@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_process.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 09:45:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/06 17:21:46 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/08 15:22:28 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ t_status	ft_tokenize(t_shell *shell, char **split_input)
 	int	i;
 
 	if (!shell || !split_input)
-		return (ft_print_error(ERR_INVALID_PARAMS));
+		return (ft_print_error(ERR_INVALID_PARAMS), ERROR);
 	i = 0;
 	while (split_input[i])
 	{
 		if (ft_process_token(shell, split_input[i]) != SUCCESS)
-			return (ft_print_error(ERR_TOKENIZATION_FAIL));
+			return (ft_print_error(ERR_TOKENIZATION_FAIL), ERROR);
 		i++;
 	}
 	return (SUCCESS);
@@ -60,7 +60,7 @@ static t_status	ft_process_token(t_shell *shell, char *token_str)
 	int			quoted;
 
 	if (!token_str)
-		return (ft_print_error(ERR_NULL_TOKEN_VALUE));
+		return (ft_print_error(ERR_NULL_TOKEN_VALUE), ERROR);
 	len = ft_strlen(token_str);
 	quoted = 0;
 	if (len >= 2)

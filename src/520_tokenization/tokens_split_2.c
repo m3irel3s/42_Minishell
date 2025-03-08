@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_split_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 16:19:19 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/06 16:30:28 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/08 15:24:44 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@ static void		ft_split_word(char *input, size_t *i, \
 					int *in_quotes, char *q_char);
 static t_status	ft_add_token(char **result, char *input, size_t j, size_t i);
 
+/**
+ * @brief Handles operators in the input string.
+ * @param input The input string.
+ * @param i Pointer to the current index in the input string.
+ * @param result The array of tokens where the operator will be added.
+ * @param k Pointer to the index of the token in the result array.
+ * @return SUCCESS if the operator was added successfully, ERROR otherwise.
+ */
 int	ft_handle_t_operator(char *input, size_t *i, char **result, size_t *k)
 {
 	size_t	start;
@@ -27,6 +35,7 @@ int	ft_handle_t_operator(char *input, size_t *i, char **result, size_t *k)
 		*i += 1;
 	if (ft_add_token(&result[*k], input, start, *i) != SUCCESS)
 	{
+		ft_print_error(ERR_TOKEN_CREATION_FAIL);
 		ft_free_arr(result);
 		return (ERROR);
 	}
@@ -34,6 +43,14 @@ int	ft_handle_t_operator(char *input, size_t *i, char **result, size_t *k)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Processes a single word in the input string.
+ * @param input The input string.
+ * @param i Pointer to the current index in the input string.
+ * @param result The array of tokens where the word will be added.
+ * @param k Pointer to the index of the token in the result array.
+ * @return SUCCESS if the word was added successfully, ERROR otherwise.
+ */
 t_status	ft_process_word(char *input, size_t *i, char **result, size_t *k)
 {
 	size_t	j;
@@ -51,6 +68,14 @@ t_status	ft_process_word(char *input, size_t *i, char **result, size_t *k)
 	return (SUCCESS);
 }
 
+/**
+ * @brief Splits a word in the input string, considering quotes and
+ * operators.
+ * @param input The input string.
+ * @param i Pointer to the current index in the input string.
+ * @param in_quotes Pointer to the flag indicating if currently in quotes.
+ * @param q_char Pointer to the current quote character.
+ */
 static void	ft_split_word(char *input, size_t *i, int *in_quotes, char *q_char)
 {
 	while (input[*i] && (*in_quotes || (!ft_is_space(input[*i])
@@ -67,6 +92,15 @@ static void	ft_split_word(char *input, size_t *i, int *in_quotes, char *q_char)
 	}
 }
 
+/**
+ * @brief Creates a new token by creating a substring of the input string
+ * and assigns it to the result pointer.
+ * @param result The pointer where the new token will be assigned.
+ * @param input The input string.
+ * @param j The start index of the new token.
+ * @param i The end index of the new token.
+ * @return SUCCESS if the new token was created successfully, ERROR otherwise.
+ */
 static t_status	ft_add_token(char **result, char *input, size_t j, size_t i)
 {
 	char	*token;
