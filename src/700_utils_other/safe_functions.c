@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 12:58:31 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/08 14:54:11 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 22:46:37 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ void	*ft_safe_calloc(size_t size)
 	if (size <= 0)
 	{
 		ft_print_error(ERR_INVALID_ALLOC_SIZE);
-		g_exit_status = EXIT_FAILURE;
+		g.g_exit_status = EXIT_FAILURE;
 		return (NULL);
 	}
 	ptr = ft_calloc(1, size);
 	if (!ptr)
 	{
 		ft_print_error(ERR_MALLOC_FAIL);
-		g_exit_status = EXIT_FAILURE;
+		g.g_exit_status = EXIT_FAILURE;
 		return (NULL);
 	}
 	return (ptr);
@@ -70,7 +70,7 @@ char	*ft_safe_readline(t_shell *shell)
 	if (!shell->prompt)
 	{
 		ft_print_error(ERR_INVALID_PROMPT);
-		g_exit_status = EXIT_FAILURE;
+		g.g_exit_status = EXIT_FAILURE;
 		return (NULL);
 	}
 	input = readline(shell->prompt);
@@ -96,7 +96,7 @@ char	*ft_safe_strdup(char *s)
 
 	if (!s)
 	{
-		g_exit_status = EXIT_FAILURE;
+		g.g_exit_status = EXIT_FAILURE;
 		return (NULL);
 	}
 	len = ft_strlen(s) + 1;
@@ -131,7 +131,7 @@ char	*ft_safe_strjoin(char *s1, char *s2, int free_s1)
 	if (!result)
 	{
 		ft_print_error(ERR_STRJOIN_FAIL);
-		g_exit_status = EXIT_FAILURE;
+		g.g_exit_status = EXIT_FAILURE;
 		return (NULL);
 	}
 	return (result);
@@ -157,7 +157,7 @@ char	*ft_safe_substr(char *s, int start, int len)
 	if (!s)
 	{
 		ft_print_error(ERR_INVALID_PARAMS);
-		g_exit_status = EXIT_FAILURE;
+		g.g_exit_status = EXIT_FAILURE;
 		return (NULL);
 	}
 	s_len = ft_strlen(s);

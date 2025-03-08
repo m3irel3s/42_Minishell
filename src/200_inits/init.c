@@ -6,13 +6,15 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:59:06 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/08 15:38:43 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 22:47:41 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
 static void	ft_update_shlvl(t_shell *shell);
+static void	ft_init_global_struct(void);
+static void	ft_save_original_fds(void);
 
 /**
  * Initializes the given shell structure.
@@ -38,7 +40,7 @@ t_status	ft_init_shell(t_shell *shell, char **envp)
 	shell->redirected_stdout = -1;
 	shell->in_export = 0;
 	shell->random_number = 0;
-	g_exit_status = EXIT_SUCCESS;
+	ft_init_global_struct();
 	return (SUCCESS);
 }
 
@@ -68,4 +70,32 @@ static void	ft_update_shlvl(t_shell *shell)
 	}
 	else
 		ft_update_or_add_var("SHLVL", "1", shell, 0);
+}
+
+/**
+ * Initializes the global structure.
+ *
+ * This function initializes the global structure by setting the global exit
+ * status to SUCCESS and saving the original file descriptors for standard
+ * input, output, and error.
+ */
+static void	ft_init_global_struct(void)
+{
+	g.g_exit_status = EXIT_SUCCESS;
+	ft_save_original_fds();
+}
+
+/**
+ * @brief Saves the original file descriptors for standard input, output,
+ * and error.
+ *
+ * This function duplicates the current file descriptors for standard input,
+ * output, and error, and stores them in global variables. This allows the
+ * shell to restore the original file descriptors after any redirections.
+ */
+static void	ft_save_original_fds(void)
+{
+	g.g_original_stdin = dup(STDIN_FILENO);
+	g.g_original_stdout = dup(STDOUT_FILENO);
+	g.g_original_stderr = dup(STDERR_FILENO);
 }

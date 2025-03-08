@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 13:13:59 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/07 16:12:43 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/08 22:46:37 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@ void	ft_cd(t_shell *shell)
 		if (!curr_path)
 		{
 			ft_print_error(ERR_GET_CWD_FAIL);
-			g_exit_status = EXIT_FAILURE;
+			g.g_exit_status = EXIT_FAILURE;
 			return ;
 		}
 	}
 	if (!curr->next || ft_strncmp(curr->next->val.value, "~", 2) == SUCCESS)
-		g_exit_status = ft_handle_cd_home(shell, curr_path);
+		g.g_exit_status = ft_handle_cd_home(shell, curr_path);
 	else if (ft_strncmp(curr->next->val.value, "-", 2) == SUCCESS)
-		g_exit_status = ft_handle_cd_oldpwd(shell, curr_path);
+		g.g_exit_status = ft_handle_cd_oldpwd(shell, curr_path);
 	else
-		g_exit_status = ft_handle_cd_to_dir(shell, curr, curr_path);
+		g.g_exit_status = ft_handle_cd_to_dir(shell, curr, curr_path);
 	ft_free(curr_path);
 }
 

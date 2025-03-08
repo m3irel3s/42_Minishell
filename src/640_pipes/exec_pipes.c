@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:43:03 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 14:34:41 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 22:46:37 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,14 @@ static void	ft_fork_exec(t_shell *sh, t_token *curr_cmd, t_pipe *pipes, int i)
 	if (pid == 0)
 	{
 		ft_execute_child(sh, curr_cmd, i, pipes);
-		exit(g_exit_status);
+		exit(g.g_exit_status);
 	}
 	else if (pid < 0)
 	{
 		ft_print_error(ERR_FORK_FAIL);
 		ft_cleanup_pipes(pipes, ft_count_pipes(sh->tokens));
 		ft_free(pipes);
-		exit(g_exit_status);
+		exit(g.g_exit_status);
 	}
 }
 
@@ -103,7 +103,7 @@ static void	ft_wait_for_children(int num_children)
 	{
 		wait(&status);
 		if (WIFEXITED(status))
-			g_exit_status = WEXITSTATUS(status);
+			g.g_exit_status = WEXITSTATUS(status);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:22:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 14:07:21 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 22:46:37 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,25 @@ void	ft_exit(t_shell *shell)
 	curr = shell->tokens;
 	write(STDOUT_FILENO, "exit\n", 5);
 	if (!curr || !curr->next)
-		return (ft_cleanup_w_env(shell), exit(g_exit_status));
+		return (ft_cleanup_w_env(shell), exit(g.g_exit_status));
 	if (ft_valid_number(curr->next->val.value) == ERROR)
 	{
 		ft_print_error_w_arg(ERR_EXIT_NUM_REQ, curr->next->val.value,
 			EXIT_MISUSE);
-		exit(g_exit_status);
+		exit(g.g_exit_status);
 	}
 	if (curr->next->next)
 	{
 		ft_print_error(ERR_EXIT_TOO_MANY_ARGS);
-		g_exit_status = 1;
+		g.g_exit_status = 1;
 		return ;
 	}
-	g_exit_status = ft_atoi(curr->next->val.value);
-	if (g_exit_status > 255 || g_exit_status < 0)
-		g_exit_status %= 256;
+	g.g_exit_status = ft_atoi(curr->next->val.value);
+	if (g.g_exit_status > 255 || g.g_exit_status < 0)
+		g.g_exit_status %= 256;
 	ft_cleanup_w_env(shell);
 	rl_clear_history();
-	exit(g_exit_status);
+	exit(g.g_exit_status);
 }
 
 /**
@@ -65,7 +65,7 @@ void	ft_handle_eof(t_shell *shell)
 	write(STDOUT_FILENO, "exit\n", 5);
 	if (shell->env_cpy)
 		ft_free_arr(shell->env_cpy);
-	g_exit_status = EXIT_SUCCESS;
+	g.g_exit_status = EXIT_SUCCESS;
 }
 
 static int	ft_valid_number(char *str)

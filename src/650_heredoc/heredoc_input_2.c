@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 14:19:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/08 14:20:16 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 22:46:37 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted,
 			ft_cleanup_w_env(shell);
 			ft_free(line);
 			close(fd);
-			g_exit_status = EXIT_SUCCESS;
-			exit(g_exit_status);
+			g.g_exit_status = EXIT_SUCCESS;
+			exit(g.g_exit_status);
 		}
 		ft_handle_expansion(shell, line, quoted, fd);
 	}

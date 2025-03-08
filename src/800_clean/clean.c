@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/08 15:38:43 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 22:50:11 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,28 @@ void	ft_cleanup(t_shell *shell)
 	shell->input = NULL;
 	ft_cleanup_tokens(shell);
 	ft_cleanup_redirects(shell);
+	close(g.g_original_stdin);
+	close(g.g_original_stdout);
+	close(g.g_original_stderr);
 }
 
+
 /**
- * Frees all dynamically allocated memory associated with the shell structure,
- * including the tokens, redirects and prompt strings, and the copy of the
- * environment variables.
+ * Frees all dynamically allocated memory in the shell structure and
+ * restores the original standard input and output file descriptors.
  *
- * @param shell The shell structure to free.
+ * This includes the prompt string, the input string, the tokens linked list,
+ * and the redirects linked list. Additionally, it frees the dynamically
+ * allocated copy of the environment variables.
+ *
+ * @param shell The shell structure to free and restore file descriptors.
  */
 void	ft_cleanup_w_env(t_shell *shell)
 {
+	if (dup2(g.g_original_stdin, STDIN_FILENO) == -1)
+		ft_print_error(ERR_DUP2_FAIL);
+	if (dup2(g.g_original_stdout, STDOUT_FILENO) == -1)
+		ft_print_error(ERR_DUP2_FAIL);
 	ft_cleanup(shell);
 	if (shell->env_cpy)
 		ft_free_arr(shell->env_cpy);

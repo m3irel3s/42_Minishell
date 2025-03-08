@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_handle_dollar.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 14:14:30 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/03 16:38:51 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/08 22:46:37 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ static char	*ft_expand_exit_status(size_t *i)
 	char	*res;
 
 	(*i)++;
-	res = ft_itoa(g_exit_status);
+	res = ft_itoa(g.g_exit_status);
 	if (!res)
 		return (ft_set_error_and_return_null());
 	return (res);
@@ -170,6 +170,6 @@ static char	*ft_expand_variable(t_shell *shell, char *token, size_t *i,
  */
 static char	*ft_set_error_and_return_null(void)
 {
-	g_exit_status = EXIT_FAILURE;
+	g.g_exit_status = EXIT_FAILURE;
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/08 14:27:07 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 22:53:58 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_status	ft_handle_child_exit(int status, char *tempfile)
 	{
 		unlink(tempfile);
 		ft_free(tempfile);
-		g_exit_status = WEXITSTATUS(status);
+		g.g_exit_status = WEXITSTATUS(status);
 		return (ERROR);
 	}
 	return (SUCCESS);
@@ -75,7 +75,7 @@ t_status	ft_handle_child_signal(int status, char *tempfile)
 	{
 		unlink(tempfile);
 		ft_free(tempfile);
-		g_exit_status = EXIT_FAILURE;
+		g.g_exit_status = EXIT_FAILURE;
 		write(STDOUT_FILENO, "\n", 1);
 		return (ERROR);
 	}
@@ -96,11 +96,7 @@ t_status	ft_handle_child_signal(int status, char *tempfile)
 t_status	ft_process_heredocs(t_shell *shell)
 {
 	t_token	*current;
-	int		saved_stdin;
 
-	saved_stdin = dup(STDIN_FILENO);
-	if (saved_stdin == -1)
-		return (ERROR);
 	current = shell->tokens;
 	while (current)
 	{
@@ -108,16 +104,14 @@ t_status	ft_process_heredocs(t_shell *shell)
 		{
 			if (ft_handle_single_heredoc(shell, current) == ERROR)
 			{
-				if (dup2(saved_stdin, STDIN_FILENO) == -1)
+				if (dup2(g.g_original_stdin, STDIN_FILENO) == -1)
 					ft_print_error(ERR_DUP2_FAIL);
-				close(saved_stdin);
 				return (ERROR);
 			}
 		}
 		current = current->next;
 	}
-	if (dup2(saved_stdin, STDIN_FILENO) == -1)
+	if (dup2(g.g_original_stdin, STDIN_FILENO) == -1)
 		ft_print_error(ERR_DUP2_FAIL);
-	close(saved_stdin);
 	return (SUCCESS);
 }

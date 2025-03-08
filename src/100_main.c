@@ -6,13 +6,13 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 11:40:50 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 22:46:37 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int			g_exit_status;
+t_g	g;
 
 static void	ft_process_input(t_shell *shell);
 
@@ -41,13 +41,13 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	ft_display_startup_banner();
 	if (ft_init_shell(&shell, envp) == ERROR)
-		return (ft_print_error(ERR_SHELL_INIT_FAIL), g_exit_status);
+		return (ft_print_error(ERR_SHELL_INIT_FAIL), g.g_exit_status);
 	ft_update_env(&shell);
 	// signal(SIGPIPE, SIG_IGN);
 	while (1)
 	{
 		if (ft_set_up_signals() == ERROR)
-			return (ft_print_error(ERR_SIGNAL_SETUP_FAIL), g_exit_status);
+			return (ft_print_error(ERR_SIGNAL_SETUP_FAIL), g.g_exit_status);
 		shell.prompt = ft_set_prompt(&shell);
 		shell.input = ft_safe_readline(&shell);
 		if (shell.input == NULL)
@@ -59,7 +59,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	ft_cleanup(&shell);
 	rl_clear_history();
-	return (g_exit_status);
+	return (g.g_exit_status);
 }
 
 /**
@@ -85,7 +85,7 @@ static void	ft_process_input(t_shell *shell)
 				ft_exec(shell);
 		}
 		else
-			g_exit_status = EXIT_FAILURE;
+			g.g_exit_status = EXIT_FAILURE;
 	}
 	ft_cleanup_temp_files(shell);
 	ft_cleanup(shell);

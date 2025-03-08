@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:15:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/08 14:23:38 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 22:46:37 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,10 +165,10 @@ static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
 	{
 		ft_print_error(ERR_OPEN_FAIL);
 		ft_free(tempfile);
-		exit(g_exit_status);
+		exit(g.g_exit_status);
 	}
 	ft_read_heredoc_input(shell, delim->val.value, delim->quoted, fd);
 	close(fd);
-	g_exit_status = EXIT_SUCCESS;
-	exit(g_exit_status);
+	g.g_exit_status = EXIT_SUCCESS;
+	exit(g.g_exit_status);
 }

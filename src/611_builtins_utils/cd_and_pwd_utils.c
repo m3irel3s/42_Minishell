@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_and_pwd_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 09:43:33 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/06 14:35:58 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/08 22:46:37 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_get_current_directory(void)
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
 	{
-		g_exit_status = EXIT_FAILURE;
+		g.g_exit_status = EXIT_FAILURE;
 		return (NULL);
 	}
 	res = ft_safe_strdup(cwd);
@@ -38,7 +38,7 @@ char	*ft_get_current_directory(void)
 	if (!res)
 	{
 		ft_printf(STDERR_FILENO, ERR_STRDUP_FAIL);
-		g_exit_status = EXIT_FAILURE;
+		g.g_exit_status = EXIT_FAILURE;
 	}
 	return (res);
 }

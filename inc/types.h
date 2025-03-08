@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:15:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/06 14:15:19 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/08 22:47:19 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,18 @@ typedef struct s_shell
 	size_t			random_number;
 }	t_shell;
 
+typedef struct s_g
+{
+	int		g_exit_status;
+	int		g_original_stdout;
+	int		g_original_stdin;
+	int		g_original_stderr;
+}	t_g;
+
 //============================================================================//
 //                                GLOBAL VARIABLE                             //
 //============================================================================//
 
-extern int			g_exit_status;
+extern t_g	g;
 
 #endif

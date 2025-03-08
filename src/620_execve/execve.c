@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:34:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 15:38:43 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 22:46:37 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static void	ft_handle_child_process(t_shell *shell, char *path, char **arr)
 	{
 		waitpid(pid, &status, 0);
 		if (WIFEXITED(status))
-			g_exit_status = WEXITSTATUS(status);
+			g.g_exit_status = WEXITSTATUS(status);
 	}
 }
 
@@ -132,7 +132,7 @@ static t_status	ft_exec_child(t_shell *shell, char *path, char **arr)
 		ft_cleanup(shell);
 		if (shell->env_cpy)
 			ft_free_arr(shell->env_cpy);
-		exit(g_exit_status);
+		exit(g.g_exit_status);
 	}
 	return (SUCCESS);
 }

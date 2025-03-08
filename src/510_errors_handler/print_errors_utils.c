@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 15:04:30 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 15:38:43 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 22:46:37 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_status	ft_print_error_w_arg(char *error_msg, char *arg, int status)
 
 	len = ft_snprintf (buffer, sizeof(buffer), error_msg, arg);
 	write(STDERR_FILENO, buffer, len);
-	g_exit_status = status;
+	g.g_exit_status = status;
 	return (ERROR);
 }
 
