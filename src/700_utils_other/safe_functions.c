@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   safe_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 12:58:31 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/03 11:14:48 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:54:11 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ void	*ft_safe_calloc(size_t size)
  * an error message is printed, the shell's exit status is set to EXIT_FAILURE,
  * and NULL is returned.
  *
- * @param shell A pointer to the shell structure containing the prompt 
+ * @param shell A pointer to the shell structure containing the prompt
  * information.
- * 
+ *
  *
  * @return A dynamically allocated string containing the user's input, or NULL
  * if the shell's prompt is invalid.
@@ -81,7 +81,7 @@ char	*ft_safe_readline(t_shell *shell)
  * @brief A safe version of the ft_strdup function.
  *
  * This function is identical to ft_strdup, but it will print an error message
- * and set the shell's exit status to EXIT_FAILURE if the memory 
+ * and set the shell's exit status to EXIT_FAILURE if the memory
  * allocation fails.
  *
  * @param shell A pointer to the shell structure containing environment info.

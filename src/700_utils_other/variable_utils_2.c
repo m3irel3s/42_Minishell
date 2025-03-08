@@ -3,15 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   variable_utils_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:35:08 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/03 11:14:47 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:54:08 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
+/**
+ * @brief Creates a new string by updating the value of an environment variable.
+ *
+ * Updates the value of an environment variable by appending the new value
+ * to the variable name with '=' in between. If the sign is -1, the value will
+ * not be appended.
+ *
+ * @param var The name of the environment variable.
+ * @param value The new value for the environment variable.
+ * @param sign If sign is -1, the value will not be appended.
+ * @return The new string with the updated value.
+ */
 char	*ft_update_var(char *var, char *value, int sign)
 {
 	char	*res;
@@ -41,6 +53,19 @@ char	*ft_update_var(char *var, char *value, int sign)
 	return (res);
 }
 
+/**
+ * @brief Updates or adds an environment variable to the shell's environment.
+ *
+ * Checks if the variable exists in the shell's environment. If it does, it
+ * updates the value of the variable using ft_update_var. If it does not, it
+ * adds the variable to the shell's environment using ft_add_var_to_env.
+ *
+ * @param var The name of the environment variable.
+ * @param value The new value for the environment variable.
+ * @param shell A pointer to the shell structure.
+ * @param sign If sign is -1, the value will not be appended when updating the
+ * variable.
+ */
 void	ft_update_or_add_var(char *var, char *value, t_shell *shell, int sign)
 {
 	int		var_index;

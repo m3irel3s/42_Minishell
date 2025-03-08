@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_type_functions.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 14:55:14 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 14:58:42 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:54:15 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
