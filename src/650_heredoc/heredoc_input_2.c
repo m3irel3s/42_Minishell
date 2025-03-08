@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 14:19:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/08 13:53:17 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:03:14 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,3 @@ static void	ft_handle_expansion(t_shell *shell, char *line, int quoted, int fd)
 	write(fd, "\n", 1);
 	ft_free(expanded_line);
 }
-

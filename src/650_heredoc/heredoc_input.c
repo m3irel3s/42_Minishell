@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:15:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/08 13:32:15 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:03:29 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_status	ft_fork_heredoc(pid_t *pid, t_shell *shell, t_token *delim,
 static t_status	ft_handle_heredoc_parent(pid_t pid, char *tempfile,
 					t_shell *shell, t_token *current);
 static void		ft_child_heredoc(t_shell *shell, t_token *delim,
-				char *tempfile);
+					char *tempfile);
 
 /**
  * @brief Handles a single heredoc redirection.
