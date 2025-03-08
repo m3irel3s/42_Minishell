@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/05 15:42:00 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/08 15:38:43 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@ void	ft_cleanup(t_shell *shell)
 	ft_cleanup_redirects(shell);
 }
 
+/**
+ * Frees all dynamically allocated memory associated with the shell structure,
+ * including the tokens, redirects and prompt strings, and the copy of the
+ * environment variables.
+ *
+ * @param shell The shell structure to free.
+ */
 void	ft_cleanup_w_env(t_shell *shell)
 {
 	ft_cleanup(shell);

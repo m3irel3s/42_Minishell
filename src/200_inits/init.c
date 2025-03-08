@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:59:06 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/06 14:16:15 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/08 15:38:43 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,16 @@ t_status	ft_init_shell(t_shell *shell, char **envp)
 	g_exit_status = EXIT_SUCCESS;
 	return (SUCCESS);
 }
+
+/**
+ * @brief Updates the SHLVL environment variable in the shell.
+ *
+ * Retrieves the current value of the SHLVL environment variable, increments it
+ * by 1, and updates the variable in the shell's environment. If SHLVL does not
+ * exist, it initializes it with a value of 1.
+ *
+ * @param shell A pointer to the shell structure containing the environment.
+ */
 
 static void	ft_update_shlvl(t_shell *shell)
 {

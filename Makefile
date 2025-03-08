@@ -6,7 +6,7 @@
 #    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/03/08 14:01:06 by meferraz         ###   ########.fr        #
+#    Updated: 2025/03/08 15:38:39 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,6 @@ SRCS = \
        ${SRC_PATH}/510_errors_handler/syntax_validation.c \
        ${SRC_PATH}/510_errors_handler/syntax_validation_2.c \
        ${SRC_PATH}/510_errors_handler/print_errors_exit_failure.c \
-       ${SRC_PATH}/510_errors_handler/print_errors_heredoc.c \
        ${SRC_PATH}/510_errors_handler/print_errors_misuse.c \
        ${SRC_PATH}/510_errors_handler/print_errors_fatal_signal.c \
        ${SRC_PATH}/510_errors_handler/print_errors_utils.c \

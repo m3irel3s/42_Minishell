@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 17:16:04 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 15:17:19 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 15:57:46 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static int	ft_check_redirect_operator(char *input, int i);
 /**
  * @brief Validates the use of redirection operators in the input string.
  *
- * This function checks the input string for invalid use of redirection operators,
+ * This function checks the input string for invalid use of redirection
+ * operators,
  * such as having consecutive redirection operators, or having a redirection
  * operator with no file name specified.
  *

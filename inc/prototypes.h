@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 13:59:43 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 15:38:16 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,6 @@ t_status		ft_print_error_custom_status(char *error_msg, int exit_status);
 t_status		ft_print_syntax_error(char *token);
 t_status		ft_print_unmatched_quote_error(void);
 t_status		ft_print_redirect_no_file_error(void);
-
-/* 510_errors_handler/print_errors_heredoc.c */
-t_status		ft_print_heredoc_delim_error(void);
 
 /* 510_errors_handler/print_errors_misuse.c */
 t_status		ft_print_error_misuse(char *error_msg);
