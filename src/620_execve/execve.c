@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:34:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 14:55:36 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:57:53 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,20 @@ static void	ft_cleanup_cmd_execution(char *path, char **arr)
 	ft_free_arr(arr);
 }
 
+/**
+ * @brief Executes a command in a child process.
+ *
+ * @details
+ * This function forks a new process and executes the given command in it.
+ * If the execve fails, it prints an error message, cleans up the command
+ * execution, cleans up the shell, and exits with EXIT_FAILURE.
+ *
+ * @param [in] shell The shell structure to execute the command in.
+ * @param [in] path The path to the command to execute.
+ * @param [in] arr The array of arguments to pass to the command.
+ *
+ * @return The status of the command execution.
+ */
 static t_status	ft_exec_child(t_shell *shell, char *path, char **arr)
 {
 	if (execve(path, arr, shell->env_cpy) == -1)
@@ -81,8 +95,7 @@ static t_status	ft_exec_child(t_shell *shell, char *path, char **arr)
 		ft_cleanup(shell);
 		if (shell->env_cpy)
 			ft_free_arr(shell->env_cpy);
-		exit(EXIT_FAILURE);
+		exit(g_exit_status);
 	}
-	else
-		return (SUCCESS);
+	return (SUCCESS);
 }
