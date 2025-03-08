@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:00:00 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 11:28:20 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:05:35 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void		ft_setup_child_redirects(int i, t_pipe *pipes, int num_pipes);
 static t_token	*ft_copy_tokens(t_token *start, t_token *end);
 static t_token	*ft_prepare_child_tokens(t_token *curr_cmd);
 
-void ft_execute_child(t_shell *sh, t_token *curr_cmd, int i, t_pipe *pipes)
+void	ft_execute_child(t_shell *sh, t_token *curr_cmd, int i, t_pipe *pipes)
 {
 	t_token		*cmd_copy;
 	int			num_pipes;
@@ -65,12 +65,14 @@ static t_token	*ft_prepare_child_tokens(t_token *curr_cmd)
 	return (cmd_copy);
 }
 
-static t_token *ft_copy_tokens(t_token *start, t_token *end)
+static t_token	*ft_copy_tokens(t_token *start, t_token *end)
 {
-	t_token *new_list = NULL;
-	t_token *tail = NULL;
-	t_token *new_node;
+	t_token	*new_list;
+	t_token	*tail;
+	t_token	*new_node;
 
+	new_list = NULL;
+	tail = NULL;
 	while (start != end && start)
 	{
 		new_node = ft_safe_calloc(sizeof(t_token));

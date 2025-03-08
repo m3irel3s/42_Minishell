@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:34:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/07 16:14:03 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:07:00 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ static t_status	ft_exec_child(t_shell *shell, char *path, char **arr)
 {
 	if (execve(path, arr, shell->env_cpy) == -1)
 	{
-		ft_print_error_w_arg(ERR_CMD_NOT_FOUND, shell->tokens->val.value, EXIT_CMD_NOT_FOUND);
+		ft_print_error_w_arg(ERR_CMD_NOT_FOUND, shell->tokens->val.value,
+			EXIT_CMD_NOT_FOUND);
 		ft_cleanup_cmd_execution(path, arr);
 		ft_cleanup(shell);
 		if (shell->env_cpy)
