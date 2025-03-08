@@ -6,21 +6,28 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/08 11:42:12 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 12:06:33 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
+#define FILE_PERMISSIONS 0644
+
 static char	*ft_expanded_line(t_shell *shell, char *line);
 static t_status	ft_create_temp_file(t_shell *shell, char **tempfile);
 static void	ft_add_temp_file(t_shell *shell, char *tempfile);
-static void	ft_process_delimiter(t_token *current, t_token *delim,
-				char *tempfile);
-void		ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted,
-				int fd);
+static void	ft_process_delimiter(t_token *current, t_token *delim, char *tempfile);
+void		ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted, int fd);
 static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile);
+static int	ft_check_heredoc_syntax(t_token *current);
+static int	ft_handle_child_exit(int status, char *tempfile);
+static int	ft_handle_child_signal(int status, char *tempfile);
+static t_status	ft_setup_sigint_ignore(struct sigaction *sa_ignore, struct sigaction *sa_old);
+static t_status	ft_fork_heredoc(pid_t *pid, t_shell *shell, t_token *delim, char *tempfile);
+static t_status	ft_handle_heredoc_parent(pid_t pid, char *tempfile, t_shell *shell, t_token *current);
 
+// Check heredoc syntax
 static int	ft_check_heredoc_syntax(t_token *current)
 {
 	if (!current->next || (current->next->type != WORD && !current->next->quoted))
@@ -32,6 +39,7 @@ static int	ft_check_heredoc_syntax(t_token *current)
 	return (0);
 }
 
+// Handle child exit status
 static int	ft_handle_child_exit(int status, char *tempfile)
 {
 	if (WIFEXITED(status) && WEXITSTATUS(status) != EXIT_SUCCESS)
@@ -44,6 +52,7 @@ static int	ft_handle_child_exit(int status, char *tempfile)
 	return (0);
 }
 
+// Handle child signal interruption
 static int	ft_handle_child_signal(int status, char *tempfile)
 {
 	if (WIFSIGNALED(status) && WTERMSIG(status) == SIGINT)
@@ -57,74 +66,85 @@ static int	ft_handle_child_signal(int status, char *tempfile)
 	return (0);
 }
 
-static t_status ft_handle_single_heredoc(t_shell *shell, t_token *current)
+// Set up SIGINT to be ignored in parent
+static t_status	ft_setup_sigint_ignore(struct sigaction *sa_ignore, struct sigaction *sa_old)
 {
-	char *tempfile;
-	pid_t pid;
-	int status;
-	struct sigaction sa_ignore;
-	struct sigaction sa_old;
-
-	// Check heredoc syntax
-	if (ft_check_heredoc_syntax(current))
-		return (ERROR);
-
-	// Create temporary file for heredoc
-	if (ft_create_temp_file(shell, &tempfile) == ERROR)
-		return (ERROR);
-
-	// Set SIGINT to be ignored in the parent process
-	sa_ignore.sa_handler = SIG_IGN;
-	sigemptyset(&sa_ignore.sa_mask);
-	sa_ignore.sa_flags = 0;
-	if (sigaction(SIGINT, &sa_ignore, &sa_old) == -1)
+	sa_ignore->sa_handler = SIG_IGN;
+	sigemptyset(&sa_ignore->sa_mask);
+	sa_ignore->sa_flags = 0;
+	if (sigaction(SIGINT, sa_ignore, sa_old) == -1)
 	{
 		perror("sigaction failed");
-		ft_free(tempfile);
 		return (ERROR);
-	}
-
-	// Fork child process to handle heredoc input
-	pid = fork();
-	if (pid == -1)
-	{
-		sigaction(SIGINT, &sa_old, NULL); // Restore original handler on error
-		perror(ERR_FORK_FAIL);
-		ft_free(tempfile);
-		return (ERROR);
-	}
-	else if (pid == 0)
-	{
-		ft_child_heredoc(shell, current->next, tempfile); // Child process
-	}
-	else
-	{
-		// Parent waits for child
-		waitpid(pid, &status, 0);
-
-		// Restore the original SIGINT handler
-		if (sigaction(SIGINT, &sa_old, NULL) == -1)
-		{
-			perror("sigaction restore failed");
-			ft_free(tempfile);
-			return (ERROR);
-		}
-
-		// Handle child exit or signal
-		if (ft_handle_child_exit(status, tempfile) || ft_handle_child_signal(status, tempfile))
-			return (ERROR);
-
-		// Process the heredoc delimiter and update tokens
-		ft_process_delimiter(current, current->next, tempfile);
-		ft_add_temp_file(shell, tempfile);
 	}
 	return (SUCCESS);
 }
 
+// Fork the heredoc child process
+static t_status	ft_fork_heredoc(pid_t *pid, t_shell *shell, t_token *delim, char *tempfile)
+{
+	*pid = fork();
+	if (*pid == -1)
+	{
+		perror(ERR_FORK_FAIL);
+		ft_free(tempfile);
+		return (ERROR);
+	}
+	else if (*pid == 0)
+		ft_child_heredoc(shell, delim, tempfile);
+	return (SUCCESS);
+}
+
+// Handle parent process after forking
+static t_status	ft_handle_heredoc_parent(pid_t pid, char *tempfile, t_shell *shell, t_token *current)
+{
+	int				status;
+	struct sigaction	sa_old;
+
+	waitpid(pid, &status, 0);
+	if (sigaction(SIGINT, &sa_old, NULL) == -1)
+	{
+		perror("sigaction restore failed");
+		ft_free(tempfile);
+		return (ERROR);
+	}
+	if (ft_handle_child_exit(status, tempfile) || ft_handle_child_signal(status, tempfile))
+		return (ERROR);
+	ft_process_delimiter(current, current->next, tempfile);
+	ft_add_temp_file(shell, tempfile);
+	return (SUCCESS);
+}
+
+// Handle a single heredoc
+static t_status ft_handle_single_heredoc(t_shell *shell, t_token *current)
+{
+	char			*tempfile;
+	pid_t			pid;
+	struct sigaction	sa_ignore;
+	struct sigaction	sa_old;
+
+	if (ft_check_heredoc_syntax(current))
+		return (ERROR);
+	if (ft_create_temp_file(shell, &tempfile) == ERROR)
+		return (ERROR);
+	if (ft_setup_sigint_ignore(&sa_ignore, &sa_old) == ERROR)
+	{
+		ft_free(tempfile);
+		return (ERROR);
+	}
+	if (ft_fork_heredoc(&pid, shell, current->next, tempfile) == ERROR)
+	{
+		sigaction(SIGINT, &sa_old, NULL);
+		return (ERROR);
+	}
+	return (ft_handle_heredoc_parent(pid, tempfile, shell, current));
+}
+
+// Process all heredocs in token list
 t_status ft_process_heredocs(t_shell *shell)
 {
-	t_token *current;
-	int saved_stdin;
+	t_token	*current;
+	int		saved_stdin;
 
 	saved_stdin = dup(STDIN_FILENO);
 	if (saved_stdin == -1)
@@ -148,17 +168,18 @@ t_status ft_process_heredocs(t_shell *shell)
 	return (SUCCESS);
 }
 
+// Child process for heredoc input
 static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
 {
 	struct sigaction	sa;
-	int					fd;
+	int			fd;
 
 	sa.sa_handler = SIG_DFL;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
 	sigaction(SIGINT, &sa, NULL);
 	sigaction(SIGQUIT, &sa, NULL);
-	fd = open(tempfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	fd = open(tempfile, O_WRONLY | O_CREAT | O_TRUNC, FILE_PERMISSIONS);
 	if (fd == -1)
 	{
 		perror(ERR_OPEN_FAIL);
@@ -170,10 +191,11 @@ static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
 	exit(EXIT_SUCCESS);
 }
 
+// Read heredoc input in child process
 void ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted, int fd)
 {
-	char *line;
-	char *expanded_line;
+	char	*line;
+	char	*expanded_line;
 
 	while (1)
 	{
@@ -200,6 +222,7 @@ void ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted, int fd)
 	}
 }
 
+// Expand variables in heredoc input line
 static char	*ft_expanded_line(t_shell *shell, char *line)
 {
 	char	*expanded;
@@ -225,14 +248,8 @@ static char	*ft_expanded_line(t_shell *shell, char *line)
 	ft_free(line);
 	return (expanded);
 }
-/**
- * @brief Generates a unique temporary filename for heredoc.
- *
- * Generates a unique temporary filename for heredoc, in the form of
- * "/tmp/minishell_heredoc_<number>".
- *
- * @return The generated temporary filename.
- */
+
+// Generate unique temporary filename
 static t_status	ft_generate_temp_filename(t_shell *shell, char **tempfile)
 {
 	static int	counter;
@@ -257,6 +274,7 @@ static t_status	ft_generate_temp_filename(t_shell *shell, char **tempfile)
 	return (SUCCESS);
 }
 
+// Create temporary file for heredoc
 static t_status	ft_create_temp_file(t_shell *shell, char **tempfile)
 {
 	int	i;
@@ -276,6 +294,7 @@ static t_status	ft_create_temp_file(t_shell *shell, char **tempfile)
 	return (ERROR);
 }
 
+// Process heredoc delimiter and update tokens
 static void	ft_process_delimiter(t_token *current, t_token *delim, char *tempfile)
 {
 	t_token	*filename_token;
@@ -300,22 +319,11 @@ static void	ft_process_delimiter(t_token *current, t_token *delim, char *tempfil
 	ft_free_token(delim);
 }
 
-/**
- * Adds a temporary file to the shell's list of temporary files.
- *
- * Allocates memory to store an additional temporary file in the shell's
- * `temp_files` array. Copies existing temporary file paths to the new
- * array, appends the new temporary file, and updates the shell's
- * `temp_files` pointer to the new array.
- *
- * @param shell The shell structure to update with a new temporary file.
- * @param tempfile The path of the temporary file to add to the shell's list.
- */
-
+// Add temporary file to shell's list
 static void	ft_add_temp_file(t_shell *shell, char *tempfile)
 {
 	char	**new_temp_files;
-	int		i;
+	int	i;
 
 	i = 0;
 	while (shell->temp_files && shell->temp_files[i])
