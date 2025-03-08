@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   100_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/07 16:06:28 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/08 11:40:50 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ static void	ft_process_input(t_shell *shell)
 		add_history(shell->input);
 		if (ft_parse_input(shell) == SUCCESS)
 		{
-			ft_process_heredocs(shell);
-			ft_exec(shell);
+			if (ft_process_heredocs(shell) == SUCCESS)
+				ft_exec(shell);
 		}
 		else
 			g_exit_status = EXIT_FAILURE;

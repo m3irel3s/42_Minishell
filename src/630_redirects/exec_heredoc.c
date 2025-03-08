@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/06 15:32:12 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/08 11:42:12 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,39 +57,78 @@ static int	ft_handle_child_signal(int status, char *tempfile)
 	return (0);
 }
 
-static t_status	ft_handle_single_heredoc(t_shell *shell, t_token *current)
+static t_status ft_handle_single_heredoc(t_shell *shell, t_token *current)
 {
-	char	*tempfile;
-	pid_t	pid;
-	int		status;
+	char *tempfile;
+	pid_t pid;
+	int status;
+	struct sigaction sa_ignore;
+	struct sigaction sa_old;
 
+	// Check heredoc syntax
 	if (ft_check_heredoc_syntax(current))
 		return (ERROR);
+
+	// Create temporary file for heredoc
 	if (ft_create_temp_file(shell, &tempfile) == ERROR)
 		return (ERROR);
+
+	// Set SIGINT to be ignored in the parent process
+	sa_ignore.sa_handler = SIG_IGN;
+	sigemptyset(&sa_ignore.sa_mask);
+	sa_ignore.sa_flags = 0;
+	if (sigaction(SIGINT, &sa_ignore, &sa_old) == -1)
+	{
+		perror("sigaction failed");
+		ft_free(tempfile);
+		return (ERROR);
+	}
+
+	// Fork child process to handle heredoc input
 	pid = fork();
 	if (pid == -1)
-		return (perror(ERR_FORK_FAIL), ft_free(tempfile), ERROR);
+	{
+		sigaction(SIGINT, &sa_old, NULL); // Restore original handler on error
+		perror(ERR_FORK_FAIL);
+		ft_free(tempfile);
+		return (ERROR);
+	}
 	else if (pid == 0)
-		ft_child_heredoc(shell, current->next, tempfile);
+	{
+		ft_child_heredoc(shell, current->next, tempfile); // Child process
+	}
 	else
 	{
+		// Parent waits for child
 		waitpid(pid, &status, 0);
-		if (ft_handle_child_exit(status, tempfile)
-			|| ft_handle_child_signal(status, tempfile))
+
+		// Restore the original SIGINT handler
+		if (sigaction(SIGINT, &sa_old, NULL) == -1)
+		{
+			perror("sigaction restore failed");
+			ft_free(tempfile);
 			return (ERROR);
+		}
+
+		// Handle child exit or signal
+		if (ft_handle_child_exit(status, tempfile) || ft_handle_child_signal(status, tempfile))
+			return (ERROR);
+
+		// Process the heredoc delimiter and update tokens
 		ft_process_delimiter(current, current->next, tempfile);
 		ft_add_temp_file(shell, tempfile);
 	}
 	return (SUCCESS);
 }
 
-void	ft_process_heredocs(t_shell *shell)
+t_status ft_process_heredocs(t_shell *shell)
 {
-	t_token	*current;
-	int		saved_stdin;
+	t_token *current;
+	int saved_stdin;
 
 	saved_stdin = dup(STDIN_FILENO);
+	if (saved_stdin == -1)
+		return (ERROR);
 	current = shell->tokens;
 	while (current)
 	{
@@ -99,13 +138,14 @@ void	ft_process_heredocs(t_shell *shell)
 			{
 				dup2(saved_stdin, STDIN_FILENO);
 				close(saved_stdin);
-				return ;
+				return (ERROR);
 			}
 		}
 		current = current->next;
 	}
 	dup2(saved_stdin, STDIN_FILENO);
 	close(saved_stdin);
+	return (SUCCESS);
 }
 
 static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
@@ -130,10 +170,10 @@ static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
 	exit(EXIT_SUCCESS);
 }
 
-void	ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted, int fd)
+void ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted, int fd)
 {
-	char	*line;
-	char	*expanded_line;
+	char *line;
+	char *expanded_line;
 
 	while (1)
 	{
@@ -142,13 +182,14 @@ void	ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted, int fd)
 		{
 			ft_printf(STDERR_FILENO, ERR_EOF_HEREDOC, delimiter);
 			ft_cleanup_w_env(shell);
-			break ;
+			close(fd);
 		}
 		if (ft_strcmp(line, delimiter) == 0)
 		{
 			ft_cleanup_w_env(shell);
 			ft_free(line);
-			break ;
+			close(fd);
+			exit(EXIT_SUCCESS);
 		}
 		expanded_line = line;
 		if (!quoted)

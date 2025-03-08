@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 11:26:32 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 11:39:40 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ void			ft_apply_redirection(t_shell *shell, t_redirect *redirect);
 /* 630_redirects/exec_redirection_utils.c */
 void			ft_create_redirection_list(t_shell *shell);
 /* 630_redirects/exec_heredoc.c */
-void			ft_process_heredocs(t_shell *shell);
+t_status		ft_process_heredocs(t_shell *shell);
 
 //============================================================================//
 //                               BUILT-IN COMMANDS                            //
