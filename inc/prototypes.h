@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 11:39:40 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 13:59:43 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,8 +167,31 @@ void			ft_handle_redirections(t_shell *shell);
 void			ft_apply_redirection(t_shell *shell, t_redirect *redirect);
 /* 630_redirects/exec_redirection_utils.c */
 void			ft_create_redirection_list(t_shell *shell);
-/* 630_redirects/exec_heredoc.c */
+
+//============================================================================//
+//                         EXECUTION - HEREDOC                           //
+//============================================================================//
+/* 650_heredoc/heredoc_syntax.c */
+t_status		ft_check_heredoc_syntax(t_token *token);
+t_status		ft_handle_child_exit(int status, char *tempfile);
+t_status		ft_handle_child_signal(int status, char *tempfile);
 t_status		ft_process_heredocs(t_shell *shell);
+
+/* 650_heredoc/heredoc_input.c */
+t_status		ft_handle_single_heredoc(t_shell *shell, t_token *current);
+
+/* 650_heredoc/heredoc_input_2.c */
+void			ft_read_heredoc_input(t_shell *shell, char *delimiter,
+					int quoted, int fd);
+
+/* 650_heredoc/heredoc_utils.c */
+char			*ft_expanded_line(t_shell *shell, char *line);
+void			ft_process_delimiter(t_token *current, t_token *delim,
+					char *tempfile);
+
+/* 650_heredoc/heredoc_tempfile.c */
+t_status		ft_create_temp_file(t_shell *shell, char **tempfile);
+void			ft_add_temp_file(t_shell *shell, char *tempfile);
 
 //============================================================================//
 //                               BUILT-IN COMMANDS                            //

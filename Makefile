@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
+#    By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/03/06 16:28:43 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/03/08 14:01:06 by meferraz         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,13 +102,17 @@ SRCS = \
        ${SRC_PATH}/611_builtins_utils/cd_and_pwd_utils.c \
        ${SRC_PATH}/620_execve/execve.c \
        ${SRC_PATH}/620_execve/execve_utils.c \
-       ${SRC_PATH}/630_redirects/exec_heredoc.c \
        ${SRC_PATH}/630_redirects/exec_redirection.c \
        ${SRC_PATH}/630_redirects/exec_redirection_utils.c \
 	   ${SRC_PATH}/640_pipes/exec_pipes_child.c \
 	   ${SRC_PATH}/640_pipes/exec_pipes_utils.c \
 	   ${SRC_PATH}/640_pipes/exec_pipes.c \
 	   ${SRC_PATH}/640_pipes/exec_pipes_utils_2.c \
+	   ${SRC_PATH}/650_heredoc/heredoc_syntax.c \
+	   ${SRC_PATH}/650_heredoc/heredoc_utils.c \
+	   ${SRC_PATH}/650_heredoc/heredoc_input.c \
+	   ${SRC_PATH}/650_heredoc/heredoc_input_2.c \
+	   ${SRC_PATH}/650_heredoc/heredoc_tempfile.c \
        ${SRC_PATH}/700_utils_other/variable_utils.c \
        ${SRC_PATH}/700_utils_other/variable_utils_2.c \
        ${SRC_PATH}/700_utils_other/check_type_functions.c \
