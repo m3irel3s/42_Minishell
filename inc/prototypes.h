@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/07 16:10:10 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/08 11:26:32 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ void			ft_execute_child(t_shell *sh, t_token *curr_cmd,
 //============================================================================//
 /* 630_redirects/exec_redirection.c */
 void			ft_handle_redirections(t_shell *shell);
+void			ft_apply_redirection(t_shell *shell, t_redirect *redirect);
 /* 630_redirects/exec_redirection_utils.c */
 void			ft_create_redirection_list(t_shell *shell);
 /* 630_redirects/exec_heredoc.c */

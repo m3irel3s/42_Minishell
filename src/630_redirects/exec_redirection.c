@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   exec_redirection.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:45:07 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/06 15:11:57 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/08 11:26:09 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-static void	ft_apply_redirection(t_shell *shell, t_redirect *redirect);
 static void	ft_redirect_in(t_redirect *redirect);
 static void	ft_redirect_out(t_redirect *redirect);
 static void	ft_redirect_append(t_redirect *redirect);
@@ -68,7 +67,7 @@ void	ft_handle_redirections(t_shell *shell)
  * @param redirect A pointer to the redirection structure containing the
  *                 redirection to be applied.
  */
-static void	ft_apply_redirection(t_shell *shell, t_redirect *redirect)
+void	ft_apply_redirection(t_shell *shell, t_redirect *redirect)
 {
 	(void)shell;
 	if (redirect->type == REDIRECT_IN)
@@ -101,7 +100,8 @@ static void	ft_redirect_in(t_redirect *redirect)
 		ft_printf(STDERR_FILENO, ERR_REDIR_NO_FILE, redirect->filename);
 		return ;
 	}
-	dup2(fd, STDIN_FILENO);
+	if (dup2(fd, STDIN_FILENO) == -1)
+		ft_print_error(ERR_DUP2_FAIL);
 	close(fd);
 }
 
@@ -128,7 +128,8 @@ static void	ft_redirect_out(t_redirect *redirect)
 		ft_printf(STDERR_FILENO, ERR_REDIR_NO_FILE, redirect->filename);
 		return ;
 	}
-	dup2(fd, STDOUT_FILENO);
+	if (dup2(fd, STDOUT_FILENO) == -1)
+		ft_print_error(ERR_DUP2_FAIL);
 	close(fd);
 }
 
@@ -156,6 +157,7 @@ static void	ft_redirect_append(t_redirect *redirect)
 		ft_printf(STDERR_FILENO, ERR_REDIR_NO_FILE, redirect->filename);
 		return ;
 	}
-	dup2(fd, STDOUT_FILENO);
+	if (dup2(fd, STDOUT_FILENO) == -1)
+		ft_print_error(ERR_DUP2_FAIL);
 	close(fd);
 }
