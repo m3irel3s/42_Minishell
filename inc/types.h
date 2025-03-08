@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:15:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 22:47:19 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 23:19:05 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,6 @@ typedef struct s_g
 {
 	int		g_exit_status;
 	int		g_original_stdout;
-	int		g_original_stdin;
-	int		g_original_stderr;
 }	t_g;
 
 //============================================================================//

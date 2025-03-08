@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 09:56:30 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/08 22:51:24 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 23:23:38 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ t_status	ft_set_up_signals(void)
 static void	ft_handle_sigint(int sig)
 {
 	(void)sig;
-	write(g.g_original_stdout, "\n", 1);
+	dup2(g.g_original_stdout, STDOUT_FILENO);
+	write(STDOUT_FILENO, "\n", 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();

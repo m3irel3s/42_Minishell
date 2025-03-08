@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:59:06 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/08 22:47:41 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 23:18:52 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,5 @@ static void	ft_init_global_struct(void)
  */
 static void	ft_save_original_fds(void)
 {
-	g.g_original_stdin = dup(STDIN_FILENO);
 	g.g_original_stdout = dup(STDOUT_FILENO);
-	g.g_original_stderr = dup(STDERR_FILENO);
 }

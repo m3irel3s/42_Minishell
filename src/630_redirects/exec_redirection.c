@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:45:07 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/08 22:51:56 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 23:15:35 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,11 @@ static void	ft_redirect_append(t_redirect *redirect);
 void	ft_handle_redirections(t_shell *shell)
 {
 	t_redirect	*redirect;
+	int			saved_stdin;
+	int			saved_stdout;
 
+	saved_stdin = dup(STDIN_FILENO);
+	saved_stdout = dup(STDOUT_FILENO);
 	redirect = shell->redirects;
 	while (redirect)
 	{
@@ -40,10 +44,12 @@ void	ft_handle_redirections(t_shell *shell)
 	}
 	shell->redirected_stdin = dup(STDIN_FILENO);
 	shell->redirected_stdout = dup(STDOUT_FILENO);
-	if (dup2(g.g_original_stdin, STDIN_FILENO) == -1)
+	if (dup2(saved_stdin, STDIN_FILENO) == -1)
 		ft_print_error(ERR_DUP2_FAIL);
-	if (dup2(g.g_original_stdout, STDOUT_FILENO) == -1)
+	if (dup2(saved_stdout, STDOUT_FILENO) == -1)
 		ft_print_error(ERR_DUP2_FAIL);
+	close(saved_stdin);
+	close(saved_stdout);
 }
 
 /**
