@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/08 12:24:13 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:27:07 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,7 @@ t_status	ft_check_heredoc_syntax(t_token *current)
 {
 	if (!current->next || (current->next->type != WORD
 			&& !current->next->quoted))
-	{
-		ft_print_syntax_error("newline");
-		g_exit_status = EXIT_FAILURE;
-		return (ERROR);
-	}
+		return (ft_print_syntax_error("newline"), ERROR);
 	return (SUCCESS);
 }
 
@@ -112,14 +108,16 @@ t_status	ft_process_heredocs(t_shell *shell)
 		{
 			if (ft_handle_single_heredoc(shell, current) == ERROR)
 			{
-				dup2(saved_stdin, STDIN_FILENO);
+				if (dup2(saved_stdin, STDIN_FILENO) == -1)
+					ft_print_error(ERR_DUP2_FAIL);
 				close(saved_stdin);
 				return (ERROR);
 			}
 		}
 		current = current->next;
 	}
-	dup2(saved_stdin, STDIN_FILENO);
+	if (dup2(saved_stdin, STDIN_FILENO) == -1)
+		ft_print_error(ERR_DUP2_FAIL);
 	close(saved_stdin);
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:15:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/08 14:03:29 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:23:38 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,7 @@ static t_status	ft_setup_sigint_ignore(struct sigaction *sa_ignore,
 	sigemptyset(&sa_ignore->sa_mask);
 	sa_ignore->sa_flags = 0;
 	if (sigaction(SIGINT, sa_ignore, sa_old) == -1)
-	{
-		perror("sigaction failed");
-		g_exit_status = EXIT_FAILURE;
-		return (ERROR);
-	}
+		return (ft_print_error("sigaction failed"), ERROR);
 	return (SUCCESS);
 }
 
@@ -100,12 +96,7 @@ static t_status	ft_fork_heredoc(pid_t *pid, t_shell *shell,
 {
 	*pid = fork();
 	if (*pid == -1)
-	{
-		perror(ERR_FORK_FAIL);
-		ft_free(tempfile);
-		g_exit_status = EXIT_FAILURE;
-		return (ERROR);
-	}
+		return (ft_print_error(ERR_FORK_FAIL), ft_free(tempfile), ERROR);
 	else if (*pid == 0)
 		ft_child_heredoc(shell, delim, tempfile);
 	return (SUCCESS);
@@ -134,9 +125,8 @@ static t_status	ft_handle_heredoc_parent(pid_t pid, char *tempfile,
 	waitpid(pid, &status, 0);
 	if (sigaction(SIGINT, &sa_old, NULL) == -1)
 	{
-		perror("sigaction restore failed");
+		ft_print_error("sigaction restore failed");
 		ft_free(tempfile);
-		g_exit_status = EXIT_FAILURE;
 		return (ERROR);
 	}
 	if (ft_handle_child_exit(status, tempfile) == ERROR
@@ -173,11 +163,12 @@ static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
 	fd = open(tempfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 	{
-		perror(ERR_OPEN_FAIL);
+		ft_print_error(ERR_OPEN_FAIL);
 		ft_free(tempfile);
-		exit(EXIT_FAILURE);
+		exit(g_exit_status);
 	}
 	ft_read_heredoc_input(shell, delim->val.value, delim->quoted, fd);
 	close(fd);
-	exit(EXIT_SUCCESS);
+	g_exit_status = EXIT_SUCCESS;
+	exit(g_exit_status);
 }
