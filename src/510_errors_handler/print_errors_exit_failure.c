@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_errors_exit_failure.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:27:21 by meferraz          #+#    #+#             */
-/*   Updated: 2025/02/27 14:58:42 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/08 15:13:17 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ t_status	ft_print_error(char *error_msg)
  * @param exit_status The custom exit status to set in the shell.
  * @return Always returns ERROR, indicating that an error occurred.
  */
-
 t_status	ft_print_error_custom_status(char *error_msg,
 	int exit_status)
 {
@@ -48,6 +47,19 @@ t_status	ft_print_error_custom_status(char *error_msg,
 	return (ERROR);
 }
 
+/**
+ * @brief Prints an error message when a syntax error is encountered in the
+ * input string, and sets the shell's exit status to EXIT_FAILURE.
+ *
+ * This function prints an error message to the standard error stream when a
+ * syntax error is encountered while parsing the input string. The error
+ * message is constructed by formatting the ERR_SYNTAX_UNEXPECTED_TOKEN
+ * message with the token that caused the error. The shell's exit status is
+ * set to EXIT_FAILURE after printing the error message.
+ *
+ * @param token The token that caused the syntax error.
+ * @return Always returns ERROR, indicating that an error occurred.
+ */
 t_status	ft_print_syntax_error(char *token)
 {
 	if (!token)
@@ -57,11 +69,36 @@ t_status	ft_print_syntax_error(char *token)
 	return (ERROR);
 }
 
+/**
+ * @brief Prints an error message to the standard error stream and sets the
+ * shell's exit status to EXIT_FAILURE when an unmatched quote is encountered
+ * in the input string.
+ *
+ * This function is used when a syntax error is encountered while parsing the
+ * input string, and no matching quote is found for a quoted string. The error
+ * message is constructed by formatting the ERR_SYNTAX_UNCLOSED_QUOTE message
+ * with the line number where the error occurred. The shell's exit status is
+ * set to EXIT_FAILURE after printing the error message.
+ *
+ * @return Always returns ERROR, indicating that an error occurred.
+ */
 t_status	ft_print_unmatched_quote_error(void)
 {
 	return (ft_print_error(ERR_SYNTAX_UNCLOSED_QUOTE));
 }
 
+/**
+ * @brief Prints an error message when a redirection is encountered at the end
+ * of the input string, and sets the shell's exit status to EXIT_FAILURE.
+ *
+ * This function prints an error message to the standard error stream when a
+ * redirection is encountered at the end of the input string, and sets the
+ * shell's exit status to EXIT_FAILURE. The error message is constructed by
+ * formatting the ERR_SYNTAX_EOF_REDIR message. The shell's exit status is set
+ * to EXIT_FAILURE after printing the error message.
+ *
+ * @return Always returns ERROR, indicating that an error occurred.
+ */
 t_status	ft_print_redirect_no_file_error(void)
 {
 	return (ft_print_error(ERR_SYNTAX_EOF_REDIR));
