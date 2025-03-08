@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/07 16:10:56 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:39:04 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,4 +149,5 @@
     end-of-file (wanted `%s\')\n"
 # define ERR_TEMP_FILE "minishell: could not create temp file\n"
 
+# define ERR_COPY_TOKENS "minishell: failed to copy tokens for child process\n"
 #endif

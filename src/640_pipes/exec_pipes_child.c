@@ -6,36 +6,50 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:00:00 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 14:05:35 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:43:25 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
+static void		ft_handle_redirects(t_shell *shell);
 static void		ft_setup_child_redirects(int i, t_pipe *pipes, int num_pipes);
 static t_token	*ft_copy_tokens(t_token *start, t_token *end);
 static t_token	*ft_prepare_child_tokens(t_token *curr_cmd);
 
-void	ft_execute_child(t_shell *sh, t_token *curr_cmd, int i, t_pipe *pipes)
+/**
+ * @brief Executes a command within a child process in a pipeline.
+ *
+ * @details
+ * This function sets up necessary redirections for the child process,
+ * prepares a copy of the command tokens, applies any defined redirections,
+ * and executes the command. It also closes and frees resources related to pipes
+ * and cleans up the shell's environment before exiting the child process.
+ *
+ * @param [in] sh The shell structure containing the current shell state.
+ * @param [in] curr_cmd The current command token to be executed.
+ * @param [in] i The index of the current command in the pipeline.
+ * @param [in] pipes The pipes structure containing file descriptors for
+ * communication.
+ */
+void	ft_execute_child(t_shell *sh, t_token *curr_cmd, int i,
+		t_pipe *pipes)
 {
 	t_token		*cmd_copy;
 	int			num_pipes;
-	t_redirect	*redirect;
 
 	num_pipes = ft_count_pipes(sh->tokens);
 	ft_setup_child_redirects(i, pipes, num_pipes);
 	cmd_copy = ft_prepare_child_tokens(curr_cmd);
 	if (!cmd_copy)
-		exit(EXIT_FAILURE);
+	{
+		ft_print_error(ERR_COPY_TOKENS);
+		exit(g_exit_status);
+	}
 	ft_cleanup_tokens(sh);
 	sh->tokens = cmd_copy;
 	ft_create_redirection_list(sh);
-	redirect = sh->redirects;
-	while (redirect)
-	{
-		ft_apply_redirection(sh, redirect);
-		redirect = redirect->next;
-	}
+	ft_handle_redirects(sh);
 	ft_close_child_pipes(pipes, num_pipes);
 	ft_free(pipes);
 	ft_execute_command(sh, ft_get_cmd_type(sh->tokens->val.value));
@@ -43,6 +57,44 @@ void	ft_execute_child(t_shell *sh, t_token *curr_cmd, int i, t_pipe *pipes)
 	exit(g_exit_status);
 }
 
+/**
+ * @brief Applies all redirections for the current shell command.
+ *
+ * Iterates through the shell's redirection list and applies each
+ * redirection using the appropriate redirection function.
+ *
+ * @param shell A pointer to the shell structure containing the
+ *              redirection list.
+ */
+static void	ft_handle_redirects(t_shell *shell)
+{
+	t_redirect	*redirect;
+
+	redirect = shell->redirects;
+	while (redirect)
+	{
+		ft_apply_redirection(shell, redirect);
+		redirect = redirect->next;
+	}
+}
+
+/**
+ * @brief Sets up redirections for the current child process in a pipeline.
+ *
+ * @details
+ * This function takes the index of the current command in the pipeline,
+ * the pipes structure containing file descriptors for communication,
+ * and the number of pipes in the pipeline. It sets up the necessary
+ * redirections for the child process by duplicating the read and write
+ * file descriptors of the pipes into the standard input and output
+ * file descriptors of the child process. If a failure occurs during
+ * the duplication, an error message is printed.
+ *
+ * @param [in] i The index of the current command in the pipeline.
+ * @param [in] pipes The pipes structure containing file descriptors for
+ * communication.
+ * @param [in] num_pipes The number of pipes in the pipeline.
+ */
 static void	ft_setup_child_redirects(int i, t_pipe *pipes, int num_pipes)
 {
 	if (i > 0)
@@ -53,6 +105,18 @@ static void	ft_setup_child_redirects(int i, t_pipe *pipes, int num_pipes)
 			ft_print_error(ERR_DUP2_FAIL);
 }
 
+/**
+ * @brief Creates a copy of the tokens of the current command for the child
+ * process.
+ *
+ * @details
+ * This function takes a pointer to the current command token and copies all
+ * the tokens up to the next pipe token. The copied tokens are returned as a
+ * linked list.
+ *
+ * @param [in] curr_cmd A pointer to the current command token.
+ * @return A pointer to the head of the copied token linked list.
+ */
 static t_token	*ft_prepare_child_tokens(t_token *curr_cmd)
 {
 	t_token	*cmd_end;
@@ -65,6 +129,19 @@ static t_token	*ft_prepare_child_tokens(t_token *curr_cmd)
 	return (cmd_copy);
 }
 
+/**
+ * @brief Creates a copy of a range of tokens in a linked list.
+ *
+ * @details
+ * This function takes two pointers to tokens, @p start and @p end, and
+ * creates a new linked list containing all the tokens from @p start up
+ * to but not including @p end. The new linked list is then returned.
+ *
+ * @param [in] start A pointer to the first token of the range.
+ * @param [in] end A pointer to the token after the last token of the range.
+ * @return A pointer to the head of the new linked list or NULL if
+ * allocation fails.
+ */
 static t_token	*ft_copy_tokens(t_token *start, t_token *end)
 {
 	t_token	*new_list;

@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:00:00 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/05 13:31:52 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:35:34 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+/**
+ * @brief Allocates and creates pipes for the given tokens.
+ *
+ * This function counts the number of pipe tokens in the linked list,
+ * allocates memory for the pipes, and initializes them by creating
+ * the necessary file descriptors.
+ *
+ * @param tokens The head of the linked list of tokens.
+ * @return A pointer to the array of pipes or NULL if allocation fails
+ *         or if a pipe could not be created.
+ */
 
 t_pipe	*ft_allocate_and_create_pipes(t_token *tokens)
 {
@@ -39,6 +51,12 @@ t_pipe	*ft_allocate_and_create_pipes(t_token *tokens)
 	return (pipes);
 }
 
+/**
+ * @brief Counts the number of pipes in the linked list of tokens.
+ *
+ * @param tokens The head of the linked list of tokens.
+ * @return The number of pipes in the linked list.
+ */
 int	ft_count_pipes(t_token *tokens)
 {
 	int	counter;
