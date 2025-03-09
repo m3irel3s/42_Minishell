@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 09:56:30 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/09 22:16:19 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/09 22:36:25 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ t_status	ft_set_up_signals(void)
 
 	sa_int.sa_handler = ft_handle_sigint;
 	sigemptyset(&sa_int.sa_mask);
-	sa_int.sa_flags = 0;
+	sa_int.sa_flags = SA_RESTART;
 	if (sigaction(SIGINT, &sa_int, NULL) == -1)
 		return (ft_print_error(ERR_SIGNAL_SETUP_INT), ERROR);
 	sa_quit.sa_handler = SIG_IGN;
 	sigemptyset(&sa_quit.sa_mask);
-	sa_quit.sa_flags = 0;
+	sa_quit.sa_flags = SA_RESTART;
 	if (sigaction(SIGQUIT, &sa_quit, NULL) == -1)
 		return (ft_print_error(ERR_SIGNAL_SETUP_QUIT), ERROR);
 	return (SUCCESS);
