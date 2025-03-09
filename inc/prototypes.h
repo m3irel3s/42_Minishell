@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 15:38:16 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/09 21:45:36 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ char			*ft_shorten_path(char *path);
 //============================================================================//
 /* 400_signals/signals.c */
 t_status		ft_set_up_signals(void);
+t_status		ft_setup_sigint_ignore(struct sigaction *sa_ignore,
+					struct sigaction *sa_old);
 
 //============================================================================//
 //                                  PARSING                                   //

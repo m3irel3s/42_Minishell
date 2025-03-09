@@ -6,14 +6,12 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:15:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/08 22:46:37 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/09 21:48:56 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-static t_status	ft_setup_sigint_ignore(struct sigaction *sa_ignore,
-					struct sigaction *sa_old);
 static t_status	ft_fork_heredoc(pid_t *pid, t_shell *shell, t_token *delim,
 					char *tempfile);
 static t_status	ft_handle_heredoc_parent(pid_t pid, char *tempfile,
@@ -53,27 +51,6 @@ t_status	ft_handle_single_heredoc(t_shell *shell, t_token *current)
 		return (ERROR);
 	}
 	return (ft_handle_heredoc_parent(pid, tempfile, shell, current));
-}
-
-/**
- * @brief Set up SIGINT to be ignored in parent.
- *
- * This function configures a sigaction structure to ignore SIGINT signals,
- * saves the old action for SIGINT, and sets the new action.
- *
- * @param sa_ignore Structure to hold the new action.
- * @param sa_old Structure to hold the old action.
- * @return SUCCESS if the sigaction call was successful, ERROR otherwise.
- */
-static t_status	ft_setup_sigint_ignore(struct sigaction *sa_ignore,
-		struct sigaction *sa_old)
-{
-	sa_ignore->sa_handler = SIG_IGN;
-	sigemptyset(&sa_ignore->sa_mask);
-	sa_ignore->sa_flags = 0;
-	if (sigaction(SIGINT, sa_ignore, sa_old) == -1)
-		return (ft_print_error("sigaction failed"), ERROR);
-	return (SUCCESS);
 }
 
 /**

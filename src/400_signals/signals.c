@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 09:56:30 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/08 23:23:38 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/09 22:16:19 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,30 @@ t_status	ft_set_up_signals(void)
 static void	ft_handle_sigint(int sig)
 {
 	(void)sig;
-	dup2(g.g_original_stdout, STDOUT_FILENO);
-	write(STDOUT_FILENO, "\n", 1);
+	write(g.g_original_stdout, "\n", 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
 	g.g_exit_status = EXIT_SIGINT;
+}
+
+/**
+ * @brief Set up SIGINT to be ignored in parent.
+ *
+ * This function configures a sigaction structure to ignore SIGINT signals,
+ * saves the old action for SIGINT, and sets the new action.
+ *
+ * @param sa_ignore Structure to hold the new action.
+ * @param sa_old Structure to hold the old action.
+ * @return SUCCESS if the sigaction call was successful, ERROR otherwise.
+ */
+t_status	ft_setup_sigint_ignore(struct sigaction *sa_ignore,
+	struct sigaction *sa_old)
+{
+	sa_ignore->sa_handler = SIG_IGN;
+	sigemptyset(&sa_ignore->sa_mask);
+	sa_ignore->sa_flags = 0;
+	if (sigaction(SIGINT, sa_ignore, sa_old) == -1)
+		return (ft_print_error("sigaction failed"), ERROR);
+	return (SUCCESS);
 }

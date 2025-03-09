@@ -6,15 +6,16 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:34:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 22:46:37 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/09 22:20:27 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-static void		ft_cleanup_cmd_execution(char *path, char **arr);
-static t_status	ft_exec_child(t_shell *shell, char *path, char **arr);
-static void		ft_handle_child_process(t_shell *shell, char *path, char **arr);
+static void	ft_cleanup_cmd_execution(char *path, char **arr);
+static void	ft_exec_child(t_shell *shell, char *path, char **arr);
+static void	ft_exec_parent(t_shell *shell, pid_t pid, int status, struct sigaction old_sa);
+static void	ft_handle_child_process(t_shell *shell, char *path, char **arr);
 
 /**
  * @brief Executes a command in a child process.
@@ -57,39 +58,42 @@ void	ft_execute_cmd(t_shell *shell, char *cmd)
 }
 
 /**
- * @brief Handles the child process after forking to execute a command.
+ * @brief Forks a new process and executes a command in it.
  *
- * Checks the return value of the fork call and handles the child process
- * execution accordingly. If the fork fails, it prints an error message,
- * cleans up the command execution resources and returns. If the fork is
- * successful, it executes the command in the child process if it's the
- * child process, or waits for the child process to finish and handles its
- * exit status if it's the parent process.
+ * @details
+ * This function takes a command path and an array of arguments and forks a new
+ * process to execute the command. It sets up the SIGINT signal handler so that
+ * any SIGINT signals are ignored while the child is executing. It executes the
+ * command in the child process and waits for it to finish in the parent
+ * process. It then cleans up the child process and resets the SIGINT signal
+ * handler.
  *
- * @param shell The shell structure.
- * @param path The path to the command to execute.
- * @param arr The array of arguments to pass to the command.
+ * @param [in] shell The shell structure to execute the command in.
+ * @param [in] path The path to the command to execute.
+ * @param [in] arr The array of arguments to pass to the command.
  */
 static void	ft_handle_child_process(t_shell *shell, char *path, char **arr)
 {
-	pid_t	pid;
-	int		status;
+	pid_t				pid;
+	int					status;
+	struct sigaction	old_sa;
+	struct sigaction	ignore_sa;
 
+	status = 0;
+	if (ft_setup_sigint_ignore(&ignore_sa, &old_sa) == ERROR)
+		return ;
 	pid = fork();
 	if (pid == -1)
 	{
 		ft_print_error(ERR_FORK_FAIL);
 		ft_cleanup_cmd_execution(path, arr);
+		sigaction(SIGINT, &old_sa, NULL);
 		return ;
 	}
 	if (pid == 0)
 		ft_exec_child(shell, path, arr);
 	else
-	{
-		waitpid(pid, &status, 0);
-		if (WIFEXITED(status))
-			g.g_exit_status = WEXITSTATUS(status);
-	}
+		ft_exec_parent(shell, pid, status, old_sa);
 }
 
 /**
@@ -112,18 +116,23 @@ static void	ft_cleanup_cmd_execution(char *path, char **arr)
  * @brief Executes a command in a child process.
  *
  * @details
- * This function forks a new process and executes the given command in it.
- * If the execve fails, it prints an error message, cleans up the command
- * execution, cleans up the shell, and exits with EXIT_FAILURE.
+ * This function is called after a fork and executes the given command in the
+ * child process. If the execve call fails, it prints an error message and
+ * exits with the exit status set to EXIT_CMD_NOT_FOUND.
  *
  * @param [in] shell The shell structure to execute the command in.
  * @param [in] path The path to the command to execute.
- * @param [in] arr The array of arguments to pass to the command.
- *
- * @return The status of the command execution.
+ * @param [in] arr The array of arguments to the command.
  */
-static t_status	ft_exec_child(t_shell *shell, char *path, char **arr)
+static void	ft_exec_child(t_shell *shell, char *path, char **arr)
 {
+	struct sigaction	sa;
+
+	sa.sa_handler = SIG_DFL;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = 0;
+	sigaction(SIGINT, &sa, NULL);
+	sigaction(SIGQUIT, &sa, NULL);
 	if (execve(path, arr, shell->env_cpy) == -1)
 	{
 		ft_print_error_w_arg(ERR_CMD_NOT_FOUND, shell->tokens->val.value,
@@ -134,5 +143,33 @@ static t_status	ft_exec_child(t_shell *shell, char *path, char **arr)
 			ft_free_arr(shell->env_cpy);
 		exit(g.g_exit_status);
 	}
-	return (SUCCESS);
+}
+
+/**
+ * @brief Handles the parent process after forking for command execution.
+ *
+ * This function waits for the child process to finish and handles its
+ * exit status and signals. If the child process was interrupted by a
+ * signal, it prints a new line and sets the shell's exit status to
+ * EXIT_FAILURE. Otherwise, it sets the shell's exit status to the
+ * child process's exit status.
+ *
+ * @param pid The process ID of the forked child process.
+ * @param status The exit status of the child process.
+ * @param old_sa The original SIGINT handler to restore.
+ */
+static void	ft_exec_parent(t_shell *shell, pid_t pid, int status, struct sigaction old_sa)
+{
+	waitpid(pid, &status, 0);
+	sigaction(SIGINT, &old_sa, NULL);
+	if (WIFSIGNALED(status) && WTERMSIG(status) == SIGINT)
+	{
+		if (dup2(g.g_original_stdout, STDOUT_FILENO) == -1)
+			ft_print_error(ERR_DUP2_FAIL);
+		write(STDOUT_FILENO, "\n", 1);
+		ft_cleanup(shell);
+		g.g_exit_status = EXIT_SIGINT;
+	}
+	if (WIFEXITED(status))
+		g.g_exit_status = WEXITSTATUS(status);
 }
