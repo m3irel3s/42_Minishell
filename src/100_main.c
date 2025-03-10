@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   100_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 22:46:37 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/10 10:47:38 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static void	ft_process_input(t_shell *shell);
  *
  * Returns:
  * An exit status that is used to determine the exit status of the program.
+ // signal(SIGPIPE, SIG_IGN);
  */
 int	main(int argc, char **argv, char **envp)
 {
@@ -43,7 +44,6 @@ int	main(int argc, char **argv, char **envp)
 	if (ft_init_shell(&shell, envp) == ERROR)
 		return (ft_print_error(ERR_SHELL_INIT_FAIL), g.g_exit_status);
 	ft_update_env(&shell);
-	// signal(SIGPIPE, SIG_IGN);
 	while (1)
 	{
 		if (ft_set_up_signals() == ERROR)

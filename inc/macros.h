@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/09 22:01:56 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/10 10:35:08 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 //============================================================================//
 # define ERR_CMD_NOT_FOUND         "minishell: %s: command not found\n"
 # define ERR_DUP2_FAIL             "minishell: Failed to redirect file \
-									descriptor\n"
+descriptor\n"
 # define ERR_FORK_FAIL             "minishell: fork failed\n"
 # define ERR_INVALID_PARAMS        "minishell: Invalid parameters\n"
 # define ERR_INVALID_SHELL_OR_INPUT "minishell: Invalid shell or input\n"
@@ -43,30 +43,30 @@
 //                            ERROR MESSAGES - BUILTINS                       //
 //============================================================================//
 # define ERR_CD_FAIL               "minishell: cd: %s: \
-									No such file or directory\n"
+No such file or directory\n"
 # define ERR_EXPORT_INVALID_IDENTIFIER "export: %s: not a valid identifier\n"
 # define ERR_HOME_NOT_SET          "minishell: cd: HOME not set\n"
 # define ERR_OLDPWD_NOT_SET        "minishell: cd: OLDPWD not set\n"
 # define ERR_EXIT_NUM_REQ          "minishell: exit: %s: \
-									numeric argument required\n"
+numeric argument required\n"
 # define ERR_EXIT_TOO_MANY_ARGS    "minishell: exit: too many arguments\n"
 
 //============================================================================//
 //                            ERROR MESSAGES - INITIALIZATION                 //
 //============================================================================//
 # define ERR_ENV_DUP_FAIL          "minishell: Failed to duplicate \
-									environment\n"
+environment\n"
 # define ERR_GET_CWD_FAIL          "minishell: Failed to get current working \
-									directory\n"
+directory\n"
 # define ERR_SHELL_INIT_FAIL       "minishell: Failed to initialize shell\n"
 
 //============================================================================//
 //                            ERROR MESSAGES - MEMORY & SAFE FUNCTIONS        //
 //============================================================================//
 # define ERR_INVALID_ALLOC_SIZE    "minishell: Error: Invalid allocation \
-									size <= 0.\n"
+size <= 0.\n"
 # define ERR_MALLOC_FAIL           "minishell: fatal error: memory allocation \
-									failed\n"
+failed\n"
 # define ERR_STRDUP_FAIL           "minishell: Failed to duplicate string\n"
 # define ERR_STRJOIN_FAIL          "minishell: String join operation failed\n"
 # define ERR_SUBSTR_FAIL           "minishell: Substring creation failed\n"
@@ -80,21 +80,21 @@
 //                            ERROR MESSAGES - SIGNALS                        //
 //============================================================================//
 # define ERR_SIGNAL_SETUP_FAIL     "minishell: Failed to set up signal \
-									handlers\n"
+handlers\n"
 # define ERR_SIGNAL_SETUP_INT      "minishell: Error setting up SIGINT \
-									handler\n"
+handler\n"
 # define ERR_SIGNAL_SETUP_QUIT     "minishell: Error setting up SIGQUIT \
-									handler\n"
+handler\n"
 
 //============================================================================//
 //                            ERROR MESSAGES - SYNTAX                         //
 //============================================================================//
 # define ERR_SYNTAX_EOF_REDIR      "minishell: syntax error: redirection at \
-									end of input\n"
+end of input\n"
 # define ERR_SYNTAX_UNCLOSED_QUOTE "minishell: syntax error: unmatched quotes \
-									detected\n"
+detected\n"
 # define ERR_SYNTAX_UNEXPECTED_TOKEN "minishell: syntax error near unexpected \
-									token `%s'\n"
+token `%s'\n"
 
 //============================================================================//
 //                            ERROR MESSAGES - REDIRECTIONS                   //
@@ -105,7 +105,7 @@
 //                            ERROR MESSAGES - HEREDOC                        //
 //============================================================================//
 # define ERR_EOF_HEREDOC           "minishell: warning: here-document delimited \
-									by end-of-file (wanted `%s')\n"
+by end-of-file (wanted `%s')\n"
 # define ERR_PIPE_FAIL             "minishell: error creating heredoc pipe\n"
 # define ERR_TEMP_FILE             "minishell: could not create temp file\n"
 
@@ -113,7 +113,7 @@
 //                            ERROR MESSAGES - TOKENIZATION                   //
 //============================================================================//
 # define ERR_COPY_TOKENS           "minishell: failed to copy tokens for child \
-									process\n"
+process\n"
 # define ERR_NULL_TOKEN_VALUE      "minishell: Error: Null token value\n"
 # define ERR_TOKEN_CREATION_FAIL   "minishell: Failed to create token\n"
 # define ERR_TOKENIZATION_FAIL     "minishell: Failed to tokenize input\n"

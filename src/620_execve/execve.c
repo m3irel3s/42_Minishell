@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:34:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/09 22:39:28 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/10 10:46:59 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static void	ft_cleanup_cmd_execution(char *path, char **arr);
 static void	ft_exec_child(t_shell *shell, char *path, char **arr);
-static void	ft_exec_parent(t_shell *shell, pid_t pid, int status, struct sigaction old_sa);
+static void	ft_exec_parent(t_shell *shell, pid_t pid, int status,
+				struct sigaction old_sa);
 static void	ft_handle_child_process(t_shell *shell, char *path, char **arr);
 
 /**
@@ -158,7 +159,8 @@ static void	ft_exec_child(t_shell *shell, char *path, char **arr)
  * @param status The exit status of the child process.
  * @param old_sa The original SIGINT handler to restore.
  */
-static void	ft_exec_parent(t_shell *shell, pid_t pid, int status, struct sigaction old_sa)
+static void	ft_exec_parent(t_shell *shell, pid_t pid, int status,
+						struct sigaction old_sa)
 {
 	waitpid(pid, &status, 0);
 	sigaction(SIGINT, &old_sa, NULL);
