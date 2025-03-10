@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:15:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/09 21:48:56 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/10 16:19:11 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
 	sigaction(SIGINT, &sa, NULL);
-	sigaction(SIGQUIT, &sa, NULL);
 	fd = open(tempfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 	{
@@ -144,6 +143,7 @@ static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
 		ft_free(tempfile);
 		exit(g.g_exit_status);
 	}
+	ft_free(tempfile);
 	ft_read_heredoc_input(shell, delim->val.value, delim->quoted, fd);
 	close(fd);
 	g.g_exit_status = EXIT_SUCCESS;

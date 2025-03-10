@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 22:46:37 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/10 16:11:27 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	main(int argc, char **argv, char **envp)
 	if (ft_init_shell(&shell, envp) == ERROR)
 		return (ft_print_error(ERR_SHELL_INIT_FAIL), g.g_exit_status);
 	ft_update_env(&shell);
+	rl_catch_signals = 0;
 	// signal(SIGPIPE, SIG_IGN);
 	while (1)
 	{
@@ -59,6 +60,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	ft_cleanup(&shell);
 	rl_clear_history();
+	close(g.g_original_stdout);
 	return (g.g_exit_status);
 }
 
