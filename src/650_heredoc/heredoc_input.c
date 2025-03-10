@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:15:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/10 16:19:11 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/10 21:22:14 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 static t_status	ft_fork_heredoc(pid_t *pid, t_shell *shell, t_token *delim,
 					char *tempfile);
 static t_status	ft_handle_heredoc_parent(pid_t pid, char *tempfile,
-					t_shell *shell, t_token *current);
+					t_shell *shell, t_token *current, int is_terminal,
+					struct termios original_termios);
 static void		ft_child_heredoc(t_shell *shell, t_token *delim,
 					char *tempfile);
 
@@ -38,19 +39,21 @@ t_status	ft_handle_single_heredoc(t_shell *shell, t_token *current)
 	pid_t				pid;
 	struct sigaction	sa_ignore;
 	struct sigaction	sa_old;
+	struct termios		original_termios;
+	int					is_terminal;
 
+	is_terminal = isatty(STDIN_FILENO);
 	if (ft_check_heredoc_syntax(current) == ERROR)
 		return (ERROR);
 	if (ft_create_temp_file(shell, &tempfile) == ERROR)
 		return (ERROR);
+	if (is_terminal && tcgetattr(STDIN_FILENO, &original_termios) == -1)
+		return (ft_free(tempfile), ft_print_error(ERR_TCGETATTR), ERROR);
 	if (ft_setup_sigint_ignore(&sa_ignore, &sa_old) == ERROR)
 		return (ft_free(tempfile), ERROR);
 	if (ft_fork_heredoc(&pid, shell, current->next, tempfile) == ERROR)
-	{
-		sigaction(SIGINT, &sa_old, NULL);
-		return (ERROR);
-	}
-	return (ft_handle_heredoc_parent(pid, tempfile, shell, current));
+		return (sigaction(SIGINT, &sa_old, NULL), ft_free(tempfile), ERROR);
+	return (ft_handle_heredoc_parent(pid, tempfile, shell, current, is_terminal, original_termios));
 }
 
 /**
@@ -94,12 +97,14 @@ static t_status	ft_fork_heredoc(pid_t *pid, t_shell *shell,
  * @return SUCCESS if the heredoc was handled successfully, ERROR otherwise.
  */
 static t_status	ft_handle_heredoc_parent(pid_t pid, char *tempfile,
-		t_shell *shell, t_token *current)
+		t_shell *shell, t_token *current, int is_terminal, struct termios original_termios)
 {
 	int					status;
 	struct sigaction	sa_old;
 
 	waitpid(pid, &status, 0);
+	if (is_terminal && tcsetattr(STDIN_FILENO, TCSANOW, &original_termios) == -1)
+		return (ft_print_error(ERR_TCGETATTR), ft_free(tempfile), ERROR);
 	if (sigaction(SIGINT, &sa_old, NULL) == -1)
 	{
 		ft_print_error("sigaction restore failed");

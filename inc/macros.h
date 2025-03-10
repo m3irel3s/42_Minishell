@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/09 22:01:56 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/10 21:15:06 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@
 # define ERR_INVALID_PARAMS        "minishell: Invalid parameters\n"
 # define ERR_INVALID_SHELL_OR_INPUT "minishell: Invalid shell or input\n"
 # define ERR_OPEN_FAIL             "minishell: Error opening file\n"
+# define ERR_TCGETATTR              "minishell: Failed to get terminal \
+attributes\n"
 
 //============================================================================//
 //                            ERROR MESSAGES - BUILTINS                       //
