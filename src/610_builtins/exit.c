@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:22:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 22:46:37 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:11:25 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	ft_exit(t_shell *shell)
 	{
 		ft_print_error_w_arg(ERR_EXIT_NUM_REQ, curr->next->val.value,
 			EXIT_MISUSE);
+		ft_cleanup_w_env(shell);
 		exit(g.g_exit_status);
 	}
 	if (curr->next->next)

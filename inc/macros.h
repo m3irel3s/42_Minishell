@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/10 10:35:08 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/10 16:36:16 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 //                            ERROR MESSAGES - GENERAL                        //
 //============================================================================//
 # define ERR_CMD_NOT_FOUND         "minishell: %s: command not found\n"
+# define ERR_PERM_DENIED           "minishell: %s: Permission denied\n"
+# define ERR_NO_FILE_DIRECTORY     "minishell: %s: No such file or directory\n"
 # define ERR_DUP2_FAIL             "minishell: Failed to redirect file \
 descriptor\n"
 # define ERR_FORK_FAIL             "minishell: fork failed\n"
