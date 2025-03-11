@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/11 11:29:45 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/11 16:23:07 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ void			ft_advance_to_next_cmd(t_token **curr_cmd);
 void			ft_cleanup_pipes(t_pipe *pipes, int num_pipes);
 void			ft_close_child_pipes(t_pipe *pipes, int num_pipes);
 void			ft_free_redirects(t_redirect *redirects);
+void			ft_clean_and_exit(t_shell *sh);
 
 /* 640_pipes/exec_pipes_child.c */
 void			ft_execute_child(t_shell *sh, t_token *curr_cmd,
@@ -170,10 +171,12 @@ void			ft_execute_child(t_shell *sh, t_token *curr_cmd,
 //                         EXECUTION - REDIRECTIONS                           //
 //============================================================================//
 /* 630_redirects/exec_redirection.c */
-void			ft_handle_redirections(t_shell *shell);
-void			ft_apply_redirection(t_shell *shell, t_redirect *redirect);
+t_status		ft_handle_redirections(t_shell *shell);
+t_status		ft_apply_redirection(t_redirect *redirect);
 /* 630_redirects/exec_redirection_utils.c */
 void			ft_create_redirection_list(t_shell *shell);
+/* 630_redirects/exec_redirection_utils_2.c */
+void			ft_print_error_and_status(t_status *status);
 
 //============================================================================//
 //                         EXECUTION - HEREDOC                           //

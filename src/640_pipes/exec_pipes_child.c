@@ -6,37 +6,39 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:00:00 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/11 15:37:04 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/11 16:21:40 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-static void		ft_handle_redirects(t_shell *shell);
-static void		ft_setup_child_redirects(int i, t_pipe *pipes, int num_pipes);
-static t_token	*ft_copy_tokens(t_token *start, t_token *end);
-static t_token	*ft_prepare_child_tokens(t_token *curr_cmd);
+static t_status		ft_handle_redirects(t_shell *shell);
+static void			ft_setup_child_redirects(int i, t_pipe *pipes,
+						int num_pipes);
+static t_token		*ft_copy_tokens(t_token *start, t_token *end);
+static t_token		*ft_prepare_child_tokens(t_token *curr_cmd);
 
 /**
- * @brief Executes a command within a child process in a pipeline.
+ * @brief Executes a command in a child process, with pipes.
  *
  * @details
- * This function sets up necessary redirections for the child process,
- * prepares a copy of the command tokens, applies any defined redirections,
- * and executes the command. It also closes and frees resources related to pipes
- * and cleans up the shell's environment before exiting the child process.
+ * This function takes a shell structure, a token pointer to the current command,
+ * an index and a pipes structure as arguments. It first sets up the redirections
+ * for the child process, copies the tokens up to the next pipe token and
+ * executes the command in a child process. It then cleans up and exits the child
+ * process.
  *
- * @param [in] sh The shell structure containing the current shell state.
- * @param [in] curr_cmd The current command token to be executed.
- * @param [in] i The index of the current command in the pipeline.
- * @param [in] pipes The pipes structure containing file descriptors for
- * communication.
+ * @param [in] sh The shell structure to execute the command in.
+ * @param [in] curr_cmd A pointer to the current command token.
+ * @param [in] i The index of the current command.
+ * @param [in] pipes The pipes structure.
  */
 void	ft_execute_child(t_shell *sh, t_token *curr_cmd, int i,
-		t_pipe *pipes)
+	t_pipe *pipes)
 {
 	t_token		*cmd_copy;
 	int			num_pipes;
+	t_status	redir_status;
 
 	num_pipes = ft_count_pipes(sh->tokens);
 	ft_setup_child_redirects(i, pipes, num_pipes);
@@ -49,9 +51,11 @@ void	ft_execute_child(t_shell *sh, t_token *curr_cmd, int i,
 	ft_cleanup_tokens(sh);
 	sh->tokens = cmd_copy;
 	ft_create_redirection_list(sh);
-	ft_handle_redirects(sh);
+	redir_status = ft_handle_redirects(sh);
 	ft_close_child_pipes(pipes, num_pipes);
 	ft_free(pipes);
+	if (redir_status == ERROR)
+		ft_clean_and_exit(sh);
 	if (sh->tokens)
 		ft_execute_command(sh, ft_get_cmd_type(sh->tokens->val.value));
 	ft_cleanup_w_env(sh);
@@ -59,24 +63,28 @@ void	ft_execute_child(t_shell *sh, t_token *curr_cmd, int i,
 }
 
 /**
- * @brief Applies all redirections for the current shell command.
+ * @brief Applies all redirections in the shell's redirection list.
  *
  * Iterates through the shell's redirection list and applies each
  * redirection using the appropriate redirection function.
  *
- * @param shell A pointer to the shell structure containing the
- *              redirection list.
+ * @param shell The shell structure containing the redirection list.
+ * @return SUCCESS if all redirections are successful, otherwise ERROR.
  */
-static void	ft_handle_redirects(t_shell *shell)
+static t_status	ft_handle_redirects(t_shell *shell)
 {
 	t_redirect	*redirect;
+	t_status	status;
 
+	status = SUCCESS;
 	redirect = shell->redirects;
 	while (redirect)
 	{
-		ft_apply_redirection(shell, redirect);
+		if (ft_apply_redirection(redirect) == ERROR)
+			status = ERROR;
 		redirect = redirect->next;
 	}
+	return (status);
 }
 
 /**
