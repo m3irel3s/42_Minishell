@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:00:00 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 14:35:34 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/11 16:07:50 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,16 @@ int	ft_count_pipes(t_token *tokens)
 	return (counter);
 }
 
+/**
+ * @brief Advances the pointer to the next command token in the linked list.
+ *
+ * @details
+ * This function takes a pointer to a pointer to a token and advances it to
+ * the next command in the linked list. If the token is a pipe, it will be
+ * skipped and the pointer will be advanced to the next command.
+ *
+ * @param curr_cmd A pointer to a pointer to the current token.
+ */
 void	ft_advance_to_next_cmd(t_token **curr_cmd)
 {
 	while (*curr_cmd && (*curr_cmd)->type != PIPE)

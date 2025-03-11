@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:15:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/11 14:41:13 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/11 15:37:04 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,11 +146,11 @@ static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
 	{
 		ft_print_error(ERR_OPEN_FAIL);
 		ft_free(tempfile);
-		exit(g.g_exit_status);
+		exit(g_gbl.g_exit_status);
 	}
 	ft_free(tempfile);
 	ft_read_heredoc_input(shell, delim->val.value, delim->quoted, fd);
 	close(fd);
-	g.g_exit_status = EXIT_SUCCESS;
-	exit(g.g_exit_status);
+	g_gbl.g_exit_status = EXIT_SUCCESS;
+	exit(g_gbl.g_exit_status);
 }

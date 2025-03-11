@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 09:11:23 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/08 14:51:22 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/11 16:22:44 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,13 @@ void	ft_create_redirection_list(t_shell *shell)
 	}
 }
 
+/**
+ * @brief Gets the token after the next token in the token list.
+ *
+ * @param next_token A pointer to the next token in the token list.
+ * @return Returns a pointer to the token after the next token, or NULL if
+ * the next token is NULL (i.e., the end of the list has been reached).
+ */
 static t_token	*ft_get_after_next(t_token *next_token)
 {
 	if (!next_token)

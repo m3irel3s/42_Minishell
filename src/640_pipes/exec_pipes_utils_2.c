@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 16:48:40 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 14:36:52 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/11 16:22:53 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,22 @@ void	ft_free_redirects(t_redirect *redirects)
 		free(tmp->filename);
 		free(tmp);
 	}
+}
+
+/**
+ * @brief Cleans up the shell structure and exits with EXIT_FAILURE.
+ *
+ * This function is used when an error occurs during the execution of a command
+ * or when an exit status is not explicitly set. It cleans up the shell
+ * structure by freeing the dynamically allocated memory associated with the
+ * tokens, redirects, temporary files, and environment variables, and then
+ * exits the shell with the status EXIT_FAILURE.
+ *
+ * @param [in] sh The shell structure to clean up and exit.
+ */
+void	ft_clean_and_exit(t_shell *sh)
+{
+	ft_cleanup_w_env(sh);
+	g_gbl.g_exit_status = EXIT_FAILURE;
+	exit(g_gbl.g_exit_status);
 }

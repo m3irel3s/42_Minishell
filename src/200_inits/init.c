@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:59:06 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/10 10:42:18 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/11 15:37:04 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	ft_update_shlvl(t_shell *shell)
  */
 static void	ft_init_global_struct(void)
 {
-	g.g_exit_status = EXIT_SUCCESS;
+	g_gbl.g_exit_status = EXIT_SUCCESS;
 	ft_save_original_fds();
 }
 
@@ -95,5 +95,5 @@ static void	ft_init_global_struct(void)
  */
 static void	ft_save_original_fds(void)
 {
-	g.g_original_stdout = dup(STDOUT_FILENO);
+	g_gbl.g_og_stdout = dup(STDOUT_FILENO);
 }

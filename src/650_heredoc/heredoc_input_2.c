@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_input_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 14:19:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/11 14:41:08 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/11 15:37:04 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted,
 			ft_cleanup_w_env(shell);
 			ft_free(line);
 			close(fd);
-			g.g_exit_status = EXIT_SUCCESS;
-			exit(g.g_exit_status);
+			g_gbl.g_exit_status = EXIT_SUCCESS;
+			exit(g_gbl.g_exit_status);
 		}
 		ft_handle_expansion(shell, line, quoted, fd);
 	}
