@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/11 17:12:01 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/11 17:30:34 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int argc, char **argv, char **envp)
 	ft_update_env(&shell);
 	rl_catch_signals = 0;
 	// signal(SIGPIPE, SIG_IGN);
-	shell->tml = ft_safe_calloc(sizeof(t_terminal));
+	shell.tml = ft_safe_calloc(sizeof(t_terminal));
 	while (1)
 	{
 		if (ft_set_up_signals() == ERROR)
