@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:00:00 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/11 16:21:40 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/11 17:12:56 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	ft_execute_child(t_shell *sh, t_token *curr_cmd, int i,
 	int			num_pipes;
 	t_status	redir_status;
 
+	sh->tml->is_terminal = isatty(STDIN_FILENO);
 	num_pipes = ft_count_pipes(sh->tokens);
 	ft_setup_child_redirects(i, pipes, num_pipes);
 	cmd_copy = ft_prepare_child_tokens(curr_cmd);
