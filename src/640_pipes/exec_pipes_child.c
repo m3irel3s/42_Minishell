@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:00:00 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 22:46:37 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/11 15:24:12 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	ft_execute_child(t_shell *sh, t_token *curr_cmd, int i,
 	ft_handle_redirects(sh);
 	ft_close_child_pipes(pipes, num_pipes);
 	ft_free(pipes);
-	ft_execute_command(sh, ft_get_cmd_type(sh->tokens->val.value));
+	if (sh->tokens)
+		ft_execute_command(sh, ft_get_cmd_type(sh->tokens->val.value));
 	ft_cleanup_w_env(sh);
 	exit(g.g_exit_status);
 }

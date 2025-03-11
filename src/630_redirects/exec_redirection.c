@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_redirection.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:45:07 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/10 15:10:40 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/11 15:10:04 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static void	ft_redirect_in(t_redirect *redirect)
 {
 	int	fd;
 
-	fd = open(redirect->filename, O_RDONLY);
+	fd = open(redirect->filename, O_RDONLY, S_IRWXU | S_IRGRP | S_IROTH);
 	if (fd == -1)
 	{
 		ft_print_error_w_arg(ERR_REDIR_NO_FILE, redirect->filename,
