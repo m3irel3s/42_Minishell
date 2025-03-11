@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/10 16:36:16 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/11 12:09:21 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@
 # define EXIT_SUCCESS          0    // Successful execution
 # define EXIT_FAILURE          1    // General failure
 # define EXIT_MISUSE           2    // Misuse of shell builtin
-# define EXIT_CANNOT_EXECUTE   126  // Command cannot be executed
+# define EXIT_IS_A_DIRECTORY   126  // Is a directory
+# define EXIT_PERM_DENIED      126  // Command cannot be executed
 									// (e.g., permission denied)
 # define EXIT_CMD_NOT_FOUND    127  // Command not found
+# define EXIT_NO_SUCH_FILE     127  // No such file or directory
 # define EXIT_INVALID_EXIT_ARG 128  // Invalid argument to exit builtin
 # define EXIT_FATAL_SIGNAL     128  // Fatal signal received
 									// (overlaps with INVALID_EXIT_ARG)
@@ -33,7 +35,8 @@
 //============================================================================//
 # define ERR_CMD_NOT_FOUND         "minishell: %s: command not found\n"
 # define ERR_PERM_DENIED           "minishell: %s: Permission denied\n"
-# define ERR_NO_FILE_DIRECTORY     "minishell: %s: No such file or directory\n"
+# define ERR_IS_A_DIRECTORY        "minishell: %s: Is a directory\n"
+# define ERR_NO_SUCH_FILE          "minishell: %s: No such file or directory\n"
 # define ERR_DUP2_FAIL             "minishell: Failed to redirect file \
 descriptor\n"
 # define ERR_FORK_FAIL             "minishell: fork failed\n"

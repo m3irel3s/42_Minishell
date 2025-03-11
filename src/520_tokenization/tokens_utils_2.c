@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_utils_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:26:26 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/08 15:34:12 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/10 17:30:46 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ t_status	ft_create_and_add_token(t_shell *shell, char *value,
 	if (!new_token)
 		return (ft_print_error(ERR_TOKEN_CREATION_FAIL), ERROR);
 	if (ft_init_token_values(shell, new_token, value, len) != SUCCESS)
-		return (ft_free(new_token), ERROR);
+		return (ERROR);
+	// return (ft_free(new_token), ERROR);
 	ft_remove_quotes(new_token->val.value);
 	if (!new_token->val.value)
 		return (ft_free(new_token->val.value), ft_free(new_token),
