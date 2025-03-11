@@ -64,3 +64,287 @@ Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
 warning: could not find '.gnu_debugaltlink' file for /lib/x86_64-linux-gnu/libtinfo.so.6
 
 Breakpoint 1, main (argc=1, argv=0x7fffffffe458, envp=0x7fffffffe468) at src/100_main.c:37
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40184a: file src/100_main.c, line 43.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040184a in main at src/100_main.c:43
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:43
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40184a: file src/100_main.c, line 43.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040184a in main at src/100_main.c:43
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040184a in main at src/100_main.c:43
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:43
+Breakpoint 3 at 0x4062a0: file src/620_execve/execve.c, line 39.
+Continuing.
+
+Breakpoint 3, ft_execute_cmd (shell=0x7fffffffe178, cmd=0x42b260 "chmod") at src/620_execve/execve.c:39
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 1463895) fork to child process 1463901]
+[New inferior 2 (process 1463901)]
+[Detaching after fork from parent process 1463895]
+[Inferior 1 (process 1463895) detached]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+process 1463901 is executing new program: /usr/bin/chmod
+Error in re-setting breakpoint 1: Function "main" not defined.
+Error in re-setting breakpoint 2: Function "main" not defined.
+Error in re-setting breakpoint 3: Function "ft_execute_cmd" not defined.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 2 (process 1463901) exited normally]
+The program is not being run.
+Starting program: /usr/bin/chmod 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 2 (process 1463902) exited with code 01]
+The program is not being run.
+Starting program: /usr/bin/chmod 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Inferior 2 (process 1463904) exited with code 01]
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40183a: file src/100_main.c, line 43.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:43
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:43
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40183a: file src/100_main.c, line 43.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:43
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040183a in main at src/100_main.c:43
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:43
+Continuing.
+
+Program received signal SIGABRT, Aborted.
+__pthread_kill_implementation (no_tid=0, signo=6, threadid=140737350783872) at ./nptl/pthread_kill.c:44
+#0  __pthread_kill_implementation (no_tid=0, signo=6, threadid=140737350783872)
+    at ./nptl/pthread_kill.c:44
+#1  __pthread_kill_internal (signo=6, threadid=140737350783872) at ./nptl/pthread_kill.c:78
+#2  __GI___pthread_kill (threadid=140737350783872, signo=signo@entry=6) at ./nptl/pthread_kill.c:89
+#3  0x00007ffff7d10476 in __GI_raise (sig=sig@entry=6) at ../sysdeps/posix/raise.c:26
+#4  0x00007ffff7cf67f3 in __GI_abort () at ./stdlib/abort.c:79
+#5  0x00007ffff7d57677 in __libc_message (action=action@entry=do_abort, 
+    fmt=fmt@entry=0x7ffff7ea9b77 "%s\n") at ../sysdeps/posix/libc_fatal.c:156
+#6  0x00007ffff7d6ecfc in malloc_printerr (
+    str=str@entry=0x7ffff7eac6f0 "free(): double free detected in tcache 2") at ./malloc/malloc.c:5664
+#7  0x00007ffff7d710ab in _int_free (av=0x7ffff7ee8c80 <main_arena>, p=0x42b290, have_lock=0)
+    at ./malloc/malloc.c:4473
+#8  0x00007ffff7d73453 in __GI___libc_free (mem=<optimized out>) at ./malloc/malloc.c:3391
+#9  0x00000000004092e0 in ft_free (ptr=0x42b2a0) at src/800_clean/free.c:26
+#10 0x00000000004093ec in ft_free_arr (arr=0x4482f0) at src/800_clean/free.c:95
+#11 0x0000000000406896 in ft_add_cmd_to_path (arr=0x4482f0, cmd=0x4482b0 "ls", status=0x7fffffffe09c)
+Quit
+Undefined command: "y".  Try "help".
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40184a: file src/100_main.c, line 43.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040184a in main at src/100_main.c:43
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:43
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40184a: file src/100_main.c, line 43.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040184a in main at src/100_main.c:43
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040184a in main at src/100_main.c:43
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:43
+Continuing.
+
+Program received signal SIGABRT, Aborted.
+__pthread_kill_implementation (no_tid=0, signo=6, threadid=140737350783872) at ./nptl/pthread_kill.c:44
+Undefined command: "rfrf".  Try "help".
+#0  __pthread_kill_implementation (no_tid=0, signo=6, threadid=140737350783872) at ./nptl/pthread_kill.c:44
+#1  __pthread_kill_internal (signo=6, threadid=140737350783872) at ./nptl/pthread_kill.c:78
+#2  __GI___pthread_kill (threadid=140737350783872, signo=signo@entry=6) at ./nptl/pthread_kill.c:89
+#3  0x00007ffff7d10476 in __GI_raise (sig=sig@entry=6) at ../sysdeps/posix/raise.c:26
+#4  0x00007ffff7cf67f3 in __GI_abort () at ./stdlib/abort.c:79
+#5  0x00007ffff7d57677 in __libc_message (action=action@entry=do_abort, fmt=fmt@entry=0x7ffff7ea9b77 "%s\n") at ../sysdeps/posix/libc_fatal.c:156
+#6  0x00007ffff7d6ecfc in malloc_printerr (str=str@entry=0x7ffff7eac6f0 "free(): double free detected in tcache 2") at ./malloc/malloc.c:5664
+#7  0x00007ffff7d710ab in _int_free (av=0x7ffff7ee8c80 <main_arena>, p=0x411890, have_lock=0) at ./malloc/malloc.c:4473
+#8  0x00007ffff7d73453 in __GI___libc_free (mem=<optimized out>) at ./malloc/malloc.c:3391
+#9  0x00000000004092e0 in ft_free (ptr=0x4118a0) at src/800_clean/free.c:26
+#10 0x0000000000403163 in ft_create_and_add_token (shell=0x7fffffffe128, value=0x42b440 "$uy", len=3, quoted=0) at src/520_tokenization/tokens_utils_2.c:48
+#11 0x0000000000402eb0 in ft_process_token (shell=0x7fffffffe128, token_str=0x42b440 "$uy") at src/520_tokenization/tokens_process.c:73
+#12 0x0000000000402d70 in ft_tokenize (shell=0x7fffffffe128, split_input=0x42b420) at src/520_tokenization/tokens_process.c:39
+#13 0x000000000040220f in ft_parse_input (shell=0x7fffffffe128) at src/500_parsing/parsing.c:36
+#14 0x0000000000401953 in ft_process_input (shell=0x7fffffffe128) at src/100_main.c:82
+#15 0x00000000004018f4 in main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:58
+Breakpoint 3 at 0x4030d7: file src/520_tokenization/tokens_utils_2.c, line 42.
+Continuing.
+
+Program terminated with signal SIGABRT, Aborted.
+The program no longer exists.
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:43
+Continuing.
+
+Breakpoint 3, ft_create_and_add_token (shell=0x7fffffffe128, value=0x42b440 "$k", len=2, quoted=0) at src/520_tokenization/tokens_utils_2.c:42
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+
+Program received signal SIGABRT, Aborted.
+__pthread_kill_implementation (no_tid=0, signo=6, threadid=140737350783872) at ./nptl/pthread_kill.c:44
+----------------------------------------------------
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:43
+Continuing.
+
+Breakpoint 3, ft_create_and_add_token (shell=0x7fffffffe128, value=0x42b440 "$g", len=2, quoted=0) at src/520_tokenization/tokens_utils_2.c:42
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+1: new_token = (t_token *) 0x4118a0
+$1 = {
+  value = 0x4113a1 "\206B",
+  og_value = 0x1983776e10dee339 <error: Cannot access memory at address 0x1983776e10dee339>
+}
+$2 = 0x4113a1 "\206B"
+$3 = 0x1983776e10dee339 <error: Cannot access memory at address 0x1983776e10dee339>
+$4 = 0x4113a1 "\206B"
+$5 = 2
+$6 = 0x42b440 "$g"
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:43
+Continuing.
+
+Breakpoint 3, ft_create_and_add_token (shell=0x7fffffffe128, value=0x42b440 "$f", len=2, quoted=0) at src/520_tokenization/tokens_utils_2.c:42
+1: new_token = (t_token *) 0x0
+1: new_token = (t_token *) 0x0
+----------------------------------------------------
+1: new_token = (t_token *) 0x4118a0
+----------------------------------------------------
+1: new_token = (t_token *) 0x4118a0
+----------------------------------------------------
+ft_init_token_values (shell=0x7fffffffe128, token=0x4118a0, value=0x42b440 "$f", len=2) at src/520_tokenization/tokens_utils_2.c:80
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+ft_create_and_add_token (shell=0x7fffffffe128, value=0x42b440 "$f", len=2, quoted=0) at src/520_tokenization/tokens_utils_2.c:48
+1: new_token = (t_token *) 0x4118a0
+----------------------------------------------------
+
+Program received signal SIGABRT, Aborted.
+__pthread_kill_implementation (no_tid=0, signo=6, threadid=140737350783872) at ./nptl/pthread_kill.c:44
+----------------------------------------------------
+#0  __pthread_kill_implementation (no_tid=0, signo=6, threadid=140737350783872) at ./nptl/pthread_kill.c:44
+#1  __pthread_kill_internal (signo=6, threadid=140737350783872) at ./nptl/pthread_kill.c:78
+#2  __GI___pthread_kill (threadid=140737350783872, signo=signo@entry=6) at ./nptl/pthread_kill.c:89
+#3  0x00007ffff7d10476 in __GI_raise (sig=sig@entry=6) at ../sysdeps/posix/raise.c:26
+#4  0x00007ffff7cf67f3 in __GI_abort () at ./stdlib/abort.c:79
+#5  0x00007ffff7d57677 in __libc_message (action=action@entry=do_abort, fmt=fmt@entry=0x7ffff7ea9b77 "%s\n") at ../sysdeps/posix/libc_fatal.c:156
+#6  0x00007ffff7d6ecfc in malloc_printerr (str=str@entry=0x7ffff7eac6f0 "free(): double free detected in tcache 2") at ./malloc/malloc.c:5664
+#7  0x00007ffff7d710ab in _int_free (av=0x7ffff7ee8c80 <main_arena>, p=0x411890, have_lock=0) at ./malloc/malloc.c:4473
+#8  0x00007ffff7d73453 in __GI___libc_free (mem=<optimized out>) at ./malloc/malloc.c:3391
+#9  0x00000000004092e0 in ft_free (ptr=0x4118a0) at src/800_clean/free.c:26
+#10 0x0000000000403163 in ft_create_and_add_token (shell=0x7fffffffe128, value=0x42b440 "$f", len=2, quoted=0) at src/520_tokenization/tokens_utils_2.c:48
+#11 0x0000000000402eb0 in ft_process_token (shell=0x7fffffffe128, token_str=0x42b440 "$f") at src/520_tokenization/tokens_process.c:73
+#12 0x0000000000402d70 in ft_tokenize (shell=0x7fffffffe128, split_input=0x42b420) at src/520_tokenization/tokens_process.c:39
+#13 0x000000000040220f in ft_parse_input (shell=0x7fffffffe128) at src/500_parsing/parsing.c:36
+#14 0x0000000000401953 in ft_process_input (shell=0x7fffffffe128) at src/100_main.c:82
+#15 0x00000000004018f4 in main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:58
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:43
+Continuing.
+
+Breakpoint 3, ft_create_and_add_token (shell=0x7fffffffe128, value=0x42b440 "$re", len=3, quoted=0) at src/520_tokenization/tokens_utils_2.c:42
+1: new_token = (t_token *) 0x0
+1: new_token = (t_token *) 0x0
+----------------------------------------------------
+1: new_token = (t_token *) 0x4118a0
+----------------------------------------------------
+1: new_token = (t_token *) 0x4118a0
+----------------------------------------------------
+ft_init_token_values (shell=0x7fffffffe128, token=0x4118a0, value=0x42b440 "$re", len=3) at src/520_tokenization/tokens_utils_2.c:80
+2: token->val.og_value = 0x0
+2: token->val.og_value = 0x42b460 "$re"
+----------------------------------------------------
+2: token->val.og_value = 0x42b460 "$re"
+----------------------------------------------------
+3: token->val.value = 0x0
+2: token->val.og_value = 0x42b460 "$re"
+3: token->val.value = 0x42b480 "$re"
+----------------------------------------------------
+2: token->val.og_value = 0x42b460 "$re"
+3: token->val.value = 0x42b480 "$re"
+----------------------------------------------------
+2: token->val.og_value = 0x42b460 "$re"
+3: token->val.value = 0x42b480 "$re"
+----------------------------------------------------
+2: token->val.og_value = 0x42b460 "$re"
+3: token->val.value = 0x448470 ""
+----------------------------------------------------
+2: token->val.og_value = 0x42b460 "$re"
+3: token->val.value = 0x448470 ""
+----------------------------------------------------
+2: token->val.og_value = 0x42b460 "[\200D"
+3: token->val.value = 0x448470 "ȰB"
+----------------------------------------------------
+2: token->val.og_value = 0x3b0538aeee8abce3 <error: Cannot access memory at address 0x3b0538aeee8abce3>
+3: token->val.value = 0x4113a1 "\206B"
+----------------------------------------------------
+2: token->val.og_value = 0x3b0538aeee8abce3 <error: Cannot access memory at address 0x3b0538aeee8abce3>
+3: token->val.value = 0x4113a1 "\206B"
+----------------------------------------------------

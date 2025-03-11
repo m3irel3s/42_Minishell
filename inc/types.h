@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:15:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 23:19:05 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:38:40 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ typedef enum e_status
 	SUCCESS = 0,
 	ERROR = 1
 }	t_status;
+
+typedef enum e_path_type
+{
+	PATH_EXECUTABLE,
+	PATH_NOT_EXECUTABLE,
+	PATH_NOT_FOUND
+}	t_path_type;
 
 typedef enum e_token_type
 {

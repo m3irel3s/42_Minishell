@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:15:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/10 21:22:14 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:41:13 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

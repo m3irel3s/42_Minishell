@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/09 21:45:36 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/11 11:29:45 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,14 +129,22 @@ char			*ft_handle_dollar(t_shell *shell, char *token, size_t *i);
 void			ft_exec(t_shell *shell);
 void			ft_execute_command(t_shell *shell, t_cmd_type cmd);
 t_cmd_type		ft_get_cmd_type(char *cmd);
-/* 620_execve/exec_execve.c */
+
+/* 600_exec/exec_utils.c */
+t_status		ft_has_pipes(t_shell *shell);
+
+/* 620_execve/execve.c */
+
+/* 620_execve/execve_utils.c */
 void			ft_execute_cmd(t_shell *shell, char *cmd);
 char			*ft_get_path_to_execute(t_shell *shell, char *cmd);
 char			*ft_add_cmd_to_path(char **arr, char *cmd);
 char			**ft_create_arr_cmd(t_token *start_pos);
+void			ft_cleanup_cmd_execution(char *path, char **arr);
 
-/* 600_exec/exec_utils.c */
-t_status		ft_has_pipes(t_shell *shell);
+/* 620_execve/path_errors.c */
+void			ft_print_path_errors(char *cmd);
+void			ft_check_is_dir(t_shell *shell, char *path, char **arr);
 
 //============================================================================//
 //                                  PIPES                                     //

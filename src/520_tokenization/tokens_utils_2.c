@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_utils_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:26:26 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/08 15:34:12 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:38:23 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 static void		ft_add_token_to_shell(t_shell *shell, t_token *new_token);
 static void		ft_remove_quotes(char *str);
 static t_status	ft_is_last_token_heredoc(t_shell *shell);
-static int		ft_init_token_values(t_shell *shell, t_token *token,
-					char *value, size_t len);
 
 /**
  * @brief Creates a new token and adds it to the shell's token list.
@@ -34,63 +32,43 @@ static int		ft_init_token_values(t_shell *shell, t_token *token,
  * @return SUCCESS if the token is created and added successfully, or an error
  * status if any step fails.
  */
-t_status	ft_create_and_add_token(t_shell *shell, char *value,
-	size_t len, int quoted)
+t_status	ft_create_and_add_token(t_shell *shell, char *value, size_t len, int quoted)
 {
 	t_token	*new_token;
 
 	if (!value || len == 0)
-		return (ft_print_error(ERR_INVALID_PARAMS), ERROR);
+		return (SUCCESS);
 	new_token = ft_safe_calloc(sizeof(t_token));
 	if (!new_token)
-		return (ft_print_error(ERR_TOKEN_CREATION_FAIL), ERROR);
-	if (ft_init_token_values(shell, new_token, value, len) != SUCCESS)
-		return (ft_free(new_token), ERROR);
+		return (ft_print_error(ERR_TOKEN_CREATION_FAIL));
+	new_token->val.og_value = ft_safe_strndup(value, len);
+	if (!new_token->val.og_value)
+	{
+		ft_free(new_token);
+		return (ft_print_error(ERR_TOKEN_CREATION_FAIL));
+	}
+	new_token->val.value = ft_safe_strdup(new_token->val.og_value);
+	if (ft_is_last_token_heredoc(shell) != SUCCESS)
+		new_token->val.value = ft_expand(shell, new_token->val.value);
+	if (!new_token->val.value || ft_strlen(new_token->val.value) == 0)
+	{
+		ft_free(new_token->val.value);
+		ft_free(new_token->val.og_value);
+		ft_free(new_token);
+		return (SUCCESS);
+	}
 	ft_remove_quotes(new_token->val.value);
 	if (!new_token->val.value)
-		return (ft_free(new_token->val.value), ft_free(new_token),
-			ft_print_error(ERR_TOKEN_CREATION_FAIL), ERROR);
-	new_token->type = ft_determine_token_type(new_token->val.og_value,
-			new_token->val.value, len);
+	{
+		ft_free(new_token->val.value);
+		ft_free(new_token);
+		return (ft_print_error(ERR_TOKEN_CREATION_FAIL));
+	}
+	new_token->type = ft_determine_token_type(new_token->val.og_value, new_token->val.value, len);
 	new_token->quoted = quoted;
 	new_token->next = NULL;
 	new_token->prev = NULL;
 	ft_add_token_to_shell(shell, new_token);
-	return (SUCCESS);
-}
-
-/**
- * @brief Initializes the token values with given input.
- *
- * Duplicates the given value string to initialize the original value and
- * current value of the token. If the last token is not a heredoc, it expands
- * the token's current value. Handles memory allocation failures by freeing
- * allocated resources and returning an error status.
- *
- * @param shell A pointer to the shell structure.
- * @param token A pointer to the token structure to be initialized.
- * @param value The input string used to initialize the token's values.
- * @param len The length of the input string.
- * @return SUCCESS if the token values are initialized successfully, or ERROR
- * if a memory allocation or expansion failure occurs.
- */
-static int	ft_init_token_values(t_shell *shell, t_token *token,
-		char *value, size_t len)
-{
-	token->val.og_value = ft_safe_strndup(value, len);
-	if (!token->val.og_value)
-		return (ft_free(token), ft_print_error(ERR_MALLOC_FAIL), ERROR);
-	token->val.value = ft_safe_strdup(token->val.og_value);
-	if (!token->val.value)
-		return (ft_free(token->val.og_value), ft_free(token),
-			ft_print_error(ERR_MALLOC_FAIL), ERROR);
-	if (ft_is_last_token_heredoc(shell) != SUCCESS)
-	{
-		token->val.value = ft_expand(shell, token->val.value);
-		if (!token->val.value || ft_strlen(token->val.value) == 0)
-			return (ft_free(token->val.value), ft_free(token->val.og_value),
-				ft_free(token), ft_print_error(ERR_TOKEN_CREATION_FAIL), ERROR);
-	}
 	return (SUCCESS);
 }
 
