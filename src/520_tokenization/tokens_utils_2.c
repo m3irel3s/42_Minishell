@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:26:26 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/11 17:38:13 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/11 17:39:18 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void		ft_add_token_to_shell(t_shell *shell, t_token *new_token);
 static void		ft_remove_quotes(char *str);
 static t_status	ft_is_last_token_heredoc(t_shell *shell);
-static t_status	ft_set_token_values(t_token *new_token, size_t len, int quoted);
+static void		ft_set_token_values(t_token *new_token, size_t len, int quoted);
 
 /**
  * @brief Creates a new token and adds it to the shell's token list.
