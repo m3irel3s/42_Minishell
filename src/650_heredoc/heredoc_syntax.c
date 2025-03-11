@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/08 23:17:20 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/11 15:37:04 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_status	ft_handle_child_exit(int status, char *tempfile)
 	{
 		unlink(tempfile);
 		ft_free(tempfile);
-		g.g_exit_status = WEXITSTATUS(status);
+		g_gbl.g_exit_status = WEXITSTATUS(status);
 		return (ERROR);
 	}
 	return (SUCCESS);
@@ -75,7 +75,7 @@ t_status	ft_handle_child_signal(int status, char *tempfile)
 	{
 		unlink(tempfile);
 		ft_free(tempfile);
-		g.g_exit_status = EXIT_FAILURE;
+		g_gbl.g_exit_status = EXIT_FAILURE;
 		write(STDOUT_FILENO, "\n", 1);
 		return (ERROR);
 	}

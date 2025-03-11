@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/01 13:29:46 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/08 22:46:37 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/11 15:37:04 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ t_status	ft_parse_input(t_shell *shell)
 		return (ft_print_error(ERR_TOKENIZATION_FAIL));
 	}
 	ft_free_arr(split_input);
-	g.g_exit_status = EXIT_SUCCESS;
+	g_gbl.g_exit_status = EXIT_SUCCESS;
 	return (SUCCESS);
 }

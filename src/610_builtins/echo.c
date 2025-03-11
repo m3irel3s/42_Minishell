@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:22:57 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 22:46:37 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/11 15:37:04 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_echo(t_shell *shell)
 	if (!curr)
 	{
 		ft_printf(STDOUT_FILENO, "\n");
-		g.g_exit_status = EXIT_SUCCESS;
+		g_gbl.g_exit_status = EXIT_SUCCESS;
 		return ;
 	}
 	while (curr && ft_echo_handle_flag(curr->val.value))
@@ -36,7 +36,7 @@ void	ft_echo(t_shell *shell)
 	ft_echo_print_args(curr);
 	if (add_new_line)
 		ft_printf(STDOUT_FILENO, "\n");
-	g.g_exit_status = EXIT_SUCCESS;
+	g_gbl.g_exit_status = EXIT_SUCCESS;
 }
 
 static void	ft_echo_print_args(t_token *curr)
