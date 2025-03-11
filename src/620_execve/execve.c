@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:34:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/11 12:09:14 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/11 13:48:22 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ void	ft_cleanup_cmd_execution(char *path, char **arr)
  * @param [in] path The path to the command to execute.
  * @param [in] arr The array of arguments to the command.
  */
-#include <sys/stat.h>  // Include for stat()
 
 static void	ft_exec_child(t_shell *shell, char *path, char **arr)
 {

@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:01:07 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/11 12:08:50 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/11 13:48:47 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_print_path_errors(char *cmd)
 {
-	struct stat path_stat;
+	struct stat	path_stat;
 
 	if (!ft_strchr(cmd, '/'))
 	{
@@ -43,7 +43,3 @@ void	ft_check_is_dir(t_shell *shell, char *path, char **arr)
 		exit(126);
 	}
 }
-
-
-
-
