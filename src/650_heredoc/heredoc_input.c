@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:15:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/11 17:08:20 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/12 14:43:02 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ t_status	ft_handle_single_heredoc(t_shell *shell, t_token *current)
 	struct sigaction	sa_ignore;
 	struct sigaction	sa_old;
 
-	shell->tml = ft_safe_calloc(sizeof(t_terminal));
 	shell->tml->is_terminal = isatty(STDIN_FILENO);
 	if (ft_check_heredoc_syntax(current) == ERROR)
 		return (ERROR);

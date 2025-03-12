@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/10 16:09:32 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/12 14:39:42 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ void	ft_cleanup(t_shell *shell)
 	shell->input = NULL;
 	ft_cleanup_tokens(shell);
 	ft_cleanup_redirects(shell);
+	if (shell->tml)
+		ft_free(shell->tml);
+	close(g_gbl.g_og_stdout);
 }
 
 /**
