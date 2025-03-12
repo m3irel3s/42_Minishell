@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:15:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/11 15:37:16 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/11 16:45:32 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,12 @@ typedef struct s_redirect
 	struct s_redirect	*next;
 }	t_redirect;
 
+typedef struct s_terminal
+{
+	struct termios	og_termios;
+	int				is_terminal;
+}	t_terminal;
+
 typedef struct s_shell
 {
 	char			**env_cpy;
@@ -108,6 +114,7 @@ typedef struct s_shell
 	int				redirected_stdout;
 	int				in_export;
 	size_t			random_number;
+	t_terminal		*tml;
 }	t_shell;
 
 typedef struct s_g

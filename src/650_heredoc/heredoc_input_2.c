@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 14:19:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/11 15:37:04 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/11 17:06:52 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted,
 		int fd)
 {
 	char	*line;
-	rl_catch_signals = 0;
 
+	rl_catch_signals = 0;
 	while (1)
 	{
 		line = readline("> ");
