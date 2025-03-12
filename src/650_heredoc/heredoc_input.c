@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:15:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/12 14:43:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/12 15:53:52 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ static t_status	ft_handle_heredoc_parent(pid_t pid, char *tempfile,
 	struct sigaction	sa_old;
 
 	waitpid(pid, &status, 0);
+	ft_memset(&sa_old, 0, sizeof(sa_old));
 	if (shell->tml->is_terminal
 		&& tcsetattr(STDIN_FILENO, TCSANOW,
 			&shell->tml->og_termios) == -1)
