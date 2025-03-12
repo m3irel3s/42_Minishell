@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens_utils_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 11:26:26 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/11 14:38:23 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/11 17:39:18 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void		ft_add_token_to_shell(t_shell *shell, t_token *new_token);
 static void		ft_remove_quotes(char *str);
 static t_status	ft_is_last_token_heredoc(t_shell *shell);
+static void		ft_set_token_values(t_token *new_token, size_t len, int quoted);
 
 /**
  * @brief Creates a new token and adds it to the shell's token list.
@@ -32,7 +33,8 @@ static t_status	ft_is_last_token_heredoc(t_shell *shell);
  * @return SUCCESS if the token is created and added successfully, or an error
  * status if any step fails.
  */
-t_status	ft_create_and_add_token(t_shell *shell, char *value, size_t len, int quoted)
+t_status	ft_create_and_add_token(t_shell *shell, char *value, size_t len,
+	int quoted)
 {
 	t_token	*new_token;
 
@@ -43,33 +45,19 @@ t_status	ft_create_and_add_token(t_shell *shell, char *value, size_t len, int qu
 		return (ft_print_error(ERR_TOKEN_CREATION_FAIL));
 	new_token->val.og_value = ft_safe_strndup(value, len);
 	if (!new_token->val.og_value)
-	{
-		ft_free(new_token);
-		return (ft_print_error(ERR_TOKEN_CREATION_FAIL));
-	}
+		return (ft_free(new_token), ft_print_error(ERR_TOKEN_CREATION_FAIL));
 	new_token->val.value = ft_safe_strdup(new_token->val.og_value);
 	if (ft_is_last_token_heredoc(shell) != SUCCESS)
 		new_token->val.value = ft_expand(shell, new_token->val.value);
 	if (!new_token->val.value || ft_strlen(new_token->val.value) == 0)
-	{
-		ft_free(new_token->val.value);
-		ft_free(new_token->val.og_value);
-		ft_free(new_token);
-		return (SUCCESS);
-	}
+		return (ft_free(new_token->val.value), ft_free(new_token->val.og_value),
+			ft_free(new_token), SUCCESS);
 	ft_remove_quotes(new_token->val.value);
 	if (!new_token->val.value)
-	{
-		ft_free(new_token->val.value);
-		ft_free(new_token);
-		return (ft_print_error(ERR_TOKEN_CREATION_FAIL));
-	}
-	new_token->type = ft_determine_token_type(new_token->val.og_value, new_token->val.value, len);
-	new_token->quoted = quoted;
-	new_token->next = NULL;
-	new_token->prev = NULL;
-	ft_add_token_to_shell(shell, new_token);
-	return (SUCCESS);
+		return (ft_free(new_token->val.value), ft_free(new_token),
+			ft_print_error(ERR_TOKEN_CREATION_FAIL));
+	ft_set_token_values(new_token, len, quoted);
+	return (ft_add_token_to_shell(shell, new_token), SUCCESS);
 }
 
 /**
@@ -159,4 +147,26 @@ static void	ft_remove_quotes(char *str)
 			str[write++] = str[read++];
 	}
 	str[write] = '\0';
+}
+
+/**
+ * @brief Sets the type and quote status of a token.
+ *
+ * This function takes a pointer to a token structure, its length, and a quoted
+ * status, and sets the type and quote status of the token accordingly. The type
+ * is determined by calling ft_determine_token_type(), and the quote status is
+ * set to the provided value. The token's next and prev pointers are set to NULL.
+ *
+ * @param new_token The token structure to be set.
+ * @param len The length of the token string.
+ * @param quoted An integer indicating whether the token is quoted (1 for single
+ * quotes, 2 for double quotes, 0 for no quotes).
+ */
+static void	ft_set_token_values(t_token *new_token, size_t len, int quoted)
+{
+	new_token->type = ft_determine_token_type(new_token->val.og_value,
+			new_token->val.value, len);
+	new_token->quoted = quoted;
+	new_token->next = NULL;
+	new_token->prev = NULL;
 }
