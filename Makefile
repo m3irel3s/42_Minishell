@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/03/11 16:27:57 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/03/12 10:51:59 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -104,6 +104,7 @@ SRCS = \
        ${SRC_PATH}/620_execve/path_errors.c \
        ${SRC_PATH}/630_redirects/exec_redirection.c \
        ${SRC_PATH}/630_redirects/exec_redirection_utils.c \
+       ${SRC_PATH}/630_redirects/exec_redirection_utils_2.c \
        ${SRC_PATH}/640_pipes/exec_pipes_child.c \
        ${SRC_PATH}/640_pipes/exec_pipes_utils.c \
        ${SRC_PATH}/640_pipes/exec_pipes.c \
