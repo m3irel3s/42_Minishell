@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/10 16:09:32 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/12 14:31:24 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void	ft_cleanup(t_shell *shell)
 	shell->input = NULL;
 	ft_cleanup_tokens(shell);
 	ft_cleanup_redirects(shell);
+	close(g_gbl.g_og_stdout);
+	close(4);
+	close(5);
+	close(6);
+	// ft_free(shell->tml);
 }
 
 /**
@@ -44,6 +49,7 @@ void	ft_cleanup_w_env(t_shell *shell)
 	ft_cleanup(shell);
 	if (shell->env_cpy)
 		ft_free_arr(shell->env_cpy);
+	ft_free(shell->last_cwd);
 }
 
 /**
