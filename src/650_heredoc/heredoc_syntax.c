@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_syntax.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/12 15:14:06 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/12 17:32:26 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,9 @@ t_status	ft_handle_child_exit(int status, char *tempfile)
  * @return ERROR if the child process was interrupted by a signal, SUCCESS
  * otherwise.
  */
-t_status	ft_handle_child_signal(int status, char *tempfile)
+t_status	ft_handle_child_signal(t_shell *shell, int status, char *tempfile)
 {
+	(void)shell;
 	if (WIFSIGNALED(status) && WTERMSIG(status) == SIGINT)
 	{
 		unlink(tempfile);

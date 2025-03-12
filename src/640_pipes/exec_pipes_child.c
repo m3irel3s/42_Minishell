@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes_child.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:00:00 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/12 15:14:25 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/12 17:35:09 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	ft_execute_child(t_shell *sh, t_token *curr_cmd, int i,
 	if (sh->tokens)
 		ft_execute_command(sh, ft_get_cmd_type(sh->tokens->val.value));
 	ft_cleanup_w_env(sh);
+	ft_free_arr(sh->temp_files);
 	exit(g_gbl.g_exit_status);
 }
 

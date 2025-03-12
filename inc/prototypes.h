@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/12 14:41:51 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/12 17:29:52 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,7 @@ void			ft_print_error_and_status(t_status *status);
 /* 650_heredoc/heredoc_syntax.c */
 t_status		ft_check_heredoc_syntax(t_token *token);
 t_status		ft_handle_child_exit(int status, char *tempfile);
-t_status		ft_handle_child_signal(int status, char *tempfile);
+t_status		ft_handle_child_signal(t_shell *shell, int status, char *tempfile);
 t_status		ft_process_heredocs(t_shell *shell);
 
 /* 650_heredoc/heredoc_input.c */

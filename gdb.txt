@@ -348,3 +348,235 @@ ft_init_token_values (shell=0x7fffffffe128, token=0x4118a0, value=0x42b440 "$re"
 2: token->val.og_value = 0x3b0538aeee8abce3 <error: Cannot access memory at address 0x3b0538aeee8abce3>
 3: token->val.value = 0x4113a1 "\206B"
 ----------------------------------------------------
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40189a: file src/100_main.c, line 43.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040189a in main at src/100_main.c:43
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:43
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40189a: file src/100_main.c, line 43.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040189a in main at src/100_main.c:43
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040189a in main at src/100_main.c:43
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:43
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 204885) fork to child process 204890]
+[New inferior 2 (process 204890)]
+[Detaching after fork from parent process 204885]
+[Inferior 1 (process 204885) detached]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Thread 2.1 "minishell" received signal SIGSEGV, Segmentation fault.
+[Switching to Thread 0x7ffff7ccd380 (LWP 204890)]
+0x000000000040a287 in ft_strcmp ()
+#0  0x000000000040a287 in ft_strcmp ()
+#1  0x00000000004083d5 in ft_read_heredoc_input (shell=0x7fffffffe120, delimiter=0x4495a0 "y\221D", quoted=0, fd=5) at src/650_heredoc/heredoc_input_2.c:46
+#2  0x0000000000408330 in ft_child_heredoc (shell=0x7fffffffe120, delim=0x412740, tempfile=0x4124b0 "R\222D") at src/650_heredoc/heredoc_input.c:155
+#3  0x0000000000408104 in ft_fork_heredoc (pid=0x7fffffffe09c, shell=0x7fffffffe120, delim=0x412740, tempfile=0x4124b0 "R\222D") at src/650_heredoc/heredoc_input.c:80
+#4  0x000000000040802f in ft_handle_single_heredoc (shell=0x7fffffffe120, current=0x4127b0) at src/650_heredoc/heredoc_input.c:53
+#5  0x0000000000407c9e in ft_process_heredocs (shell=0x7fffffffe120) at src/650_heredoc/heredoc_syntax.c:109
+#6  0x00000000004019c5 in ft_process_input (shell=0x7fffffffe120) at src/100_main.c:87
+#7  0x0000000000401954 in main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:61
+Breakpoint 3 at 0x408376: ft_read_heredoc_input. (2 locations)
+Please answer y or n.
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:43
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 204933) fork to child process 204944]
+[New inferior 3 (process 204944)]
+[Detaching after fork from parent process 204933]
+[Inferior 2 (process 204933) detached]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff7ccd380 (LWP 204944)]
+
+Thread 3.1 "minishell" hit Breakpoint 3, ft_read_heredoc_input (shell=0x7fffffffe120, delimiter=0x4495a0 "eof", quoted=0, fd=5) at src/650_heredoc/heredoc_input_2.c:36
+----------------------------------------------------
+----------------------------------------------------
+1: line = 0x0
+1: line = 0x0
+----------------------------------------------------
+1: line = 0x0
+----------------------------------------------------
+1: line = 0x0
+----------------------------------------------------
+1: line = 0x0
+----------------------------------------------------
+2: line = 0x0
+
+Thread 3.1 "minishell" received signal SIGSEGV, Segmentation fault.
+0x000000000040a287 in ft_strcmp ()
+----------------------------------------------------
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:43
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 205021) fork to child process 205025]
+[New inferior 4 (process 205025)]
+[Detaching after fork from parent process 205021]
+[Inferior 3 (process 205021) detached]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff7ccd380 (LWP 205025)]
+
+Thread 4.1 "minishell" hit Breakpoint 3, ft_read_heredoc_input (shell=0x7fffffffe120, delimiter=0x4495a0 "eof", quoted=0, fd=5) at src/650_heredoc/heredoc_input_2.c:36
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+
+Thread 4.1 "minishell" received signal SIGSEGV, Segmentation fault.
+0x000000000040a287 in ft_strcmp ()
+Breakpoint 4 at 0x40a274 (4 locations)
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:43
+Continuing.
+
+Breakpoint 4, 0x000000000040a274 in ft_strcmp ()
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:43
+Continuing.
+
+Breakpoint 4, 0x000000000040a274 in ft_strcmp ()
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40189a: file src/100_main.c, line 43.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040189a in main at src/100_main.c:43
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:43
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40189a: file src/100_main.c, line 43.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040189a in main at src/100_main.c:43
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040189a in main at src/100_main.c:43
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:43
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 205450) fork to child process 205454]
+[New inferior 2 (process 205454)]
+[Detaching after fork from parent process 205450]
+[Inferior 1 (process 205450) detached]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Thread 2.1 "minishell" received signal SIGSEGV, Segmentation fault.
+[Switching to Thread 0x7ffff7ccd380 (LWP 205454)]
+0x000000000040a287 in ft_strcmp ()
+#0  0x000000000040a287 in ft_strcmp ()
+#1  0x00000000004083d5 in ft_read_heredoc_input (shell=0x7fffffffe120, delimiter=0x4495a0 "y\221D", quoted=0, fd=5) at src/650_heredoc/heredoc_input_2.c:46
+#2  0x0000000000408330 in ft_child_heredoc (shell=0x7fffffffe120, delim=0x412740, tempfile=0x4124b0 "\022\004") at src/650_heredoc/heredoc_input.c:155
+#3  0x0000000000408104 in ft_fork_heredoc (pid=0x7fffffffe09c, shell=0x7fffffffe120, delim=0x412740, tempfile=0x4124b0 "\022\004") at src/650_heredoc/heredoc_input.c:80
+#4  0x000000000040802f in ft_handle_single_heredoc (shell=0x7fffffffe120, current=0x4127b0) at src/650_heredoc/heredoc_input.c:53
+#5  0x0000000000407c9e in ft_process_heredocs (shell=0x7fffffffe120) at src/650_heredoc/heredoc_syntax.c:109
+#6  0x00000000004019c5 in ft_process_input (shell=0x7fffffffe120) at src/100_main.c:87
+#7  0x0000000000401954 in main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:61
+Undefined command: "ft_read_heredoc_input".  Try "help".
+Breakpoint 3 at 0x408376: ft_read_heredoc_input. (2 locations)
+Continuing.
+
+Program terminated with signal SIGSEGV, Segmentation fault.
+The program no longer exists.
+The program is not being run.
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:43
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 205597) fork to child process 205602]
+[New inferior 3 (process 205602)]
+[Detaching after fork from parent process 205597]
+[Inferior 2 (process 205597) detached]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff7ccd380 (LWP 205602)]
+
+Thread 3.1 "minishell" hit Breakpoint 3, ft_read_heredoc_input (shell=0x7fffffffe120, delimiter=0x4495a0 "eof", quoted=0, fd=5) at src/650_heredoc/heredoc_input_2.c:36
+----------------------------------------------------
+----------------------------------------------------
+1: line = 0x0
+1: line = 0x0
+----------------------------------------------------
+1: line = 0x0
+----------------------------------------------------
+1: line = 0x0
+----------------------------------------------------
+1: line = 0x0
+----------------------------------------------------
+Breakpoint 4 at 0x4083c8: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/src/650_heredoc/heredoc_input_2.c:46. (3 locations)
+Continuing.
+
+Thread 3.1 "minishell" received signal SIGSEGV, Segmentation fault.
+0x000000000040a287 in ft_strcmp ()
+No symbol "line" in current context.
+Starting program: /home/jmeirele/Code/CommonCore/rank03/42_Minishell/minishell 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2a8, envp=0x7fffffffe2b8) at src/100_main.c:43
+Continuing.
+[Attaching after Thread 0x7ffff7ccd380 (LWP 205654) fork to child process 205658]
+[New inferior 4 (process 205658)]
+[Detaching after fork from parent process 205654]
+[Inferior 3 (process 205654) detached]
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff7ccd380 (LWP 205658)]
+
+Thread 4.1 "minishell" hit Breakpoint 3, ft_read_heredoc_input (shell=0x7fffffffe120, delimiter=0x4496c0 "eof", quoted=0, fd=5) at src/650_heredoc/heredoc_input_2.c:36
+----------------------------------------------------
+2: line = 0x7fffffffde40 "\020\337\377\377\377\177"
+2: line = 0x0
+----------------------------------------------------
+2: line = 0x0
+----------------------------------------------------
+2: line = 0x0
+----------------------------------------------------
+2: line = 0x0
+----------------------------------------------------
+
+Thread 4.1 "minishell" hit Breakpoint 4, ft_read_heredoc_input (shell=0x7fffffffe120, delimiter=0x4496c0 "\031\222D", quoted=0, fd=5) at src/650_heredoc/heredoc_input_2.c:46
+2: line = 0x0
+----------------------------------------------------
+3: delimiter = 0x4496c0 "\031\222D"
+$1 = 25 '\031'

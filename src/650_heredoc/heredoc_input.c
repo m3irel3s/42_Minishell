@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/03/12 15:56:20 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/12 17:30:20 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ static t_status	ft_handle_heredoc_parent(pid_t pid, char *tempfile,
 		return (ERROR);
 	}
 	if (ft_handle_child_exit(status, tempfile) == ERROR
-		|| ft_handle_child_signal(status, tempfile) == ERROR)
+		|| ft_handle_child_signal(shell, status, tempfile) == ERROR)
 		return (ERROR);
 	ft_process_delimiter(current, current->next, tempfile);
 	ft_add_temp_file(shell, tempfile);

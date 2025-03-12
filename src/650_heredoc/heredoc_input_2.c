@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 14:19:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/12 15:52:25 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/12 17:24:59 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted,
 			ft_print_error_w_arg(ERR_EOF_HEREDOC, delimiter, EXIT_FAILURE);
 			ft_cleanup_w_env(shell);
 			close(fd);
+			ft_free_arr(shell->temp_files);
+			break ;
 		}
 		if (ft_strcmp(line, delimiter) == 0)
 		{
@@ -49,6 +51,7 @@ void	ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted,
 			ft_free(line);
 			close(fd);
 			g_gbl.g_exit_status = EXIT_SUCCESS;
+			ft_free_arr(shell->temp_files);
 			exit(g_gbl.g_exit_status);
 		}
 		ft_handle_expansion(shell, line, quoted, fd);

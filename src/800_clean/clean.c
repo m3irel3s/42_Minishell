@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/12 15:57:01 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/12 16:09:01 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	ft_cleanup(t_shell *shell)
 	shell->input = NULL;
 	ft_cleanup_tokens(shell);
 	ft_cleanup_redirects(shell);
-	if (shell->tml)
-		ft_free(shell->tml);
+	ft_free(shell->tml);
+	shell->tml = NULL;
 	close(g_gbl.g_og_stdout);
 	ft_close_fds();
 }
