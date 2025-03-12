@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:04:18 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/11 16:11:36 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/12 14:43:20 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char	*ft_set_prompt(t_shell *shell)
 		user = "user";
 	prompt = ft_build_prompt(user, cwd);
 	ft_free(cwd);
+	shell->tml = ft_safe_calloc(sizeof(t_terminal));
 	return (prompt);
 }
 

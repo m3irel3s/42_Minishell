@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/11 15:37:04 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/12 15:14:06 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ t_status	ft_process_heredocs(t_shell *shell)
 	}
 	if (dup2(saved_stdin, STDIN_FILENO) == -1)
 		ft_print_error(ERR_DUP2_FAIL);
+	close(saved_stdin);
 	close(saved_stdin);
 	return (SUCCESS);
 }

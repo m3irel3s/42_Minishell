@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 10:45:07 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/11 16:07:12 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/12 15:14:58 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ t_status	ft_handle_redirections(t_shell *shell)
 		ft_print_error_and_status(&status);
 	if (dup2(saved_stdout, STDOUT_FILENO) == -1)
 		ft_print_error_and_status(&status);
+	close(saved_stdin);
+	close(saved_stdout);
 	return (close(saved_stdin), close(saved_stdout), status);
 }
 
