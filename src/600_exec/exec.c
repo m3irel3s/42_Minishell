@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:18:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/11 15:48:07 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/12 15:18:18 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ static void	ft_handle_exec(t_shell *shell, int cmd)
 	ft_execute_command(shell, cmd);
 	dup2(original_stdin, STDIN_FILENO);
 	dup2(original_stdout, STDOUT_FILENO);
+	close(original_stdin);
+	close(original_stdout);
 	close(original_stdin);
 	close(original_stdout);
 	close(shell->redirected_stdin);
