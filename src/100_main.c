@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/12 14:14:23 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/12 15:55:48 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int	main(int argc, char **argv, char **envp)
 	ft_update_env(&shell);
 	rl_catch_signals = 0;
 	// signal(SIGPIPE, SIG_IGN);
-	shell.tml = ft_safe_calloc(sizeof(t_terminal));
 	while (1)
 	{
+		ft_save_original_fds();
 		if (ft_set_up_signals() == ERROR)
 			return (ft_print_error(ERR_SIGNAL_SETUP_FAIL), g_gbl.g_exit_status);
 		shell.prompt = ft_set_prompt(&shell);
@@ -62,8 +62,6 @@ int	main(int argc, char **argv, char **envp)
 	}
 	ft_cleanup(&shell);
 	rl_clear_history();
-	close(g_gbl.g_og_stdout);
-	ft_free(shell.tml);
 	return (g_gbl.g_exit_status);
 }
 

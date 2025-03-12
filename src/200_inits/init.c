@@ -6,15 +6,13 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:59:06 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/12 14:20:47 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/12 15:55:52 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
 static void	ft_update_shlvl(t_shell *shell);
-static void	ft_init_global_struct(void);
-static void	ft_save_original_fds(void);
 
 /**
  * Initializes the given shell structure.
@@ -41,7 +39,7 @@ t_status	ft_init_shell(t_shell *shell, char **envp)
 	shell->in_export = 0;
 	shell->random_number = 0;
 	shell->tml = NULL;
-	ft_init_global_struct();
+	g_gbl.g_exit_status = EXIT_SUCCESS;
 	return (SUCCESS);
 }
 
@@ -74,19 +72,6 @@ static void	ft_update_shlvl(t_shell *shell)
 }
 
 /**
- * Initializes the global structure.
- *
- * This function initializes the global structure by setting the global exit
- * status to SUCCESS and saving the original file descriptors for standard
- * input, output, and error.
- */
-static void	ft_init_global_struct(void)
-{
-	g_gbl.g_exit_status = EXIT_SUCCESS;
-	ft_save_original_fds();
-}
-
-/**
  * @brief Saves the original file descriptors for standard input, output,
  * and error.
  *
@@ -94,7 +79,7 @@ static void	ft_init_global_struct(void)
  * output, and error, and stores them in global variables. This allows the
  * shell to restore the original file descriptors after any redirections.
  */
-static void	ft_save_original_fds(void)
+void	ft_save_original_fds(void)
 {
 	g_gbl.g_og_stdout = dup(STDOUT_FILENO);
 }

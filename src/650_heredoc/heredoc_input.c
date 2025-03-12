@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 16:15:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/12 11:31:15 by jmeirele         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2025/03/12 15:56:20 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../inc/minishell.h"
 
@@ -39,7 +40,6 @@ t_status	ft_handle_single_heredoc(t_shell *shell, t_token *current)
 	struct sigaction	sa_ignore;
 	struct sigaction	sa_old;
 
-	// shell->tml = ft_safe_calloc(sizeof(t_terminal));
 	shell->tml->is_terminal = isatty(STDIN_FILENO);
 	if (ft_check_heredoc_syntax(current) == ERROR)
 		return (ERROR);
@@ -103,6 +103,7 @@ static t_status	ft_handle_heredoc_parent(pid_t pid, char *tempfile,
 
 	ft_memset(&sa_old, 0, sizeof(sa_old));
 	waitpid(pid, &status, 0);
+	ft_memset(&sa_old, 0, sizeof(sa_old));
 	if (shell->tml->is_terminal
 		&& tcsetattr(STDIN_FILENO, TCSANOW,
 			&shell->tml->og_termios) == -1)
