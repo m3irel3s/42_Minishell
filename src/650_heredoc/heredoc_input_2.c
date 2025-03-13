@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 14:19:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/13 20:52:10 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/13 21:40:42 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,45 +29,38 @@ static void	ft_handle_expansion(t_shell *shell, char *line, int quoted, int fd);
  * @param fd The file descriptor to write the heredoc input to.
  */
 
-void	ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted,
-		int fd)
-{
-	char	*line;
+ void ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted, int fd)
+ {
+	 char *line;
 
-	rl_catch_signals = 1;
-	while (1)
-	{
-		line = readline("> ");
-		if (!line)
-		{
-			if (g_exit_status == EXIT_SIGINT)
-			{
-				ft_printf(STDOUT_FILENO, "\n");
-				ft_cleanup_w_env(shell);
-				close(fd);
-				exit(g_exit_status);
+	 while (1) {
+		 line = readline("> ");
+		 if (!line) {
+			 // Cleanup before exit
+			 ft_cleanup_w_env(shell);
+			 if (shell->temp_files) {
+				for (int i = 0; shell->temp_files[i]; i++) {
+					unlink(shell->temp_files[i]);
+					ft_free(shell->temp_files[i]);
+				}
+				ft_free(shell->temp_files);
+				shell->temp_files = NULL;
 			}
-			else
-			{
-				ft_print_error_w_arg(ERR_EOF_HEREDOC, delimiter, EXIT_FAILURE);
-				ft_cleanup_w_env(shell);
-				close(fd);
-				ft_free_arr(shell->temp_files);
-				exit(g_exit_status);
-			}
-		}
-		if (ft_strcmp(line, delimiter) == 0)
-		{
-			ft_cleanup_w_env(shell);
-			ft_free(line);
-			close(fd);
-			g_exit_status = EXIT_SUCCESS;
-			ft_free_arr(shell->temp_files);
-			exit(g_exit_status);
-		}
-		ft_handle_expansion(shell, line, quoted, fd);
-	}
-}
+			 close(fd);
+			 exit(g_exit_status);
+		 }
+
+		 if (ft_strcmp(line, delimiter) == 0) {
+			 ft_free(line);
+			 close(fd);
+			 exit(EXIT_SUCCESS);
+		 }
+
+		 // Process and free line immediately
+		 ft_handle_expansion(shell, line, quoted, fd);
+		 ft_free(line);
+	 }
+ }
 
 /**
  * @brief Handles the expansion of a heredoc input line.

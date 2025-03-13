@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:24:52 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/13 21:26:56 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/13 21:37:43 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,12 +113,7 @@ static t_status	ft_handle_heredoc_parent(pid_t pid, char *tempfile,
 	ft_add_temp_file(shell, tempfile);
 	return (SUCCESS);
 }
-static void	ft_handle_ctrl_c(int sig)
-{
-	(void)sig;
-	write(STDOUT_FILENO, "\n", 1);
-	exit(EXIT_FAILURE);
-}
+
 /**
  * @brief Handles the child process for heredoc input.
  *
@@ -132,23 +127,34 @@ static void	ft_handle_ctrl_c(int sig)
  * @param delim The token containing the heredoc delimiter.
  * @param tempfile The name of the temporary file to write heredoc input.
  */
-static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
+static void ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
 {
-	int					fd;
+	struct termios term;
+	int fd;
 
-	signal(SIGINT, ft_handle_ctrl_c);
-	signal(SIGQUIT, SIG_IGN);
+	// Reset SIGINT to default behavior
+	signal(SIGINT, SIG_DFL);
 
-	fd = open(tempfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (fd == -1)
-	{
+	// Configure terminal to show ^C
+	tcgetattr(STDIN_FILENO, &term);
+	term.c_lflag |= ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSANOW, &term);
+
+	// Open temp file
+	fd = open(tempfile, O_WRONLY|O_CREAT|O_TRUNC, 0644);
+	if (fd == -1) {
 		ft_print_error(ERR_OPEN_FAIL);
 		ft_free(tempfile);
-		exit(g_exit_status);
+		exit(EXIT_FAILURE);
 	}
+
+	// Immediately free tempfile name (not needed after open)
 	ft_free(tempfile);
+
+	// Read input
 	ft_read_heredoc_input(shell, delim->val.value, delim->quoted, fd);
+
+	// Explicit close before exit
 	close(fd);
-	g_exit_status = EXIT_SUCCESS;
-	exit(g_exit_status);
+	exit(EXIT_SUCCESS);
 }

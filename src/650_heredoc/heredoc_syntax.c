@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/13 21:29:03 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/13 21:37:13 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,29 +43,29 @@ t_status	ft_check_heredoc_syntax(t_token *current)
  * @return ERROR if the child process exited with a non-zero status, SUCCESS
  * otherwise.
  */
-t_status	ft_handle_child_exit(int status, char *tempfile)
+t_status ft_handle_child_exit(int status, char *tempfile)
 {
-	int	exit_code;
+    int exit_code;
 
-	if (WIFEXITED(status))
-	{
-		exit_code = WEXITSTATUS(status);
-		if (exit_code == 130)
-		{
-			unlink(tempfile);
-			ft_free(tempfile);
-			g_exit_status = exit_code;
-			return (ERROR);
-		}
-		else if (exit_code != EXIT_SUCCESS)
-		{
-			unlink(tempfile);
-			ft_free(tempfile);
-			g_exit_status = exit_code;
-			return (ERROR);
-		}
-	}
-	return (SUCCESS);
+    if (WIFEXITED(status)) {
+        exit_code = WEXITSTATUS(status);
+
+        // Always unlink tempfile regardless of exit code
+        unlink(tempfile);
+        ft_free(tempfile);
+
+        if (exit_code == 130) {  // SIGINT
+            ft_printf(STDOUT_FILENO, "^C\n");
+            g_exit_status = exit_code;
+            return ERROR;
+        }
+        else if (exit_code != EXIT_SUCCESS) {  // EOF
+            ft_print_error_w_arg(ERR_EOF_HEREDOC, "heredoc", exit_code);
+            g_exit_status = exit_code;
+            return ERROR;
+        }
+    }
+    return SUCCESS;
 }
 
 /**

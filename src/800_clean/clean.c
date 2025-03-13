@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/13 17:35:31 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/13 21:36:40 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,14 @@ void	ft_cleanup(t_shell *shell)
 	ft_cleanup_redirects(shell);
 	ft_free(shell->tml);
 	shell->tml = NULL;
+	if (shell->temp_files) {
+        for (int i = 0; shell->temp_files[i]; i++) {
+            unlink(shell->temp_files[i]);
+            ft_free(shell->temp_files[i]);
+        }
+        ft_free(shell->temp_files);
+        shell->temp_files = NULL;
+    }
 	ft_close_fds();
 }
 
