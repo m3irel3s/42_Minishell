@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:34:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/12 16:07:36 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/13 17:38:02 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ static void	ft_exec_child(t_shell *shell, char *path, char **arr)
 		ft_cleanup(shell);
 		if (shell->env_cpy)
 			ft_free_arr(shell->env_cpy);
-		exit(g_gbl.g_exit_status);
+		exit(g_exit_status);
 	}
 }
 
@@ -169,12 +169,12 @@ static void	ft_exec_parent(t_shell *shell, pid_t pid, int status,
 	sigaction(SIGINT, &old_sa, NULL);
 	if (WIFSIGNALED(status) && WTERMSIG(status) == SIGINT)
 	{
-		if (dup2(g_gbl.g_og_stdout, STDOUT_FILENO) == -1)
+		if (dup2(shell->og_stdout, STDOUT_FILENO) == -1)
 			ft_print_error(ERR_DUP2_FAIL);
 		write(STDOUT_FILENO, "\n", 1);
 		ft_cleanup(shell);
-		g_gbl.g_exit_status = EXIT_SIGINT;
+		g_exit_status = EXIT_SIGINT;
 	}
 	if (WIFEXITED(status))
-		g_gbl.g_exit_status = WEXITSTATUS(status);
+		g_exit_status = WEXITSTATUS(status);
 }

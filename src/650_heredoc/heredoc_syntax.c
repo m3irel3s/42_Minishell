@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_syntax.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/13 14:41:19 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/13 17:38:02 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_status	ft_handle_child_exit(int status, char *tempfile)
 	{
 		unlink(tempfile);
 		ft_free(tempfile);
-		g_gbl.g_exit_status = WEXITSTATUS(status);
+		g_exit_status = WEXITSTATUS(status);
 		return (ERROR);
 	}
 	return (SUCCESS);
@@ -75,7 +75,7 @@ t_status	ft_handle_child_signal(int status, char *tempfile)
 	{
 		unlink(tempfile);
 		ft_free(tempfile);
-		g_gbl.g_exit_status = EXIT_FAILURE;
+		g_exit_status = EXIT_FAILURE;
 		write(STDOUT_FILENO, "\n", 1);
 		return (ERROR);
 	}

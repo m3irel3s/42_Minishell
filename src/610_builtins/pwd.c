@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 13:22:08 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/11 15:37:04 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/13 17:38:02 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ void	ft_pwd(void)
 	if (!path)
 	{
 		ft_print_error(ERR_GET_CWD_FAIL);
-		g_gbl.g_exit_status = EXIT_FAILURE;
+		g_exit_status = EXIT_FAILURE;
 		return ;
 	}
 	ft_printf(STDOUT_FILENO, "%s\n", path);
 	ft_free(path);
-	g_gbl.g_exit_status = EXIT_SUCCESS;
+	g_exit_status = EXIT_SUCCESS;
 }

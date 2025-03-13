@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:25:50 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/13 11:25:53 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/13 17:38:02 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	ft_exec(t_shell *shell)
 	if (!curr)
 		return ;
 	ft_handle_simple_and_double_quotes(curr);
-	if (g_gbl.g_exit_status == EXIT_SIGINT)
+	if (g_exit_status == EXIT_SIGINT)
 	{
-		g_gbl.g_exit_status = EXIT_SIGINT;
+		g_exit_status = EXIT_SIGINT;
 		return ;
 	}
 	if (ft_has_pipes(shell) == SUCCESS)

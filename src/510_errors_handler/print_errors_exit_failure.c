@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:27:21 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/11 15:37:04 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/13 17:38:02 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 t_status	ft_print_error(char *error_msg)
 {
 	ft_putstr_fd(error_msg, STDERR_FILENO);
-	g_gbl.g_exit_status = EXIT_FAILURE;
+	g_exit_status = EXIT_FAILURE;
 	return (ERROR);
 }
 
@@ -43,7 +43,7 @@ t_status	ft_print_error_custom_status(char *error_msg,
 	int exit_status)
 {
 	ft_putstr_fd(error_msg, STDERR_FILENO);
-	g_gbl.g_exit_status = exit_status;
+	g_exit_status = exit_status;
 	return (ERROR);
 }
 
@@ -65,7 +65,7 @@ t_status	ft_print_syntax_error(char *token)
 	if (!token)
 		return (ft_print_error(ERR_INVALID_PARAMS));
 	ft_printf(STDERR_FILENO, ERR_SYNTAX_UNEXPECTED_TOKEN, token);
-	g_gbl.g_exit_status = EXIT_FAILURE;
+	g_exit_status = EXIT_FAILURE;
 	return (ERROR);
 }
 

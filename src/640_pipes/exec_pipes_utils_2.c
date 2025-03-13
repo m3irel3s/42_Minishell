@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 16:48:40 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/11 16:22:53 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/13 17:38:02 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,6 @@ void	ft_free_redirects(t_redirect *redirects)
 void	ft_clean_and_exit(t_shell *sh)
 {
 	ft_cleanup_w_env(sh);
-	g_gbl.g_exit_status = EXIT_FAILURE;
-	exit(g_gbl.g_exit_status);
+	g_exit_status = EXIT_FAILURE;
+	exit(g_exit_status);
 }

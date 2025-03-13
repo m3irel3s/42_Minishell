@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/13 14:32:43 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/13 17:36:28 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int				ft_authors(void);
 //============================================================================//
 /* 200_inits/init.c */
 t_status		ft_init_shell(t_shell *shell, char **envp);
-void			ft_save_original_fds(void);
 
 //============================================================================//
 //                               PROMPT HANDLING                              //

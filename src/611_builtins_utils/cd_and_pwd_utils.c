@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 09:43:33 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/11 15:37:04 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/13 17:38:02 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_get_current_directory(void)
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
 	{
-		g_gbl.g_exit_status = EXIT_FAILURE;
+		g_exit_status = EXIT_FAILURE;
 		return (NULL);
 	}
 	res = ft_safe_strdup(cwd);
@@ -38,7 +38,7 @@ char	*ft_get_current_directory(void)
 	if (!res)
 	{
 		ft_printf(STDERR_FILENO, ERR_STRDUP_FAIL);
-		g_gbl.g_exit_status = EXIT_FAILURE;
+		g_exit_status = EXIT_FAILURE;
 	}
 	return (res);
 }

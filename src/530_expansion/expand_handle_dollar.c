@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 14:14:30 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/11 15:37:04 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/13 17:38:02 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ static char	*ft_expand_exit_status(size_t *i)
 	char	*res;
 
 	(*i)++;
-	res = ft_itoa(g_gbl.g_exit_status);
+	res = ft_itoa(g_exit_status);
 	if (!res)
 		return (ft_set_error_and_return_null());
 	return (res);
@@ -170,6 +170,6 @@ static char	*ft_expand_variable(t_shell *shell, char *token, size_t *i,
  */
 static char	*ft_set_error_and_return_null(void)
 {
-	g_gbl.g_exit_status = EXIT_FAILURE;
+	g_exit_status = EXIT_FAILURE;
 	return (NULL);
 }

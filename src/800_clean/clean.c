@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/13 11:24:34 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/13 17:35:31 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	ft_cleanup(t_shell *shell)
 	ft_cleanup_redirects(shell);
 	ft_free(shell->tml);
 	shell->tml = NULL;
-	close(g_gbl.g_og_stdout);
 	ft_close_fds();
 }
 
