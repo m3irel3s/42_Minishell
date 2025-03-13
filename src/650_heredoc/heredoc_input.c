@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:24:52 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/13 17:38:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/13 20:53:55 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,21 +100,12 @@ static t_status	ft_handle_heredoc_parent(pid_t pid, char *tempfile,
 		t_shell *shell, t_token *current)
 {
 	int					status;
-	struct sigaction	sa_old;
 
-	ft_memset(&sa_old, 0, sizeof(sa_old));
 	waitpid(pid, &status, 0);
-	ft_memset(&sa_old, 0, sizeof(sa_old));
 	if (shell->tml->is_terminal
 		&& tcsetattr(STDIN_FILENO, TCSANOW,
 			&shell->tml->og_termios) == -1)
 		return (ft_print_error(ERR_TCGETATTR), ft_free(tempfile), ERROR);
-	if (sigaction(SIGINT, &sa_old, NULL) == -1)
-	{
-		ft_print_error("sigaction restore failed");
-		ft_free(tempfile);
-		return (ERROR);
-	}
 	if (ft_handle_child_exit(status, tempfile) == ERROR
 		|| ft_handle_child_signal(status, tempfile) == ERROR)
 		return (ERROR);
@@ -138,13 +129,8 @@ static t_status	ft_handle_heredoc_parent(pid_t pid, char *tempfile,
  */
 static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
 {
-	struct sigaction	sa;
 	int					fd;
 
-	sa.sa_handler = SIG_DFL;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = 0;
-	sigaction(SIGINT, &sa, NULL);
 	fd = open(tempfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)
 	{

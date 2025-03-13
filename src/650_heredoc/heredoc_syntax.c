@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/13 17:38:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/13 20:49:39 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,26 @@ t_status	ft_check_heredoc_syntax(t_token *current)
  */
 t_status	ft_handle_child_exit(int status, char *tempfile)
 {
-	if (WIFEXITED(status) && WEXITSTATUS(status) != EXIT_SUCCESS)
+	int	exit_code;
+
+	if (WIFEXITED(status))
 	{
-		unlink(tempfile);
-		ft_free(tempfile);
-		g_exit_status = WEXITSTATUS(status);
-		return (ERROR);
+		exit_code = WEXITSTATUS(status);
+		if (exit_code == 130)
+		{
+			unlink(tempfile);
+			ft_free(tempfile);
+			g_exit_status = exit_code;
+			return (ERROR);
+		}
+		else if (exit_code != EXIT_SUCCESS)
+		{
+			ft_print_error_w_arg(ERR_EOF_HEREDOC, "heredoc", exit_code);
+			unlink(tempfile);
+			ft_free(tempfile);
+			g_exit_status = exit_code;
+			return (ERROR);
+		}
 	}
 	return (SUCCESS);
 }
