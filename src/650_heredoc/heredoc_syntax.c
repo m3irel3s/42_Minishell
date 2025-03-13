@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/13 20:49:39 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/13 21:29:03 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ t_status	ft_handle_child_exit(int status, char *tempfile)
 		}
 		else if (exit_code != EXIT_SUCCESS)
 		{
-			ft_print_error_w_arg(ERR_EOF_HEREDOC, "heredoc", exit_code);
 			unlink(tempfile);
 			ft_free(tempfile);
 			g_exit_status = exit_code;
