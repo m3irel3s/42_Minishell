@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   variable_utils_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 11:35:08 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/08 14:54:08 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/13 10:34:45 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

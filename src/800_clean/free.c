@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:17:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/03 14:09:04 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/13 11:25:24 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,13 @@ void	ft_free_arr(char **arr)
 		i++;
 	}
 	ft_free(arr);
+}
+
+void	ft_close_fds(void)
+{
+	int	i;
+
+	i = 3;
+	while (i < 20)
+		close(i++);
 }

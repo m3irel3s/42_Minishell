@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:00:00 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/11 16:07:50 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/13 14:03:20 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

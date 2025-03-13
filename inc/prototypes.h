@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/12 17:29:52 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/13 14:16:33 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,12 +180,13 @@ void			ft_create_redirection_list(t_shell *shell);
 void			ft_print_error_and_status(t_status *status);
 
 //============================================================================//
-//                         EXECUTION - HEREDOC                           //
+//                         EXECUTION - HEREDOC                                //
 //============================================================================//
 /* 650_heredoc/heredoc_syntax.c */
 t_status		ft_check_heredoc_syntax(t_token *token);
 t_status		ft_handle_child_exit(int status, char *tempfile);
-t_status		ft_handle_child_signal(t_shell *shell, int status, char *tempfile);
+t_status		ft_handle_child_signal(t_shell *shell, int status, \
+					char *tempfile);
 t_status		ft_process_heredocs(t_shell *shell);
 
 /* 650_heredoc/heredoc_input.c */
@@ -291,5 +292,6 @@ void			ft_free(void *ptr);
 void			ft_free_token(t_token *token);
 void			ft_free_tokens(t_token **tokens);
 void			ft_free_arr(char **arr);
+void			ft_close_fds(void);
 
 #endif

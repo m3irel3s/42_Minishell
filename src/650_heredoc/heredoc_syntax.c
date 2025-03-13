@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/12 17:32:26 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/13 13:53:43 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ t_status	ft_handle_child_signal(t_shell *shell, int status, char *tempfile)
 		ft_free(tempfile);
 		g_gbl.g_exit_status = EXIT_FAILURE;
 		write(STDOUT_FILENO, "\n", 1);
+		printf("HERE\n\n\n");
 		return (ERROR);
 	}
 	return (SUCCESS);

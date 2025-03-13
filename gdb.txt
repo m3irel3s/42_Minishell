@@ -580,3 +580,334 @@ Thread 4.1 "minishell" hit Breakpoint 4, ft_read_heredoc_input (shell=0x7fffffff
 ----------------------------------------------------
 3: delimiter = 0x4496c0 "\031\222D"
 $1 = 25 '\031'
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 1 at 0x40188a: file src/100_main.c, line 43.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040188a in main at src/100_main.c:43
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:43
+Already logging to gdb.txt.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+warning: Currently logging to gdb.txt.  Turn the logging off and on to make the new setting effective.
+Breakpoint 2 at 0x40188a: file src/100_main.c, line 43.
+Focus set to cmd window.
+Num     Type           Disp Enb Address            What
+1       breakpoint     keep y   0x000000000040188a in main at src/100_main.c:43
+	breakpoint already hit 1 time
+2       breakpoint     keep y   0x000000000040188a in main at src/100_main.c:43
+No watchpoints.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, main (argc=1, argv=0x7fffffffe2f8, envp=0x7fffffffe308) at src/100_main.c:43
+Breakpoint 3 at 0x40518c: file src/610_builtins/export.c, line 24.
+Continuing.
+
+Breakpoint 3, ft_export (shell=0x7fffffffe170) at src/610_builtins/export.c:24
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+ft_process_export_variable (shell=0x7fffffffe170, arg=0x4493c0 "TEST") at src/610_builtins/export.c:46
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+ft_handle_export_oper (sh=0x7fffffffe170, arg=0x4493c0 "TEST", eq=0x0, plus=0x0) at src/610_builtins/export.c:65
+1: arg = 0x4493c0 "TEST"
+1: arg = 0x4493c0 "TEST"
+----------------------------------------------------
+1: arg = 0x4493c0 "TEST"
+----------------------------------------------------
+1: arg = 0x4493c0 "TEST"
+----------------------------------------------------
+1: arg = 0x4493c0 "TEST"
+----------------------------------------------------
+1: arg = 0x4493c0 "TEST"
+----------------------------------------------------
+2: var = 0x42c350 "TEST"
+1: arg = 0x4493c0 "TEST"
+2: var = 0x42c350 "TEST"
+----------------------------------------------------
+ft_update_or_add_var (var=0x42c350 "TEST", value=0x40c992 "", shell=0x7fffffffe170, sign=-1) at src/700_utils_other/variable_utils_2.c:74
+----------------------------------------------------
+3: var_index = 5
+3: var_index = -1
+----------------------------------------------------
+3: var_index = -1
+----------------------------------------------------
+ft_add_var_to_env (shell=0x7fffffffe170, var=0x42c350 "TEST", value=0x40c992 "", sign=-1) at src/610_builtins/export.c:93
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+----------------------------------------------------
+4: new_env[i] = 0x0
+4: new_env[i] = 0x412740 "SSH_AGENT_LAUNCHER=gnome-keyring"
+----------------------------------------------------
+4: new_env[i] = 0x412740 "SSH_AGENT_LAUNCHER=gnome-keyring"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x412510 "STARSHIP_SESSION_KEY=8923137026131170"
+----------------------------------------------------
+4: new_env[i] = 0x412510 "STARSHIP_SESSION_KEY=8923137026131170"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x4124e0 "LIBVIRT_DEFAULT_URI=qemu:///system"
+----------------------------------------------------
+4: new_env[i] = 0x4124e0 "LIBVIRT_DEFAULT_URI=qemu:///system"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x42c390 "GDM_LANG=en"
+----------------------------------------------------
+4: new_env[i] = 0x42c390 "GDM_LANG=en"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x42c370 "QT_ACCESSIBILITY=1"
+----------------------------------------------------
+4: new_env[i] = 0x42c370 "QT_ACCESSIBILITY=1"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x4129b0 "PWD=/home/jmeirele/Code/CommonCore/rank03/42_Minishell"
+----------------------------------------------------
+4: new_env[i] = 0x4129b0 "PWD=/home/jmeirele/Code/CommonCore/rank03/42_Minishell"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x449400 "XDG_DATA_DIRS=/usr/share/ubuntu:/usr/share/gnome:/home/jmeirele/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop"
+----------------------------------------------------
+4: new_env[i] = 0x449400 "XDG_DATA_DIRS=/usr/share/ubuntu:/usr/share/gnome:/home/jmeirele/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x4126d0 "OLDPWD=/home/jmeirele/Code/CommonCore/rank03/42_Minishell"
+----------------------------------------------------
+4: new_env[i] = 0x4126d0 "OLDPWD=/home/jmeirele/Code/CommonCore/rank03/42_Minishell"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x412680 "XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session4"
+----------------------------------------------------
+4: new_env[i] = 0x412680 "XDG_SESSION_PATH=/org/freedesktop/DisplayManager/Session4"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x4493a0 "LANG=en_US.UTF-8"
+----------------------------------------------------
+4: new_env[i] = 0x4493a0 "LANG=en_US.UTF-8"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x4124b0 "XAUTHORITY=/home/jmeirele/.Xauthority"
+----------------------------------------------------
+4: new_env[i] = 0x4124b0 "XAUTHORITY=/home/jmeirele/.Xauthority"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x4128d0 "ZAP_PLUGIN_DIR=/home/jmeirele/.local/share/zap/plugins"
+----------------------------------------------------
+4: new_env[i] = 0x4128d0 "ZAP_PLUGIN_DIR=/home/jmeirele/.local/share/zap/plugins"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x4494c0 "GNOME_TERMINAL_SERVICE=:1.78"
+----------------------------------------------------
+4: new_env[i] = 0x4494c0 "GNOME_TERMINAL_SERVICE=:1.78"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x4493e0 "MAKEFLAGS="
+----------------------------------------------------
+4: new_env[i] = 0x4493e0 "MAKEFLAGS="
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x4494f0 "MFLAGS="
+----------------------------------------------------
+4: new_env[i] = 0x4494f0 "MFLAGS="
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x412860 "SSH_AUTH_SOCK=/run/user/102585/keyring/ssh"
+----------------------------------------------------
+4: new_env[i] = 0x412860 "SSH_AUTH_SOCK=/run/user/102585/keyring/ssh"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x412820 "XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg"
+----------------------------------------------------
+4: new_env[i] = 0x412820 "XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x449510 "XDG_SESSION_DESKTOP=ubuntu"
+----------------------------------------------------
+4: new_env[i] = 0x449510 "XDG_SESSION_DESKTOP=ubuntu"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x412770 "KRB5CCNAME=FILE:/tmp/krb5cc_102585_mQBWet"
+----------------------------------------------------
+4: new_env[i] = 0x412770 "KRB5CCNAME=FILE:/tmp/krb5cc_102585_mQBWet"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x449540 "XDG_SESSION_TYPE=x11"
+----------------------------------------------------
+4: new_env[i] = 0x449540 "XDG_SESSION_TYPE=x11"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x449560 "SESSION_MANAGER=local/c2r1s5.42porto.com:@/tmp/.ICE-unix/245566,unix/c2r1s5.42porto.com:/tmp/.ICE-unix/245566"
+----------------------------------------------------
+4: new_env[i] = 0x449560 "SESSION_MANAGER=local/c2r1s5.42porto.com:@/tmp/.ICE-unix/245566,unix/c2r1s5.42porto.com:/tmp/.ICE-unix/245566"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x412580 "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/102585/bus"
+----------------------------------------------------
+4: new_env[i] = 0x412580 "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/102585/bus"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x4495e0 "HOMEBREW_TEMP=/tmp/jmeirele/Homebrew/Temp"
+----------------------------------------------------
+4: new_env[i] = 0x4495e0 "HOMEBREW_TEMP=/tmp/jmeirele/Homebrew/Temp"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x449620 "GNOME_DESKTOP_SESSION_ID=this-is-deprecated"
+----------------------------------------------------
+4: new_env[i] = 0x449620 "GNOME_DESKTOP_SESSION_ID=this-is-deprecated"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x449660 "SHELL=/bin/zsh"
+----------------------------------------------------
+4: new_env[i] = 0x449660 "SHELL=/bin/zsh"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x449680 "XMODIFIERS=@im=ibus"
+----------------------------------------------------
+4: new_env[i] = 0x449680 "XMODIFIERS=@im=ibus"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x4496a0 "SHLVL=2"
+----------------------------------------------------
+4: new_env[i] = 0x4496a0 "SHLVL=2"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x4496c0 "GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/e82fb6e0_059e_49f2_b420_c014e3b34c8f"
+----------------------------------------------------
+4: new_env[i] = 0x4496c0 "GNOME_TERMINAL_SCREEN=/org/gnome/Terminal/screen/e82fb6e0_059e_49f2_b420_c014e3b34c8f"
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x449720 "PATH=/home/jmeirele/bin:/home/jmeirele/sgoinfre/.brew/bin:/home/jmeirele/.local/bin:/home/jmeirele/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bi"...
+----------------------------------------------------
+4: new_env[i] = 0x449720 "PATH=/home/jmeirele/bin:/home/jmeirele/sgoinfre/.brew/bin:/home/jmeirele/.local/bin:/home/jmeirele/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bi"...
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x0
+----------------------------------------------------
+4: new_env[i] = 0x449800 "LANGUAGE=en"
+----------------------------------------------------
+4: new_env[i] = 0x449800 "LANGUAGE=en"
+----------------------------------------------------
+Breakpoint 4 at 0x405390: file src/610_builtins/export.c, line 108.
+Continuing.
+
+Breakpoint 4, ft_add_var_to_env (shell=0x7fffffffe170, var=0x42c350 "TEST", value=0x40c992 "", sign=-1) at src/610_builtins/export.c:108
+4: new_env[i] = 0x0
+4: new_env[i] = 0x449d70 "TEST"
+----------------------------------------------------
+4: new_env[i] = 0x449d70 "TEST"
+----------------------------------------------------
+4: new_env[i] = 0x449d70 "TEST"
+----------------------------------------------------
+4: new_env[i] = 0x449d70 "TEST"
+----------------------------------------------------
+ft_update_or_add_var (var=0x42c350 "TEST", value=0x40c992 "", shell=0x7fffffffe170, sign=-1) at src/700_utils_other/variable_utils_2.c:79
+3: var_index = -1
+----------------------------------------------------
+3: var_index = -1
+----------------------------------------------------
+ft_handle_export_oper (sh=0x7fffffffe170, arg=0x4493c0 "TEST", eq=0x0, plus=0x0) at src/610_builtins/export.c:84
+1: arg = 0x4493c0 "TEST"
+2: var = 0x42c350 "TEST"
+----------------------------------------------------
+1: arg = 0x4493c0 "TEST"
+2: var = 0x42c350 "\034DA"
+----------------------------------------------------
+ft_process_export_variable (shell=0x7fffffffe170, arg=0x4493c0 "TEST") at src/610_builtins/export.c:54
+----------------------------------------------------

@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/12 16:12:44 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/13 11:53:56 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ int	main(int argc, char **argv, char **envp)
 		return (ft_print_error(ERR_SHELL_INIT_FAIL), g_gbl.g_exit_status);
 	ft_update_env(&shell);
 	rl_catch_signals = 0;
-	// signal(SIGPIPE, SIG_IGN);
 	while (1)
 	{
 		ft_save_original_fds();

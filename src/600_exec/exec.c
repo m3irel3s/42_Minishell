@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/03/12 15:55:59 by jmeirele         ###   ########.fr       */
+/*   Created: 2025/03/13 11:25:50 by jmeirele          #+#    #+#             */
+/*   Updated: 2025/03/13 11:25:53 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../inc/minishell.h"
 

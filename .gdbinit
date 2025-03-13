@@ -51,5 +51,4 @@ fs cmd
 info break
 info watch
 
-# Automatically start the program (optional)
 run

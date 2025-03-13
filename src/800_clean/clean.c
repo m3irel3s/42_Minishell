@@ -6,13 +6,11 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 14:46:15 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/12 16:09:01 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/13 11:24:34 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-
-static void	ft_close_fds(void);
 
 /**
  * Frees all dynamically allocated memory in the shell structure.
@@ -38,12 +36,6 @@ void	ft_cleanup(t_shell *shell)
 	ft_close_fds();
 }
 
-static void	ft_close_fds(void)
-{
-	int i = 3;
-	while (i < 20)
-		close(i++);
-}
 /**
  * Frees all dynamically allocated memory associated with the shell structure,
  * including the tokens, redirects and prompt strings, and the copy of the

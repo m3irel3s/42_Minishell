@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/03/12 17:30:20 by jmeirele         ###   ########.fr       */
+/*   Created: 2025/03/13 11:24:52 by jmeirele          #+#    #+#             */
+/*   Updated: 2025/03/13 13:33:31 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../inc/minishell.h"
 
@@ -52,7 +51,9 @@ t_status	ft_handle_single_heredoc(t_shell *shell, t_token *current)
 		return (ft_free(tempfile), ERROR);
 	if (ft_fork_heredoc(&pid, shell, current->next, tempfile) == ERROR)
 		return (sigaction(SIGINT, &sa_old, NULL), ft_free(tempfile), ERROR);
-	return (ft_handle_heredoc_parent(pid, tempfile, shell, current));
+	if (ft_handle_heredoc_parent(pid, tempfile, shell, current) == ERROR)
+		return (ERROR);
+	return (SUCCESS);
 }
 
 /**

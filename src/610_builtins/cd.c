@@ -5,14 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/03/12 15:56:05 by jmeirele         ###   ########.fr       */
+/*   Created: 2025/03/13 11:26:07 by jmeirele          #+#    #+#             */
+/*   Updated: 2025/03/13 11:26:12 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../inc/minishell.h"
-#include <unistd.h>
 
 static int	ft_handle_cd_home(t_shell *shell, char *curr_path);
 static int	ft_handle_cd_oldpwd(t_shell *shell, char *curr_path);
