@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/13 14:16:33 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/13 14:32:43 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int				ft_count_words(char *input);
 
 /* src/520_tokenization/tokens_split.c */
 char			**ft_split_input(char *input);
-t_status		ft_tokens_split(void);
+int				ft_build_tokens(char *input, char **res, size_t *i, size_t *k);
 
 /* src/520_tokenization/tokens_process.c */
 t_status		ft_tokenize(t_shell *shell, char **split_input);
@@ -74,9 +74,6 @@ t_token_type	ft_determine_token_type(char *og_value, char \
 /* src/520_tokenization/tokens_utils_2.c */
 t_status		ft_create_and_add_token(t_shell *shell, char *value,
 					size_t len, int quoted);
-
-/* src/520_tokenization/tokens_split.c */
-int				ft_build_tokens(char *input, char **res, size_t *i, size_t *k);
 
 /* src/520_tokenization/tokens_split_2.c */
 int				ft_handle_t_operator(char *input, size_t *i, \
@@ -185,7 +182,7 @@ void			ft_print_error_and_status(t_status *status);
 /* 650_heredoc/heredoc_syntax.c */
 t_status		ft_check_heredoc_syntax(t_token *token);
 t_status		ft_handle_child_exit(int status, char *tempfile);
-t_status		ft_handle_child_signal(t_shell *shell, int status, \
+t_status		ft_handle_child_signal(int status, \
 					char *tempfile);
 t_status		ft_process_heredocs(t_shell *shell);
 

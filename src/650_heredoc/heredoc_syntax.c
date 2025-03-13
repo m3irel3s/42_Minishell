@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/13 13:53:43 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/13 14:41:19 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,14 @@ t_status	ft_handle_child_exit(int status, char *tempfile)
  * @return ERROR if the child process was interrupted by a signal, SUCCESS
  * otherwise.
  */
-t_status	ft_handle_child_signal(t_shell *shell, int status, char *tempfile)
+t_status	ft_handle_child_signal(int status, char *tempfile)
 {
-	(void)shell;
 	if (WIFSIGNALED(status) && WTERMSIG(status) == SIGINT)
 	{
 		unlink(tempfile);
 		ft_free(tempfile);
 		g_gbl.g_exit_status = EXIT_FAILURE;
 		write(STDOUT_FILENO, "\n", 1);
-		printf("HERE\n\n\n");
 		return (ERROR);
 	}
 	return (SUCCESS);
@@ -120,7 +118,6 @@ t_status	ft_process_heredocs(t_shell *shell)
 	}
 	if (dup2(saved_stdin, STDIN_FILENO) == -1)
 		ft_print_error(ERR_DUP2_FAIL);
-	close(saved_stdin);
 	close(saved_stdin);
 	return (SUCCESS);
 }
