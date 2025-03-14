@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:17:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/13 11:25:24 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:12:02 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,6 @@ void	ft_free_token(t_token *token)
 		ft_free(token->val.og_value);
 		ft_free(token);
 	}
-}
-
-/**
- * Frees all the memory allocated for the tokens in the given linked list.
- *
- * This function iterates through the linked list, freeing the memory used
- * by each token's value and the token structure itself. Finally, it sets
- * the pointer to the first token to NULL, indicating that the list is empty.
- *
- * @param tokens A pointer to the pointer to the first token in the linked
- *               list. If the list is empty, the pointer should be NULL.
- */
-void	ft_free_tokens(t_token **tokens)
-{
-	t_token	*current;
-	t_token	*next;
-
-	current = *tokens;
-	while (current)
-	{
-		next = current->next;
-		ft_free(current->val.value);
-		ft_free(current);
-		current = next;
-	}
-	*tokens = NULL;
 }
 
 /**

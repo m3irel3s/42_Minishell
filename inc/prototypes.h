@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/14 16:58:24 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:13:06 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ t_status		ft_skip_quotes(char *input, int *i, char quote);
 
 /* 510_errors_handler/print_errors_exit_failure.c */
 t_status		ft_print_error(char *error_msg);
-t_status		ft_print_error_custom_status(char *error_msg, int exit_status);
 t_status		ft_print_syntax_error(char *token);
 t_status		ft_print_unmatched_quote_error(void);
 t_status		ft_print_redirect_no_file_error(void);
@@ -147,7 +146,7 @@ void			ft_advance_to_next_cmd(t_token **curr_cmd);
 /* 640_pipes/exec_pipes_utils_2.c */
 void			ft_cleanup_pipes(t_pipe *pipes, int num_pipes);
 void			ft_close_child_pipes(t_pipe *pipes, int num_pipes);
-void			ft_free_redirects(t_redirect *redirects);
+void			ft_free_redirects(t_redirect *redirects); //
 void			ft_clean_and_exit(t_shell *sh);
 void			ft_clean_pipe_child(t_shell *shell);
 
@@ -258,8 +257,6 @@ int				ft_check_var_chars(char *var);
 bool			ft_is_operator(char c);
 bool			ft_is_double_operator(char *str);
 bool			ft_is_space(char c);
-bool			ft_is_quote(char c);
-bool			ft_is_command(char *value, size_t len);
 
 //============================================================================//
 //                              SAFE MEMORY                                   //
@@ -287,7 +284,6 @@ void			ft_cleanup_w_env(t_shell *shell);
 /* 800_clean/free.c */
 void			ft_free(void *ptr);
 void			ft_free_token(t_token *token);
-void			ft_free_tokens(t_token **tokens);
 void			ft_free_arr(char **arr);
 void			ft_close_fds(void);
 

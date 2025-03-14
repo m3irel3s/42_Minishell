@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_type_functions.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 14:55:14 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/08 14:54:15 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:12:39 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,54 +58,4 @@ bool	ft_is_double_operator(char *str)
 bool	ft_is_space(char c)
 {
 	return (c == ' ' || (c >= 9 && c <= 13));
-}
-
-/**
- * @brief Checks if a character is a quote.
- *
- * Determines if the given character is a single or double quote.
- *
- * @param c Character to be checked.
- *
- * @return 1 if the character is a quote, 0 otherwise.
- */
-
-bool	ft_is_quote(char c)
-{
-	return (c == '\'' || c == '\"');
-}
-
-/**
- * @brief Checks if a given value is a valid command.
- *
- * Checks if the given string, up to the given length, is a valid command.
- *
- * @param value String to be checked.
- * @param len Length of the string to be checked.
- *
- * @return 1 if the string is a valid command, 0 otherwise.
- *
- * The following commands are considered valid:
- * - echo
- * - cd
- * - pwd
- * - export
- * - unset
- * - env
- * - exit
- */
-bool	ft_is_command(char *value, size_t len)
-{
-	if (!value)
-		return (ERROR);
-	if ((len == 4 && ft_strncmp(value, "echo", 4) == 0)
-		|| (len == 2 && ft_strncmp(value, "cd", 2) == 0)
-		|| (len == 3 && ft_strncmp(value, "pwd", 3) == 0)
-		|| (len == 6 && ft_strncmp(value, "export", 6) == 0)
-		|| (len == 5 && ft_strncmp(value, "unset", 5) == 0)
-		|| (len == 3 && ft_strncmp(value, "env", 3) == 0)
-		|| (len == 4 && ft_strncmp(value, "exit", 4) == 0))
-		return (SUCCESS);
-	else
-		return (ERROR);
 }

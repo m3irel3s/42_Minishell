@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_errors_exit_failure.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 09:27:21 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/13 17:38:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:13:03 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,6 @@ t_status	ft_print_error(char *error_msg)
 {
 	ft_putstr_fd(error_msg, STDERR_FILENO);
 	g_exit_status = EXIT_FAILURE;
-	return (ERROR);
-}
-
-/**
- * @brief Prints an error message to the standard error stream and sets the
- * shell's exit status to a custom value.
- *
- * This function allows specifying a custom exit status, which is set in the
- * shell structure after printing the provided error message.
- *
- * @param shell The shell structure to update the exit status.
- * @param error_msg The error message to print to the standard error stream.
- * @param exit_status The custom exit status to set in the shell.
- * @return Always returns ERROR, indicating that an error occurred.
- */
-t_status	ft_print_error_custom_status(char *error_msg,
-	int exit_status)
-{
-	ft_putstr_fd(error_msg, STDERR_FILENO);
-	g_exit_status = exit_status;
 	return (ERROR);
 }
 
