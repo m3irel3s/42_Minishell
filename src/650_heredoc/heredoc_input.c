@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:24:52 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/14 16:22:28 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/14 21:50:48 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,18 @@ static t_status	ft_handle_heredoc_parent(pid_t pid, char *tempfile,
 	return (SUCCESS);
 }
 
+static void	ft_handle_ctrl_c(int sig)
+{
+	t_shell	*shell;
+	(void)sig;
+
+	shell = ft_get_shell();
+	write(STDOUT_FILENO, "\n", 1);
+	ft_cleanup_w_env(shell);
+	g_exit_status = EXIT_SIGINT;
+	exit(g_exit_status);
+}
+
 /**
  * @brief Handles the child process for heredoc input.
  *
@@ -141,7 +153,7 @@ static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
 	struct sigaction	sa;
 	int					fd;
 
-	sa.sa_handler = SIG_DFL;
+	sa.sa_handler = ft_handle_ctrl_c;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
 	sigaction(SIGINT, &sa, NULL);

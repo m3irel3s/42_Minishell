@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:59:06 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/14 15:49:32 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/14 21:46:48 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,20 @@ static void	ft_update_shlvl(t_shell *shell)
 	}
 	else
 		ft_update_or_add_var("SHLVL", "1", shell, 0);
+}
+
+/**
+ * @brief Retrieves a pointer to a static shell instance.
+ *
+ * This function returns a pointer to a static instance of the t_shell
+ * structure, which is used to maintain the shell's state throughout
+ * the program's execution.
+ *
+ * @return A pointer to the static t_shell instance.
+ */
+t_shell	*ft_get_shell(void)
+{
+	static t_shell	shell;
+
+	return (&shell);
 }

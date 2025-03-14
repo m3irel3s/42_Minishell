@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/14 17:45:47 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/14 21:48:26 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	ft_display_startup_banner();
+	shell = ft_get_shell();
 	if (ft_init_shell(&shell, envp) == ERROR)
 		return (ft_print_error(ERR_SHELL_INIT_FAIL), g_exit_status);
 	ft_update_env(&shell);
