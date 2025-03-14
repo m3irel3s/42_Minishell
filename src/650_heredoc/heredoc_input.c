@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:24:52 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/14 17:49:59 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:52:29 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,6 @@ static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
 		exit(g_exit_status);
 	}
 	ft_free(tempfile);
-	signal(SIGINT, SIG_IGN);
 	ft_read_heredoc_input(shell, delim->val.value, delim->quoted, fd);
 	close(fd);
 	g_exit_status = EXIT_SUCCESS;
