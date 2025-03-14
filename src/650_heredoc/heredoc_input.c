@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:24:52 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/14 21:50:48 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/14 22:03:31 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,16 @@ static t_status	ft_handle_heredoc_parent(pid_t pid, char *tempfile,
 	return (SUCCESS);
 }
 
+/**
+ * @brief Handles SIGINT signal in child process of heredoc input.
+ *
+ * This function is called when the child process receives SIGINT.
+ * It prints a new line to the standard output, frees dynamically
+ * allocated memory for the shell's environment variables, sets the
+ * shell's exit status to EXIT_SIGINT, and exits the child process.
+ *
+ * @param sig The signal number that was received, which is ignored.
+ */
 static void	ft_handle_ctrl_c(int sig)
 {
 	t_shell	*shell;
@@ -165,7 +175,6 @@ static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
 		exit(g_exit_status);
 	}
 	ft_free(tempfile);
-	signal(SIGINT, SIG_IGN);
 	ft_read_heredoc_input(shell, delim->val.value, delim->quoted, fd);
 	close(fd);
 	g_exit_status = EXIT_SUCCESS;

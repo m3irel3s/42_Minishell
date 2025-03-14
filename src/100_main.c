@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/14 21:48:26 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/14 22:04:20 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,30 @@ static void	ft_process_input(t_shell *shell);
  */
 int	main(int argc, char **argv, char **envp)
 {
-	t_shell	shell;
+	t_shell	*shell;
 
 	(void)argc;
 	(void)argv;
 	ft_display_startup_banner();
 	shell = ft_get_shell();
-	if (ft_init_shell(&shell, envp) == ERROR)
+	if (ft_init_shell(shell, envp) == ERROR)
 		return (ft_print_error(ERR_SHELL_INIT_FAIL), g_exit_status);
-	ft_update_env(&shell);
+	ft_update_env(shell);
 	rl_catch_signals = 0;
 	while (1)
 	{
 		if (ft_set_up_signals() == ERROR)
 			return (ft_print_error(ERR_SIGNAL_SETUP_FAIL), g_exit_status);
-		shell.prompt = ft_set_prompt(&shell);
-		shell.input = ft_safe_readline(&shell);
-		if (shell.input == NULL)
+		shell->prompt = ft_set_prompt(shell);
+		shell->input = ft_safe_readline(shell);
+		if (shell->input == NULL)
 		{
-			ft_handle_eof(&shell);
+			ft_handle_eof(shell);
 			break ;
 		}
-		ft_process_input(&shell);
+		ft_process_input(shell);
 	}
-	ft_cleanup(&shell);
+	ft_cleanup(shell);
 	rl_clear_history();
 	return (g_exit_status);
 }
