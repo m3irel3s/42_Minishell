@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:51:54 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/14 22:04:20 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/14 22:10:24 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,7 @@ int	main(int argc, char **argv, char **envp)
 		}
 		ft_process_input(shell);
 	}
-	ft_cleanup(shell);
-	rl_clear_history();
-	return (g_exit_status);
+	return (ft_cleanup(shell), rl_clear_history(), g_exit_status);
 }
 
 /**
