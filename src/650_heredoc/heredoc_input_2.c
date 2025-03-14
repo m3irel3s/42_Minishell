@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 14:19:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/13 21:46:30 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/13 22:10:29 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,28 +34,17 @@ void	ft_read_heredoc_input(t_shell *shell, char *delimiter, int quoted,
 {
 	char	*line;
 
-	rl_catch_signals = 1;
+	rl_catch_signals = 0;
 	while (1)
 	{
 		line = readline("> ");
 		if (!line)
 		{
-			if (g_exit_status == EXIT_SIGINT)
-			{
-				ft_printf(STDOUT_FILENO, "\n");
-				ft_cleanup_w_env(shell);
-				close(fd);
-				ft_free_arr(shell->temp_files);
-				exit(g_exit_status);
-			}
-			else
-			{
-				ft_print_error_w_arg(ERR_EOF_HEREDOC, delimiter, EXIT_FAILURE);
-				ft_cleanup_w_env(shell);
-				close(fd);
-				ft_free_arr(shell->temp_files);
-				exit(g_exit_status);
-			}
+			ft_print_error_w_arg(ERR_EOF_HEREDOC, delimiter, EXIT_FAILURE);
+			ft_cleanup_w_env(shell);
+			close(fd);
+			ft_free_arr(shell->temp_files);
+			exit(g_exit_status);
 		}
 		if (ft_strcmp(line, delimiter) == 0)
 		{

@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:24:52 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/13 21:47:25 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/13 22:06:14 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ t_status	ft_handle_single_heredoc(t_shell *shell, t_token *current)
 {
 	char				*tempfile;
 	pid_t				pid;
-	struct sigaction	sa_ignore;
-	struct sigaction	sa_old;
 
 	shell->tml->is_terminal = isatty(STDIN_FILENO);
 	if (ft_check_heredoc_syntax(current) == ERROR)
@@ -47,10 +45,8 @@ t_status	ft_handle_single_heredoc(t_shell *shell, t_token *current)
 	if (shell->tml->is_terminal
 		&& tcgetattr(STDIN_FILENO, &shell->tml->og_termios) == -1)
 		return (ft_free(tempfile), ft_print_error(ERR_TCGETATTR), ERROR);
-	if (ft_setup_sigint_ignore(&sa_ignore, &sa_old) == ERROR)
-		return (ft_free(tempfile), ERROR);
 	if (ft_fork_heredoc(&pid, shell, current->next, tempfile) == ERROR)
-		return (sigaction(SIGINT, &sa_old, NULL), ft_free(tempfile), ERROR);
+		return (ft_free(tempfile), ERROR);
 	if (ft_handle_heredoc_parent(pid, tempfile, shell, current) == ERROR)
 		return (ERROR);
 	return (SUCCESS);
@@ -106,20 +102,11 @@ static t_status	ft_handle_heredoc_parent(pid_t pid, char *tempfile,
 		&& tcsetattr(STDIN_FILENO, TCSANOW,
 			&shell->tml->og_termios) == -1)
 		return (ft_print_error(ERR_TCGETATTR), ft_free(tempfile), ERROR);
-	if (ft_handle_child_exit(status, tempfile) == ERROR
-		|| ft_handle_child_signal(status, tempfile) == ERROR)
-		return (ERROR);
 	ft_process_delimiter(current, current->next, tempfile);
 	ft_add_temp_file(shell, tempfile);
 	return (SUCCESS);
 }
-static void	ft_handle_ctrl_c(int sig)
-{
-	(void)sig;
-	write(STDOUT_FILENO, "\n", 1);
-	g_exit_status = EXIT_SIGINT;
-	exit(g_exit_status);
-}
+
 /**
  * @brief Handles the child process for heredoc input.
  *
@@ -136,9 +123,6 @@ static void	ft_handle_ctrl_c(int sig)
 static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
 {
 	int					fd;
-
-	signal(SIGINT, ft_handle_ctrl_c);
-	signal(SIGQUIT, SIG_IGN);
 
 	fd = open(tempfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd == -1)

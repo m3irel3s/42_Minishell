@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:36:34 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/13 21:47:36 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/13 22:05:41 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,72 +26,6 @@ t_status	ft_check_heredoc_syntax(t_token *current)
 	if (!current->next || (current->next->type != WORD
 			&& !current->next->quoted))
 		return (ft_print_syntax_error("newline"), ERROR);
-	return (SUCCESS);
-}
-
-/**
- * @brief Handles the exit status of a child process after reading a heredoc
- * input.
- *
- * If the child process exited with a non-zero status, it unlinks the temporary
- * file, frees the dynamically allocated memory for the temporary file name,
- * sets the shell's exit status to the child's exit status, and returns ERROR.
- * Otherwise, it returns SUCCESS.
- *
- * @param status The exit status of the child process.
- * @param tempfile The name of the temporary file.
- * @return ERROR if the child process exited with a non-zero status, SUCCESS
- * otherwise.
- */
-t_status	ft_handle_child_exit(int status, char *tempfile)
-{
-	int	exit_code;
-
-	if (WIFEXITED(status))
-	{
-		exit_code = WEXITSTATUS(status);
-		if (exit_code == 130)
-		{
-			unlink(tempfile);
-			ft_free(tempfile);
-			g_exit_status = exit_code;
-			return (ERROR);
-		}
-		else if (exit_code != EXIT_SUCCESS)
-		{
-			unlink(tempfile);
-			ft_free(tempfile);
-			g_exit_status = exit_code;
-			return (ERROR);
-		}
-	}
-	return (SUCCESS);
-}
-
-/**
- * @brief Handles the signal status of a child process after reading a heredoc
- * input.
- *
- * If the child process was interrupted by a signal, it unlinks the temporary
- * file, frees the dynamically allocated memory for the temporary file name,
- * sets the shell's exit status to EXIT_FAILURE, prints a new line, and returns
- * ERROR. Otherwise, it returns SUCCESS.
- *
- * @param status The signal status of the child process.
- * @param tempfile The name of the temporary file.
- * @return ERROR if the child process was interrupted by a signal, SUCCESS
- * otherwise.
- */
-t_status	ft_handle_child_signal(int status, char *tempfile)
-{
-	if (WIFSIGNALED(status) && WTERMSIG(status) == SIGINT)
-	{
-		unlink(tempfile);
-		ft_free(tempfile);
-		g_exit_status = EXIT_FAILURE;
-		write(STDOUT_FILENO, "\n", 1);
-		return (ERROR);
-	}
 	return (SUCCESS);
 }
 
