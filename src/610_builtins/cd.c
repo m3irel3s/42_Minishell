@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:26:07 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/13 17:38:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:37:09 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@ static int	ft_handle_cd_oldpwd(t_shell *shell, char *curr_path);
 static int	ft_handle_cd_to_dir(t_shell *shell, t_token *curr, char *curr_path);
 static int	ft_update_pwd(t_shell *shell, char *old_path);
 
+/**
+ * @brief Changes the current directory to the one provided in the arguments.
+ * If no argument is given, changes to the home directory. If the argument is
+ * "-", changes to the old working directory.
+ *
+ * @param shell a pointer to the struct containing the shell's information.
+ */
 void	ft_cd(t_shell *shell)
 {
 	t_token	*curr;
@@ -46,6 +53,18 @@ void	ft_cd(t_shell *shell)
 	ft_free(curr_path);
 }
 
+/**
+ * @brief Changes the current directory to the home directory.
+ *
+ * If the home directory is not set, prints an error message and sets the
+ * exit status to EXIT_FAILURE. If the change directory operation fails,
+ * prints an error message and sets the exit status to EXIT_FAILURE.
+ *
+ * @param shell a pointer to the struct containing the shell's information.
+ * @param curr_path the current working directory.
+ * @return EXIT_SUCCESS if the change directory operation was successful,
+ * EXIT_FAILURE otherwise.
+ */
 static int	ft_handle_cd_home(t_shell *shell, char *curr_path)
 {
 	char	*home_path;
@@ -64,6 +83,18 @@ static int	ft_handle_cd_home(t_shell *shell, char *curr_path)
 	return (ft_update_pwd(shell, curr_path));
 }
 
+/**
+ * @brief Changes the current directory to the old working directory.
+ *
+ * If the old working directory is not set, prints an error message and sets
+ * the exit status to EXIT_FAILURE. If the change directory operation fails,
+ * prints an error message and sets the exit status to EXIT_FAILURE.
+ *
+ * @param shell a pointer to the struct containing the shell's information.
+ * @param curr_path the current working directory.
+ * @return EXIT_SUCCESS if the change directory operation was successful,
+ * EXIT_FAILURE otherwise.
+ */
 static int	ft_handle_cd_oldpwd(t_shell *shell, char *curr_path)
 {
 	char	*old_pwd;
@@ -83,6 +114,18 @@ static int	ft_handle_cd_oldpwd(t_shell *shell, char *curr_path)
 	return (ft_update_pwd(shell, curr_path));
 }
 
+/**
+ * @brief Changes the current directory to the one specified in the argument.
+ * If the argument starts with a tilde, the home directory is prepended to it.
+ * If the change directory operation fails, prints an error message and sets
+ * the exit status to EXIT_FAILURE.
+ *
+ * @param shell a pointer to the struct containing the shell's information.
+ * @param curr a pointer to the token containing the argument.
+ * @param curr_path the current working directory.
+ * @return EXIT_SUCCESS if the change directory operation was successful,
+ * EXIT_FAILURE otherwise.
+ */
 static int	ft_handle_cd_to_dir(t_shell *shell, t_token *curr, char *curr_path)
 {
 	char	*path;

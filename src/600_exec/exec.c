@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:25:50 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/13 17:38:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:37:08 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,14 @@ void	ft_exec(t_shell *shell)
 	}
 }
 
+/**
+ * @brief Check if the first token has empty quotes.
+ *
+ * @param [in] curr The token to check.
+ *
+ * If the first token has empty quotes, it prints an error and exits with
+ * EXIT_CMD_NOT_FOUND. Otherwise, it does nothing.
+ */
 static void	ft_handle_simple_and_double_quotes(t_token *curr)
 {
 	int		len;

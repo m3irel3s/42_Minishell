@@ -3,15 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   path_errors.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 17:01:07 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/11 13:48:47 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:47:08 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
+/**
+ * @brief Prints an error message when a command cannot be executed.
+ *
+ * @details This function is used to print an error message when a command cannot
+ * be executed. It checks if the command has a path, if the file exists, if the
+ * file is a directory, and if the file has execute permissions. Depending on the
+ * error, it prints the appropriate error message.
+ *
+ * @param cmd The command to be executed.
+ */
 void	ft_print_path_errors(char *cmd)
 {
 	struct stat	path_stat;
@@ -29,6 +39,18 @@ void	ft_print_path_errors(char *cmd)
 		ft_print_error_w_arg(ERR_PERM_DENIED, cmd, EXIT_PERM_DENIED);
 }
 
+/**
+ * @brief Checks if a given path is a directory and prints an error message if
+ * so.
+ *
+ * @details This function takes a path and an array of arguments, and checks
+ * if the path is a directory. If it is, it prints an error message and exits
+ * with a status of 126.
+ *
+ * @param shell A pointer to the shell structure.
+ * @param path The path to check.
+ * @param arr The array of arguments.
+ */
 void	ft_check_is_dir(t_shell *shell, char *path, char **arr)
 {
 	struct stat	path_stat;

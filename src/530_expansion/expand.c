@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:00:00 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/03 17:26:54 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:43:20 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,19 @@ static char	*ft_join_and_free(char *expanded_value, char *temp);
 static void	ft_handle_quotes(char *input, size_t *i, int *quote_state);
 static char	*ft_expand_loop(t_shell *shell, char *token, char *expanded_value);
 
+/**
+ * @brief Expands any variables in a token.
+ *
+ * This function takes a shell structure and a token string, and expands any
+ * variables found in the token string. It returns a new string with the
+ * variables expanded. If memory allocation fails, the function sets the
+ * shell's exit status to failure and returns NULL.
+ *
+ * @param shell A pointer to the shell structure containing the environment.
+ * @param token The token string containing the variables to be expanded.
+ * @return The expanded value of the variables as a string, or NULL if memory
+ * allocation fails.
+ */
 char	*ft_expand(t_shell *shell, char *token)
 {
 	char	*expanded_value;
@@ -30,6 +43,22 @@ char	*ft_expand(t_shell *shell, char *token)
 	return (expanded_value);
 }
 
+/**
+ * @brief Loop through a token and expand any found variables.
+ *
+ * This function iterates over a token string, checking for quotes and
+ * variable expansion. If a variable is found, it calls ft_handle_dollar
+ * to expand the variable. If a quote is found, it calls ft_handle_quotes
+ * to handle the quote state. It also appends non-variable characters to
+ * the expanded value string. If memory allocation fails, the function
+ * returns NULL.
+ *
+ * @param shell A pointer to the shell structure containing the environment.
+ * @param token The token string to be looped through.
+ * @param expanded_value The current expanded value of a token.
+ * @return The final expanded value of a token, or NULL if memory allocation
+ * fails.
+ */
 static char	*ft_expand_loop(t_shell *shell, char *token, char *expanded_value)
 {
 	char	*temp;

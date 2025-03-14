@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:18:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/13 17:38:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:38:08 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@ static void	ft_append_to_var(t_shell *shell, char *var, char *new_value);
 static int	ft_process_export_variable(t_shell *shell, char *arg);
 static void	ft_handle_export_oper(t_shell *sh, char *arg, char *eq, char *plus);
 
+/**
+ * Processes the export command, either printing the list of exported variables
+ * if no arguments are given, or adding/removing variables to/from the list of
+ * exported variables according to the arguments.
+ *
+ * @param shell The minishell state.
+ */
 void	ft_export(t_shell *shell)
 {
 	t_token	*curr;
@@ -37,6 +44,26 @@ void	ft_export(t_shell *shell)
 	}
 }
 
+/**
+ * Processes a single variable declaration for the export command.
+ *
+ * @param shell The minishell state.
+ * @param arg The variable declaration string.
+ *
+ * @return EXIT_SUCCESS if the variable declaration is valid, EXIT_FAILURE
+ * otherwise.
+ *
+ * @note This function does not handle the case of a variable declaration
+ * without a value. In this case, the variable is simply added to the list of
+ * exported variables with an empty value.
+ *
+ * @note This function does not handle the case of a variable declaration with
+ * an invalid value. In this case, the variable is not added to the list of
+ * exported variables.
+ *
+ * @note If the variable declaration is invalid, the function prints an error
+ * message and returns EXIT_FAILURE.
+ */
 static int	ft_process_export_variable(t_shell *shell, char *arg)
 {
 	char	*eq_sign;
@@ -57,6 +84,26 @@ static int	ft_process_export_variable(t_shell *shell, char *arg)
 	return (ft_free(var), EXIT_SUCCESS);
 }
 
+/**
+ * Handles the export command operator (+/=) for a single variable declaration.
+ *
+ * @param sh The minishell state.
+ * @param arg The variable declaration string.
+ * @param eq The position of the '=' character in the string.
+ * @param plus The position of the '+' character in the string.
+ *
+ * @note This function handles three cases:
+ *  - If the '+' character is present and is followed by the '=' character,
+ *    the variable is appended to the list of exported variables with the
+ *    value that follows the '=' character.
+ *  - If only the '=' character is present, the variable is added to the list
+ *    of exported variables with the value that follows the '=' character.
+ *  - If neither the '+' nor the '=' characters are present, and the variable
+ *    is not already in the list of exported variables, the variable is added
+ *    to the list with an empty value.
+ *
+ * @note This function frees the variable name string after use.
+ */
 static void	ft_handle_export_oper(t_shell *sh, char *arg, char *eq, char *plus)
 {
 	char	*var;
@@ -84,6 +131,19 @@ static void	ft_handle_export_oper(t_shell *sh, char *arg, char *eq, char *plus)
 	ft_free(var);
 }
 
+/**
+ * @brief Adds a new variable to the shell's environment.
+ *
+ * This function creates a new environment array that includes the
+ * specified variable and its value. If the environment allocation
+ * fails, the function returns without making any changes. The new
+ * variable is appended to the end of the current environment array.
+ *
+ * @param shell The shell structure containing the environment.
+ * @param var The name of the variable to be added.
+ * @param value The value of the variable to be added.
+ * @param sign Determines how the value is constructed when updating a variable.
+ */
 void	ft_add_var_to_env(t_shell *shell, char *var, char *value, int sign)
 {
 	char	**new_env;
@@ -111,6 +171,19 @@ void	ft_add_var_to_env(t_shell *shell, char *var, char *value, int sign)
 	shell->env_cpy = new_env;
 }
 
+/**
+ * @brief Appends a new value to an existing environment variable.
+ *
+ * This function locates the specified variable in the shell's environment.
+ * If the variable exists, it appends the new value to the existing value
+ * and updates the variable. If the variable does not exist, it adds a new
+ * variable with the given value. The function ensures memory is managed
+ * properly, freeing any old values as necessary.
+ *
+ * @param shell A pointer to the shell structure containing the environment.
+ * @param var The name of the variable to be updated.
+ * @param new_value The value to append to the existing variable.
+ */
 static void	ft_append_to_var(t_shell *shell, char *var, char *new_value)
 {
 	char	*full_value;

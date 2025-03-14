@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:22:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/13 17:38:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:37:21 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,18 @@ void	ft_handle_eof(t_shell *shell)
 	g_exit_status = EXIT_SUCCESS;
 }
 
+/**
+ * ft_valid_number - Check if the given string is a valid number.
+ * @str: The string to check.
+ *
+ * This function checks if the given string is a valid number by
+ * verifying that it only contains digits. If the string starts with
+ * a '+' or '-' character, it is ignored. If the string contains any
+ * non-digit characters, ft_valid_number returns ERROR. Otherwise, it
+ * returns SUCCESS.
+ *
+ * Return: SUCCESS if the string is a valid number, ERROR otherwise.
+ */
 static int	ft_valid_number(char *str)
 {
 	int	i;
