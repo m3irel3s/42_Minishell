@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:24:52 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/13 17:38:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/14 15:43:38 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static t_status	ft_handle_heredoc_parent(pid_t pid, char *tempfile,
 static void		ft_child_heredoc(t_shell *shell, t_token *delim,
 					char *tempfile);
 
+static t_shell *g_current_shell = NULL;
 /**
  * @brief Handles a single heredoc redirection.
  *
@@ -115,12 +116,29 @@ static t_status	ft_handle_heredoc_parent(pid_t pid, char *tempfile,
 		ft_free(tempfile);
 		return (ERROR);
 	}
-	if (ft_handle_child_exit(status, tempfile) == ERROR
-		|| ft_handle_child_signal(status, tempfile) == ERROR)
-		return (ERROR);
+	if (WIFSIGNALED(status) && WTERMSIG(status) == SIGINT)
+	{
+		if (dup2(shell->og_stdout, STDOUT_FILENO) == -1)
+			ft_print_error(ERR_DUP2_FAIL);
+		write(STDOUT_FILENO, "\n", 1);
+		ft_cleanup(shell);
+		g_exit_status = EXIT_SIGINT;
+	}
+	if (WIFEXITED(status))
+		g_exit_status = WEXITSTATUS(status);
 	ft_process_delimiter(current, current->next, tempfile);
 	ft_add_temp_file(shell, tempfile);
 	return (SUCCESS);
+}
+
+static void	ft_handle_ctrl_c(int sig)
+{
+	(void)sig;
+	write(STDOUT_FILENO, "\n", 1);
+	if (g_current_shell)
+		ft_cleanup_w_env(current_shell);
+	g_exit_status = EXIT_SIGINT;
+	exit(g_exit_status);
 }
 
 /**
@@ -141,7 +159,8 @@ static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
 	struct sigaction	sa;
 	int					fd;
 
-	sa.sa_handler = SIG_DFL;
+	g_current_shell = shell;
+	sa.sa_handler = ft_handle_ctrl_c;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
 	sigaction(SIGINT, &sa, NULL);

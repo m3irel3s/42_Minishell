@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:34:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/13 17:38:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/14 15:42:54 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,9 @@ static void	ft_exec_child(t_shell *shell, char *path, char **arr)
 static void	ft_exec_parent(t_shell *shell, pid_t pid, int status,
 						struct sigaction old_sa)
 {
+	ft_memset(&old_sa, 0, sizeof(old_sa));
 	waitpid(pid, &status, 0);
+	ft_memset(&old_sa, 0, sizeof(old_sa));
 	sigaction(SIGINT, &old_sa, NULL);
 	if (WIFSIGNALED(status) && WTERMSIG(status) == SIGINT)
 	{
