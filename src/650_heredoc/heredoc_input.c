@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:24:52 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/14 22:11:01 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/14 22:19:15 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,7 @@ static t_status	ft_handle_heredoc_parent(pid_t pid, char *tempfile,
 		ft_free(tempfile);
 		return (ERROR);
 	}
-	if (ft_handle_child_exit(status, tempfile) == ERROR
-		|| ft_handle_child_signal(status, tempfile) == ERROR)
+	if (ft_handle_child_exit(status, tempfile) == ERROR)
 		return (ERROR);
 	ft_process_delimiter(current, current->next, tempfile);
 	ft_add_temp_file(shell, tempfile);
