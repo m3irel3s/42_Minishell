@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:24:52 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/14 16:22:28 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/14 17:49:59 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ static void	ft_child_heredoc(t_shell *shell, t_token *delim, char *tempfile)
 	struct sigaction	sa;
 	int					fd;
 
-	sa.sa_handler = SIG_DFL;
+	sa.sa_handler = SIG_IGN;
 	sigemptyset(&sa.sa_mask);
 	sa.sa_flags = 0;
 	sigaction(SIGINT, &sa, NULL);
