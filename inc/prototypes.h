@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prototypes.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/13 17:36:28 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/14 16:00:58 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,7 @@ void			ft_cleanup_pipes(t_pipe *pipes, int num_pipes);
 void			ft_close_child_pipes(t_pipe *pipes, int num_pipes);
 void			ft_free_redirects(t_redirect *redirects);
 void			ft_clean_and_exit(t_shell *sh);
+void			ft_clean_pipe_child(t_shell *shell);
 
 /* 640_pipes/exec_pipes_child.c */
 void			ft_execute_child(t_shell *sh, t_token *curr_cmd,

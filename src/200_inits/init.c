@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:59:06 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/13 17:38:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/14 15:49:32 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ t_status	ft_init_shell(t_shell *shell, char **envp)
 	shell->temp_files = NULL;
 	shell->redirected_stdin = -1;
 	shell->redirected_stdout = -1;
-	shell->og_stdout = dup(STDOUT_FILENO);
 	shell->in_export = 0;
 	shell->random_number = 0;
 	shell->tml = NULL;
@@ -71,4 +70,3 @@ static void	ft_update_shlvl(t_shell *shell)
 	else
 		ft_update_or_add_var("SHLVL", "1", shell, 0);
 }
-

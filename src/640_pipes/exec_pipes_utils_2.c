@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes_utils_2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 16:48:40 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/13 17:38:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/14 16:00:59 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,10 @@ void	ft_clean_and_exit(t_shell *sh)
 	ft_cleanup_w_env(sh);
 	g_exit_status = EXIT_FAILURE;
 	exit(g_exit_status);
+}
+
+void	ft_clean_pipe_child(t_shell *shell)
+{
+	ft_cleanup_w_env(shell);
+	ft_free_arr(shell->temp_files);
 }
