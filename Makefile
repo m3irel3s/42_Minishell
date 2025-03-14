@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/03/12 10:59:43 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/03/14 16:40:48 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,8 +72,6 @@ SRCS        = $(SRC_PATH)/000_intro.c \
 			$(SRC_PATH)/510_errors_handler/syntax_validation.c \
 			$(SRC_PATH)/510_errors_handler/syntax_validation_2.c \
 			$(SRC_PATH)/510_errors_handler/print_errors_exit_failure.c \
-			$(SRC_PATH)/510_errors_handler/print_errors_misuse.c \
-			$(SRC_PATH)/510_errors_handler/print_errors_fatal_signal.c \
 			$(SRC_PATH)/510_errors_handler/print_errors_utils.c \
 			$(SRC_PATH)/520_tokenization/tokens_process.c \
 			$(SRC_PATH)/520_tokenization/tokens_utils.c \

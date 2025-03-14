@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/14 16:00:58 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/14 16:58:24 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PROTOTYPES_H
 
 //============================================================================//
-//                                INTRODUCTION                                //
+//                              INTRODUCTION                                  //
 //============================================================================//
 /* 000_intro.c */
 void			ft_display_startup_banner(void);
@@ -27,7 +27,7 @@ int				ft_authors(void);
 t_status		ft_init_shell(t_shell *shell, char **envp);
 
 //============================================================================//
-//                               PROMPT HANDLING                              //
+//                             PROMPT HANDLING                                //
 //============================================================================//
 /* 300_prompt/prompt.c */
 char			*ft_set_prompt(t_shell *shell);
@@ -37,7 +37,7 @@ char			*ft_get_git_branch(void);
 char			*ft_shorten_path(char *path);
 
 //============================================================================//
-//                              SIGNAL HANDLING                               //
+//                             SIGNAL HANDLING                                //
 //============================================================================//
 /* 400_signals/signals.c */
 t_status		ft_set_up_signals(void);
@@ -45,7 +45,7 @@ t_status		ft_setup_sigint_ignore(struct sigaction *sa_ignore,
 					struct sigaction *sa_old);
 
 //============================================================================//
-//                                  PARSING                                   //
+//                                PARSING                                     //
 //============================================================================//
 /* 500_parsing/parsing.c */
 t_status		ft_parse_input(t_shell *shell);
@@ -64,7 +64,7 @@ int				ft_build_tokens(char *input, char **res, size_t *i, size_t *k);
 t_status		ft_tokenize(t_shell *shell, char **split_input);
 
 //============================================================================//
-//                              TOKEN UTILITIES                               //
+//                             TOKEN UTILITIES                                //
 //============================================================================//
 /* src/520_tokenization/tokens_utils.c */
 t_token_type	ft_determine_token_type(char *og_value, char \
@@ -84,6 +84,7 @@ t_status		ft_process_word(char *input, size_t *i, char **res, size_t *k);
 //============================================================================//
 /* 510_errors_handler/syntax_validation.c */
 t_status		ft_validate_syntax(char *input);
+t_status		ft_skip_quotes(char *input, int *i, char quote);
 
 /* 510_errors_handler/print_errors_exit_failure.c */
 t_status		ft_print_error(char *error_msg);
@@ -92,25 +93,14 @@ t_status		ft_print_syntax_error(char *token);
 t_status		ft_print_unmatched_quote_error(void);
 t_status		ft_print_redirect_no_file_error(void);
 
-/* 510_errors_handler/print_errors_misuse.c */
-t_status		ft_print_error_misuse(char *error_msg);
-t_status		ft_print_error_invalid_exit_arg(char *error_msg);
-
-/* 510_errors_handler/print_errors_fatal_signal.c */
-t_status		ft_print_error_fatal_signal(char *error_msg, int signal_number);
-
 /* 510_errors_handler/print_errors_utils.c */
-// char			*ft_format_error(char *err, const char *file);
 t_status		ft_print_error_w_arg(char *error_msg, char *arg, int status);
-
-/* 510_errors_handler/syntax_validation.c */
-t_status		ft_skip_quotes(char *input, int *i, char quote);
 
 /* 510_errors_handler/syntax_validation_2.c */
 t_status		ft_validate_redirects(char *input);
 
 //============================================================================//
-//                             VARIABLE EXPANSION                             //
+//                           VARIABLE EXPANSION                               //
 //============================================================================//
 /* 530_expansion/expand.c */
 char			*ft_expand(t_shell *shell, char *token);
@@ -120,7 +110,7 @@ char			*ft_process_char(char *expanded_value, char c);
 char			*ft_handle_dollar(t_shell *shell, char *token, size_t *i);
 
 //============================================================================//
-//                                EXECUTION                                   //
+//                              EXECUTION                                     //
 //============================================================================//
 /* 600_exec/exec.c */
 void			ft_exec(t_shell *shell);
@@ -131,13 +121,13 @@ t_cmd_type		ft_get_cmd_type(char *cmd);
 t_status		ft_has_pipes(t_shell *shell);
 
 /* 620_execve/execve.c */
+void			ft_cleanup_cmd_execution(char *path, char **arr);
+void			ft_execute_cmd(t_shell *shell, char *cmd);
 
 /* 620_execve/execve_utils.c */
-void			ft_execute_cmd(t_shell *shell, char *cmd);
 char			*ft_get_path_to_execute(t_shell *shell, char *cmd);
 char			*ft_add_cmd_to_path(char **arr, char *cmd);
 char			**ft_create_arr_cmd(t_token *start_pos);
-void			ft_cleanup_cmd_execution(char *path, char **arr);
 
 /* 620_execve/path_errors.c */
 void			ft_print_path_errors(char *cmd);
@@ -171,13 +161,15 @@ void			ft_execute_child(t_shell *sh, t_token *curr_cmd,
 /* 630_redirects/exec_redirection.c */
 t_status		ft_handle_redirections(t_shell *shell);
 t_status		ft_apply_redirection(t_redirect *redirect);
+
 /* 630_redirects/exec_redirection_utils.c */
 void			ft_create_redirection_list(t_shell *shell);
+
 /* 630_redirects/exec_redirection_utils_2.c */
 void			ft_print_error_and_status(t_status *status);
 
 //============================================================================//
-//                         EXECUTION - HEREDOC                                //
+//                            EXECUTION - HEREDOC                             //
 //============================================================================//
 /* 650_heredoc/heredoc_syntax.c */
 t_status		ft_check_heredoc_syntax(t_token *token);
@@ -203,23 +195,29 @@ t_status		ft_create_temp_file(t_shell *shell, char **tempfile);
 void			ft_add_temp_file(t_shell *shell, char *tempfile);
 
 //============================================================================//
-//                               BUILT-IN COMMANDS                            //
+//                             BUILT-IN COMMANDS                              //
 //============================================================================//
 /* 610_builtins/echo.c */
 void			ft_echo(t_shell *shell);
+
 /* 610_builtins/cd.c */
 void			ft_cd(t_shell *shell);
+
 /* 610_builtins/env.c */
 void			ft_env(t_shell *shell);
+
 /* 610_builtins/pwd.c */
 void			ft_pwd(void);
+
 /* 610_builtins/export.c */
 void			ft_export(t_shell *shell);
 void			ft_add_var_to_env(t_shell *shell, char *var,
 					char *value, int sign);
+
 /* 610_builtins/exit.c */
 void			ft_exit(t_shell *shell);
 void			ft_handle_eof(t_shell *shell);
+
 /* 610_builtins/unset.c */
 void			ft_unset(t_shell *shell);
 
@@ -244,10 +242,12 @@ int				ft_get_str_length(char *str1, char *str2);
 char			*ft_get_var_value(char *var, char **env);
 int				ft_get_var_index(char *var, char **env);
 char			*ft_get_var_name(char *str);
+
 /* 700_utils_other/variable_utils_2.c */
 char			*ft_update_var(char *var, char *value, int sign);
 void			ft_update_or_add_var(char *var, char *value,
 					t_shell *shell, int sign);
+
 /* 611_builtins_utils/export_utils.c */
 int				ft_check_var_chars(char *var);
 
@@ -262,7 +262,7 @@ bool			ft_is_quote(char c);
 bool			ft_is_command(char *value, size_t len);
 
 //============================================================================//
-//                          SAFE MEMORY AND IO OPERATIONS                     //
+//                              SAFE MEMORY                                   //
 //============================================================================//
 /* 700_utils_other/safe_functions.c */
 void			*ft_safe_calloc(size_t size);
@@ -275,7 +275,7 @@ char			*ft_safe_substr(char *s, int start, int len);
 char			*ft_safe_strndup(const char *s1, size_t n);
 
 //============================================================================//
-//                                  CLEANUP                                   //
+//                                CLEANUP                                     //
 //============================================================================//
 /* 800_clean/clean.c */
 void			ft_cleanup(t_shell *shell);
