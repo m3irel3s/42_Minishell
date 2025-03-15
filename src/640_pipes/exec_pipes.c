@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:43:03 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/13 17:38:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/15 11:41:06 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,12 @@ static void	ft_wait_for_children(int num_children)
 	int	status;
 
 	i = 0;
+	wait(&status);
+	if (WIFEXITED(status))
+		g_exit_status = WEXITSTATUS(status);
 	while (i < num_children)
 	{
 		wait(&status);
-		if (WIFEXITED(status))
-			g_exit_status = WEXITSTATUS(status);
 		i++;
 	}
 }
