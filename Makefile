@@ -6,7 +6,7 @@
 #    By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/09 16:57:53 by meferraz          #+#    #+#              #
-#    Updated: 2025/03/14 16:40:48 by jmeirele         ###   ########.fr        #
+#    Updated: 2025/03/15 10:22:59 by jmeirele         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,19 +36,6 @@ CLEAN       = 🧹
 BUILD       = 🔨
 ROCKET      = 🚀
 BOOK        = 📚
-
-#------------------------------------------------------------------------------#
-#                             ALLOWED FUNCTIONS                                #
-#------------------------------------------------------------------------------#
-
-ALLOWED_FUNCS = readline rl_clear_history rl_on_new_line rl_replace_line \
-				rl_redisplay add_history printf malloc free write access \
-				open read close fork wait waitpid wait3 wait4 signal \
-				sigaction sigemptyset sigaddset kill exit getcwd chdir \
-				stat lstat fstat unlink execve dup dup2 pipe opendir \
-				readdir closedir strerror perror isatty ttyname ttyslot \
-				ioctl getenv tcsetattr tcgetattr tgetent tgetflag tgetnum \
-				tgetstr tgoto tputs
 
 #------------------------------------------------------------------------------#
 #                             NAMES AND PATHS                                  #
@@ -220,24 +207,6 @@ norm:
 	@FILES=$$(find . -name "*.c" -o -name "*.h"); \
 	if [ -n "$$FILES" ]; then (norminette $$FILES | awk '/Error:/ {print "$(RED)$(BOLD)" $$0 "$(RESET)"; errors++} /: OK!/ {print "$(GREEN)" $$0 "$(RESET)"} END {if (errors) print "$(RED)$(BOLD)$(CROSS) " errors " errors found$(RESET)"; else print "$(GREEN)$(BOLD)$(CHECK) No errors found$(RESET)"}') ; \
 	else (printf "${YELLOW}${BOLD}⚠️ No files to check${RESET}\n"); fi
-
-#------------------------------------------------------------------------------#
-#                           CHECK EXTERNAL FUNCTIONS                           #
-#------------------------------------------------------------------------------#
-
-check_external_functions: all
-	@printf "${BLUE}${BOLD}Checking External Functions...${RESET}\n"
-	@ALLOWED_RL="readline rl_clear_history rl_on_new_line rl_replace_line rl_redisplay add_history"; \
-	[ "$(OS)" = "Darwin" ] && (otool -I -V ./$(NAME) | grep -E '^[0-9]+.*_' | awk '{print $$NF}') || \
-	[ "$(OS)" = "Linux" ] && (nm -u ./$(NAME) | awk '/^[[:space:]]*U /{print $$2}') || \
-	(printf "${RED}${BOLD}${CROSS} Unsupported OS: $(OS)${RESET}\n" && exit 1) | \
-	grep -v "__" | sort -u | awk '{if (/^_rl_/ && !index("'"$$ALLOWED_RL"'", substr($$0,2))) next; orig=$$0; sub(/^_/, "", $$0); print orig" "$$0}' > .used.tmp
-	@echo "$(ALLOWED_FUNCS)" | tr ' ' '\n' | sort > .allowed.tmp
-	@printf "${CYAN}${DIM}Scanning...${RESET}\n"
-	@awk 'NR==FNR {allowed[$$0]; next} {orig=$$1; stripped=$$2; printf "  %s%-30s (", (stripped in allowed ? "$(GREEN)$(CHECK) " : "$(RED)$(CROSS) "), orig; if (stripped in allowed) print "USED/ALLOWED)$(RESET)"; else {print "FORBIDDEN)$(RESET)"; exit 1}}' .allowed.tmp .used.tmp || (printf "\n${RED}${BOLD}${CROSS} Forbidden functions detected${RESET}\n" && exit 1)
-	@awk '{print $$2}' .used.tmp | sort -u | comm -23 .allowed.tmp - | awk '{print "  $(YELLOW)$(CHECK) _" $$1 "                         (ALLOWED/NOT USED)$(RESET)"}'
-	@printf "${GREEN}${BOLD}${CHECK} All functions allowed${RESET}\n"
-	@$(RM) .used.tmp .allowed.tmp
 
 #------------------------------------------------------------------------------#
 #                                UTILITY RULES                                 #
