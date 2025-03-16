@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 11:25:50 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/14 17:37:08 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/16 22:05:39 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	ft_exec(t_shell *shell)
 	}
 	if (ft_has_pipes(shell) == SUCCESS)
 	{
+		shell->are_pipes = 1;
 		ft_handle_pipes(shell);
 		return ;
 	}

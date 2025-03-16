@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes_utils_2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 16:48:40 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/14 16:00:59 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/16 22:14:46 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,17 @@ void	ft_clean_and_exit(t_shell *sh)
 	exit(g_exit_status);
 }
 
+/**
+ * @brief Cleans up the shell structure and frees the temporary files array.
+ *
+ * @details
+ * This function is used when a pipe command is executed in a child process.
+ * It cleans up the shell structure by freeing the dynamically allocated memory
+ * associated with the tokens, redirects, temporary files, and environment
+ * variables, and then exits the child process.
+ *
+ * @param [in] shell The shell structure to clean up.
+ */
 void	ft_clean_pipe_child(t_shell *shell)
 {
 	ft_cleanup_w_env(shell);

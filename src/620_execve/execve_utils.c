@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 14:54:34 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/11 11:29:39 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/16 22:19:35 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ char	*ft_get_path_to_execute(t_shell *shell, char *cmd)
 	char	**arr;
 
 	if (!cmd || cmd[0] == '\0')
-	{
-		ft_print_error(ERR_INVALID_PARAMS);
 		return (NULL);
-	}
 	if (cmd[0] == '/' || cmd[0] == '.')
 		return (ft_safe_strdup(cmd));
 	full_path = ft_get_var_value("PATH", shell->env_cpy);

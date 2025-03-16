@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:59:06 by meferraz          #+#    #+#             */
-/*   Updated: 2025/03/14 22:09:48 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/16 21:54:17 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_status	ft_init_shell(t_shell *shell, char **envp)
 	shell->temp_files = NULL;
 	shell->redirected_stdin = -1;
 	shell->redirected_stdout = -1;
-	shell->in_export = 0;
+	shell->are_pipes = 0;
 	shell->random_number = 0;
 	shell->tml = NULL;
 	g_exit_status = EXIT_SUCCESS;
