@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:43:03 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/17 17:09:10 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/17 17:25:12 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_handle_pipes(t_shell *shell)
 		return ;
 	}
 	p.pids = ft_safe_calloc(sizeof(pid_t)
-		* (ft_count_pipes(shell->tokens) + 1));
+			* (ft_count_pipes(shell->tokens) + 1));
 	curr_cmd = shell->tokens;
 	p.i = 0;
 	while (p.i < ft_count_pipes(shell->tokens) + 1)
