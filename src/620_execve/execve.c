@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:34:25 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/13 17:38:02 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/17 10:46:43 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,13 +138,17 @@ static void	ft_exec_child(t_shell *shell, char *path, char **arr)
 	if (execve(path, arr, shell->env_cpy) == -1)
 	{
 		if (errno == EACCES)
+		{
+			ft_free(shell->last_cwd);
 			ft_print_error_w_arg(ERR_PERM_DENIED, path, EXIT_PERM_DENIED);
+		}
 		else
+		{
+			ft_free(shell->last_cwd);
 			ft_print_error_w_arg(ERR_CMD_NOT_FOUND, path, EXIT_CMD_NOT_FOUND);
+		}
 		ft_cleanup_cmd_execution(path, arr);
-		ft_cleanup(shell);
-		if (shell->env_cpy)
-			ft_free_arr(shell->env_cpy);
+		ft_cleanup_w_env(shell);
 		exit(g_exit_status);
 	}
 }
