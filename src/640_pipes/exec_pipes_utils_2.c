@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 16:48:40 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/16 22:14:46 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/17 17:11:16 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_cleanup_pipes(t_pipe *pipes, int num_pipes)
  * @param [in] pipes The t_pipe structure containing the pipes to close.
  * @param [in] num_pipes The number of pipes to close.
  */
-void	ft_close_child_pipes(t_pipe *pipes, int num_pipes)
+void	ft_close_child_pipes(t_pipe *pipes, int *pids, int num_pipes)
 {
 	int	j;
 
@@ -60,6 +60,8 @@ void	ft_close_child_pipes(t_pipe *pipes, int num_pipes)
 		close(pipes[j].write_fd);
 		j++;
 	}
+	ft_free(pipes);
+	ft_free(pids);
 }
 
 /**

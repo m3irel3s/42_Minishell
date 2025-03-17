@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 17:02:45 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/14 21:47:36 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/17 17:11:49 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,14 +146,14 @@ void			ft_advance_to_next_cmd(t_token **curr_cmd);
 
 /* 640_pipes/exec_pipes_utils_2.c */
 void			ft_cleanup_pipes(t_pipe *pipes, int num_pipes);
-void			ft_close_child_pipes(t_pipe *pipes, int num_pipes);
+void			ft_close_child_pipes(t_pipe *pipes, int *pids, int num_pipes);
 void			ft_free_redirects(t_redirect *redirects); //
 void			ft_clean_and_exit(t_shell *sh);
 void			ft_clean_pipe_child(t_shell *shell);
 
 /* 640_pipes/exec_pipes_child.c */
 void			ft_execute_child(t_shell *sh, t_token *curr_cmd,
-					int i, t_pipe *pipes);
+					t_pipe_util *p);
 
 //============================================================================//
 //                         EXECUTION - REDIRECTIONS                           //

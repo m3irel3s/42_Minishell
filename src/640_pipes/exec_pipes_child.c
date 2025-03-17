@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes_child.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 21:00:00 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/14 16:02:05 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/17 17:12:57 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ static t_token		*ft_prepare_child_tokens(t_token *curr_cmd);
  * @param [in] i The index of the current command.
  * @param [in] pipes The pipes structure.
  */
-void	ft_execute_child(t_shell *sh, t_token *curr_cmd, int i,
-	t_pipe *pipes)
+void	ft_execute_child(t_shell *sh, t_token *curr_cmd, t_pipe_util *p)
 {
 	t_token		*cmd_copy;
 	int			num_pipes;
@@ -42,7 +41,7 @@ void	ft_execute_child(t_shell *sh, t_token *curr_cmd, int i,
 
 	sh->tml->is_terminal = isatty(STDIN_FILENO);
 	num_pipes = ft_count_pipes(sh->tokens);
-	ft_setup_child_redirects(i, pipes, num_pipes);
+	ft_setup_child_redirects(p->i, p->pipes, num_pipes);
 	cmd_copy = ft_prepare_child_tokens(curr_cmd);
 	if (!cmd_copy)
 	{
@@ -53,8 +52,7 @@ void	ft_execute_child(t_shell *sh, t_token *curr_cmd, int i,
 	sh->tokens = cmd_copy;
 	ft_create_redirection_list(sh);
 	redir_status = ft_handle_redirects(sh);
-	ft_close_child_pipes(pipes, num_pipes);
-	ft_free(pipes);
+	ft_close_child_pipes(p->pipes, p->pids, num_pipes);
 	if (redir_status == ERROR)
 		ft_clean_and_exit(sh);
 	if (sh->tokens)
