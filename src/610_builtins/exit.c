@@ -6,7 +6,7 @@
 /*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:22:55 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/14 17:37:21 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/16 21:55:32 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	ft_exit(t_shell *shell)
 	t_token	*curr;
 
 	curr = shell->tokens;
-	write(STDOUT_FILENO, "exit\n", 5);
+	if (!shell->are_pipes)
+		write(STDOUT_FILENO, "exit\n", 5);
 	if (!curr || !curr->next)
 		return (ft_cleanup_w_env(shell), exit(g_exit_status));
 	if (ft_valid_number(curr->next->val.value) == ERROR)
@@ -41,7 +42,6 @@ void	ft_exit(t_shell *shell)
 	if (curr->next->next)
 	{
 		ft_print_error(ERR_EXIT_TOO_MANY_ARGS);
-		g_exit_status = 1;
 		return ;
 	}
 	g_exit_status = ft_atoi(curr->next->val.value);

@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:43:03 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/15 11:41:06 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/16 22:14:18 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-static void	ft_wait_for_children(int num_children);
-static void	ft_fork_exec(t_shell *sh, t_token *curr_cmd, t_pipe *pipes, int i);
+static void		ft_wait_for_children(pid_t *pids, int num_children);
+static pid_t	ft_fork_exec(t_shell *sh, t_token *curr_cmd, t_pipe *pipes,
+					int i);
 
 /**
  * @brief Handles a shell command that contains pipes.
@@ -30,6 +31,7 @@ void	ft_handle_pipes(t_shell *shell)
 {
 	t_pipe	*pipes;
 	t_token	*curr_cmd;
+	pid_t	*pids;
 	int		i;
 
 	pipes = ft_allocate_and_create_pipes(shell->tokens);
@@ -38,16 +40,18 @@ void	ft_handle_pipes(t_shell *shell)
 		ft_print_error(ERR_PIPE_FAIL);
 		return ;
 	}
+	pids = ft_safe_calloc(sizeof(pid_t) * (ft_count_pipes(shell->tokens) + 1));
 	curr_cmd = shell->tokens;
 	i = 0;
 	while (i < ft_count_pipes(shell->tokens) + 1)
 	{
-		ft_fork_exec(shell, curr_cmd, pipes, i);
+		pids [i] = ft_fork_exec(shell, curr_cmd, pipes, i);
 		ft_advance_to_next_cmd(&curr_cmd);
 		i++;
 	}
 	ft_cleanup_pipes(pipes, ft_count_pipes(shell->tokens));
-	ft_wait_for_children(ft_count_pipes(shell->tokens) + 1);
+	ft_wait_for_children(pids, ft_count_pipes(shell->tokens) + 1);
+	ft_free(pids);
 	ft_free(pipes);
 }
 
@@ -63,7 +67,8 @@ void	ft_handle_pipes(t_shell *shell)
  * @param [in] pipes The pipes structure.
  * @param [in] i The index of the current command.
  */
-static void	ft_fork_exec(t_shell *sh, t_token *curr_cmd, t_pipe *pipes, int i)
+static pid_t	ft_fork_exec(t_shell *sh, t_token *curr_cmd, t_pipe *pipes,
+	int i)
 {
 	pid_t	pid;
 
@@ -80,31 +85,32 @@ static void	ft_fork_exec(t_shell *sh, t_token *curr_cmd, t_pipe *pipes, int i)
 		ft_free(pipes);
 		exit(g_exit_status);
 	}
+	return (pid);
 }
 
 /**
  * @brief Waits for all child processes to finish.
  *
  * @details
- * This function takes an integer as an argument, which is the number of child
- * processes to wait for. It waits for each child to finish and updates the
- * exit status of the current shell process with the exit status of the last
- * child process to finish.
+ * This function takes an array of process IDs and the number of children
+ * and waits for all of them to finish using waitpid(). If a child process
+ * exited normally, it sets the global exit status to the exit status of
+ * the child process.
  *
+ * @param [in] pids An array of process IDs of the child processes to wait for.
  * @param [in] num_children The number of child processes to wait for.
  */
-static void	ft_wait_for_children(int num_children)
+static void	ft_wait_for_children(pid_t *pids, int num_children)
 {
-	int	i;
-	int	status;
+	int		i;
+	int		status;
 
 	i = 0;
-	wait(&status);
-	if (WIFEXITED(status))
-		g_exit_status = WEXITSTATUS(status);
 	while (i < num_children)
 	{
-		wait(&status);
+		waitpid(pids[i], &status, 0);
+		if (WIFEXITED(status))
+			g_exit_status = WEXITSTATUS(status);
 		i++;
 	}
 }

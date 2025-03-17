@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 11:15:10 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/14 17:14:33 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/03/16 21:54:33 by meferraz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct s_shell
 	int				redirected_stdin;
 	int				redirected_stdout;
 	int				og_stdout;
-	int				in_export;
+	int				are_pipes;
 	size_t			random_number;
 	t_terminal		*tml;
 }	t_shell;
