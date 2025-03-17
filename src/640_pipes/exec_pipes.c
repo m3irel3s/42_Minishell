@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: meferraz <meferraz@student.42porto.pt>     +#+  +:+       +#+        */
+/*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:43:03 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/03/16 22:14:18 by meferraz         ###   ########.fr       */
+/*   Updated: 2025/03/17 11:06:26 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ void	ft_handle_pipes(t_shell *shell)
 	i = 0;
 	while (i < ft_count_pipes(shell->tokens) + 1)
 	{
-		pids [i] = ft_fork_exec(shell, curr_cmd, pipes, i);
+		pids[i] = ft_fork_exec(shell, curr_cmd, pipes, i);
 		ft_advance_to_next_cmd(&curr_cmd);
 		i++;
 	}
 	ft_cleanup_pipes(pipes, ft_count_pipes(shell->tokens));
 	ft_wait_for_children(pids, ft_count_pipes(shell->tokens) + 1);
-	ft_free(pids);
 	ft_free(pipes);
+	ft_free(pids);
 }
 
 /**
