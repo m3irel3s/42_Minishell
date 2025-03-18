@@ -4,7 +4,7 @@
 
 # Welcome to **Minishell**! 
 
-[![Minishell Video](https://img.youtube.com/vi/W-a36jvt0Ic/0.jpg)](https://www.youtube.com/watch?v=W-a36jvt0Ic)
+![Video GIF]([https://youtu.be/W-a36jvt0Ic])
 
 This project is our implementation of a simplified **Shell**, which is part of the **42 coding school** curriculum. As a team of two, we worked together to create a minimalist version of bash that can interpret commands, handle executables, and implement various shell functionalities. This project required us to dive deep into processes, file descriptors, and command interpretation.
 
