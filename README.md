@@ -8,15 +8,6 @@ This project is our implementation of a simplified **Shell**, which is part of t
 
 Our implementation follows a structured pipeline approach with distinct processing stages from prompt display to command execution. This solution handles various shell features like redirections, pipes, environment variables, and built-in commands.
 
-<div align="left">
-Key aspects of our collaborative implementation include:
-- **Command parsing and execution** system
-- **Signal handling** for keyboard interrupts
-- **Built-in commands** like echo, cd, pwd, etc.
-- **Redirections and pipes** management
-- **Environment variables** expansion
-</div>
-
 Minishell
 Language
 License
