@@ -4,15 +4,15 @@
 
 # Welcome to **Minishell**! 
 
-![Video GIF]([https://youtu.be/W-a36jvt0Ic])
+![Minishell_video](https://github.com/user-attachments/assets/ff23a4db-1e13-4f0c-ae7e-0993bae24890)
 
 This project is our implementation of a simplified **Shell**, which is part of the **42 coding school** curriculum. As a team of two, we worked together to create a minimalist version of bash that can interpret commands, handle executables, and implement various shell functionalities. This project required us to dive deep into processes, file descriptors, and command interpretation.
 
 Our implementation follows a structured pipeline approach with distinct processing stages from prompt display to command execution. This solution handles various shell features like redirections, pipes, environment variables, and built-in commands.
 
 Minishell
-Language
-License
+- **Language**: C
+- **License**: MIT License
 
 </div>
 
